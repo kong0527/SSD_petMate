@@ -4,7 +4,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-
 				<p class="mb-5">
 					<img src="images/big_img_1.jpg" alt="Image" class="img-fluid">
 				</p>
@@ -210,14 +209,10 @@
 								<input type="submit" value="Post Comment"
 									class="btn btn-primary py-3">
 							</div>
-
 						</form>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-
 	</div>
 </div>
