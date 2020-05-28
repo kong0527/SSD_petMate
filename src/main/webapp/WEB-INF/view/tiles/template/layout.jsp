@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>Meranda &mdash; Website Template by Colorlib</title>
+<title>petMate</title>
 <style>
 ul.dropdown-menu {
 	text-align: center;
@@ -48,6 +48,8 @@ ul.dropdown-menu {
 <script src="resources/js/jquery.sticky.js"></script>
 <script src="resources/js/jquery.mb.YTPlayer.min.js"></script>
 <script src="resources/js/main.js"></script>
+
+<script src="resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
 <body>
