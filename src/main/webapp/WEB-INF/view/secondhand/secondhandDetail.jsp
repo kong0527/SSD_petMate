@@ -57,7 +57,7 @@
 					eos veritatis enim perspiciatis, magni sit!</p>
 
 
-
+				<!-- 추가 -->
 				<div class="pt-5" align="right">
 					<button type="submit" formaction="secondhandDetail/edit" class="btn">수정</button>
 					<button type="submit" formaction="secondhandDetail/delete" class="btn">삭제</button>
