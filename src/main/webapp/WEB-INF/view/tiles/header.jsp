@@ -30,15 +30,15 @@
 
 						<div class="mr-auto">
 							<nav class="site-navigation position-relative text-right" role="navigation">
-								<%-- <ul
+								<ul
 									class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
 									<li class="active"><a href="index.html"
 										class="nav-link text-left">Home</a></li>
 									<li><a href="categories.html" class="nav-link text-left">Categories</a>
 									</li>
-									<li><a href="${pageContext.request.contextPath}/secondhandForm" class="nav-link text-left">secondhand</a>
+									<li><a href="${pageContext.request.contextPath}/secondhand" class="nav-link text-left">secondhand</a>
 									</li>
-									<li><a href="${pageContext.request.contextPath}/secondhandForm" class="nav-link text-left">Business</a>
+									<li><a href="${pageContext.request.contextPath}/GpurchaseForm" class="nav-link text-left">Gpurchase</a>
 									</li>
 									<li><a href="categories.html" class="nav-link text-left">Health</a>
 									</li>
@@ -46,8 +46,8 @@
 									<li><a href="categories.html" class="nav-link text-left">Sport</a>
 									</li>
 									<li><a href="contact.html" class="nav-link text-left">Contact</a></li>
-								</ul> --%>
-								<div class="site-menu dropdown">
+								</ul>
+							<!-- 	<div class="site-menu dropdown">
 								  <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								    자유 게시판
 								  </a>
@@ -65,7 +65,7 @@
 								    <a class="dropdown-item" href="#">정보 게시판</a>
 								    <a class="dropdown-item" href="#">질문 게시판</a>
 								  </div>
-								</div>
+								</div> -->
 							</nav>
 						</div>
 					</div>

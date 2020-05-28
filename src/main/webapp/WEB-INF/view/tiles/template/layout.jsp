@@ -38,7 +38,7 @@
 <script src="resources/js/jquery.countdown.min.js"></script>
 <script src="resources/js/bootstrap-datepicker.min.js"></script>
 <script src="resources/js/jquery.easing.1.3.js"></script>
-<script src="resources/js/aos.js">AOS.init({ duration: 2000, });</script>
+<script src="resources/js/aos.js"></script>
 <script src="resources/js/jquery.fancybox.min.js"></script>
 <script src="resources/js/jquery.sticky.js"></script>
 <script src="resources/js/jquery.mb.YTPlayer.min.js"></script>

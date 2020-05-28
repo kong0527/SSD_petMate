@@ -14,9 +14,21 @@ public class mainController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/secondhand", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView detailSecondhand(ModelAndView mv) {
+		mv.setViewName("secondhand/categories");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/secondhandForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView secondhandForm(ModelAndView mv) {
 		mv.setViewName("secondhand/secondhandForm");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/secondhandDetail", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView secondhandDetail(ModelAndView mv) {
+		mv.setViewName("secondhand/secondhandDetail");
 		return mv;
 	}
 	
