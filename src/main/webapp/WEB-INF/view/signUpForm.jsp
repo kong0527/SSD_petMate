@@ -35,9 +35,9 @@
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="userType">
-								펫시터<input type="checkbox" id="userType" value="1">
+								펫시터<input type="checkbox" id="userType" value="0">
 								&nbsp&nbsp
-								일반회원<input type="checkbox" id="userType" value="2">
+								일반회원<input type="checkbox" id="userType" value="1">
 							</label> 
 						</div>
 					</div>
