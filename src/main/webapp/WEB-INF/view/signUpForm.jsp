@@ -8,13 +8,11 @@
 					<h2>회원가입</h2>
 				</div>
 				<form method="post">
-
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="id">아이디</label> <input type="text" id="id"
 								class="form-control form-control-lg">
 						</div>
-
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
