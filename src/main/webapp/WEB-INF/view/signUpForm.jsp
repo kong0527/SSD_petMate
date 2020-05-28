@@ -36,7 +36,7 @@
 						<div class="col-md-6 form-group">
 							<label for="userType">
 								펫시터<input type="checkbox" id="userType" value="1">
-								&nbsp &nbsp
+								&nbsp&nbsp
 								일반회원<input type="checkbox" id="userType" value="2">
 							</label> 
 						</div>
