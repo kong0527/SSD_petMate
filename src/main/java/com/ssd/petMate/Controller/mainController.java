@@ -14,9 +14,15 @@ public class mainController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/signUp", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView signUp(ModelAndView mv) {
+		mv.setViewName("user/signUpForm");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/signIn", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login(ModelAndView mv) {
-		mv.setViewName("login");
+		mv.setViewName("user/signIn");
 		return mv;
 	}
 	

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="resources/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.min.css">
 <!-- <link rel="stylesheet" type="text/css" href="resources/fonts/login/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="resources/fonts/login/Linearicons-Free-v1.0.0/icon-font.min.css"> -->
 <link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="resources/vendor/select2/select2.min.css">
 <link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?after">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/vendor/animsition/js/animsition.min.js"></script>

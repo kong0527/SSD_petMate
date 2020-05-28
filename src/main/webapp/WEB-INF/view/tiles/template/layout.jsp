@@ -22,16 +22,15 @@ ul.dropdown-menu {
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/fonts/icomoon/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="resources/css/jquery-ui.css">
-<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resources/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="resources/css/meranda/jquery-ui.css">
+<link rel="stylesheet" href="resources/css/meranda/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/css/meranda/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/css/meranda/jquery.fancybox.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap/bootstrap-datepicker.css">
 <link rel="stylesheet" href="resources/fonts/flaticon/font/flaticon.css">
-<link rel="stylesheet" href="resources/css/aos.css">
-<link href="resources/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/meranda/aos.css">
+<link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="resources/css/meranda/style.css">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>

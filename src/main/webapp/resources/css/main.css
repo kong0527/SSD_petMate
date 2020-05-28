@@ -11,18 +11,28 @@
 }
 
 @font-face {
-  font-family: Raleway-Medium;
-  src: url('../fonts/raleway/Raleway-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-SemiBold;
-  src: url('../fonts/raleway/Raleway-SemiBold.ttf'); 
-}
-
-@font-face {
   font-family: Raleway-Bold;
   src: url('../fonts/raleway/Raleway-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: NanumSquare_extraBold;
+  src: url('../fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
+}
+
+@font-face {
+  font-family: NanumSquare_bold;
+  src: url('../fonts/Nanumsquare/NanumSquare_acB.ttf'); 
+}
+
+@font-face {
+  font-family: NanumSquare_regular;
+  src: url('../fonts/Nanumsquare/NanumSquare_acR.ttf'); 
+}
+
+@font-face {
+  font-family: NanumSquare_light;
+  src: url('../fonts/Nanumsquare/NanumSquare_acL.ttf'); 
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -36,12 +46,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Raleway-Regular, sans-serif;
+	font-family: NanumSquare_regular, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Raleway-Regular;
+	font-family: NanumSquare_regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -67,7 +77,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Raleway-Regular;
+	font-family: NanumSquare_regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -139,23 +149,23 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Raleway-SemiBold;
-  font-size: 13px;
+  font-family: NanumSquare_bold;
+  font-size: 14px;
   color: #555555;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
 .txt2 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
+  font-family: NanumSquare_regular;
+  font-size: 14px;
   color: #999999;
   line-height: 1.4;
 }
 
 .txt3 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
+  font-family: NanumSquare_regular;
+  font-size: 14px;
   color: #555555;
   line-height: 1.4;
 }
@@ -202,7 +212,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Raleway-Medium;
+  font-family: NanumSquare_regular;
   font-size: 30px;
   color: #555555;
   line-height: 1.2;
@@ -229,7 +239,7 @@ iframe {
 
 /*---------------------------------------------*/
 .input100 {
-  font-family: Raleway-Medium;
+  font-family: NanumSquare_regular;
   color: #555555;
   line-height: 1.2;
   font-size: 18px;
@@ -330,8 +340,8 @@ iframe {
 }
 
 .label-checkbox100 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
+  font-family: NanumSquare_regular;
+  font-size: 14px;
   color: #999999;
   line-height: 1.4;
 
@@ -387,7 +397,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Raleway-Bold;
+  font-family: NanumSquare_bold;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -444,7 +454,7 @@ iframe {
   right: 12px;
   pointer-events: none;
 
-  font-family: Raleway-Medium;
+  font-family: Raleway-regular;
   color: #c80000;
   font-size: 14px;
   line-height: 1.4;
