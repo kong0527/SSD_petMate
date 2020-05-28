@@ -5,16 +5,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>petMate</title>
+<title>Meranda &mdash; Website Template by Colorlib</title>
+<style>
+ul.dropdown-menu {
+	text-align: center;
+}
+</style>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
 
-<!-- <link
+<link
 	href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap"
-	rel="stylesheet"> -->
+	rel="stylesheet">
 <link rel="stylesheet" href="resources/fonts/icomoon/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/jquery-ui.css">
@@ -43,8 +48,6 @@
 <script src="resources/js/jquery.sticky.js"></script>
 <script src="resources/js/jquery.mb.YTPlayer.min.js"></script>
 <script src="resources/js/main.js"></script>
-
-<script src="resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
 <body>

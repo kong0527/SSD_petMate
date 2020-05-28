@@ -56,12 +56,15 @@
 					eos veritatis enim perspiciatis, magni sit!</p>
 
 
-
-				<div class="pt-5">
-					<p>
-						Categories: <a href="#">Design</a>, <a href="#">Events</a> Tags: <a
-							href="#">#html</a>, <a href="#">#trends</a>
-					</p>
+				<!-- 추가 -->
+				<div class="pt-5" align="right">
+					<button type="submit" formaction="secondhandDetail/edit" class="btn">수정</button>
+					<button type="submit" formaction="secondhandDetail/delete" class="btn">삭제</button>
+				</div>
+				
+				<div class="pt-5" align="center">
+					<a href="secondhandDetail/likePlus"><img src="resources/img/love.png" border="0" class="zoom"></a>
+					<p>추천수 : 1 </p>
 				</div>
 
 
