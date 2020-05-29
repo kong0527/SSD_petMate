@@ -15,8 +15,6 @@ ul.dropdown-menu {
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
-
 <link
 	href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap"
 	rel="stylesheet">
@@ -30,12 +28,12 @@ ul.dropdown-menu {
 <link rel="stylesheet" href="resources/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="resources/css/meranda/aos.css">
 <link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="resources/css/meranda/style.css">
+<link rel="stylesheet" href="resources/css/meranda/style.css?new1">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="resources/js/jquery-ui.js"></script>
-<script src="resources/js/core/popper.min.js"></script>
+<script src="resources/js/popper.min.js?new"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/owl.carousel.min.js"></script>
 <script src="resources/js/jquery.stellar.min.js"></script>

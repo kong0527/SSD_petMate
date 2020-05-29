@@ -17,22 +17,22 @@
 
 @font-face {
   font-family: NanumSquare_extraBold;
-  src: url('../fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
+  src: url('resources/fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_bold;
-  src: url('../fonts/Nanumsquare/NanumSquare_acB.ttf'); 
+  src: url('resources/fonts/Nanumsquare/NanumSquare_acB.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_regular;
-  src: url('../fonts/Nanumsquare/NanumSquare_acR.ttf'); 
+  src: url('resources/fonts/Nanumsquare/NanumSquare_acR.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_light;
-  src: url('../fonts/Nanumsquare/NanumSquare_acL.ttf'); 
+  src: url('resources/fonts/Nanumsquare/NanumSquare_acL.ttf'); 
 }
 
 /*//////////////////////////////////////////////////////////////////
