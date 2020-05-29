@@ -35,16 +35,18 @@
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="userType">
-								펫시터<input type="checkbox" id="userType" value="0">
+								펫시터<input type="radio" id="userType" name="userType" value="0">
 								&nbsp&nbsp
-								일반회원<input type="checkbox" id="userType" value="1">
+								일반회원<input type="radio" id="userType" name="userType" value="1">
 							</label> 
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-12">
+						<!-- 가운데 정렬시 클래스에 text-center -->
 							<input type="submit" value="회원가입"
 								class="btn btn-primary py-3 px-5">
+								<!-- 오른쪽 정렬시 버튼 클래스에 btn float-right -->
 						</div>
 					</div>
 				</form>
