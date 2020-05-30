@@ -14,7 +14,6 @@
 							<label for="fname">제목</label> <input type="text" id="fname"
 								class="form-control form-control-lg">
 						</div>
-
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
@@ -47,3 +46,12 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: "message",
+		sSkinURI: "resources/se2/SmartEditor2Skin.html",
+		fCreator: "createSEditor2"
+	});
+</script>
