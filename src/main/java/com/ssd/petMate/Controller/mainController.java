@@ -26,6 +26,12 @@ public class mainController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/admin", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView admin(ModelAndView mv) {
+		mv.setViewName("admin/adminPage");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/secondhand", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView detailSecondhand(ModelAndView mv) {
 		mv.setViewName("secondhand/categories");
