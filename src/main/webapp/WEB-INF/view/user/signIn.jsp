@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 
-<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/vendor/animsition/js/animsition.min.js"></script>
 <script src="resources/js/popper.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
