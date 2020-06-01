@@ -6,16 +6,6 @@
 [ FONT ]*/
 
 @font-face {
-  font-family: Raleway-Regular;
-  src: url('../fonts/raleway/Raleway-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-Bold;
-  src: url('../fonts/raleway/Raleway-Bold.ttf'); 
-}
-
-@font-face {
   font-family: NanumSquare_extraBold;
   src: url('resources/fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
 }
@@ -78,7 +68,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
 	font-family: NanumSquare_regular;
-	font-size: 14px;
+	font-size: 15px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
