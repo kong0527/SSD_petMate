@@ -36,7 +36,7 @@
 		<junit.version>4.11</junit.version>
 		
 		<!--Spring Security  -->
-		<security.version>5.3.2.RELEASE</security.version>
+		<security.version>5.3.3.RELEASE</security.version>
 	</properties>
 	
 	<dependencies>	
