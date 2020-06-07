@@ -67,6 +67,12 @@ public class mainController {
 		mv.setViewName("paymentForm");
 		return mv;
 	}
+
+	@RequestMapping(value = "/petsitterList", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView petsitterList(ModelAndView mv) {
+		mv.setViewName("petsitter/petsitterList");
+		return mv;
+	}
 	
 	@RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView petsitterForm(ModelAndView mv) {
