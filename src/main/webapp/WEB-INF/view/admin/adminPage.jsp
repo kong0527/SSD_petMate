@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
@@ -10,21 +12,21 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>글 제목</th>
-					<th>작성자</th>
+					<th>name</th>
+					<th>contents</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>1</td>
-					<td>인스타에 사진 3000장 올려주세요</td>
-					<td>김콩</td>
+					<td>kong</td>
+					<td>kong</td>
 				</tr>
 				<tr>
 					<td>2</td>
-					<td>골골송 한번만 불러주세요</td>
-					<td>양갱</td>
+					<td>강아지</td>
+					<td>강아지</td>
 				</tr>
 			</tbody>
 		</table>
