@@ -8,21 +8,21 @@ import com.ssd.petMate.page.pageMaker;
 
 public interface AnswerMapper {
 
-	List<Answer> getReplyList(pageMaker page);
+	List<Answer> getAnswerList(pageMaker page);
 	
-	void insertReply(Answer reply);
+	void insertAnswer(Answer reply);
 	
-	void updateReply(Answer reply);
+	void updateAnswer(Answer reply);
 	
-	void deleteReply(int replyNum);
+	void deleteAnswer(int replyNum);
 	
-	Answer getReply(int replyNum);
+	Answer getAnswer(int replyNum);
 	
-	int replyCount(int boardNum);
+	int answerCount(int boardNum);
 	
-	void setReplyOrder(HashMap<String, Object> map);
+	void setAnswerOrder(HashMap<String, Object> map);
 	
-	int findLastReplyID(int replyNum);
+	int findLastAnswerID(int replyNum);
 	
 	int countSameGID(int replyNum);
 }

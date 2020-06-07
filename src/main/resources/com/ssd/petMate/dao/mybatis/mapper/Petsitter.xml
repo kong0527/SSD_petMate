@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.PetsitterMapper">
+	<cache />
+	<!-- 게시글 개수 가져오기 -->
+	<select id="boardPageCount" resultType="int"
+		parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Petsitter
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null and keyword != ''">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 게시글 목록 가져오기 -->
+	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="java.util.List">
+      SELECT *
+      FROM Petsitter
+      <where>
+         <if test="searchType=='boardTitle' and keyword != null">
+            and boardTitle LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='boardContent' and keyword != null">
+            and boardContent LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='userID' and keyword != null">
+            and userID LIKE CONCAT('%',#{keyword},'%')
+         </if>
+      </where>
+      ORDER BY boardNum
+      LIMIT #{startList}, #{contentNum}
+	</select>
+
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Petsitter">
+		INSERT 
+		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petCareer, petDay, petSize, boardLike, boardImage)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{petPrice}, #{petLocal}, #{petCareer}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
+	</insert>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="boardDetail" parameterType="int" resultType="com.ssd.petMate.domain.Petsitter">
+		SELECT *
+		FROM Petsitter
+		WHERE boardNum = #{boardNum}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="com.ssd.petMate.domain.Petsitter">
+		UPDATE Petsitter SET
+		boardTitle = #{boardTitle},
+		boardContent = #{boardContent},
+		petPrice = #{petPrice},
+		petLocal = #{petLocal},
+		petCareer = #{petCareer},
+		petDay = #{petDay},
+		petSize = #{petSize},
+		petDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'),
+		petImage = #{petImage}
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM Petsitter
+		WHERE boardNum = #{boardNum}
+	</delete>
+	
+	<!-- 덧글 수 증가 -->
+	<update id="plusReplyCnt" parameterType="int">
+		UPDATE Petsitter
+		SET replyCnt = replyCnt + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 덧글 수 감소 -->
+	<update id="minusReplyCnt" parameterType="int">
+		UPDATE Petsitter
+		SET replyCnt = replyCnt - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="boardViews" parameterType="int">
+		UPDATE Petsitter
+		SET boardHit = boardHit + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 필터링기능 / 아직은 임시로 작성 -->
+	<!-- 체크박스 or 라디오박스중 어떤 값은 null이 들어올 수도 있는데 이런 경우에 대해 각각 query문을 만들어야할까?
+	아니면 null이 들어와도 상관 없을지 search 해보기. parameterType도 후에 추가해야함 -->
+	<select id="filtering" resultType="java.util.List">
+		SELECT *
+		FROM Petsitter
+		WHERE petPrice = #{petPrice}, petLocal = #{petLocal}, petCareer = #{petCareer}, petDay = #{petDay}, petSize = #{petSize}
+	</select>
+	
+	<!-- 좋아요 수 증가 -->
+	<update id="plusLike" parameterType="int">
+		UPDATE Petsitter
+		SET boardLike = boardLike + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 좋아요 수 감소 -->
+	<update id="minusLike" parameterType="int">
+		UPDATE Petsitter
+		SET boardLike = boardLike - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+</mapper>
