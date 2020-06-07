@@ -52,32 +52,34 @@
 
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<button type="submit" formaction="secondhandDetail/edit" class="btn">수정</button>
-					<button type="submit" formaction="secondhandDetail/delete" class="btn">삭제</button>
+					<button type="submit" formaction="secondhandDetail/edit"
+						class="btn">수정</button>
+					<button type="submit" formaction="secondhandDetail/delete"
+						class="btn">삭제</button>
 				</div>
-				
+
 				<div class="pt-5" align="center">
-					<a href="secondhandDetail/likePlus"><img src="resources/img/love.png" border="0" class="zoom"></a>
-					<p>추천수 : 1 </p>
+					<a href="secondhandDetail/likePlus"><img
+						src="resources/img/love.png" border="0" class="zoom"></a>
+					<p>추천수 : 1</p>
 				</div>
-				
+
 				<!-- comment 작성 부분 -->
 				<div class="comment-form-wrap pt-5">
-						<div class="section-title">
-							<h2 class="mb-5">Leave a comment</h2>
-						</div>
-						<form action="#" class="p-5 bg-light">
-							<div class="form-group">
-								<label for="message">&nbsp&nbsp댓글 쓰기</label>
-								<textarea name="" id="message" cols="10" rows="5"
-									class="form-control"></textarea>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="등록"
-									class="btn btn-primary py-3">
-							</div>
-						</form>
+					<div class="section-title">
+						<h2 class="mb-5">Leave a comment</h2>
 					</div>
+					<form action="#" class="p-5 bg-light">
+						<div class="form-group">
+							<label for="message">&nbsp&nbsp댓글 쓰기</label>
+							<textarea name="" id="message" cols="10" rows="5"
+								class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="등록" class="btn btn-primary py-3">
+						</div>
+					</form>
+				</div>
 
 				<!-- comment 시작 부분 -->
 
@@ -197,7 +199,7 @@
 						</li>
 					</ul>
 					<!-- END comment-list -->
-					
+
 				</div>
 			</div>
 		</div>

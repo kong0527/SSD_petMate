@@ -42,7 +42,6 @@
 				</ul>
 			</div>
 		</div>
-
 		<nav id="sidebar">
 			<div class="p-4 pt-5">
 				<h5>Categories</h5>
