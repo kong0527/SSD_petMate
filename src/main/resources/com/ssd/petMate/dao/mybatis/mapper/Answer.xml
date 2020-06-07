@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
-<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.Answer">
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.AnswerMapper">
   <cache />
-  	<!-- 댓글 리스트 가져오기  -->
-	<select id="getReplyList" parameterType="Integer">
+  	<!-- 답글 리스트 가져오기  -->
+	<select id="getAnswerList" parameterType="Integer">
 		SELECT *
 		FROM Answer
 		WHERE boardNum = #{baordNum}
@@ -13,36 +13,36 @@
 		LIMIT #{startList}, #{contentNum}
 	</select>
 	
-	<!-- 댓글 삽입하기  -->
-	<insert id="insertReply" parameterType="Answer">
+	<!-- 답글 삽입하기  -->
+	<insert id="insertAnswer" parameterType="Answer">
  		INSERT 
 		INTO Answer(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{replyContent}, #{userID}, now(), #{replyGID}, #{replyOrder}, #{replyParents}) 
+		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
 	</insert>
 	
-	<!-- 댓글 수정하기  -->
-	<update id="updateReply" parameterType="Answer">
+	<!-- 답글 수정하기  -->
+	<update id="updateAnswer" parameterType="Answer">
 		UPDATE Answer SET
 		replyContent = #{replyContent}
 		WHERE replyNum = #{replyNum}
 	</update>
 	
-	<!-- 댓글 삭제하기  -->
-	<!-- 부모 댓글을 삭제하면 밑에 답글들도 삭제할 수 있도록 or 처리 -->
-	<delete id="deleteReply" parameterType="Integer">
+	<!-- 답글 삭제하기  -->
+	<!-- 부모 답글을 삭제하면 밑에 대댓글들도 삭제할 수 있도록 or 처리 -->
+	<delete id="deleteAnswer" parameterType="Integer">
 		DELETE FROM Answer
 		WHERE replyNum = #{replyNum} or replyGID = #{replyGID}
 	</delete>
 
-	<!-- 댓글 상세정보 가져오기  -->
-	<select id="getReply" parameterType="Integer" resultMap="MovieReplyDtoResult">
+	<!-- 답글 상세정보 가져오기  -->
+	<select id="getAnswer" parameterType="Integer">
 		SELECT *
 		FROM Answer
 		WHERE replyNum = #{replyNum}
 	</select>
 	
-	<!-- 게시글에 달린 댓글 수   -->
-	<select id="replyCount" parameterType="Integer" resultType="Integer">
+	<!-- 게시글에 달린 답글 수   -->
+	<select id="AnswerCount" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
 		FROM Answer
 		WHERE boardNum = #{boardNum}
@@ -50,7 +50,7 @@
 	
 	<!-- 답글 순서 정하기  -->
 	<!-- 답글 추가 시 이전에 있던 답글들에 order + 1 하기  -->
-	<update id="setReplyOrder" parameterType="hashMap">
+	<update id="setAnswerOrder" parameterType="hashMap">
 		UPDATE Answer
 		SET replyOrder = replyOrder + 1
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
@@ -60,7 +60,7 @@
 <!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
 	<!-- 마지막 댓글 ID 찾아오기  -->
 	<!-- 페이징을 위해서 필요  -->
-	<select id="findLastReplyID" resultType="Integer">
+	<select id="findLastAnswerID" resultType="Integer">
 		SELECT replyNum
 		FROM Answer
 		ORDER BY replyNum DESC LIMIT 1;
