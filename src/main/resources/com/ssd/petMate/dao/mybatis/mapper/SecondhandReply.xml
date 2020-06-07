@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
-<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandReply">
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandReplyMapper">
   <cache />
   	<!-- 댓글 리스트 가져오기  -->
 	<select id="getReplyList" parameterType="Integer">
@@ -17,7 +17,7 @@
 	<insert id="insertReply" parameterType="SecondhandReply">
  		INSERT 
 		INTO SecondhandReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{replyContent}, #{userID}, now(), #{replyGID}, #{replyOrder}, #{replyParents}) 
+		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->
@@ -35,7 +35,7 @@
 	</delete>
 
 	<!-- 댓글 상세정보 가져오기  -->
-	<select id="getReply" parameterType="Integer" resultMap="MovieReplyDtoResult">
+	<select id="getReply" parameterType="Integer">
 		SELECT *
 		FROM SecondhandReply
 		WHERE replyNum = #{replyNum}
