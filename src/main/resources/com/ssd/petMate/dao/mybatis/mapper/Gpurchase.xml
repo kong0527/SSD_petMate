@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <typeAlias type="com.ssd.petMate.domain.Gpurchase" alias="Gpurchase" /> -->
+<!-- mapper interface랑 경로를 똑같이 정함 -->
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseMapper">
+
+  <cache />
+  	<!-- 공동구매 게시글 목록 가져오기  -->
+	<select id="getGpurchaseList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Gpurchase">
+      SELECT *
+      FROM Gpurchase
+      <where>
+         <if test="searchType=='boardTitle' and keyword != null">
+            and boardTitle LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='boardContent' and keyword != null">
+            and boardContent LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='userID' and keyword != null">
+            and userID LIKE CONCAT('%',#{keyword},'%')
+         </if>
+      </where>
+      ORDER BY boardNum
+      LIMIT #{startList}, #{contentNum}
+	</select>
+	
+	<!-- 공동구매 게시글 수 -->
+	<select id="getGpurchaseCount" resultType="int" parameterType="com.ssd.petMate.page.BoardSearch">
+		SELECT COUNT(*)
+		FROM Gpurchase
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null and keyword != ''">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 공동구매 게시글 삽입하기  -->
+	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
+ 		INSERT
+ 		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum)
+ 		VALUES(#{userID}, #{title}, #{content}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{image}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, #{sdate}, #{edate}, #{goalNum,jdbcType=NUMERIC})
+ 	</insert>
+	
+	<!-- 공동구매 게시글 수정하기  -->
+	<update id="updateGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
+		UPDATE Gpurchase
+		SET boardTitle = #{title}, boardContent = #{content}, boardDate = SYSDATE, boardImage = #{image}, price = #{price}
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 공동구매 게시글 삭제하기  -->
+	<delete id="deleteGpurchase" parameterType="int">
+		DELETE FROM Gpurchase
+		WHERE boardNum = #{boardNum}
+	</delete>
+
+	<!-- 공동구매 게시글 상세정보 가져오기  -->
+	<select id="getGpurchaseDetail" parameterType="int" resultType="com.ssd.petMate.domain.Gpurchase">
+		SELECT *
+		FROM Gpurchase
+		WHERE boardNum = #{boardNum}
+	</select>
+	
+	<!-- 공동구매 장바구니 추가(장바구니 수 증가) -->
+	<update id="gpurchaseCartPlus" parameterType="int">
+		UPDATE Gpurchase
+		SET cartAdded = cartAdded + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 공동구매 장바구니 삭제(장바구니 수 감소) -->
+	<update id="gpurchaseCartMinus" parameterType="int">
+		UPDATE Gpurchase
+		SET cartAdded = cartAdded - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 공동구매 댓글 추가 -->
+	<update id="gpurchaseReplyCntPlus" parameterType="int">
+		UPDATE Gpurchase
+		SET replyCnt = replyCnt + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 공동구매 댓글 삭제-->
+	<update id="gpurchaseReplyCntMinus" parameterType="int">
+		UPDATE Gpurchase
+		SET replyCnt = replyCnt - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 공동구매 조회수 증가 -->
+	<update id="gpurchaseBoardHitPlus" parameterType="int">
+		UPDATE Gpurchase
+		SET boardHit = boardHit + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper interface랑 경로를 똑같이 정함 -->
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandCartMapper">
+  <cache />
+  	<!-- 중고물품 장바구니 목록 가져오기  -->
+	<select id="getSecondhandCartList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.SecondhandCart">
+		SELECT *
+		FROM SecondhandCart
+		WHERE userID = #{userID}
+		ORDER BY boardNum
+		LIMIT #{startList}, #{contentNum}
+	</select>
+	<!--  조인이 필요한가? -->
+	
+	<!-- 중고물품 장바구니 수(페이지네이션?) -->
+	<select id="getSecondhandCartCount" resultType="int">
+		SELECT COUNT(*)
+		FROM SecondhandCart
+		WHERE userID = #{userID}
+	</select>
+	
+	<!-- 중고물품 장바구니 추가하기  -->
+	<insert id="insertSecondhandCart" parameterType="com.ssd.petMate.domain.SecondhandCart">
+ 		INSERT
+ 		INTO SecondhandCart(boardNum, userID) VALUES(#{boardNum}, #{userID})
+	</insert>
+	
+	<!-- 중고물품 장바구니 삭제하기  -->
+	<delete id="deleteSecondhandCart" parameterType="com.ssd.petMate.domain.SecondhandCart">
+		DELETE
+		FROM SecondhandCart
+		WHERE boardNum=#{boardNum} and userID=#{userID}
+	</delete>
+</mapper>

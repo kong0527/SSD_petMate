@@ -2,7 +2,7 @@ package com.ssd.petMate.domain;
 
 public class Order {
 	private int OrderNum;
-	private String date;
+	private String orderDate;
 	private int price;
 	private String userID;
 	private String bank;
@@ -16,11 +16,11 @@ public class Order {
 	public void setOrderNum(int orderNum) {
 		OrderNum = orderNum;
 	}
-	public String getDate() {
-		return date;
+	public String getOrderDate() {
+		return orderDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
 	}
 	public int getPrice() {
 		return price;
