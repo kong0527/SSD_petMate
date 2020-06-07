@@ -1,15 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Login V14</title>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" type="text/css" href="resources/css/bootstrap/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="resources/fonts/login/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="resources/fonts/login/Linearicons-Free-v1.0.0/icon-font.min.css"> -->
 <link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
 <link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
 <link rel="stylesheet" type="text/css" href="resources/vendor/animsition/css/animsition.min.css">
@@ -17,16 +8,6 @@
 <link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
-
-<script src="resources/js/jquery-3.2.1.min.js"></script>
-<script src="resources/vendor/animsition/js/animsition.min.js"></script>
-<script src="resources/js/popper.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/vendor/select2/select2.min.js"></script>
-<script src="resources/vendor/daterangepicker/moment.min.js"></script>
-<script src="resources/vendor/daterangepicker/daterangepicker.js"></script>
-<script src="resources/vendor/countdowntime/countdowntime.js"></script>
-<script src="resources/js/main.js"></script>
 </head>
 <body>
 	<div class="limiter">
