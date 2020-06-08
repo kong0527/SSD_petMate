@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetstore.dao.mybatis.mapper.OrderMapper">
+
+  <cache />
+
+<!-- 주문 목록 가져오기 -->
+  <select id="getOrderList" resultType="com.ssd.petMate.domain.Order" parameterType="int">
+    SELECT (orderNum, orderDate, price)
+    FROM ORDERLIST
+    WHERE userID = #{userID}
+    ORDER BY orderNum DESC
+  </select>
+ 
+<!-- 주문 내용 가져오기 lineitem 조인(?)--> 
+ <select id="getOrder" resultType="com.ssd.petMate.domain.Order" parameterType="com.ssd.petMate.domain.Order">
+    SELECT *
+    FROM ORDERLIST
+    WHERE userID = #{userID} and orderNum = #{orderNum}
+  </select>
+
+<!-- 주문 추가하기 -->
+  <insert id="insertOrder" parameterType="com.ssd.petMate.domain.Order">
+    INSERT INTO OrderLIST (orderDate, price, userID, bank, cardNum, cvc, expire, address)
+    VALUES (SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, #{expire,jdbcType=DATE}, #{address,jdbcType=VARCHAR})
+  </insert>
+  
+ <!--  <insert id="msSqlServerInsertOrder" useGeneratedKeys="true">
+  	insert into orders (userid, orderdate, shipaddr1, shipaddr2,
+	  	shipcity, shipstate, shipzip, shipcountry, billaddr1, billaddr2,
+	  	billcity, billstate, billzip, billcountry, courier, totalprice,
+	  	billtofirstname, billtolastname, shiptofirstname, shiptolastname,
+	  	creditcard, exprdate, cardtype, locale) values (#username#,
+	  	#orderDate#, #shipAddress1#, #shipAddress2:VARCHAR#, #shipCity#,
+	  	#shipState#, #shipZip#, #shipCountry#, #billAddress1#,
+	  	#billAddress2:VARCHAR#, #billCity#, #billState#, #billZip#,
+	  	#billCountry#, #courier#, #totalPrice#, #billToFirstName#,
+	  	#billToLastName#, #shipToFirstName#, #shipToLastName#,
+	  	#creditCard#, #expiryDate#, #cardType#, #locale#); 
+  	select @@identity as value
+  </insert> -->
+
+</mapper>

@@ -2,22 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.PetsitterMapper">
 	<cache />
-	<!-- 게시판 페이징 -->
-	<select id="boardPageCount" resultType="int" parameterType="HashMap">
-	      SELECT COUNT(*)
-	      FROM Petsitter
-	      <where>
-	         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
-	            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	         <if test="searchType=='boardContent' and keyword != null and keyword != ''">
-	            and boardContent LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	         <if test="searchType=='userID' and keyword != null and keyword != ''">
-	            and userID LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	      </where>
-	   </select>
+	<!-- 게시글 개수 가져오기 -->
+	<select id="boardPageCount" resultType="int"
+		parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Petsitter
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null and keyword != ''">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
 	
 	<!-- 게시글 목록 가져오기 -->
 	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="java.util.List">
@@ -37,18 +38,12 @@
       ORDER BY boardNum
       LIMIT #{startList}, #{contentNum}
 	</select>
-	
-	<!-- 게시글 개수 가져오기 -->
-	<select id="boardCount" resultType="int">
-		SELECT COUNT(*)
-		FROM Petsitter
-	</select>
-	
+
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Petsitter">
 		INSERT 
 		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petCareer, petDay, petSize, boardLike, boardImage)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, SYSDATE, #{petPrice}, #{petLocal}, #{petCareer}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{petPrice}, #{petLocal}, #{petCareer}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -68,7 +63,7 @@
 		petCareer = #{petCareer},
 		petDay = #{petDay},
 		petSize = #{petSize},
-		petDate = SYSDATE,
+		petDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'),
 		petImage = #{petImage}
 		WHERE boardNum = #{boardNum}
 	</update>
