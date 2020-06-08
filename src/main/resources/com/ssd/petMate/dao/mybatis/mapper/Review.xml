@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.ReviewMapper">
+	<!-- 게시글 개수 가져오기 -->
+	<select id="boardPageCount" resultType="int" parameterType="HashMap">
+	      SELECT COUNT(*)
+	      FROM Review
+	      <where>
+	         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+	            and boardTitle LIKE CONCAT('%',#{keyword},'%')
+	         </if>
+	         <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+	            and boardContent LIKE CONCAT('%',#{keyword},'%')
+	         </if>
+	         <if test="searchType=='userID' and keyword != null and keyword != ''">
+	            and userID LIKE CONCAT('%',#{keyword},'%')
+	         </if>
+	      </where>
+	   </select>
+	
+	<!-- 게시글 목록 가져오기 -->
+	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="java.util.List">
+      SELECT *
+      FROM Review
+      <where>
+         <if test="searchType=='boardTitle' and keyword != null">
+            and boardTitle LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='boardContent' and keyword != null">
+            and boardContent LIKE CONCAT('%',#{keyword},'%')
+         </if>
+         <if test="searchType=='userID' and keyword != null">
+            and userID LIKE CONCAT('%',#{keyword},'%')
+         </if>
+      </where>
+      ORDER BY boardNum
+      LIMIT #{startList}, #{contentNum}
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Review">
+		INSERT
+		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage, rating)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, SYSDATE, #{boardLike}, #{boardImage}, #{rating})
+	</insert>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="boardDetail" parameterType="int" resultType="com.ssd.petMate.domain.Review">
+		SELECT *
+		FROM Review
+		WHERE boardNum = #{boardNum}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="com.ssd.petMate.domain.Review">
+		UPDATE Review SET
+		boardTitle = #{boardTitle}, 
+		boardContent = #{boardContent}, 
+		boardDate = SYSDATE, 
+		boardImage = #{boardImage}, 
+		rating = #{rating}
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM Review
+		WHERE boardNum = #{boardNum}
+	</delete>
+	
+	<!-- 댓글 수 증가 -->
+	<update id="plusReplyCnt" parameterType="int">
+		UPDATE Review
+		SET replyCnt = replyCnt + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 댓글 수 감소 -->
+	<update id="minusReplyCnt" parameterType="int">
+		UPDATE Review
+		SET replyCnt = replyCnt - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="boardViews" parameterType="int">
+		UPDATE Review
+		SET boardHit = boardHit + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 좋아요 수 증가 -->
+	<update id="plusLike" parameterType="int">
+		UPDATE Review
+		SET boardLike = boardLike + 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 좋아요 수 감소 -->
+	<update id="minusLike" parameterType="int">
+		UPDATE Review
+		SET boardLike = boardLike - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+</mapper>
