@@ -3,7 +3,10 @@
   <display-name>petMate</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:application-config.xml</param-value>
+    <param-value>
+	    classpath:application-config.xml
+	    classpath:dataAccessContext-mybatis.xml 
+    </param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
