@@ -54,11 +54,4 @@
         <property name="basePackage" value="com.jpetstore.dao.mybatis.mapper" />
     </bean> 
     -->
-<<<<<<< HEAD
-    
-   <!--  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean> -->
-=======
->>>>>>> branch 'develop' of https://github.com/hjyeon-n/SSD_petMate.git
 </beans>
