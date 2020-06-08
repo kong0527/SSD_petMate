@@ -42,8 +42,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Petsitter">
 		INSERT 
-		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petCareer, petDay, petSize, boardLike, boardImage)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{petPrice}, #{petLocal}, #{petCareer}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
+		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petDay, petSize, boardLike, boardImage)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{petPrice}, #{petLocal}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -60,7 +60,6 @@
 		boardContent = #{boardContent},
 		petPrice = #{petPrice},
 		petLocal = #{petLocal},
-		petCareer = #{petCareer},
 		petDay = #{petDay},
 		petSize = #{petSize},
 		petDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'),
@@ -101,7 +100,7 @@
 	<select id="filtering" resultType="java.util.List">
 		SELECT *
 		FROM Petsitter
-		WHERE petPrice = #{petPrice}, petLocal = #{petLocal}, petCareer = #{petCareer}, petDay = #{petDay}, petSize = #{petSize}
+		WHERE petPrice = #{petPrice}, petLocal = #{petLocal}, petDay = #{petDay}, petSize = #{petSize}
 	</select>
 	
 	<!-- 좋아요 수 증가 -->

@@ -11,6 +11,8 @@ public interface InfoMapper {
 
 	public List<Info> getAllBoard(BoardSearch boardSearch); //게시글 목록
 	
+//	public List<Info> getAllBoard(); // 임시
+	
 	public int boardCount(); //게시글 개수 가져오기
 	
 	public void insertBoard(Info info); //게시글 작성
