@@ -25,4 +25,8 @@ public class InfoImpl implements InfoFacade {
 	public int boardPageCount(HashMap<String, Object> map) {
 		return infoDao.boardPageCount(map);
 	}
+	
+	public Info boardDetail(int boardNum) {
+		return infoDao.boardDetail(boardNum);
+	}
 }

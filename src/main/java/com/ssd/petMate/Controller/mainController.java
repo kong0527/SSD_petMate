@@ -121,7 +121,18 @@ public class mainController {
 		List<Info> infoList = info.getAllBoard(boardSearch);
 
 		mv.addObject("infoList", infoList);
-		mv.setViewName("info/categories");
+		mv.setViewName("info/infoBoard");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/infoDetail", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView infoDetail(ModelAndView mv, 
+			@RequestParam("boardNum") int boardNum) {
+		System.out.println("In!!!!!");
+		Info view = info.boardDetail(boardNum);
+		System.out.println(view);
+		mv.addObject("info", info.boardDetail(boardNum));
+		mv.setViewName("info/infoDetail");
 		return mv;
 	}
 }

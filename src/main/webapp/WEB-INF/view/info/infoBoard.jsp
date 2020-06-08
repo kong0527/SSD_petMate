@@ -20,7 +20,9 @@
 				<c:forEach var="infoList" items="${infoList}">
 					<tr>
 						<td>${infoList.boardNum}</td>
-						<td><a href="#">${infoList.boardTitle}</a></td>
+						<td><a href="<c:url value="/infoDetail">
+						<c:param name="boardNum" value="${infoList.boardNum}"/>
+						</c:url>">${infoList.boardTitle}</a></td>
 						<td>${infoList.userID}</td>
 					</tr>
 				</c:forEach>
