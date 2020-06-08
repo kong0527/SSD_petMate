@@ -79,4 +79,11 @@ public class mainController {
 		mv.setViewName("petsitter/petsitterForm");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/cart", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView cart(ModelAndView mv) {
+		mv.setViewName("order/cart");
+		return mv;
+	}
+	
 }
