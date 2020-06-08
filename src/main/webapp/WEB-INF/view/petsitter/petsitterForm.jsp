@@ -39,19 +39,12 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 form-group">
-							<label for="career">경력</label> <input type="text" id="career"
-								class="form-control form-control-lg">
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-12 form-group">
 							<label for="message">글 쓰기</label>
 							<textarea name="" id="message" cols="30" rows="10"
 								class="form-control"></textarea>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-12">
 							<input type="submit" value="Send Message"
