@@ -17,11 +17,13 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="secondList" items="${secondList}">
+				<c:forEach var="infoList" items="${infoList}">
 					<tr>
-						<td>${secondList.boardNum}</td>
-						<td><a href="#">${secondList.boardTitle}</a></td>
-						<td>${secondList.userID}</td>
+						<td>${infoList.boardNum}</td>
+						<td><a href="<c:url value="/infoDetail">
+						<c:param name="boardNum" value="${infoList.boardNum}"/>
+						</c:url>">${infoList.boardTitle}</a></td>
+						<td>${infoList.userID}</td>
 					</tr>
 				</c:forEach>
 				<!-- 	<tr>

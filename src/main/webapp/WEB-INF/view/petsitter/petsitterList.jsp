@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
 	<div class="section-title">
 	<span class="caption d-block small">Categories</span>
@@ -155,6 +156,16 @@
 						<td>양갱</td>
 					</tr>
 				</tbody>
+			</table>
+			<table class="text-right" align="right">
+				<tr>
+					<td>
+						<form:form action="petsitterForm" method="get">
+							<input type="submit" class="btn" value="글 작성" />
+						</form:form>
+					</td>
+					<!--<td><button type="button" onclick="location='/petMate/petsitterForm'" class="btn">글 작성</button></td>-->
+				</tr>
 			</table>
 		</div>
 	</div>
