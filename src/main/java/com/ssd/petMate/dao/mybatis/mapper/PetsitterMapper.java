@@ -32,5 +32,4 @@ public interface PetsitterMapper {
 	public void plusLike(int boardNum); //좋아요 수 증가
 	
 	public void minusLike(int boardNum); //좋아요 수 감소
-
 }
