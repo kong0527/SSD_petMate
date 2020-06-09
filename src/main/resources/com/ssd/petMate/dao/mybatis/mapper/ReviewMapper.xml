@@ -19,22 +19,24 @@
 	   </select>
 	
 	<!-- 게시글 목록 가져오기 -->
-	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="java.util.List">
-      SELECT *
-      FROM Review
-      <where>
-         <if test="searchType=='boardTitle' and keyword != null">
-            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='boardContent' and keyword != null">
-            and boardContent LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='userID' and keyword != null">
-            and userID LIKE CONCAT('%',#{keyword},'%')
-         </if>
-      </where>
-      ORDER BY boardNum
-      LIMIT #{startList}, #{contentNum}
+	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Review">
+		SELECT *
+		FROM (
+		SELECT review.*, ROWNUM AS NUM
+		FROM Review
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+		ORDER BY boardNum) review
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 게시글 작성 -->

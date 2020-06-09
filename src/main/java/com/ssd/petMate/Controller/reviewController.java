@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.page.BoardSearch;
-import com.ssd.petMate.service.InquiryFacade;
+import com.ssd.petMate.service.ReviewFacade;
 
 @Controller
-public class inquiryController {
+public class reviewController {
 	
 	@Autowired
-	private InquiryFacade inquiry;
+	private ReviewFacade review;
 	
-	@RequestMapping(value = "/inquiryDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView InquiryDetail(ModelAndView mv) {
-		mv.setViewName("inquiry/inquiryDetail");
+	@RequestMapping(value = "/reviewDetail", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView reviewDetail(ModelAndView mv) {
+		mv.setViewName("review/reviewDetail");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/inquiryForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView InquiryForm(ModelAndView mv) {
-		mv.setViewName("inquiry/inquiryForm");
+	@RequestMapping(value = "/reviewForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView ReviewForm(ModelAndView mv) {
+		mv.setViewName("review/reviewForm");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/inquiry", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView inquiryBoard(ModelAndView mv, 
+	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView reviewBoard(ModelAndView mv, 
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
 			@RequestParam(required = false, defaultValue = "10") int contentNum,
 			@RequestParam(required = false) String searchType,
@@ -48,14 +48,14 @@ public class inquiryController {
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 
-		int totalCount = inquiry.boardPageCount(map);
+		int totalCount = review.boardPageCount(map);
 
 //		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Inquiry> inquiryList = inquiry.getAllBoard(boardSearch);
+		List<Review> reviewList = review.getAllBoard(boardSearch);
 
-		mv.addObject("inquiryList", inquiryList);
-		mv.setViewName("inquiry/inquiryBoard");
+		mv.addObject("reviewList", reviewList);
+		mv.setViewName("review/reviewBoard");
 		return mv;
 	}
 
