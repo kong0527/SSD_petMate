@@ -3,12 +3,14 @@ package com.ssd.petMate.domain;
 public class Answer { //Answer�� ��ǻ� �����̶�
 	private String userID;
 	private int boardNum;
-	private int replyNum;
-	private String date;
-	private String content;
+	private int answerNum;
+	private String answerDate;
+	private String answerContent;
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
+	private boolean isSeleted;
+	
 	public String getUserID() {
 		return userID;
 	}
@@ -21,23 +23,23 @@ public class Answer { //Answer�� ��ǻ� �����̶�
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public int getReplyNum() {
-		return replyNum;
+	public int getAnswerNum() {
+		return answerNum;
 	}
-	public void setReplyNum(int replyNum) {
-		this.replyNum = replyNum;
+	public void setAnswerNum(int answerNum) {
+		this.answerNum = answerNum;
 	}
-	public String getDate() {
-		return date;
+	public String getAnswerDate() {
+		return answerDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setAnswerDate(String answerDate) {
+		this.answerDate = answerDate;
 	}
-	public String getContent() {
-		return content;
+	public String getAnswerContent() {
+		return answerContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
 	}
 	public int getReplyGID() {
 		return replyGID;
@@ -56,5 +58,11 @@ public class Answer { //Answer�� ��ǻ� �����̶�
 	}
 	public void setReplyOrder(int replyOrder) {
 		this.replyOrder = replyOrder;
+	}
+	public boolean isSeleted() {
+		return isSeleted;
+	}
+	public void setSeleted(boolean isSeleted) {
+		this.isSeleted = isSeleted;
 	}
 }
