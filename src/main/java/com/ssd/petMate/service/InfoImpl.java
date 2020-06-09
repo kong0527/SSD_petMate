@@ -37,6 +37,10 @@ public class InfoImpl implements InfoFacade {
 		return infoDao.boardDetail(boardNum);
 	}
 	
+	public void insertBoard(Info info) {
+		infoDao.insertBoard(info);
+	}
+	
 	public List<Secondhand> getSecondhandList(BoardSearch boardSearch) throws DataAccessException{
 		return secondhandDao.getSecondhandList(boardSearch);
 	}
@@ -60,5 +64,4 @@ public class InfoImpl implements InfoFacade {
 	public void deleteSecondhand(int boardNum) throws DataAccessException{
 		secondhandDao.deleteSecondhand(boardNum);
 	}
-	
 }

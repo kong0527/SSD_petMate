@@ -11,14 +11,55 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Info;
+import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InfoFacade;
+import com.ssd.petMate.service.PetsitterFacade;
 
 @Controller
 public class mainController {	
-	
 	@Autowired
-	private InfoFacade info;
+	private PetsitterFacade petsitter;
+	
+	  @RequestMapping(value = "/petsitterList", method = { RequestMethod.GET,
+	  RequestMethod.POST }) public ModelAndView petsitterList(ModelAndView mv,
+	  @RequestParam(required = false, defaultValue = "1") int pageNum,
+	  @RequestParam(required = false, defaultValue = "10") int contentNum,  
+	  @RequestParam(required = false) String searchType,
+	  @RequestParam(required = false) String keyword) {
+		  BoardSearch boardSearch = new BoardSearch();
+		  boardSearch.setSearchType(searchType); boardSearch.setKeyword(keyword);
+		  
+		  // 검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입 
+		  HashMap<String, Object> map = new HashMap<String, Object>(); map.put("keyword", keyword);
+		  map.put("searchType", searchType);
+		  
+		  int totalCount = petsitter.boardPageCount(map);
+		  
+		  // 페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴 
+		  boardSearch.pageInfo(pageNum, contentNum,totalCount); List<Petsitter> infoList = petsitter.getAllBoard(boardSearch);
+		  
+		  mv.addObject("petsitterList", infoList);
+		  mv.setViewName("petsitter/petsitterList"); 
+		  return mv; 
+	  }
+	  
+		@RequestMapping(value = "/petsitterDetail", method = { RequestMethod.GET, RequestMethod.POST })
+		public ModelAndView petsitterDetail(ModelAndView mv, 
+				@RequestParam("boardNum") int boardNum) {
+			Petsitter view = petsitter.boardDetail(boardNum);
+			System.out.println(view);
+			mv.addObject("petsitter", petsitter.boardDetail(boardNum));
+			mv.setViewName("petsitter/petsitterDetail");
+			return mv;
+		}
+	  
+	  @RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST }) 
+	  public ModelAndView petsitterForm(ModelAndView mv) {
+		  mv.setViewName("petsitter/petsitterForm"); 
+		  return mv; 
+	  }
+	 
 	
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView index(ModelAndView mv) {
@@ -56,59 +97,10 @@ public class mainController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/petsitterList", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView petsitterList(ModelAndView mv) {
-		mv.setViewName("petsitter/petsitterList");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView petsitterForm(ModelAndView mv) {
-		mv.setViewName("petsitter/petsitterForm");
-		return mv;
-	}
-	
 	@RequestMapping(value = "/cart", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView cart(ModelAndView mv) {
 		mv.setViewName("order/cart");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/info", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView infoBoard(ModelAndView mv, 
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-
-		int totalCount = info.boardPageCount(map);
-
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Info> infoList = info.getAllBoard(boardSearch);
-
-		mv.addObject("infoList", infoList);
-		mv.setViewName("info/infoBoard");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/infoDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView infoDetail(ModelAndView mv, 
-			@RequestParam("boardNum") int boardNum) {
-		System.out.println("In!!!!!");
-		Info view = info.boardDetail(boardNum);
-		System.out.println(view);
-		mv.addObject("info", info.boardDetail(boardNum));
-		mv.setViewName("info/infoDetail");
-		return mv;
-	}
 }

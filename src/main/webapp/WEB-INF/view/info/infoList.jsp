@@ -41,6 +41,7 @@
 				</tr>
 			</table>
 		</div>
+		
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
 				<li><a href="#">1</a></li>
@@ -51,16 +52,5 @@
 				<li><a href="#">></a></li>
 			</ul>
 		</div>
-		
-		<div class="d-flex justify-content-center">
-          		<select class="form-control form-control-sm" style="width:14%" id="searchType" name="searchType">
-							<option value="boardTitle">게시글 제목</option>
-							<option value="boardContent">내용</option>
-							<option value="userID">작성자</option>
-				</select>	
-                <input type="text" style="width: 30%" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-secondary" ><span class="icon-search"></span></button>
-        </div>
-        
 	</div>
 </div>

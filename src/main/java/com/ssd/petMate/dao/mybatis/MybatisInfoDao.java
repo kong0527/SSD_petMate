@@ -28,4 +28,8 @@ public class MybatisInfoDao implements InfoDao {
 	public Info boardDetail(int boardNum) throws DataAccessException {
 		return infoMapper.boardDetail(boardNum);
 	}
+
+	public void insertBoard(Info info) {
+		infoMapper.insertBoard(info);
+	}
 }

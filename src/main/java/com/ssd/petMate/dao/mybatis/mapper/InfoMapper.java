@@ -32,8 +32,4 @@ public interface InfoMapper {
 	public void plusLike(int boardNum); //좋아요 수 증가
 	
 	public void minusLike(int boardNum); //좋아요 수 감소
-	
-	public void insertLike(int boardNum, String userID); //좋아요 추가
-	
-	public void deleteLike(int boardNum, String userID); //좋아요 삭제
 }

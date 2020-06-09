@@ -5,32 +5,32 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">InfoDetail</h1>
+				<h1 class="mb-4">PetsitterDetail</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${info.userID}</a></span> 
-						<span class="date-read">${info.boardDate} 
+						<span class="d-block"><a href="#">${petsitter.userID}</a></span> 
+						<span class="date-read">${petsitter.boardDate} 
 						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
 					</div>
 				</div>
-				${info.boardContent}
+				${petsitter.boardContent}
 				
 				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<button type="submit" formaction="secondhandDetail/edit"
+					<button type="submit" formaction="petsitterDetail/edit"
 						class="btn">수정</button>
-					<button type="submit" formaction="secondhandDetail/delete"
+					<button type="submit" formaction="petsitterDetail/delete"
 						class="btn">삭제</button>
 				</div>
 
 				<div class="pt-5" align="center">
-					<a href="secondhandDetail/likePlus"><img
+					<a href="petsitterDetail/likePlus"><img
 						src="resources/img/love.png" border="0" class="zoom"></a>
 					<p>추천수 : 1</p>
 				</div>
 				<div class="pt-5" align="center">
-					<a href="info"><input type="button" value="목록" class="btn" /></a>
+					<a href="petsitterList"><input type="button" value="목록" class="btn" /></a>
 				</div>
 
 				<!-- comment 작성 부분 -->
