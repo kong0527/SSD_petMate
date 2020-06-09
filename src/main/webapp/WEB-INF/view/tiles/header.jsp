@@ -35,7 +35,7 @@
           		<a class="dropdown-toggle" data-toggle="dropdown"><span style="color:black">펫시터게시판</span><span class="caret"></span></a>
           		<ul class="dropdown-menu">
           			<li><a href="${pageContext.request.contextPath}/petsitterList"><span style="color:black">구인게시판</span></a></li>
-          			<li><a href="#"><span style="color:black">리뷰게시판</span></a></li>
+          			<li><a href="${pageContext.request.contextPath}/review"><span style="color:black">리뷰게시판</span></a></li>
           		</ul>
           </ul>
 		</div>

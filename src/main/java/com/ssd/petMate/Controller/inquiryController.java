@@ -55,7 +55,7 @@ public class inquiryController {
 		List<Inquiry> inquiryList = inquiry.getAllBoard(boardSearch);
 
 		mv.addObject("inquiryList", inquiryList);
-		mv.setViewName("inquiry/inquiryBoard");
+		mv.setViewName("inquiry/inquiryList");
 		return mv;
 	}
 

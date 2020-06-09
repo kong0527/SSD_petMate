@@ -55,7 +55,7 @@ public class reviewController {
 		List<Review> reviewList = review.getAllBoard(boardSearch);
 
 		mv.addObject("reviewList", reviewList);
-		mv.setViewName("review/reviewBoard");
+		mv.setViewName("review/reviewList");
 		return mv;
 	}
 
