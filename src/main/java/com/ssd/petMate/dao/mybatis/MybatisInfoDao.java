@@ -22,6 +22,14 @@ public class MybatisInfoDao implements InfoDao {
 	}
 	
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException {
-		return infoMapper.boardCount();
+		return infoMapper.boardPageCount(map);
+	}
+	
+	public Info boardDetail(int boardNum) throws DataAccessException {
+		return infoMapper.boardDetail(boardNum);
+	}
+
+	public void insertBoard(Info info) {
+		infoMapper.insertBoard(info);
 	}
 }

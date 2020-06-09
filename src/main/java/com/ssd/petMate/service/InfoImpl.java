@@ -15,14 +15,19 @@ public class InfoImpl implements InfoFacade {
 	@Autowired
 	private InfoDao infoDao;
 
-	//-------------------------------------------------------------------------
-	// Operation methods, implementing the PetStoreFacade interface
-	//-------------------------------------------------------------------------
 	public List<Info> getAllBoard(BoardSearch boardSearch){
 		return infoDao.getAllBoard(boardSearch);
 	}
 	
 	public int boardPageCount(HashMap<String, Object> map) {
 		return infoDao.boardPageCount(map);
+	}
+	
+	public Info boardDetail(int boardNum) {
+		return infoDao.boardDetail(boardNum);
+	}
+
+	public void insertBoard(Info info) {
+		infoDao.insertBoard(info);
 	}
 }

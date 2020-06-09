@@ -2,31 +2,29 @@ package com.ssd.petMate.domain;
 
 public class Petsitter {
 	private String boardNum;
-	private String date;
+	private String boardDate;
 	private String userID;
-	private String content;
-	private String size;
-	private String local;
-	private int career;
-	private int price;
-	private String day;
-	private int like;
-	private String title;
+	private String boardContent;
+	private String petSize;
+	private String petLocal;
+	private int petPrice;
+	private String petDay;
+	private int boardLike;
+	private String boardTitle;
 	private int replyCnt;
 	private int boardHit;
-	private String image;
-	
+	private String boardImage;
 	public String getBoardNum() {
 		return boardNum;
 	}
 	public void setBoardNum(String boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getDate() {
-		return date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
 	public String getUserID() {
 		return userID;
@@ -34,53 +32,47 @@ public class Petsitter {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
-	public String getSize() {
-		return size;
+	public String getPetSize() {
+		return petSize;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setPetSize(String petSize) {
+		this.petSize = petSize;
 	}
-	public String getLocal() {
-		return local;
+	public String getPetLocal() {
+		return petLocal;
 	}
-	public void setLocal(String local) {
-		this.local = local;
+	public void setPetLocal(String petLocal) {
+		this.petLocal = petLocal;
 	}
-	public int getCareer() {
-		return career;
+	public int getPetPrice() {
+		return petPrice;
 	}
-	public void setCareer(int career) {
-		this.career = career;
+	public void setPetPrice(int petPrice) {
+		this.petPrice = petPrice;
 	}
-	public int getPrice() {
-		return price;
+	public String getPetDay() {
+		return petDay;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPetDay(String petDay) {
+		this.petDay = petDay;
 	}
-	public String getDay() {
-		return day;
+	public int getBoardLike() {
+		return boardLike;
 	}
-	public void setDay(String day) {
-		this.day = day;
+	public void setBoardLike(int boardLike) {
+		this.boardLike = boardLike;
 	}
-	public int getLike() {
-		return like;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setLike(int like) {
-		this.like = like;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
 	public int getReplyCnt() {
 		return replyCnt;
@@ -94,10 +86,10 @@ public class Petsitter {
 	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
-	public String getImage() {
-		return image;
+	public String getBoardImage() {
+		return boardImage;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setBoardImage(String boardImage) {
+		this.boardImage = boardImage;
 	}
 }

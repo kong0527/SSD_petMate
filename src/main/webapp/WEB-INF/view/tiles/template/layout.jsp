@@ -29,7 +29,7 @@ ul.dropdown-menu {
 <link rel="stylesheet" href="resources/css/meranda/aos.css">
 <link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="resources/css/meranda/style.css?new4">
-<link rel="stylesheet" href="resources/css/bootstrap.min.css?h">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css?new">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>

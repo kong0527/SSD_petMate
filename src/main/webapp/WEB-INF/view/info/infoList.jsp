@@ -5,13 +5,13 @@
 	<div class="container">
 		<div class="section-title">
 			<span class="caption d-block small">Categories</span>
-			<h2>Politics</h2>
+			<h2>정보 게시판</h2>
 		</div>
 		<div class="table-wrapper">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>##</th>
 						<th>글 제목</th>
 						<th>작성자</th>
 					</tr>
@@ -20,18 +20,23 @@
 				<c:forEach var="infoList" items="${infoList}">
 					<tr>
 						<td>${infoList.boardNum}</td>
-						<td><a href="#">${infoList.boardTitle}</a></td>
+						<td><a href="<c:url value="/infoDetail">
+						<c:param name="boardNum" value="${infoList.boardNum}"/>
+						</c:url>">${infoList.boardTitle}</a></td>
 						<td>${infoList.userID}</td>
 					</tr>
 				</c:forEach>
-				<!-- 	<tr>
-						<td>2</td>
-						<td><a href="#">골골송 한번만 불러주세요</a></td>
-						<td>양갱</td>
-					</tr> -->
 				</tbody>
 			</table>
+			<table class="text-right" align="right">
+				<tr>
+					<td>
+						<a href="infoForm"><input type="submit" class="btn" value="글 작성" /></a>
+					</td>
+				</tr>
+			</table>
 		</div>
+		
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
 				<li><a href="#">1</a></li>
