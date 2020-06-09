@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="section-title">
 			<span class="caption d-block small">Categories</span>
-			<h2>Politics</h2>
+			<h2>정보 게시판</h2>
 		</div>
 		<div class="table-wrapper">
 			<table class="table table-striped">
@@ -26,11 +26,6 @@
 						<td>${infoList.userID}</td>
 					</tr>
 				</c:forEach>
-				<!-- 	<tr>
-						<td>2</td>
-						<td><a href="#">골골송 한번만 불러주세요</a></td>
-						<td>양갱</td>
-					</tr> -->
 				</tbody>
 			</table>
 			<table class="text-right" align="right">

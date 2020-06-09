@@ -15,9 +15,6 @@ public class InfoImpl implements InfoFacade {
 	@Autowired
 	private InfoDao infoDao;
 
-	//-------------------------------------------------------------------------
-	// Operation methods, implementing the PetStoreFacade interface
-	//-------------------------------------------------------------------------
 	public List<Info> getAllBoard(BoardSearch boardSearch){
 		return infoDao.getAllBoard(boardSearch);
 	}

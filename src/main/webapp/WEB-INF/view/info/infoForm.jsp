@@ -38,7 +38,7 @@
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "message",
+		elPlaceHolder: "boardContent",
 		sSkinURI: "resources/se2/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
