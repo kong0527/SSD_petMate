@@ -160,11 +160,8 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<form:form action="petsitterForm" method="get">
-							<input type="submit" class="btn" value="글 작성" />
-						</form:form>
+						<a href="petsitterForm"><input type="submit" class="btn" value="글 작성" /></a>
 					</td>
-					<!--<td><button type="button" onclick="location='/petMate/petsitterForm'" class="btn">글 작성</button></td>-->
 				</tr>
 			</table>
 		</div>

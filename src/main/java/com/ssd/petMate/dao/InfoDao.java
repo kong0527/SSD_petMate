@@ -11,4 +11,5 @@ public interface InfoDao {
 	public List<Info> getAllBoard(BoardSearch boardSearch) throws DataAccessException;
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
 	public Info boardDetail(int boardNum) throws DataAccessException;
+	public void insertBoard(Info info); //게시글 작성
 }

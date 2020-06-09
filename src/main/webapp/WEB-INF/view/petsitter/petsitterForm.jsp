@@ -47,7 +47,7 @@
 					</div>
 					<div class="row">
 						<div class="col-12">
-							<input type="submit" value="Send Message"
+							<input type="submit" value="등록"
 								class="btn btn-primary py-3 px-5">
 						</div>
 					</div>
@@ -56,3 +56,12 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: "message",
+		sSkinURI: "resources/se2/SmartEditor2Skin.html",
+		fCreator: "createSEditor2"
+	});
+</script>

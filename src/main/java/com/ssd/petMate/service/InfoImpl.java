@@ -29,4 +29,8 @@ public class InfoImpl implements InfoFacade {
 	public Info boardDetail(int boardNum) {
 		return infoDao.boardDetail(boardNum);
 	}
+
+	public void insertBoard(Info info) {
+		infoDao.insertBoard(info);
+	}
 }

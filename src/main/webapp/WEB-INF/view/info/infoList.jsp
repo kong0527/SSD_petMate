@@ -11,7 +11,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>##</th>
 						<th>글 제목</th>
 						<th>작성자</th>
 					</tr>
@@ -33,7 +33,15 @@
 					</tr> -->
 				</tbody>
 			</table>
+			<table class="text-right" align="right">
+				<tr>
+					<td>
+						<a href="infoForm"><input type="submit" class="btn" value="글 작성" /></a>
+					</td>
+				</tr>
+			</table>
 		</div>
+		
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
 				<li><a href="#">1</a></li>

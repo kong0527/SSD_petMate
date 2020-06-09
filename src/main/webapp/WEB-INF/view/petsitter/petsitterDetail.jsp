@@ -29,6 +29,9 @@
 						src="resources/img/love.png" border="0" class="zoom"></a>
 					<p>추천수 : 1</p>
 				</div>
+				<div class="pt-5" align="center">
+					<a href="petsitterList"><input type="button" value="목록" class="btn" /></a>
+				</div>
 
 				<!-- comment 작성 부분 -->
 				<div class="comment-form-wrap pt-5">
