@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -7,42 +8,42 @@
 				<div class="section-title mb-5">
 					<h2>펫시터 구인 폼</h2>
 				</div>
-				<form method="post">
+				<form:form modelAttribute="petsitter" action="petsitterInsert" method="post">
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="fname">제목</label> 
-							<input type="text" id="fname" class="form-control form-control-lg">
+							<label for="boardTitle">제목</label> 
+							<form:input path="boardTitle" class="form-control form-control-lg" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="price">가격</label> <input type="text" id="price"
-								class="form-control form-control-lg">
+							<label for="petPrice">가격</label> 
+							<form:input path="petPrice" class="form-control form-control-lg" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="location">지역</label> <input type="text" id="location"
-								class="form-control form-control-lg">
+							<label for="petLocal">지역</label> 
+							<form:input path="petLocal" class="form-control form-control-lg" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="date">날짜</label> <input type="text" id="date"
-								class="form-control form-control-lg">
+							<label for="petDay">날짜</label>
+							<form:input path="petDay" class="form-control form-control-lg" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="size">사이즈</label> <input type="text"
-								id="size" class="form-control form-control-lg">
+							<label for="petSize">사이즈</label>
+							<form:input path="petSize" class="form-control form-control-lg" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12 form-group">
-							<label for="message">글 쓰기</label>
-							<textarea name="" id="message" cols="30" rows="10"
-								class="form-control"></textarea>
+							<label for="boardContent">글 쓰기</label>
+							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
+								class="form-control" />
 						</div>
 					</div>
 					<div class="row">
@@ -51,7 +52,7 @@
 								class="btn btn-primary py-3 px-5">
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>

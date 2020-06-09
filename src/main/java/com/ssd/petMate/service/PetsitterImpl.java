@@ -32,5 +32,9 @@ public class PetsitterImpl implements PetsitterFacade {
 	public Petsitter boardDetail(int boardNum) {
 		return petsitterDao.boardDetail(boardNum);
 	}
+	
+	public void insertBoard(Petsitter petsitter) {
+		petsitterDao.insertBoard(petsitter);
+	}
 
 }

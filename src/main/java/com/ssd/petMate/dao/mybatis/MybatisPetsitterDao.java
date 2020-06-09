@@ -29,4 +29,8 @@ public class MybatisPetsitterDao implements PetsitterDao{
 	public Petsitter boardDetail(int boardNum) throws DataAccessException {
 		return petsitterMapper.boardDetail(boardNum);
 	}
+
+	public void insertBoard(Petsitter petsitter) {
+		petsitterMapper.insertBoard(petsitter);
+	}
 }

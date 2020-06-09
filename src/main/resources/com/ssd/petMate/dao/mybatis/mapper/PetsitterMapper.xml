@@ -43,7 +43,9 @@
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Petsitter">
 		INSERT 
 		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petDay, petSize, boardLike, boardImage)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{petPrice}, #{petLocal}, #{petDay}, #{petSize}, #{boardLike}, #{boardImage})
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), 
+		#{petPrice, jdbcType=NUMERIC}, #{petLocal, jdbcType=VARCHAR}, #{petDay, jdbcType=VARCHAR}, #{petSize, jdbcType=VARCHAR}, 
+		#{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
