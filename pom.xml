@@ -38,6 +38,7 @@
 		<!--Spring Security  -->
 		<security.version>5.3.3.RELEASE</security.version>
 		
+		<dbcp.version>2.2.0</dbcp.version>	
 	</properties>
 	
 	<dependencies>	
@@ -168,6 +169,12 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>${dbcp.version}</version>
 		</dependency>
 		
 	</dependencies>		

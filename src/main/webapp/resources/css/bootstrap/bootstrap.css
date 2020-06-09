@@ -1571,7 +1571,7 @@ pre {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 30%;
   height: calc(2.25rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -5200,7 +5200,7 @@ button.bg-dark:focus {
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
-  display: flex !important; }
+  display: flex !important;}
 
 .d-inline-flex {
   display: -webkit-inline-box !important;

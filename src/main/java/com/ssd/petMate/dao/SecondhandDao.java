@@ -1,19 +1,17 @@
-package com.ssd.petMate.service;
+package com.ssd.petMate.dao;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
-public interface InfoFacade {
-
-	List<Info> getAllBoard(BoardSearch boardSearch);
-	int boardPageCount(HashMap<String, Object> map);
-	Info boardDetail(int boardNum);
+public interface SecondhandDao {
+//	public List<Info> getAllBoard(BoardSearch boardSearch) throws DataAccessException;
+//	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
+//	public Info boardDetail(int boardNum) throws DataAccessException;
 	
 	public List<Secondhand> getSecondhandList(BoardSearch boardSearch) throws DataAccessException; //게시글 목록
 	
@@ -29,4 +27,15 @@ public interface InfoFacade {
 	
 	public void deleteSecondhand(int boardNum) throws DataAccessException; //게시글 삭제
 	
+	
+	
+//	public void secondhandReplyCntPlus(int boardNum) throws DataAccessException; //덧글수 증가
+//	
+//	public void secondhandReplyCntMinus(int boardNum) throws DataAccessException; //덧글수 감소
+//	
+//	public void secondhandBoardHitPluss(int boardNum) throws DataAccessException; //조회수 증가
+//	
+//	public void secondhandCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
+//	
+//	public void secondhandCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
 }

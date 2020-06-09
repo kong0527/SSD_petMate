@@ -37,6 +37,7 @@
           			<li><a href="${pageContext.request.contextPath}/petsitterList"><span style="color:black">구인게시판</span></a></li>
           			<li><a href="#"><span style="color:black">리뷰게시판</span></a></li>
           		</ul>
+          	</li>
           </ul>
 		</div>
 	</div>

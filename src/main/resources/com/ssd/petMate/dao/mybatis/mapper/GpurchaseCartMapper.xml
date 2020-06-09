@@ -10,7 +10,7 @@
 		FROM GpurchaseCart
 		WHERE userID = #{userID}
 		ORDER BY boardNum
-		LIMIT #{startList}, #{contentNum}
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 공동구매 장바구니 수 -->
@@ -31,6 +31,6 @@
 		DELETE
 		FROM GpurchaseCart
 		WHERE boardNum=#{boardNum} and userID=#{userID}
-
 	</delete>
+	
 </mapper>

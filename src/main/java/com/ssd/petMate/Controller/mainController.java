@@ -44,30 +44,6 @@ public class mainController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/secondhand", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView detailSecondhand(ModelAndView mv) {
-		mv.setViewName("secondhand/categories");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/secondhandForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView secondhandForm(ModelAndView mv) {
-		mv.setViewName("secondhand/secondhandForm");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/secondhandDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView secondhandDetail(ModelAndView mv) {
-		mv.setViewName("secondhand/secondhandDetail");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/GpurchaseForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView GpurchaseForm(ModelAndView mv) {
-		mv.setViewName("Gpurchase/GpurchaseForm");
-		return mv;
-	}
-	
 	@RequestMapping(value = "/inquiryForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView InquiryForm(ModelAndView mv) {
 		mv.setViewName("inquiryForm");

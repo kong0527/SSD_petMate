@@ -3,29 +3,30 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandMapper">
-  <cache />
-  
+
     <!-- 중고물품 게시글 목록 가져오기  -->
 	<select id="getSecondhandList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Secondhand">
-      SELECT *
-      FROM Secondhand
-      <where>
-         <if test="searchType=='boardTitle' and keyword != null">
-            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='boardContent' and keyword != null">
-            and boardContent LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='userID' and keyword != null">
-            and userID LIKE CONCAT('%',#{keyword},'%')
-         </if>
-      </where>
-      ORDER BY boardNum
-      LIMIT #{startList}, #{contentNum}
+     	SELECT *
+		FROM (
+		SELECT secondhand.*, ROWNUM AS NUM
+		FROM Secondhand
+     	<where>
+			<if test="searchType=='boardTitle' and keyword != null">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+     	ORDER BY boardNum) secondhand
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 중고물품 게시글 수 -->
-	<select id="getSecondhandCount" resultType="int" parameterType="com.ssd.petMate.page.BoardSearch">
+	<select id="getSecondhandboardCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
 		FROM Secondhand
 		<where>
@@ -45,14 +46,14 @@
 	<insert id="insertSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
  		INSERT
  		INTO Secondhand(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded)
- 		VALUES(#{userID}, #{title}, #{content}, #{replyCnt}, #{boardHit}, SYSDATE, #{image}, #{price}, #{cartAdded})
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, SYSDATE, #{boardImage}, #{price}, #{cartAdded})
  		
  	</insert>
 	
 	<!-- 중고물품 게시글 수정하기  -->
 	<update id="updateSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
 		UPDATE Secondhand
-		SET boardTitle = #{title}, boardContent = #{content}, boardDate = SYSDATE, boardImage = #{image}, price = #{price}
+		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage}, price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

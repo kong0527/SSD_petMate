@@ -2,30 +2,29 @@ package com.ssd.petMate.domain;
 
 public class Gpurchase {
 	private int boardNum;
-	private String date;
+	private String boardDate;
 	private String userID;
 	private int price;
 	private String sdate;
 	private String edate;
-	private String content;
+	private String boardContent;
 	private int careAdded;
 	private int replyCnt;
-	private String title;
+	private String boardTitle;
 	private int boardHit;
-	private String image;
+	private String boardImage;
 	private int goalNum;
-	
 	public int getBoardNum() {
 		return boardNum;
 	}
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getDate() {
-		return date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
 	public String getUserID() {
 		return userID;
@@ -51,11 +50,11 @@ public class Gpurchase {
 	public void setEdate(String edate) {
 		this.edate = edate;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 	public int getCareAdded() {
 		return careAdded;
@@ -69,11 +68,11 @@ public class Gpurchase {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
-	public String getTitle() {
-		return title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
 	public int getBoardHit() {
 		return boardHit;
@@ -81,11 +80,11 @@ public class Gpurchase {
 	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
-	public String getImage() {
-		return image;
+	public String getBoardImage() {
+		return boardImage;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setBoardImage(String boardImage) {
+		this.boardImage = boardImage;
 	}
 	public int getGoalNum() {
 		return goalNum;
