@@ -68,12 +68,6 @@ public class mainController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/inquiryForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView InquiryForm(ModelAndView mv) {
-		mv.setViewName("inquiryForm");
-		return mv;
-	}
-	
 	@RequestMapping(value = "/paymentForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView paymentForm(ModelAndView mv) {
 		mv.setViewName("paymentForm");

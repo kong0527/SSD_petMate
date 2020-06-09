@@ -19,22 +19,24 @@
 	   </select>
 	
 	<!-- 게시글 목록 가져오기 -->
-	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="java.util.List">
-      SELECT *
-      FROM Inquiry
-      <where>
-         <if test="searchType=='boardTitle' and keyword != null">
-            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='boardContent' and keyword != null">
-            and boardContent LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='userID' and keyword != null">
-            and userID LIKE CONCAT('%',#{keyword},'%')
-         </if>
-      </where>
-      ORDER BY boardNum
-      LIMIT #{startList}, #{contentNum}
+	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
+		SELECT *
+		FROM (
+		SELECT inquiry.*, ROWNUM AS NUM
+		FROM Inquiry
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null">
+				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='boardContent' and keyword != null">
+				and boardContent LIKE CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType=='userID' and keyword != null">
+				and userID LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+		ORDER BY boardNum) inquiry
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 게시글 작성 -->
@@ -42,7 +44,7 @@
 		INSERT
 		INTO Inquiry(userID, boardTitle, boardContent, answerCnt, boardHit,
 		boardDate, boardLike, boardImage, isSelected)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{answerCnt}, #{boardHit}, SYSDATE, #{boardLike}, #{boardImage}, #{isSelected})
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{answerCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=NUMERIC}, #{isSelected})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
