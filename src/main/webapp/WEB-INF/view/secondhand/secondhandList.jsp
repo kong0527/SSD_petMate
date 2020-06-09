@@ -11,17 +11,19 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>##</th>
 						<th>글 제목</th>
 						<th>작성자</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="secondList" items="${secondhandList}">
+				<c:forEach var="secondhandList" items="${secondhandList}">
 					<tr>
-						<td>${secondList.boardNum}</td>
-						<td><a href="#">${secondList.boardTitle}</a></td>
-						<td>${secondList.userID}</td>
+						<td>${secondhandList.boardNum}</td>
+						<td><a href="<c:url value="/secondhandDetail">
+						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
+						</c:url>">${secondhandList.boardTitle}</a></td>
+						<td>${secondhandList.userID}</td>
 					</tr>
 				</c:forEach>
 				<!-- 	<tr>
@@ -31,7 +33,15 @@
 					</tr> -->
 				</tbody>
 			</table>
+			<table class="text-right" align="right">
+				<tr>
+					<td>
+						<a href="secondhandForm"><input type="submit" class="btn" value="글 작성" /></a>
+					</td>
+				</tr>
+			</table>
 		</div>
+		
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
 				<li><a href="#">1</a></li>
@@ -42,6 +52,5 @@
 				<li><a href="#">></a></li>
 			</ul>
 		</div>
-        
 	</div>
 </div>

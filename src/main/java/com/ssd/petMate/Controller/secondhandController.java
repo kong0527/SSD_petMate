@@ -44,7 +44,7 @@ public class secondhandController {
 		List<Secondhand> secondhandList = info.getSecondhandList(boardSearch);
 
 		mv.addObject("secondhandList", secondhandList);
-		mv.setViewName("secondhand/categories");
+		mv.setViewName("secondhand/secondhandList");
 		return mv;
 	}
 	
