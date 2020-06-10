@@ -36,5 +36,9 @@ public class PetsitterImpl implements PetsitterFacade {
 	public void insertBoard(Petsitter petsitter) {
 		petsitterDao.insertBoard(petsitter);
 	}
+	
+	public void deleteBoard(int boardNum) {
+		petsitterDao.deleteBoard(boardNum);
+	}
 
 }

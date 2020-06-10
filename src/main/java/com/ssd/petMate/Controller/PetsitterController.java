@@ -66,18 +66,23 @@ public class PetsitterController {
 	}
 	
 		@RequestMapping(value = "/petsitterDetail", method = { RequestMethod.GET, RequestMethod.POST })
-		public ModelAndView petsitterDetail(ModelAndView mv, 
-				@RequestParam("boardNum") int boardNum) {
+		public ModelAndView petsitterDetail(ModelAndView mv, @RequestParam("boardNum") int boardNum) {
 			Petsitter view = petsitterFacade.boardDetail(boardNum);
 			System.out.println(view);
 			mv.addObject("petsitter", petsitterFacade.boardDetail(boardNum));
 			mv.setViewName("petsitter/petsitterDetail");
 			return mv;
 		}
+		
+		@RequestMapping(value = "/petsitterDetail/delete", method = { RequestMethod.GET, RequestMethod.POST })
+		public String petsitterDelete(@RequestParam("boardNum") int boardNum) {
+			petsitterFacade.deleteBoard(boardNum);
+			return "redirect:/petsitterList";
+		}
 	
-	@RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST }) 
-	public ModelAndView petsitterForm(ModelAndView mv) {
-		  mv.setViewName("petsitter/petsitterForm"); 
-		  return mv; 
-	}
+		@RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST }) 
+		public ModelAndView petsitterForm(ModelAndView mv) {
+			  mv.setViewName("petsitter/petsitterForm"); 
+			  return mv; 
+		}
 }

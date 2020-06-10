@@ -33,4 +33,8 @@ public class MybatisPetsitterDao implements PetsitterDao{
 	public void insertBoard(Petsitter petsitter) {
 		petsitterMapper.insertBoard(petsitter);
 	}
+	
+	public void deleteBoard(int boardNum) {
+		petsitterMapper.deleteBoard(boardNum);
+	} 
 }
