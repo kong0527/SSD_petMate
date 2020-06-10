@@ -37,19 +37,7 @@ public class PetsitterController {
 	@PostMapping("/petsitterInsert")
 	public String petsitterInsert(@ModelAttribute("petsitter") Petsitter petsitter, SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
-		String title = request.getParameter("boardTitle");
-		String content = request.getParameter("boardContent");
-		int price = Integer.parseInt(request.getParameter("petPrice"));
-		String local = request.getParameter("petLocal");
-		String day = request.getParameter("petDay");
-		String size = request.getParameter("petSize");
 		petsitter.setUserID("test4");
-		petsitter.setBoardTitle(title);
-		petsitter.setBoardContent(content);
-		petsitter.setPetPrice(price);
-		petsitter.setPetLocal(local);
-		petsitter.setPetDay(day);
-		petsitter.setPetSize(size);
 		petsitterFacade.insertBoard(petsitter);
 		return "redirect:/petsitterList";
 	}

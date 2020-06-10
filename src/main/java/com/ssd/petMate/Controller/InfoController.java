@@ -38,11 +38,7 @@ public class InfoController {
 	@PostMapping("/infoInsert")
 	public String infoInsert(@ModelAttribute("info") Info info, SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
-		String title = request.getParameter("boardTitle");
-		String content = request.getParameter("boardContent");
 		info.setUserID("test1");
-		info.setBoardTitle(title);
-		info.setBoardContent(content);
 		infoFacade.insertBoard(info);
 		return "redirect:/info";
 	}
