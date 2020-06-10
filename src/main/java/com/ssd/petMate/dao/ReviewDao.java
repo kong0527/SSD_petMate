@@ -10,4 +10,6 @@ import com.ssd.petMate.page.BoardSearch;
 public interface ReviewDao {
 	public List<Review> getAllBoard(BoardSearch boardSearch) throws DataAccessException;
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
+	public Review boardDetail(int boardNum) throws DataAccessException;
+	public void insertBoard(Review review); //게시글 작성
 }
