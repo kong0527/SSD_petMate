@@ -1,5 +1,7 @@
 package com.ssd.petMate.domain;
 
+import java.util.Date;
+
 public class Secondhand {
 	private int boardNum;
 	private String boardDate;
@@ -11,6 +13,7 @@ public class Secondhand {
 	private int boardHit;
 	private int replyCnt;
 	private String boardTitle;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -71,5 +74,11 @@ public class Secondhand {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
+	@Override
+	public String toString() {
+		return userID + " " +boardTitle + " " +boardContent + " " +price + " " +boardNum;
+	}
+	
+	
 	
 }

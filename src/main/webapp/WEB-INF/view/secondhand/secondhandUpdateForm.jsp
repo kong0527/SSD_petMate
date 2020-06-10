@@ -6,9 +6,9 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title mb-5">
-					<h2>중고거래 폼</h2>
+					<h2>중고거래 수정폼</h2>
 				</div>
-				<form:form modelAttribute="secondhand" action="secondhandInsert">
+				<form:form modelAttribute="secondhand" action="secondhandUpdate">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -34,14 +34,15 @@
 								class="form-control"></form:textarea>
 						</div>
 					</div>
-
+					<form:hidden path="boardNum"/>
+					<form:hidden path="userID"/>
 					<div class="row">
 						<div class="col-12">
-							<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+							<input type="submit" value="수정" class="btn btn-primary py-3 px-5">
 						</div>
 					</div>
 				</form:form>
-				
+			${secondhand.boardNum} &nbsp; ${secondhand.boardDate} &nbsp; ${secondhand.userID} &nbsp; 
 			</div>
 		</div>
 	</div>

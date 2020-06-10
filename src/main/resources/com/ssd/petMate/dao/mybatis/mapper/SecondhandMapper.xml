@@ -46,14 +46,13 @@
 	<insert id="insertSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
  		INSERT
  		INTO Secondhand(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, SYSDATE, #{boardImage}, #{price}, #{cartAdded})
- 		
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardImage, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC}, #{cartAdded, jdbcType=NUMERIC})
  	</insert>
 	
 	<!-- 중고물품 게시글 수정하기  -->
 	<update id="updateSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
 		UPDATE Secondhand
-		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage}, price = #{price}
+		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
