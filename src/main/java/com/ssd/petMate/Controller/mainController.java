@@ -17,50 +17,7 @@ import com.ssd.petMate.service.InfoFacade;
 import com.ssd.petMate.service.PetsitterFacade;
 
 @Controller
-public class mainController {	
-	@Autowired
-	private PetsitterFacade petsitter;
-	
-	  @RequestMapping(value = "/petsitterList", method = { RequestMethod.GET,
-	  RequestMethod.POST }) public ModelAndView petsitterList(ModelAndView mv,
-	  @RequestParam(required = false, defaultValue = "1") int pageNum,
-	  @RequestParam(required = false, defaultValue = "10") int contentNum,  
-	  @RequestParam(required = false) String searchType,
-	  @RequestParam(required = false) String keyword) {
-		  BoardSearch boardSearch = new BoardSearch();
-		  boardSearch.setSearchType(searchType); boardSearch.setKeyword(keyword);
-		  
-		  // 검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입 
-		  HashMap<String, Object> map = new HashMap<String, Object>(); map.put("keyword", keyword);
-		  map.put("searchType", searchType);
-		  
-		  int totalCount = petsitter.boardPageCount(map);
-		  
-		  // 페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴 
-		  boardSearch.pageInfo(pageNum, contentNum,totalCount); List<Petsitter> infoList = petsitter.getAllBoard(boardSearch);
-		  
-		  mv.addObject("petsitterList", infoList);
-		  mv.setViewName("petsitter/petsitterList"); 
-		  return mv; 
-	  }
-	  
-		@RequestMapping(value = "/petsitterDetail", method = { RequestMethod.GET, RequestMethod.POST })
-		public ModelAndView petsitterDetail(ModelAndView mv, 
-				@RequestParam("boardNum") int boardNum) {
-			Petsitter view = petsitter.boardDetail(boardNum);
-			System.out.println(view);
-			mv.addObject("petsitter", petsitter.boardDetail(boardNum));
-			mv.setViewName("petsitter/petsitterDetail");
-			return mv;
-		}
-	  
-	  @RequestMapping(value = "/petsitterForm", method = { RequestMethod.GET, RequestMethod.POST }) 
-	  public ModelAndView petsitterForm(ModelAndView mv) {
-		  mv.setViewName("petsitter/petsitterForm"); 
-		  return mv; 
-	  }
-	 
-	
+public class mainController {		 
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView index(ModelAndView mv) {
 		mv.setViewName("index");
@@ -88,6 +45,12 @@ public class mainController {
 	@RequestMapping(value = "/inquiryForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView InquiryForm(ModelAndView mv) {
 		mv.setViewName("inquiryForm");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/GpurchaseForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView GpurchaseForm(ModelAndView mv) {
+		mv.setViewName("Gpurchase/GpurchaseForm");
 		return mv;
 	}
 	

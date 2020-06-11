@@ -2,27 +2,26 @@ package com.ssd.petMate.domain;
 
 public class Review {
 	private int boardNum;
-	private String date;
+	private String boardDate;
 	private String userID;
-	private String content;
-	private int like;
+	private String boardContent;
+	private int boardLike;
 	private int boardHit;
 	private int replyCnt;
-	private String title;
-	private String image;
+	private String boardTitle;
+	private String boardImage;
 	private double rating;
-	
 	public int getBoardNum() {
 		return boardNum;
 	}
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getDate() {
-		return date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
 	public String getUserID() {
 		return userID;
@@ -30,17 +29,17 @@ public class Review {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
-	public int getLike() {
-		return like;
+	public int getBoardLike() {
+		return boardLike;
 	}
-	public void setLike(int like) {
-		this.like = like;
+	public void setBoardLike(int boardLike) {
+		this.boardLike = boardLike;
 	}
 	public int getBoardHit() {
 		return boardHit;
@@ -54,17 +53,17 @@ public class Review {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
-	public String getTitle() {
-		return title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getImage() {
-		return image;
+	public String getBoardImage() {
+		return boardImage;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setBoardImage(String boardImage) {
+		this.boardImage = boardImage;
 	}
 	public double getRating() {
 		return rating;
@@ -72,4 +71,6 @@ public class Review {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
+	
+	
 }

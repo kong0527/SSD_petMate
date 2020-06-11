@@ -11,4 +11,6 @@ public interface PetsitterFacade {
 	List<Petsitter> getAllBoard(BoardSearch boardSearch);
 	int boardPageCount(HashMap<String, Object> map);
 	Petsitter boardDetail(int boardNum);
+	public void insertBoard(Petsitter petsitter); //게시글 작성
+	public void deleteBoard(int boardNum); //게시글 삭제
 }

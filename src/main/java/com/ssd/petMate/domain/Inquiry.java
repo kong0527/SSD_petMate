@@ -7,7 +7,7 @@ public class Inquiry {
 	private String boardContent;
 	private int boardLike;
 	private int boardHit;
-	private int replyCnt;
+	private int answerCnt;
 	private String boardTitle;
 	private String boardImage;
 	private boolean isSelected;
@@ -48,11 +48,11 @@ public class Inquiry {
 	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
-	public int getReplyCnt() {
-		return replyCnt;
+	public int getAnswerCnt() {
+		return answerCnt;
 	}
-	public void setReplyCnt(int replyCnt) {
-		this.replyCnt = replyCnt;
+	public void setAnswerCnt(int answerCnt) {
+		this.answerCnt = answerCnt;
 	}
 	public String getBoardTitle() {
 		return boardTitle;

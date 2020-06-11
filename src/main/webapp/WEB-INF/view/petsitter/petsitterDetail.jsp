@@ -20,8 +20,9 @@
 				<div class="pt-5" align="right">
 					<button type="submit" formaction="petsitterDetail/edit"
 						class="btn">수정</button>
-					<button type="submit" formaction="petsitterDetail/delete"
-						class="btn">삭제</button>
+					<a href="<c:url value="/petsitterDetail/delete">
+						<c:param name="boardNum" value="${petsitter.boardNum}"/>
+						</c:url>"><input type="submit" class="btn" value="삭제" /></a>
 				</div>
 
 				<div class="pt-5" align="center">
