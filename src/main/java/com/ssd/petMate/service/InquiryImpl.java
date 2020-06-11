@@ -15,9 +15,7 @@ public class InquiryImpl implements InquiryFacade {
 	@Autowired
 	private InquiryDao inquiryDao;
 
-	//-------------------------------------------------------------------------
-	// Operation methods, implementing the PetStoreFacade interface
-	//-------------------------------------------------------------------------
+	
 	public List<Inquiry> getAllBoard(BoardSearch boardSearch){
 		return inquiryDao.getAllBoard(boardSearch);
 	}
@@ -25,4 +23,13 @@ public class InquiryImpl implements InquiryFacade {
 	public int boardPageCount(HashMap<String, Object> map) {
 		return inquiryDao.boardPageCount(map);
 	}
+	
+	public Inquiry boardDetail(int boardNum) {
+		return inquiryDao.boardDetail(boardNum);
+	}
+	
+	public void insertBoard(Inquiry inquiry) {
+		inquiryDao.insertBoard(inquiry);
+	}
+	
 }

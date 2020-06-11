@@ -24,4 +24,12 @@ public class MybatisInquiryDao implements InquiryDao {
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException {
 		return inquiryMapper.boardPageCount(map);
 	}
+	
+	public Inquiry boardDetail(int boardNum) throws DataAccessException {
+		return inquiryMapper.boardDetail(boardNum);
+	}
+
+	public void insertBoard(Inquiry inquiry) {
+		inquiryMapper.insertBoard(inquiry);
+	}
 }

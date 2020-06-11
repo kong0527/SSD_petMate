@@ -43,7 +43,7 @@
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Review">
 		INSERT
 		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage, rating)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt}, #{boardHit}, SYSDATE, #{boardLike}, #{boardImage}, #{rating})
+		VALUES(#{userID}, #{boardTitle}, #{boardContent, jdbcType=VARCHAR}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{rating})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->

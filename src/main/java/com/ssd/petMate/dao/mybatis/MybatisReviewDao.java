@@ -24,4 +24,12 @@ public class MybatisReviewDao implements ReviewDao {
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException {
 		return reviewMapper.boardPageCount(map);
 	}
+	
+	public Review boardDetail(int boardNum) throws DataAccessException {
+		return reviewMapper.boardDetail(boardNum);
+	}
+
+	public void insertBoard(Review review) {
+		reviewMapper.insertBoard(review);
+	}
 }

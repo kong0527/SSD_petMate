@@ -25,4 +25,12 @@ public class ReviewImpl implements ReviewFacade {
 	public int boardPageCount(HashMap<String, Object> map) {
 		return reviewDao.boardPageCount(map);
 	}
+	
+	public Review boardDetail(int boardNum) {
+		return reviewDao.boardDetail(boardNum);
+	}
+
+	public void insertBoard(Review review) {
+		reviewDao.insertBoard(review);
+	}
 }
