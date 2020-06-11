@@ -21,7 +21,7 @@
 					<label for="movieScore">평점</label>
 					<input type="hidden" name="movieScore" id="movieScore" value="0.5">
 					<div class="row">
-						<div class="col-md-6 form-group">
+						<div class="col-md-6 form-group" id="starRating">
 							<span class="starR1 on" id="star1">0.5</span> 
 							<span class="starR2" id="star2">1.0</span> 
 							<span class="starR1" id="star3">1.5</span>
