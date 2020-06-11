@@ -39,6 +39,7 @@ public class reviewController {
 		sessionStatus.setComplete();
 		String title = request.getParameter("boardTitle");
 		String content = request.getParameter("boardContent");
+		System.out.println(title);
 		System.out.println(content);
 		review.setUserID("test1");
 		review.setBoardTitle(title);

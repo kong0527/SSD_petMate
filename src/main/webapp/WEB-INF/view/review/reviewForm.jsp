@@ -26,7 +26,7 @@
 					<div class="row">
 						<div class="col-12">
 							<input type="submit" value="등록"
-								class="btn btn-primary py-3 px-5">
+								class="btn btn-primary py-3 px-5" id="btn">
 						</div>
 					</div>
 				</form:form>
@@ -42,4 +42,6 @@
 		sSkinURI: "resources/se2/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
+	$(document).on('click', '#btn', function(e){
+	      oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);   });
 </script>
