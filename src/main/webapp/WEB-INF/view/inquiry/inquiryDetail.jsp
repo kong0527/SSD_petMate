@@ -14,66 +14,36 @@
 		<div class="row">
 			<div class="col-lg-8 single-content">
 				<div class="box">
-					<h1 class="mb-4">inquiryDetail</h1>
+					<h1 class="mb-4">${inquiry.boardTitle}</h1>
 					<div class="post-meta d-flex mb-5">
 						<div class="vcard">
-							<span class="d-block"><a href="#">Dave Rogers</a> in <a
-								href="#">News</a></span> <span class="date-read">Jun 14 <span
-								class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+							<span class="d-block"><a href="#">${inquiry.userID}</a> </span> 
+							<span class="date-read">${inquiry.boardDate} 
+							<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} 
+							<span class="icon-star2"></span></span>
 						</div>
 					</div>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Suscipit officia neque beatae at inventore excepturi numquam sint
-						commodi alias, quam consequuntur corporis ex, distinctio eaque
-						sapiente pariatur iure ad necessitatibus in quod obcaecati natus
-						consequatur. Sed dicta maiores, eos culpa.</p>
-					<p>Voluptatum animi, voluptate sint aperiam facere a nam, ex
-						reiciendis eum nemo ipsum nobis, rem illum cupiditate at quaerat
-						amet qui recusandae hic, atque laboriosam perspiciatis? Esse
-						quidem minima, voluptas necessitatibus, officia culpa quo nulla,
-						cupiditate iste vel unde magni.</p>
-					<p>Nulla nesciunt eligendi ratione, atque, hic, ullam suscipit
-						quos enim vitae fugiat ducimus, dolore delectus iste id culpa.
-						Ducimus, iste magnam sed reprehenderit architecto perferendis odio
-						voluptas molestiae quidem ab numquam debitis, dolorem incidunt,
-						tempore a quod qui nobis. Voluptates!</p>
-					<p>Blanditiis, ipsum sed odio reprehenderit sequi ut vitae,
-						dolor minima ab! Architecto nesciunt nemo sint est aspernatur
-						fugit consequatur, magnam suscipit asperiores illo eum repellendus
-						officia dolorem, molestiae commodi nam voluptatem quis quia vel
-						cumque quos, aliquam ex incidunt sapiente!</p>
-					<p>Suscipit, officiis, vero! Perferendis accusamus quos
-						voluptatum culpa, provident maiores! Illo itaque ullam fugit
-						molestiae, eaque accusamus impedit autem numquam. Placeat
-						molestias tempore eaque ipsam vel voluptatum velit enim quam iusto
-						maxime delectus, sint sapiente ea, quo excepturi nisi! Quia.</p>
-					<p>Dolores debitis excepturi maxime earum sapiente totam, quos
-						dolore inventore tempore illum. Dolores explicabo sed amet aut
-						atque, facere aliquid repudiandae quod possimus quo hic similique
-						et voluptates fugit iure dolore quam ipsa numquam assumenda
-						corporis? Dignissimos expedita fugit sapiente.</p>
-					<p>Cupiditate ut, aspernatur labore obcaecati, eveniet aut
-						velit nulla facere suscipit est recusandae vel error itaque earum
-						doloremque hic necessitatibus dignissimos dolores libero
-						laudantium ducimus! Rem dolorem ratione officia et, fugit non,
-						fuga suscipit eos veritatis enim perspiciatis, magni sit!</p>
+					<P>${inquiry.boardContent}</P>
 				</div>
 			</div>
 		</div>
 
 		<!-- 추가 -->
 		<div class="pt-5" align="right">
-			<button type="submit" formaction="secondhandDetail/edit" class="btn">수정</button>
-			<button type="submit" formaction="secondhandDetail/delete"
-				class="btn">삭제</button>
+			<button type="submit" formaction="inquiryDetail/edit" class="btn">수정</button>
+			<button type="submit" formaction="inquiryDetail/delete" class="btn">삭제</button>
 		</div>
 
 		<div class="pt-5" align="center">
-			<a href="secondhandDetail/likePlus"><img
+			<a href="inquiryDetail/likePlus"><img
 				src="resources/img/love.png" border="0" class="zoom"></a>
-			<p>추천수 : 1</p>
+			<p>추천수 : ${inquiry.boardLike}</p> <br/>
+			<a href="inquiry"><input type="button" value="목록" class="btn" /></a>
 		</div>
+		<div class="pt-5" align="center">
+		<!-- 공백용 div -->
+		</div>
+		
 	</div>
 
 	<div class="col-sm-10 col-sm-offset-1">

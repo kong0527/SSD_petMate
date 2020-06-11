@@ -9,4 +9,6 @@ import com.ssd.petMate.page.BoardSearch;
 public interface InquiryFacade {
 	List<Inquiry> getAllBoard(BoardSearch boardSearch);
 	int boardPageCount(HashMap<String, Object> map);
+	Inquiry boardDetail(int boardNum);
+	public void insertBoard(Inquiry inquiry); //게시글 작성
 }

@@ -42,9 +42,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Inquiry">
 		INSERT
-		INTO Inquiry(userID, boardTitle, boardContent, answerCnt, boardHit,
-		boardDate, boardLike, boardImage, isSelected)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{answerCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=NUMERIC}, #{isSelected})
+		INTO Inquiry(userID, boardTitle, boardContent, answerCnt, boardHit, boardDate, boardLike, boardImage, isSelected)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{answerCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{isSelected})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->

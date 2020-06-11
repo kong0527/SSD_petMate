@@ -34,6 +34,13 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			<table class="text-right" align="right">
+				<tr>
+					<td>
+						<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
+					</td>
+				</tr>
+			</table>
 		</div>
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
