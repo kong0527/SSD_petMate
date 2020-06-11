@@ -14,4 +14,5 @@ public interface PetsitterDao {
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
 	public Petsitter boardDetail(int boardNum) throws DataAccessException;
 	public void insertBoard(Petsitter petsitter); //게시글 작성
+	public void deleteBoard(int boardNum); //게시글 삭제
 }
