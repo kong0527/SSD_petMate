@@ -66,6 +66,7 @@ public class InfoController {
 		List<Info> infoList = infoFacade.getAllBoard(boardSearch);
 
 		mv.addObject("infoList", infoList);
+		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("info/infoList");
 		return mv;
 	}

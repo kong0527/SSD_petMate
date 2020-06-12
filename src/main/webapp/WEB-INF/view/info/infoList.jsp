@@ -36,16 +36,55 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">></a></li>
+				<c:if test="${boardSearch.prev}">
+					<li>
+					<a onClick="fn_pagination('${boardSearch.getStartPage() - 1}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">
+							<i class="fa fa-long-arrow-left"></i> Previous
+					</a>
+					</li>
+				</c:if>
+
+				<c:if test="${boardSearch.totalCount ne 0}">
+					<c:forEach begin="${boardSearch.getStartPage()}"
+						end="${boardSearch.getEndPage()}" var="idx">
+						<li
+							${boardSearch.pageNum == idx - 1 ? 'class=active' : ''}>
+							<a id="page"
+							onClick="fn_pagination('${idx}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">${idx}</a>
+						</li>
+					</c:forEach>
+				</c:if>
+
+				<c:if test="${boardSearch.next}">
+					<li><a
+						onClick="fn_pagination('${boardSearch.getEndPage() + 1}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">
+							Next <i class="fa fa-long-arrow-right"></i>
+					</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
-</div>
+<script>
+	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
+	$(document).on('click', '#btnSearch', function(e) {
+		e.preventDefault();
+		var url = "${pageContext.request.contextPath}/info";
+		url = url + "?searchType=" + $('#searchType').val();
+		url = url + "&keyword=" + $('#keyword').val();
+
+		location.href = url;
+	});
+
+	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
+	function fn_pagination(pageNum, contentNum, searchType, keyword) {
+		var url = "${pageContext.request.contextPath}/info";
+		url = url + "?pageNum=" + pageNum;
+		url = url + "&contentNum=" + contentNum;
+		url = url + "&searchType=" + searchType;
+		url = url + "&keyword=" + keyword;
+		location.href = url;
+	}
+</script>

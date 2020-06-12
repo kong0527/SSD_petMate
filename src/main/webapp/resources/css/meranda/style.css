@@ -1217,7 +1217,7 @@ h1, h2, h3, h4, h5,
   padding: 0;
   margin: 0;
   font-size: .89rem;
-  color: #000; }
+  /* color: #000; */ }
   .custom-pagination li {
     display: inline-block; }
     .custom-pagination li a {
