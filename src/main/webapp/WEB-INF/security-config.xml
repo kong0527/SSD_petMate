@@ -19,20 +19,23 @@
         <!-- 폼 로그인 설정 -->
         <sec:form-login login-page="/signin"
                         login-processing-url="/signin/check"
-                        default-target-url="/success"
+                        default-target-url="/index"
                         username-parameter="userID" 
                         password-parameter="pwd"
-                        authentication-failure-url="/signin?error" 
+                        authentication-failure-url="/signin/error" 
                         always-use-default-target='true' />
         <!-- 로그아웃 설정 -->
         <sec:logout invalidate-session="true"
                     logout-url="/signout"   
-                    logout-success-url="/signin?logout" />
+                    logout-success-url="/index" />
         <!-- 세션 관련 설정 -->
         <sec:session-management>
-        	<sec:concurrency-control max-sessions="1"
+        	<sec:concurrency-control 
         	                         expired-url="/signin"
         	                         error-if-maximum-exceeded="true"/>
+        	                        <!--  <sec:concurrency-control max-sessions="1"
+        	                         expired-url="/signin"
+        	                         error-if-maximum-exceeded="true"/> -->
         </sec:session-management>
         
         <!-- 보안 관련 설정 -->

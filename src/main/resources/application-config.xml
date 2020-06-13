@@ -13,6 +13,8 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 		
 	<context:component-scan base-package="com.ssd.petMate.service"/> 
+	<context:component-scan base-package="com.ssd.petMate.security"/> 
+	<context:component-scan base-package="com.ssd.petMate.Validator"/> 
 
 	<!-- <tx:annotaion-driven transaction-manager="transactionManager" /> -->
 </beans>

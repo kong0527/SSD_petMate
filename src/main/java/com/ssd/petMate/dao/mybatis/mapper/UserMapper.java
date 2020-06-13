@@ -1,17 +1,21 @@
 package com.ssd.petMate.dao.mybatis.mapper;
 
-import com.ssd.petMate.domain.User;
+import com.ssd.petMate.domain.UserList;
 
 //annotaion이 따로 없음 -> 이는 xml에서 정리가 되어있음
 public interface UserMapper {
 
-  User getUserByUserID(String userID);
-
-  User getUserByUserIDAndPassword(String userID, String pwd);
+  UserList getUserByUserID(String userID);
   
-  void insertUser(User user);
+  int countUserByUserID(String userID);
 
-  void updateUser(User user);
+  UserList getUserByUserIDAndPwd(UserList user);
   
-  void deleteUser(User user);
+  String getAthorityByUserID(String userID);
+  
+  void insertUser(UserList user);
+
+  void updateUser(UserList user);
+  
+  void deleteUser(String userID);
 }
