@@ -47,6 +47,7 @@ ul.dropdown-menu {
 <script src="resources/js/jquery.mb.YTPlayer.min.js"></script>
 <script src="resources/js/main.js"></script>
 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
