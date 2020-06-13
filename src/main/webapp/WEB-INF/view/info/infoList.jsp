@@ -67,6 +67,7 @@
 			</ul>
 		</div>
 	</div>
+</div>
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {

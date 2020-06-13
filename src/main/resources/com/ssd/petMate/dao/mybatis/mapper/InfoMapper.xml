@@ -46,12 +46,7 @@
 			</where>
 		WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
-	
-<!-- 	<select id="getAllBoard" resultType="com.ssd.petMate.domain.Info">
-      SELECT *
-      FROM Info
-    </select> -->
-	
+
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Info">
 		INSERT 
@@ -81,21 +76,7 @@
 		DELETE FROM Info
 		WHERE boardNum = #{boardNum}
 	</delete>
-	
-	<!-- 덧글 수 증가 -->
-	<update id="plusReplyCnt" parameterType="int">
-		UPDATE Info
-		SET replyCnt = replyCnt + 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 덧글 수 감소 -->
-	<update id="minusReplyCnt" parameterType="int">
-		UPDATE Info
-		SET replyCnt = replyCnt - 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
+		
 	<!-- 조회수 증가 -->
 	<update id="boardViews" parameterType="int">
 		UPDATE Info
@@ -103,17 +84,10 @@
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 좋아요 수 증가 -->
-	<update id="plusLike" parameterType="int">
+	<!-- 좋아요 업데이트 -->	
+	<update id="updateLike" parameterType="HashMap">
 		UPDATE Info
-		SET boardLike = boardLike + 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 좋아요 수 감소 -->
-	<update id="minusLike" parameterType="int">
-		UPDATE Info
-		SET boardLike = boardLike - 1
+		SET boardLike = #{boardLike}
 		WHERE boardNum = #{boardNum}
 	</update>
 </mapper>
