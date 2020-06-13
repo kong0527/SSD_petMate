@@ -13,15 +13,15 @@
 				<td align="center"><span style="font-weight:bold;">크기</span></td>
 				<td align="center">
 					<label class="radio-inline">
-						<input type="radio" name="sizeOptions" id="petSize" value="size"> 소형
+						<input type="radio" name="petSize" id="petSize" value="소형"> 소형
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="sizeOptions" id="petSize" value="size"> 중형
+						<input type="radio" name="petSize" id="petSize" value="중형"> 중형
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="sizeOptions" id="petSize" value="size"> 대형
+						<input type="radio" name="petSize" id="petSize" value="대형"> 대형
 					</label>
 				</td>
 			</tr>
@@ -29,31 +29,31 @@
 				<td align="center"><span style="font-weight:bold;">요일</span></td>
 				<td align="center">
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 월요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="월요일"> 월요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 화요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="화요일"> 화요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 수요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="수요일"> 수요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 목요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="목요일"> 목요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 금요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="금요일"> 금요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 토요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="토요일"> 토요일
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petDay" value="day"> 일요일
+	  					<input type="checkbox" name="petDay" id="petDay" value="일요일"> 일요일
 					</label>
 				</td>
 			</tr>
@@ -61,68 +61,68 @@
 				<td align="center"><span style="font-weight:bold;">요금</span></td>
 				<td align="center">
 					<label class="radio-inline">
-						<input type="radio" name="priceOptions" id="petPrice" value="price"> \5000-\7000
+						<input type="radio" name="petPrice" id="petPrice" value="price1"> \5000-\7000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="priceOptions" id="petPrice" value="price"> \7100-\9000
+						<input type="radio" name="petPrice" id="petPrice" value="price2"> \7100-\9000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="priceOptions" id="petPrice" value="price"> \9100-\11000
+						<input type="radio" name="petPrice" id="petPrice" value="price3"> \9100-\11000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="priceOptions" id="petPrice" value="price"> \11000-\13000
+						<input type="radio" name="petPrice" id="petPrice" value="price4"> \11000-\13000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="priceOptions" id="petPrice" value="price"> \13100-\15000
+						<input type="radio" name="petPrice" id="petPrice" value="price5"> \13100-\15000
 					</label>
 				</td>
 			</tr>
 			<tr>
 				<td align="center"><span style="font-weight:bold;">지역</span></td>
 				<td align="center">
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 서울
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 경기도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 강원도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 충청남도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 충청북도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 전라남도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 전라북도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 경상남도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 경상북도
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" id="petLocal" value="local"> 제주도
-					</label>
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="서울"> 서울
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocals" id="petLocal" value="경기도"> 경기도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="강원도"> 강원도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="충청남도"> 충청남도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="충청북도"> 충청북도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="전라남도"> 전라남도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="전라북도"> 전라북도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="경상남도"> 경상남도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="경상북도"> 경상북도
+							</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="radio-inline">
+			  					<input type="radio" name="petLocal" id="petLocal" value="제주도"> 제주도
+							</label>
 				</td>
 			</tr>
 			<tr>
@@ -142,7 +142,9 @@
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
-						
+						<th>덧글수</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -153,6 +155,9 @@
 						<c:param name="boardNum" value="${petsitterList.boardNum}"/>
 						</c:url>">${petsitterList.boardTitle}</a></td>
 						<td>${petsitterList.userID}</td>
+						<td>${petsitterList.replyCnt}</td>
+						<td>${petsitterList.boardLike}</td>
+						<td>${petsitterList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -166,4 +171,14 @@
 			</table>
 		</div>
 	</div>
+</div>
+<div class="pagination-row" style="text-align: center;">
+	<ul class="custom-pagination list-unstyled">
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">></a></li>
+	</ul>
 </div>

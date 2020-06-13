@@ -5,14 +5,37 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">PetsitterDetail</h1>
+				<h1 class="mb-4">${petsitter.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${petsitter.userID}</a></span> 
 						<span class="date-read">${petsitter.boardDate} 
-						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+						<span class="mx-1">&bullet;</span> 조회 ${petsitter.boardHit} 
+						<span class="icon-star2"></span></span>
 					</div>
 				</div>
+				<table class="table">
+					<tbody>
+					<tr align="center">
+						<td><span style="font-weight:bold;">크기</span></td>
+						<td>${size}</td>
+					</tr>
+					<tr align="center">
+						<td><span style="font-weight:bold;">요일</span></td>
+						<td>${day}</td>
+					</tr>
+					<tr align="center">
+						<td><span style="font-weight:bold;">요금</span></td>
+						<td>${petsitter.petPrice}</td>
+					</tr>
+					<tr align="center">
+						<td><span style="font-weight:bold;">지역</span></td>
+						<td>${petsitter.petLocal}</td>
+					</tr>
+					<tr><td></td><td></td></tr>
+					</tbody>
+				</table>
+				<br /> <br />
 				${petsitter.boardContent}
 				
 				
@@ -20,8 +43,9 @@
 				<div class="pt-5" align="right">
 					<button type="submit" formaction="petsitterDetail/edit"
 						class="btn">수정</button>
-					<button type="submit" formaction="petsitterDetail/delete"
-						class="btn">삭제</button>
+					<a href="<c:url value="/petsitterDetail/delete">
+						<c:param name="boardNum" value="${petsitter.boardNum}"/>
+						</c:url>"><input type="submit" class="btn" value="삭제" /></a>
 				</div>
 
 				<div class="pt-5" align="center">

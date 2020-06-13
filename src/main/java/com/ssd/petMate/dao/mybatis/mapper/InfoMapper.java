@@ -10,8 +10,7 @@ public interface InfoMapper {
 	public int boardPageCount(HashMap<String, Object> map); //게시판 페이징
 
 	public List<Info> getAllBoard(BoardSearch boardSearch); //게시글 목록
-	
-//	public List<Info> getAllBoard(); // 임시	
+		
 	public void insertBoard(Info info); //게시글 작성
 	
 	public Info boardDetail(int boardNum); //게시글 상세보기
@@ -20,13 +19,7 @@ public interface InfoMapper {
 	
 	public void deleteBoard(int boardNum); //게시글 삭제
 	
-	public void plusReplyCnt(int boardNum); //덧글수 증가
-	
-	public void minusReplynt(int boardNum); //덧글수 감소
-	
 	public void boardViews(int boardNum); //조회수 증가
 	
-	public void plusLike(int boardNum); //좋아요 수 증가
-	
-	public void minusLike(int boardNum); //좋아요 수 감소
+	public void updateLike(Info like);
 }
