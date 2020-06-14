@@ -16,4 +16,9 @@ public class PetsitterLike {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
+	public PetsitterLike(String userID, int boardNum) {
+		super();
+		this.userID = userID;
+		this.boardNum = boardNum;
+	}
 }

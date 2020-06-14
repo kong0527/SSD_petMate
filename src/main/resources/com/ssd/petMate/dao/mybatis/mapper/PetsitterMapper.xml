@@ -22,21 +22,29 @@
 	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Petsitter">
 		SELECT *
 		FROM (
-		SELECT petsitter.*, ROWNUM AS NUM
-		FROM Petsitter
-		<where>
-			<if test="searchType=='boardTitle' and keyword != null">
-				and boardTitle LIKE CONCAT('%',#{keyword},'%')
-			</if>
-			<if test="searchType=='boardContent' and keyword != null">
-				and boardContent LIKE CONCAT('%',#{keyword},'%')
-			</if>
-			<if test="searchType=='userID' and keyword != null">
-				and userID LIKE CONCAT('%',#{keyword},'%')
-			</if>
-		</where>
-		ORDER BY boardNum) petsitter
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+            SELECT 
+            ROWNUM AS NUM,
+            petsitter.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Petsitter
+                ORDER BY boardNum ASC 
+            )petsitter)
+			<where>
+				<if test="searchType=='boardTitle' and keyword != null">
+					and boardTitle LIKE CONCAT('%',#{keyword},'%')
+				</if>
+				<if test="searchType=='boardContent' and keyword != null">
+					and boardContent LIKE CONCAT('%',#{keyword},'%')
+				</if>
+				<if test="searchType=='userID' and keyword != null">
+					and userID LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+		WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 
 	<!-- 게시글 작성 -->
@@ -116,6 +124,13 @@
 	<update id="minusLike" parameterType="int">
 		UPDATE Petsitter
 		SET boardLike = boardLike - 1
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 좋아요 업데이트 -->	
+	<update id="updateLike" parameterType="HashMap">
+		UPDATE Petsitter
+		SET boardLike = #{boardLike}
 		WHERE boardNum = #{boardNum}
 	</update>
 </mapper>

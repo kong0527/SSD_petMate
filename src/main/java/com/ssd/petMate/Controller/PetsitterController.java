@@ -13,19 +13,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Code;
-import com.ssd.petMate.domain.Info;
+import com.ssd.petMate.domain.PetsitterLike;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.PetsitterFacade;
+import com.ssd.petMate.service.PetsitterLikeFacade;
 
 @Controller
 public class PetsitterController {
 	@Autowired
 	private PetsitterFacade petsitterFacade;
+	
+	
+	@Autowired
+	private PetsitterLikeFacade petsitterLikeFacade;
 	
 	@ModelAttribute("petsitter")
 	public Petsitter formBacking(HttpServletRequest request) {
@@ -151,5 +157,41 @@ public class PetsitterController {
 		public ModelAndView petsitterForm(ModelAndView mv) {
 			  mv.setViewName("petsitter/petsitterForm"); 
 			  return mv; 
+		}
+		
+//		게시글 추천 기능
+		@RequestMapping(value="/petsitterLike", method = { RequestMethod.GET, RequestMethod.POST })
+		@ResponseBody
+		public HashMap<String, Integer> petsitterLike(ModelAndView mv, HttpServletRequest request,
+				@RequestParam(required = false) int boardNum) {
+
+			String userID = (String) request.getSession().getAttribute("userID");
+			Petsitter petsitter = petsitterFacade.boardDetail(boardNum);
+			PetsitterLike petsitterLike = new PetsitterLike(userID, boardNum);
+
+//			이미 사용자가 게시글에 좋아요를 눌렀는지 누르지 않았는지 판별하기 위해 호출
+			int count = petsitterLikeFacade.isLike(petsitterLike);
+			
+//			만약 이전에 좋아요를 누르지 않았을 때
+//			게시글의 좋아요 개수가 증가하고, like 테이블에 좋아요를 누른 userID와 게시글의 ID가 삽입됨
+			if (count == 0) {
+				petsitterLikeFacade.insertLike(petsitterLike);
+			}
+			else {
+				petsitterLikeFacade.deleteLike(petsitterLike);
+			}
+			
+//			좋아요 개수 가지고 오기
+			int boardLike = petsitterLikeFacade.countLike(boardNum);
+			
+//			좋아요 개수 update
+			petsitter.setBoardLike(boardLike);
+			petsitterFacade.updateLike(petsitter);
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("count", count);
+			map.put("boardLike", boardLike);
+			
+			return map;
 		}
 }

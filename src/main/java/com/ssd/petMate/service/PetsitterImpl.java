@@ -41,4 +41,9 @@ public class PetsitterImpl implements PetsitterFacade {
 		petsitterDao.deleteBoard(boardNum);
 	}
 
+	@Override
+	public void updateLike(Petsitter petsitter) {
+		petsitterDao.updateLike(petsitter);
+	}
+
 }

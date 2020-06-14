@@ -36,5 +36,11 @@ public class MybatisPetsitterDao implements PetsitterDao{
 	
 	public void deleteBoard(int boardNum) {
 		petsitterMapper.deleteBoard(boardNum);
+	}
+
+	@Override
+	public void updateLike(Petsitter petsitter) {
+		petsitterMapper.updateLike(petsitter);
+		
 	} 
 }
