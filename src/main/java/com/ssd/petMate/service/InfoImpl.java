@@ -18,9 +18,6 @@ public class InfoImpl implements InfoFacade {
 	
 	@Autowired
 	private InfoDao infoDao;
-	
-	@Autowired
-	private SecondhandDao secondhandDao;
 
 	public List<Info> getAllBoard(BoardSearch boardSearch){
 		return infoDao.getAllBoard(boardSearch);
@@ -38,27 +35,4 @@ public class InfoImpl implements InfoFacade {
 		infoDao.insertBoard(info);
 	}
 	
-	public List<Secondhand> getSecondhandList(BoardSearch boardSearch) throws DataAccessException{
-		return secondhandDao.getSecondhandList(boardSearch);
-	}
-	
-	public int getSecondhandboardCount(HashMap<String, Object> map) throws DataAccessException {
-		return secondhandDao.getSecondhandboardCount(map);
-	}
-		
-	public void insertSecondhand(Secondhand secondhand) throws DataAccessException{
-		secondhandDao.insertSecondhand(secondhand);
-	}
-		
-	public Secondhand getSecondhandDetail(int boardNum) throws DataAccessException{
-		return secondhandDao.getSecondhandDetail(boardNum);
-	}
-		
-	public void updateSecondhand(Secondhand secondhand) throws DataAccessException{
-		secondhandDao.updateSecondhand(secondhand);
-	}
-		
-	public void deleteSecondhand(int boardNum) throws DataAccessException{
-		secondhandDao.deleteSecondhand(boardNum);
-	}
 }

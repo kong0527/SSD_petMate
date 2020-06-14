@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="section-title">
 	<div class="container">
@@ -22,37 +24,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><input type="checkbox" name="gpurchase" value="1" checked /></td>
-					<td><img src="resources/img/love.png" border="0"> &nbsp;
-						강아지 삑삑이</td>
-					<td>10,000₩</td>
-					<td>1</td>
-					<td>10,000₩</td>
-					<td><button type="submit" formaction="cart/delete" class="btn">x</button></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="gpurchase" value="1" checked /></td>
-					<td><img src="resources/img/love.png" border="0"> &nbsp;
-						강아지 삑삑이</td>
-					<td>15,000₩</td>
-					<td>1</td>
-					<td>15,000₩</td>
-					<td><button type="submit" formaction="cart/delete" class="btn">x</button></td>
-				</tr>
+				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+					<tr>
+						<td><input type="checkbox" name="gpurchase" value="1" checked /></td>
+						<td><img src="resources/img/love.png" border="0"> &nbsp;
+						${gpurchaseCart.gpurchase.boardTitle}</td>
+						<td>${gpurchaseCart.gpurchase.price}</td>
+						<td>1</td>
+						<td>${gpurchaseCart.gpurchase.price}</td>
+						<td><button type="submit" formaction="cart/delete" class="btn">x</button></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
-
-		<div class="pagination-row" style="text-align: center;">
-			<ul class="custom-pagination list-unstyled">
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">></a></li>
-			</ul>
-		</div>
 
 		<table class="text-right" align="right">
 			<tr>
@@ -76,8 +60,20 @@
 				<td><button type="submit" formaction="cart/cancle" class="btn">order</button></td>
 			</tr>
 		</table>
+		
+		
 	</div>
-
+	
+	<!-- <div class="pagination-row" style="text-align: center;">
+			<ul class="custom-pagination list-unstyled">
+				<li><a href="#">1</a></li>
+				<li class="active"><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">></a></li>
+			</ul>
+		</div> -->
 	<nav id="sidebar">
 		<div class="p-4 pt-5">
 			<ul class="list-unstyled components mb-5">

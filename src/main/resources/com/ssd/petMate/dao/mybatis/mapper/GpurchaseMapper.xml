@@ -4,10 +4,11 @@
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseMapper">
 
-  <cache />
   	<!-- 공동구매 게시글 목록 가져오기  -->
 	<select id="getGpurchaseList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Gpurchase">
       SELECT *
+      FROM (
+      SELECT gpurchase.*, ROWNUM AS NUM
       FROM Gpurchase
       <where>
          <if test="searchType=='boardTitle' and keyword != null">
@@ -20,12 +21,12 @@
             and userID LIKE CONCAT('%',#{keyword},'%')
          </if>
       </where>
-      ORDER BY boardNum
+      ORDER BY boardNum) Gpurchase
       WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 공동구매 게시글 수 -->
-	<select id="getGpurchaseBoardCount" resultType="int" parameterType="com.ssd.petMate.page.BoardSearch">
+	<select id="getGpurchaseBoardCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
 		FROM Gpurchase
 		<where>
@@ -46,16 +47,16 @@
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
  		INSERT
  		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, #{sdate}, #{edate}, #{goalNum,jdbcType=NUMERIC})
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'YYYYMMDDHH24MISS'), TO_DATE(#{edate},'YYYYMMDDHH24MISS'), #{goalNum,jdbcType=NUMERIC})
  	</insert>
 	
 	<!-- 공동구매 게시글 수정하기  -->
 	<update id="updateGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
 		UPDATE Gpurchase
-		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage}, price = #{price}
+		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
-	
+
 	<!-- 공동구매 게시글 삭제하기  -->
 	<delete id="deleteGpurchase" parameterType="int">
 		DELETE FROM Gpurchase

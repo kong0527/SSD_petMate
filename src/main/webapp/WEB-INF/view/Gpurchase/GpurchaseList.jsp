@@ -17,13 +17,13 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="secondhandList" items="${secondhandList}">
+				<c:forEach var="gpurchaseList" items="${gpurchaseList}">
 					<tr>
-						<td>${secondhandList.boardNum}</td>
-						<td><a href="<c:url value="/secondhandDetail">
-						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
-						</c:url>">${secondhandList.boardTitle}</a></td>
-						<td>${secondhandList.userID}</td>
+						<td>${gpurchaseList.boardNum}</td>
+						<td><a href="<c:url value="/gpurchaseDetail">
+						<c:param name="boardNum" value="${gpurchaseList.boardNum}"/>
+						</c:url>">${gpurchaseList.boardTitle}</a></td>
+						<td>${gpurchaseList.userID}</td>
 					</tr>
 				</c:forEach>
 				<!-- 	<tr>
@@ -36,7 +36,7 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<a href="secondhandForm"><input type="submit" class="btn" value="글 작성" /></a>
+						<a href="gpurchaseForm"><input type="submit" class="btn" value="글 작성" /></a>
 					</td>
 				</tr>
 			</table>
@@ -52,7 +52,6 @@
 				<li><a href="#">></a></li>
 			</ul>
 		</div>
-		
 		<div class="d-flex justify-content-center" >
 				<select class="form-control form-control-sm" name="searchType" id="searchType" style="width : 10%">
 							<option value="boardTitle">글 제목</option>
@@ -62,6 +61,5 @@
                 <input type="email" class="form-control" placeholder="Search..." style="width : 25%">
                 <button type="submit" class="btn btn-secondary" ><span class="icon-search"></span></button>
        </div>
-		
 	</div>
 </div>

@@ -11,7 +11,7 @@ public interface GpurchaseMapper {
 	
 	public List<Gpurchase> getGpurchaseList(BoardSearch boardSearch); //게시글 목록
 	
-	public int getGpurchaseCount(BoardSearch boardSearch); //게시글 수 가져오기
+	public int getGpurchaseBoardCount(HashMap<String, Object> map); //게시글 수 가져오기
 	
 //	public int boardCount(); //게시글 개수 가져오기
 	

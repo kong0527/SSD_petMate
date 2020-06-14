@@ -20,25 +20,24 @@ import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InfoFacade;
+import com.ssd.petMate.service.SecondhandImpl;
 
 @Controller
 public class secondhandController {	
 	
 	@Autowired
-	private InfoFacade info;
+	private SecondhandImpl secondhandImpl;
 	
 	@ModelAttribute("secondhand")
 	public Secondhand formBacking(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			Secondhand secondhand;
-			
 			if(request.getParameter("boardNum") != null) {
-				secondhand = info.getSecondhandDetail(Integer.valueOf(request.getParameter("boardNum")));
+				secondhand = secondhandImpl.getSecondhandDetail(Integer.valueOf(request.getParameter("boardNum")));
 			}
 			else {
 				secondhand = new Secondhand();
 			}
-			
 			return secondhand;
 		}
 		else {
@@ -62,11 +61,11 @@ public class secondhandController {
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 
-		int totalCount = info.boardPageCount(map);
+		int totalCount = secondhandImpl.getSecondhandboardCount(map);
 
 //		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Secondhand> secondhandList = info.getSecondhandList(boardSearch);
+		List<Secondhand> secondhandList = secondhandImpl.getSecondhandList(boardSearch);
 
 		mv.addObject("secondhandList", secondhandList);
 		mv.setViewName("secondhand/secondhandList");
@@ -83,9 +82,9 @@ public class secondhandController {
 	@RequestMapping(value = "/secondhandDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView secondhandDetail(ModelAndView mv,
 			@RequestParam("boardNum") int boardNum) {
-		Secondhand view = info.getSecondhandDetail(boardNum);
+		Secondhand view = secondhandImpl.getSecondhandDetail(boardNum);
 		System.out.println(view);
-		mv.addObject("secondhand", info.getSecondhandDetail(boardNum));
+		mv.addObject("secondhand", secondhandImpl.getSecondhandDetail(boardNum));
 		mv.setViewName("secondhand/secondhandDetail");
 		return mv;
 	}
@@ -104,7 +103,7 @@ public class secondhandController {
 		secondhand.setUserID("test1");
 //		info.setBoardTitle(title);
 //		info.setBoardContent(content);
-		info.insertSecondhand(secondhand);
+		secondhandImpl.insertSecondhand(secondhand);
 		return "redirect:/secondhand";
 	}
 	
@@ -118,17 +117,15 @@ public class secondhandController {
 	@PostMapping("/secondhandUpdate")
 	public String secondhandUpdate(@ModelAttribute("secondhand") Secondhand secondhand) {
 		System.out.println("update secondhand : " + secondhand.toString());
-		info.updateSecondhand(secondhand);
+		secondhandImpl.updateSecondhand(secondhand);
 		return "redirect:/secondhand";
 	}
 	
 	//중고물품 삭제
 	@RequestMapping(value = "/secondhandDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {
-		info.deleteSecondhand(boardNum);
+		secondhandImpl.deleteSecondhand(boardNum);
 		return "redirect:/secondhand";
 	}
-	
-	
 	
 }

@@ -3,14 +3,20 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseCartMapper">
-  <cache />
   	<!-- 공동구매 장바구니 목록 가져오기  -->
-	<select id="getGpurchaseCartList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.GpurchaseCart">
+	<!-- <select id="getGpurchaseCartList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.GpurchaseCart">
 		SELECT *
 		FROM GpurchaseCart
 		WHERE userID = #{userID}
 		ORDER BY boardNum
 		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+	</select>
+ -->	
+	<select id="getGpurchaseCartListByGpurchase" parameterType="String" resultType="com.ssd.petMate.domain.GpurchaseCart">
+		SELECT gc.userID, gc.boardNum, g.boardNum AS "gpurchase.boardNum", g.userID AS "gpurchase.userID", g.price AS "gpurchase.price", g.edate AS "gpurchase.edate", g.sdate AS "gpurchase.sdate", g.boardTitle AS "gpurchase.boardTitle"
+		FROM GpurchaseCart gc, Gpurchase g
+		WHERE gc.userID = g.userID AND gc.userID = #{userID}
+		ORDER BY gc.boardNum
 	</select>
 	
 	<!-- 공동구매 장바구니 수 -->

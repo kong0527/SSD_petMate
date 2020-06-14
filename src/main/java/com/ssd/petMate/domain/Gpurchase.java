@@ -8,12 +8,13 @@ public class Gpurchase {
 	private String sdate;
 	private String edate;
 	private String boardContent;
-	private int careAdded;
+	private int cartAdded;
 	private int replyCnt;
 	private String boardTitle;
 	private int boardHit;
 	private String boardImage;
 	private int goalNum;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -56,12 +57,6 @@ public class Gpurchase {
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
-	public int getCareAdded() {
-		return careAdded;
-	}
-	public void setCareAdded(int careAdded) {
-		this.careAdded = careAdded;
-	}
 	public int getReplyCnt() {
 		return replyCnt;
 	}
@@ -92,7 +87,11 @@ public class Gpurchase {
 	public void setGoalNum(int goalNum) {
 		this.goalNum = goalNum;
 	}
-	
-	
+	public int getCartAdded() {
+		return cartAdded;
+	}
+	public void setCartAdded(int cartAdded) {
+		this.cartAdded = cartAdded;
+	}
 
 }
