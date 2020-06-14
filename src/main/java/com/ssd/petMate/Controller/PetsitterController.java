@@ -102,9 +102,10 @@ public class PetsitterController {
 		  int totalCount = petsitterFacade.boardPageCount(map);
 		  
 		  // 페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴 
-		  boardSearch.pageInfo(pageNum, contentNum,totalCount); List<Petsitter> infoList = petsitterFacade.getAllBoard(boardSearch);
+		  boardSearch.pageInfo(pageNum, contentNum,totalCount); List<Petsitter> petsitterList = petsitterFacade.getAllBoard(boardSearch);
 		  
-		  mv.addObject("petsitterList", infoList);
+		  mv.addObject("petsitterList", petsitterList);
+		  mv.addObject("boardSearch", boardSearch);
 		  mv.setViewName("petsitter/petsitterList"); 
 		  return mv; 
 	}
