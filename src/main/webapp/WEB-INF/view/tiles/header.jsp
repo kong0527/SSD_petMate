@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 	<div class="site-wrap">
 		<div class="site-mobile-menu site-navbar-target">
 			<div class="site-mobile-menu-header">
@@ -20,8 +23,29 @@
                </div>
                <div class="col-12 col-lg-6 ml-auto d-flex">
                   <div class="ml-md-auto top-social d-none d-lg-inline-block">
+                  <!-- 후에 spring security로 변경할 것 -->
+                 	 <c:if test="${userID eq null}">
 						<a href="${pageContext.request.contextPath}/signIn">로그인</a> &nbsp;&nbsp; | &nbsp;&nbsp;
                        	<a href="${pageContext.request.contextPath}/signUp">회원가입</a>
+                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                     </c:if>
+                     <c:if test="${userID ne null}">
+						<a href="${pageContext.request.contextPath}/signOut">로그아웃</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                       	<a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
+                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                     </c:if>
+                     
+                       	
+                       	<sec:authorize access="isAnonymous()"> 
+                       		<a href="/signIn">로그인</a> 
+                       	</sec:authorize> 
+                       	 <sec:authorize access="hasRole('USER')">
+                       		<a href="/signOut">로그아웃</a> 
+                       	</sec:authorize>
+                       	
+                       	
+                       	
+                       	
                   </div>
           </div>
           </div>

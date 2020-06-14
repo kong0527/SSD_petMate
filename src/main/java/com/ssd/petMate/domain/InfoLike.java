@@ -16,4 +16,9 @@ public class InfoLike {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
+	public InfoLike(String userID, int boardNum) {
+		super();
+		this.userID = userID;
+		this.boardNum = boardNum;
+	}
 }

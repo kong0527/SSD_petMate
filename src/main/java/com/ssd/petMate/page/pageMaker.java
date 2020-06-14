@@ -13,6 +13,7 @@ public class pageMaker {
     private int lastBlock;
     private int range = 5;
     private int startList;
+    private int EndList;
     
 	public int getStartList() {
 		return startList;
@@ -149,13 +150,22 @@ public class pageMaker {
         this.contentNum = contentNum;
     } 
     
-    public void pageInfo(int pageNum, int contentNum, int totalCount) {
+    public int getEndList() {
+		return EndList;
+	}
+
+	public void setEndList(int endList) {
+		EndList = endList;
+	}
+
+	public void pageInfo(int pageNum, int contentNum, int totalCount) {
     	this.setTotalCount(totalCount);
     	this.setCurrentBlock(pageNum);
     	this.setLastBlock(totalCount);
     	this.setPageNum(pageNum - 1);
         this.setContentNum(contentNum);
-        this.setStartList((pageNum - 1) * contentNum); 
+        this.setStartList((pageNum - 1) * contentNum + 1);
+        this.setEndList(contentNum * pageNum);
     	
     	this.setStartPage(this.getCurrentBlock());
         this.setEndPage(this.getLastBlock(), this.getCurrentBlock());

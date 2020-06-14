@@ -38,7 +38,11 @@
 		<!--Spring Security  -->
 		<security.version>5.3.3.RELEASE</security.version>
 		
-		<dbcp.version>2.2.0</dbcp.version>	
+		<dbcp.version>2.2.0</dbcp.version>
+		
+		<!-- Bean Validation API -->
+		<bean-validation-api.version>2.0.1.Final</bean-validation-api.version>
+		<hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
 	</properties>
 	
 	<dependencies>	
@@ -67,18 +71,18 @@
 			<version>${jsp.version}</version>
 			<scope>provided</scope>
 		</dependency>
-	
-		<!-- JSR 303 Validation API -->
-	<!-- 	<dependency>
+		
+		<!-- Bean Validation API -->
+		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
-		</dependency> -->
-		<!-- <dependency>
-			<groupId>org.hibernate</groupId>
+			<version>${bean-validation-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
-		</dependency> -->
+			<version>${hibernate-validator.version}</version>
+		</dependency>
 		
 		<!-- Commons FileUpload API -->
 		<dependency>
@@ -177,6 +181,26 @@
 		    <version>${dbcp.version}</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
 	</dependencies>		
 
 	<build>

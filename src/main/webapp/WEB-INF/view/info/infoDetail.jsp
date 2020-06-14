@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">InfoDetail</h1>
+				<h1 class="mb-4">${info.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${info.userID}</a></span> 
@@ -25,9 +25,17 @@
 				</div>
 
 				<div class="pt-5" align="center">
-					<a href="secondhandDetail/likePlus"><img
-						src="resources/img/love.png" border="0" class="zoom"></a>
-					<p>추천수 : 1</p>
+					<!-- <a href="secondhandDetail/likePlus">
+						<img src="resources/img/love.png" border="0" class="zoom"></a> -->
+						<!-- 수정 필요 -->
+						<c:if test="${userID ne null && sessionScope.userID ne info.userID}">
+							<a href="javascript:void(0);" onclick="checkLike();">
+								<img src="resources/img/love.png" border="0" class="zoom">
+							</a>
+						</c:if>
+						<div id="boardLike">
+							추천 수 : ${info.boardLike}
+						</div>
 				</div>
 				<div class="pt-5" align="center">
 					<a href="info"><input type="button" value="목록" class="btn" /></a>
@@ -174,3 +182,24 @@
 		</div>
 	</div>
 </div>
+<script>
+	function checkLike() {
+		var boardNum = '${info.boardNum}';
+		$.ajax({
+			url : '/petMate/infoLike',
+			type : 'post',
+			data : {'boardNum' : boardNum},
+			dataType : 'json',
+			success : function(data) {
+				var html = ''; 
+				if (data.count == 0) {
+					alert('추천되었습니다.');
+				} else {
+					alert('추천이 취소되었습니다.');
+				}
+				html += '추천 수: ' + data.boardLike;
+				$("#boardLike").html(html);
+			}
+		});
+	}
+</script>

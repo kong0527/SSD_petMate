@@ -35,4 +35,7 @@ public class InfoImpl implements InfoFacade {
 		infoDao.insertBoard(info);
 	}
 	
+	public void updateLike(Info info) {
+		infoDao.updateLike(info);
+	}
 }

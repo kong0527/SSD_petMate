@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Info;
@@ -21,18 +22,6 @@ public class mainController {
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView index(ModelAndView mv) {
 		mv.setViewName("index");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/signUp", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView signUp(ModelAndView mv) {
-		mv.setViewName("user/signUpForm");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/signIn", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView login(ModelAndView mv) {
-		mv.setViewName("user/signIn");
 		return mv;
 	}
 	
@@ -54,4 +43,9 @@ public class mainController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/mypage", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView mypage(ModelAndView mv) {
+		mv.setViewName("mypage/myPage");
+		return mv;
+	}
 }

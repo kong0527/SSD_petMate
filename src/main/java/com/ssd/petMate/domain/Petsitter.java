@@ -14,6 +14,10 @@ public class Petsitter {
 	private int replyCnt;
 	private int boardHit;
 	private String boardImage;
+	private String[] sizeCodes;
+	private String[] dayCodes;
+	
+	
 	public String getBoardNum() {
 		return boardNum;
 	}
@@ -91,5 +95,17 @@ public class Petsitter {
 	}
 	public void setBoardImage(String boardImage) {
 		this.boardImage = boardImage;
+	}
+	public String[] getSizeCodes() {
+		return sizeCodes;
+	}
+	public void setSizeCodes(String[] sizeCodes) {
+		this.sizeCodes = sizeCodes;
+	}
+	public String[] getDayCodes() {
+		return dayCodes;
+	}
+	public void setDayCodes(String[] dayCodes) {
+		this.dayCodes = dayCodes;
 	}
 }

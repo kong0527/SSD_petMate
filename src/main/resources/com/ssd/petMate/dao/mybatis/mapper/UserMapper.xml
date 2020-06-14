@@ -3,10 +3,8 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.UserMapper">
-  <cache />
-
 	<!-- 회원 정보 가져오기  -->
-	<select id="getUserByUserIDAndPassword" parameterType="User">
+	<select id="getUserByUserIDAndPwd" parameterType="com.ssd.petMate.domain.UserList" resultType="com.ssd.petMate.domain.UserList">
 		SELECT *
 		FROM UserList
 		WHERE userID = #{userID} AND pwd = #{pwd}
@@ -14,21 +12,33 @@
 	</select>
 	
   	<!-- 회원 가입  -->
-	<insert id="insertUser" parameterType="User">
+	<insert id="insertUser" parameterType="com.ssd.petMate.domain.UserList">
 		INSERT
-		INTO UserList (userID, pwd, email, userType)
-		VALUES (#{userID}, #{pwd}, #{email}, #{userType})
+		INTO UserList (userID, pwd, email, userType, authority)
+		VALUES (#{userID}, #{pwd}, #{email}, #{userType}, #{authority})
 	</insert>
 
   	<!-- 아이디 중복 확인 -->
-	<select id="getUserByUserID" parameterType="User" resultType="Integer">
+	<select id="countUserByUserID" parameterType="String" resultType="Integer">
 		SELECT COUNT(*)
 		FROM userList
 		WHERE userID = #{userID}
 	</select>
 	
+	<select id="getUserByUserID" parameterType="String" resultType="com.ssd.petMate.domain.UserList">
+		SELECT *
+		FROM userList
+		WHERE userID = #{userID}
+	</select>
+	
+	<select id="getAthorityByUserID" parameterType="String" resultType="String">
+		SELECT authority
+		FROM userList
+		WHERE userID = #{userID}
+	</select>
+	
 	<!-- 회원 정보 수정  -->
-	<update id="updateUser" parameterType="User">
+	<update id="updateUser" parameterType="com.ssd.petMate.domain.UserList">
 		UPDATE UserList SET  
 		email = #{email},  
 		pwd = #{pwd},  
@@ -37,7 +47,7 @@
 	</update>
 	
 	<!-- 회원 탈퇴  -->
-	<delete id="deleteUser">
+	<delete id="deleteUser" parameterType="String">
 		DELETE FROM userList
 		WHERE userID = #{userID}
 	</delete>

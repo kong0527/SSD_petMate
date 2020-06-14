@@ -28,7 +28,7 @@ ul.dropdown-menu {
 <link rel="stylesheet" href="resources/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="resources/css/meranda/aos.css">
 <link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="resources/css/meranda/style.css?new4">
+<link rel="stylesheet" href="resources/css/meranda/style.css?new8">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css?new">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
@@ -47,6 +47,7 @@ ul.dropdown-menu {
 <script src="resources/js/jquery.mb.YTPlayer.min.js"></script>
 <script src="resources/js/main.js"></script>
 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
