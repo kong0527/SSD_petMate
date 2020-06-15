@@ -85,9 +85,16 @@
 	</update>
 	
 	<!-- 좋아요 업데이트 -->	
-	<update id="updateLike" parameterType="HashMap">
+	<update id="updateLike" parameterType="com.ssd.petMate.domain.Info">
 		UPDATE Info
 		SET boardLike = #{boardLike}
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 댓글 수 업데이트 -->	
+	<update id="updateReplyCnt" parameterType="com.ssd.petMate.domain.Info">
+		UPDATE Info
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 </mapper>

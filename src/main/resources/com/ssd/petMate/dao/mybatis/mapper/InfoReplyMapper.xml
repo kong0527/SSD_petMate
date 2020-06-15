@@ -3,25 +3,29 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.InfoReplyMapper">
-  <cache />
-  	<!-- 댓글 리스트 가져오기  -->
-	<select id="getReplyList" parameterType="Integer">
-		SELECT *
+<cache />
+  	<!-- 댓글 리스트 가져오기  일단 페이징 없이 시작 -->
+	<select id="getReplyList" parameterType="int" resultType="com.ssd.petMate.domain.InfoReply" flushCache="false"
+  		useCache="true">
+		SELECT * 
 		FROM InfoReply
-		WHERE boardNum = #{baordNum}
-		ORDER BY IF(replyParents = 0, replyNum, replyParents) ASC
-		LIMIT #{startList}, #{contentNum}
+		WHERE boardNum = #{boardNum}
+		ORDER BY 
+		CASE 
+			WHEN replyParents = 0 THEN replyNum
+		    ELSE replyParents
+		    END, replyNum
 	</select>
 	
 	<!-- 댓글 삽입하기  -->
-	<insert id="insertReply" parameterType="InfoReply">
+	<insert id="insertReply" parameterType="com.ssd.petMate.domain.InfoReply">
  		INSERT 
 		INTO InfoReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
+		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID, jdbcType=NUMERIC}, #{replyOrder, jdbcType=NUMERIC}, #{replyParents, jdbcType=NUMERIC}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->
-	<update id="updateReply" parameterType="InfoReply">
+	<update id="updateReply" parameterType="com.ssd.petMate.domain.InfoReply">
 		UPDATE InfoReply SET
 		replyContent = #{replyContent}
 		WHERE replyNum = #{replyNum}
@@ -31,23 +35,23 @@
 	<!-- 부모 댓글을 삭제하면 밑에 답글들도 삭제할 수 있도록 or 처리 -->
 	<delete id="deleteReply" parameterType="Integer">
 		DELETE FROM InfoReply
-		WHERE replyNum = #{replyNum} or replyGID = #{replyGID}
+		WHERE replyNum = #{replyNum} or replyGID = #{replyNum}
 	</delete>
 
 	<!-- 댓글 상세정보 가져오기  -->
-	<select id="getReply" parameterType="Integer">
+	<select id="replyDetail" parameterType="Integer" resultType="com.ssd.petMate.domain.InfoReply">
 		SELECT *
 		FROM InfoReply
 		WHERE replyNum = #{replyNum}
 	</select>
 	
 	<!-- 게시글에 달린 댓글 수   -->
-	<select id="replyCount" parameterType="Integer" resultType="Integer">
+	<select id="replyCnt" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
 		FROM InfoReply
 		WHERE boardNum = #{boardNum}
 	</select>
-	
+
 	<!-- 답글 순서 정하기  -->
 	<!-- 답글 추가 시 이전에 있던 답글들에 order + 1 하기  -->
 	<update id="setReplyOrder" parameterType="hashMap">
@@ -56,20 +60,19 @@
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
 	</update>
 
-
 <!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
 	<!-- 마지막 댓글 ID 찾아오기  -->
 	<!-- 페이징을 위해서 필요  -->
-	<select id="findLastReplyID" resultType="Integer">
+<!-- 	<select id="findLastReplyID" resultType="Integer">
 		SELECT replyNum
 		FROM InfoReply
 		ORDER BY replyNum DESC LIMIT 1;
 	</select>
 	
-	<!-- 같은 GID를 가진 댓글 수 찾아오기 -->
+	같은 GID를 가진 댓글 수 찾아오기
 	<select id="countSameGID" resultType="Integer" parameterType="Integer">
 		SELECT COUNT(*)
 		FROM InfoReply
 		WHERE replyGID = #{replyNum}
-	</select>
+	</select> -->
 </mapper>

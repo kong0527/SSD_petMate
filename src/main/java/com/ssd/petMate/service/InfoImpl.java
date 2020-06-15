@@ -34,4 +34,8 @@ public class InfoImpl implements InfoFacade {
 	public void updateLike(Info info) {
 		infoDao.updateLike(info);
 	}
+
+	public void updateReplyCnt(Info info) {
+		infoDao.updateReplyCnt(info);
+	}
 }
