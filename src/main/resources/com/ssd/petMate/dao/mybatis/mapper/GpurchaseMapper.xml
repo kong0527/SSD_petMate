@@ -19,19 +19,17 @@
                 gpurchase
                 ORDER BY boardNum ASC 
             )gpurchase)
-			<where>
-				<if test="searchType=='boardTitle' and keyword != null">
-					and boardTitle LIKE '%' ||  #{keyword} || '%'
-				</if>
-				<if test="searchType=='boardContent' and keyword != null">
-					and boardContent LIKE CONCAT('%',#{keyword},'%')
-				</if>
-				<if test="searchType=='userID' and keyword != null">
-					and userID LIKE CONCAT('%',#{keyword},'%')
-				</if>
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+			<if test="searchType=='boardTitle' and keyword != null">
+				and boardTitle LIKE '%' ||  #{keyword} || '%'
+			</if>
+			<if test="searchType=='boardContent' and keyword != null">
+				and boardContent LIKE '%' ||  #{keyword} || '%'
+			</if>
+			<if test="searchType=='userID' and keyword != null">
+				and userID LIKE '%' ||  #{keyword} || '%'
+			</if>
 				<!-- WHERE NUM BETWEEN #{startList} AND #{endList} -->
-			</where>
-					<!-- WHERE NUM BETWEEN #{startList} AND #{endList} -->
 	</select>
 	
 	<!-- 공동구매 게시글 수 -->
@@ -43,10 +41,10 @@
 				and boardTitle LIKE '%' ||  #{keyword} || '%'
 			</if>
 			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
-				and boardContent LIKE CONCAT('%',#{keyword},'%')
+				and boardContent LIKE '%' ||  #{keyword} || '%'
 			</if>
 			<if test="searchType=='userID' and keyword != null and keyword != ''">
-				and userID LIKE CONCAT('%',#{keyword},'%')
+				and userID LIKE '%' ||  #{keyword} || '%'
 			</if>
 		</where>
 	</select>
@@ -62,7 +60,7 @@
 	<!-- 공동구매 게시글 수정하기  -->
 	<update id="updateGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
 		UPDATE Gpurchase
-		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}
+		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}, cartAdded = #{cartAdded}
 		WHERE boardNum = #{boardNum}
 	</update>
 

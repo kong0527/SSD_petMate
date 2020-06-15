@@ -15,7 +15,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>#</th>
+					<th><input type="checkbox" id="checkAll" class="check"/></th>
 					<th>Product</th>
 					<th>Price</th>
 					<th>Quantity</th>
@@ -26,12 +26,13 @@
 			<tbody>
 				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 					<tr>
-						<td><input type="checkbox" name="gpurchase" value="1" checked /></td>
+						<td><input type="checkbox" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 						<td><img src="resources/img/love.png" border="0"> &nbsp;
 						${gpurchaseCart.gpurchase.boardTitle}</td>
 						<td>${gpurchaseCart.gpurchase.price}</td>
 						<td>1</td>
 						<td>${gpurchaseCart.gpurchase.price}</td>
+						<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" />
 						<td><a href="<c:url value="/gpurchaseCartDelete">
 						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
 						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
@@ -45,7 +46,7 @@
 			<tr>
 				<td>총상품금액</td>
 				<td>&nbsp;</td>
-				<td>25,000₩</td>
+				<td id="totalPrice">0₩</td>
 			</tr>
 			<tr>
 				<td>배송비</td>
@@ -55,10 +56,10 @@
 			<tr>
 				<td>결제예상금액</td>
 				<td>&nbsp;</td>
-				<td>27,500₩</td>
+				<td id="expectPrice">2500₩</td>
 			</tr>
 			<tr>
-				<td><button type="submit" formaction="cart/cancle" class="btn">cancle</button></td>
+				<td><input type="button" id="uncheck" value="cancle" class="btn" /></td>
 				<td>&nbsp;</td>
 				<td><button type="submit" formaction="cart/cancle" class="btn">order</button></td>
 			</tr>
@@ -85,4 +86,43 @@
 		</div>
 	</nav>
 </div>
-</div>
+
+<script>
+
+	$(document).ready(function() {
+		
+		 // 체크 박스 모두 해제
+		$("#uncheck").on('click', function() {
+			$(".check").each(function() {
+				if($(this).is(":checked"))
+					$(".check").prop("checked", false);
+			});
+		});
+
+		//체크 박스 모두 선택
+		$("#checkAll").change(function () {
+		    $('.check').prop("checked", $(this).prop("checked"));
+		});  
+		
+		//체크 박스 선택 시 가격 변경
+		$(".check").change(function() {
+			var html = 0;
+			var html2 = 0;
+			for (var i = 1; i < $('table tr').size(); i++) {
+				var fabric_seq = 0;
+				// table 중 tr이 i번째 있는 자식중에 체크박스가 체크중이면
+				var chk = $('table tr').eq(i).children().find('input[type="checkbox"]').is(':checked');
+
+				if (chk == true) { // 그 i 번째 input text의 값을 가져온다.
+					fabric_seq = parseInt($('table tr').eq(i).find('input[name=price]').val());
+				}
+				html += fabric_seq;
+				html2 = html + 2500;
+				$("#totalPrice").html(html + '₩');
+				$("#expectPrice").html(html2 + '₩');
+				
+				}
+		  });
+
+	});
+</script>

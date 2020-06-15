@@ -51,7 +51,7 @@
 						</div>
 				</div>
 				<div class="pt-5" align="center">
-					<a href="info"><input type="button" value="목록" class="btn" /></a>
+					<a href="gpurchase"><input type="button" value="목록" class="btn" /></a>
 				</div>
 
 				<!-- comment 작성 부분 -->
@@ -209,7 +209,7 @@
 				if (data.count == 0) {
 					alert('장바구니에 추가되었습니다.');
 				} else {
-					alert('장바구니에 삭되었습니다.');
+					alert('이미 담은 상품입니다.');
 				}
 				html += '장바구니 담은 수: ' + data.cartAdded;
 				$("#cartAdded").html(html);

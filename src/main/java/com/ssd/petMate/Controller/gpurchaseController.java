@@ -48,6 +48,7 @@ public class gpurchaseController {
 		}
 	}
 	
+	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseList(ModelAndView mv,
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
@@ -71,6 +72,7 @@ public class gpurchaseController {
 		List<Gpurchase> gpurchaseList = gpurchaseImpl.getGpurchaseList(boardSearch);
 
 		mv.addObject("gpurchaseList", gpurchaseList);
+		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("Gpurchase/GpurchaseList");
 		return mv;
 	}
@@ -81,7 +83,7 @@ public class gpurchaseController {
 //		return mv;
 //	}
 	
-	//중고게시판 글 상세보기
+	//공구게시판 글 상세보기
 	@RequestMapping(value = "/gpurchaseDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseDetail(ModelAndView mv,
 			@RequestParam("boardNum") int boardNum) {
@@ -92,18 +94,17 @@ public class gpurchaseController {
 		return mv;
 	}
 
-	//중고게시판 글 작성 폼
+	//공구게시판 글 작성 폼
 	@GetMapping("/gpurchaseForm")
 	public String gpurchaseForm() {
 		return "Gpurchase/GpurchaseForm";
 	}
-	//중고게시판 글 등록
+	//공구게시판 글 등록
 	@PostMapping("/gpurchaseInsert")
 	public String gpurchaseInsert(@ModelAttribute("gpurchase") Gpurchase gpurchase, SessionStatus sessionStatus, HttpServletRequest request) {
+		String userID = (String) request.getSession().getAttribute("userID");
 		sessionStatus.setComplete();
-//		String title = request.getParameter("boardTitle");
-//		String content = request.getParameter("boardContent");
-		gpurchase.setUserID("test1");
+		gpurchase.setUserID(userID);
 //		info.setBoardTitle(title);
 //		info.setBoardContent(content);
 		System.out.println("공동구매 시작날짜 : " + gpurchase.getEdate());
@@ -112,13 +113,13 @@ public class gpurchaseController {
 		return "redirect:/gpurchase";
 	}
 	
-	//중고게시판 글 수정 폼
+	//공구게시판 글 수정 폼
 	@GetMapping("/gpurchaseUpdateForm")
 	public String gpurchaseUpdateForm() {
 		return "Gpurchase/GpurchaseForm";
 	}
 	
-	//중고게시판 글 수정
+	//공구게시판 글 수정
 	@PostMapping("/gpurchaseUpdate")
 	public String gpurchaseUpdate(@ModelAttribute("gpurchase") Gpurchase gpurchase) {
 		System.out.println("update gpurchase : " + gpurchase.toString());
@@ -149,39 +150,46 @@ public class gpurchaseController {
 //		이미 사용자가 게시글에 좋아요를 눌렀는지 누르지 않았는지 판별하기 위해 호출
 		int count = gpurchaseImpl.isCart(gpurchaseCart);
 		
+		System.out.println("before : cartAdded = " + gpurchase.getCartAdded() );
+		
 //		만약 이전에 좋아요를 누르지 않았을 때
 //		게시글의 좋아요 개수가 증가하고, like 테이블에 좋아요를 누른 userID와 게시글의 ID가 삽입됨
 		if (count == 0) {
 			gpurchaseImpl.insertGpurchaseCart(gpurchaseCart);
 		}
-		else {
-			gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
-		}
+//		else {
+//			gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+//		}
 		
-		System.out.println("before : cartAdded = " + gpurchase.getCartAdded() );
 //		좋아요 개수 가지고 오기
 		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
-		System.out.println("after1 cartAdded = "  + cartAdded);
-		
 //		좋아요 개수 update
 		gpurchase.setCartAdded(cartAdded);
 		gpurchaseImpl.updateGpurchase(gpurchase);
 		
-		System.out.println("after2 cartAdded = "  + gpurchase.getCartAdded());
-		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("count", count);
 		map.put("cartAdded", cartAdded);
+		System.out.println("infolike : " + mv.getViewName());
 		
 		return map;
 	}
-	//중고게시판 글 등록
+	
+	//공구게시판 장바구니 삭제
 	@GetMapping("/gpurchaseCartDelete")
 	public String gpurchaseCartDelete(@RequestParam(required = false) int boardNum, HttpServletRequest request) {
 		String userID = (String) request.getSession().getAttribute("userID");
+		Gpurchase gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
 		GpurchaseCart gpurchaseCart = new GpurchaseCart(userID, boardNum);
 		
 		gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+		
+//		좋아요 개수 가지고 오기
+		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
+//		좋아요 개수 update
+		gpurchase.setCartAdded(cartAdded);
+		gpurchaseImpl.updateGpurchase(gpurchase);
+		
 		return "redirect:/gpurchaseCart";
 	}	
 	

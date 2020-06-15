@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
@@ -44,6 +45,7 @@ public class secondhandController {
 			return new Secondhand();
 		}
 	}
+	
 	
 	@RequestMapping(value = "/secondhand", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView SecondhandList(ModelAndView mv,
@@ -97,12 +99,9 @@ public class secondhandController {
 	//중고게시판 글 등록
 	@PostMapping("/secondhandInsert")
 	public String secondhandInsert(@ModelAttribute("secondhand") Secondhand secondhand, SessionStatus sessionStatus, HttpServletRequest request) {
+		String userID = (String) request.getSession().getAttribute("userID");
 		sessionStatus.setComplete();
-//		String title = request.getParameter("boardTitle");
-//		String content = request.getParameter("boardContent");
-		secondhand.setUserID("test1");
-//		info.setBoardTitle(title);
-//		info.setBoardContent(content);
+		secondhand.setUserID(userID);
 		secondhandImpl.insertSecondhand(secondhand);
 		return "redirect:/secondhand";
 	}
@@ -110,7 +109,7 @@ public class secondhandController {
 	//중고게시판 글 수정 폼
 	@GetMapping("/secondhandUpdateForm")
 	public String secondhandUpdateForm() {
-		return "secondhand/secondhandUpdateForm";
+		return "secondhand/secondhandForm";
 	}
 	
 	//중고게시판 글 수정
