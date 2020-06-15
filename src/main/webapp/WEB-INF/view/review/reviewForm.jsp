@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -16,24 +17,55 @@
 						</div>
 					</div>
 
-					
-					<!-- 나중에 이름 변경 -->
-					<label for="movieScore">평점</label>
-					<input type="hidden" name="movieScore" id="movieScore" value="0.5">
+					<label for="rating">평점</label>
+					<form:hidden path="rating" value="0.5"/>
 					<div class="row">
 						<div class="col-md-6 form-group" id="starRating">
-							<span class="starR1 on" id="star1">0.5</span> 
-							<span class="starR2" id="star2">1.0</span> 
-							<span class="starR1" id="star3">1.5</span>
-							<span class="starR2" id="star4">2.0</span> 
-							<span class="starR1" id="star5">2.5</span> 
-							<span class="starR2" id="star6">3.0</span>
-							<span class="starR1" id="star7">3.5</span> 
-							<span class="starR2" id="star8">4.0</span> 
-							<span class="starR1" id="star9">4.5</span>
-							<span class="starR2" id="star10">5.0</span>
+						<c:set var="rating" value="${review.rating}" />
+							<c:choose>
+								<c:when test="${rating == 5.0}">
+									<% for(int i = 1; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+								</c:when>
+								<c:when test="${rating == 4.5}">
+									<% for(int i = 1; i < 10; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 10; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 4.0}">
+									<% for(int i = 1; i < 9; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 9; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 3.5}">
+									<% for(int i = 1; i < 8; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 8; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>   
+								</c:when>
+								<c:when test="${rating == 3.0}">
+									<% for(int i = 1; i < 7; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+									<% for(int i = 7; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>   
+								</c:when>
+								<c:when test="${rating == 2.5}">
+									<% for(int i = 1; i < 6; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+									<% for(int i = 6; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 2.0}">
+									<% for(int i = 1; i < 5; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 5; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 1.5}">
+									<% for(int i = 1; i < 4; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>  
+									<% for(int i = 4; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 1.0}">
+									<% for(int i = 1; i < 3; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>  
+									<% for(int i = 3; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:otherwise>
+									<span class="starR1 on" id="star1">0.5</span>
+									<% for(int i = 2; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>    
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div class="col-md-12 form-group">
 							<label for="boardContent">글 쓰기</label>
@@ -80,34 +112,34 @@
 		  var starClass10 = $('#star10').attr('class');
 		  
 		  if (starClass1 == "starR1 on") {
-			  $("#movieScore").val("0.5"); 
+			  $("#rating").val("0.5"); 
 		  }
 		  if (starClass2 == "starR2 on") {
-			  $("#movieScore").val("1.0"); 
+			  $("#rating").val("1.0"); 
 		  }
 		  if (starClass3 == "starR1 on") {
-			  $("#movieScore").val("1.5"); 
+			  $("#rating").val("1.5"); 
 		  }
 		  if (starClass4 == "starR2 on") {
-			  $("#movieScore").val("2.0"); 
+			  $("#rating").val("2.0"); 
 		  }
 		  if (starClass5 == "starR1 on") {
-			  $("#movieScore").val("2.5"); 
+			  $("#rating").val("2.5"); 
 		  }
 		  if (starClass6 == "starR2 on") {
-			  $("#movieScore").val("3.0"); 
+			  $("#rating").val("3.0"); 
 		  }
 		  if (starClass7 == "starR1 on") {
-			  $("#movieScore").val("3.5"); 
+			  $("#rating").val("3.5"); 
 		  }
 		  if (starClass8 == "starR2 on") {
-			  $("#movieScore").val("4.0"); 
+			  $("#rating").val("4.0"); 
 		  }
 		  if (starClass9 == "starR1 on") {
-			  $("#movieScore").val("4.5"); 
+			  $("#rating").val("4.5"); 
 		  }
 		  if (starClass10 == "starR2 on") {
-			  $("#movieScore").val("5.0"); 
+			  $("#rating").val("5.0"); 
 		  }
 		  return false;
 	});

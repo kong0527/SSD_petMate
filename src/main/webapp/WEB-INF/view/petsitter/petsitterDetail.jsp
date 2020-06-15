@@ -43,15 +43,21 @@
 				<div class="pt-5" align="right">
 					<button type="submit" formaction="petsitterDetail/edit"
 						class="btn">수정</button>
-					<a href="<c:url value="/petsitterDetail/delete">
-						<c:param name="boardNum" value="${petsitter.boardNum}"/>
-						</c:url>"><input type="submit" class="btn" value="삭제" /></a>
+					<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" /></a>
 				</div>
 
 				<div class="pt-5" align="center">
-					<a href="petsitterDetail/likePlus"><img
-						src="resources/img/love.png" border="0" class="zoom"></a>
-					<p>추천수 : 1</p>
+					<!-- <a href="secondhandDetail/likePlus">
+						<img src="resources/img/love.png" border="0" class="zoom"></a> -->
+						<!-- 수정 필요 -->
+						<c:if test="${userID ne null && sessionScope.userID ne petsitter.userID}">
+							<a href="javascript:void(0);" onclick="checkLike();">
+								<img src="resources/img/love.png" border="0" class="zoom">
+							</a>
+						</c:if>
+						<div id="boardLike">
+							추천 수 : ${petsitter.boardLike}
+						</div>
 				</div>
 				<div class="pt-5" align="center">
 					<a href="petsitterList"><input type="button" value="목록" class="btn" /></a>
@@ -198,3 +204,32 @@
 		</div>
 	</div>
 </div>
+<script>
+function checkLike() {
+	var boardNum = '${petsitter.boardNum}';
+	$.ajax({
+		url : '/petMate/petsitterLike',
+		type : 'post',
+		data : {'boardNum' : boardNum},
+		dataType : 'json',
+		success : function(data) {
+			var html = ''; 
+			if (data.count == 0) {
+				alert('추천되었습니다.');
+			} else {
+				alert('추천이 취소되었습니다.');
+			}
+			html += '추천 수: ' + data.boardLike;
+			$("#boardLike").html(html);
+		}
+	});
+}
+
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='petsitterDetail/delete?boardNum='+boardNum;
+		}
+	}	
+</script>

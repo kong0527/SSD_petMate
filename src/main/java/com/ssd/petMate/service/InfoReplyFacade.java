@@ -1,12 +1,13 @@
-package com.ssd.petMate.dao.mybatis.mapper;
+package com.ssd.petMate.service;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.ssd.petMate.domain.InfoReply;
-import com.ssd.petMate.page.pageMaker;
+import org.springframework.dao.DataAccessException;
 
-public interface InfoReplyMapper {
+import com.ssd.petMate.domain.InfoReply;
+
+public interface InfoReplyFacade {
 
 	List<InfoReply> getReplyList(int boardNum);
 	
@@ -21,8 +22,6 @@ public interface InfoReplyMapper {
 	int replyCnt(int boardNum);
 	
 	void setReplyOrder(HashMap<String, Object> map);
-	
-	int findLastReplyID(int replyNum);
 	
 	int countSameGID(int replyNum);
 }

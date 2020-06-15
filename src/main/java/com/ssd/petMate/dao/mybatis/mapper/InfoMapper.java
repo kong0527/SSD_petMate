@@ -22,4 +22,6 @@ public interface InfoMapper {
 	public void boardViews(int boardNum); //조회수 증가
 	
 	public void updateLike(Info like);
+	
+	public void updateReplyCnt(Info info);
 }

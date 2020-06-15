@@ -22,8 +22,17 @@
 	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
 		SELECT *
 		FROM (
-		SELECT inquiry.*, ROWNUM AS NUM
-		FROM Inquiry
+            SELECT 
+            ROWNUM AS NUM,
+            inquiry.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Inquiry
+                ORDER BY boardNum ASC 
+            )inquiry)
 		<where>
 			<if test="searchType=='boardTitle' and keyword != null">
 				and boardTitle LIKE CONCAT('%',#{keyword},'%')
@@ -35,8 +44,7 @@
 				and userID LIKE CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
-		ORDER BY boardNum) inquiry
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+		WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 	
 	<!-- 게시글 작성 -->

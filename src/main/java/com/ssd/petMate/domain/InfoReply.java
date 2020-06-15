@@ -1,14 +1,17 @@
 package com.ssd.petMate.domain;
 
-public class InfoReply {
+import java.io.Serializable;
+
+public class InfoReply implements Serializable{
 	private String userID;
 	private int boardNum;
 	private int replyNum;
-	private String date;
-	private String content;
+	private String replyDate;
+	private String replyContent;
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
+	
 	public String getUserID() {
 		return userID;
 	}
@@ -27,17 +30,17 @@ public class InfoReply {
 	public void setReplyNum(int replyNum) {
 		this.replyNum = replyNum;
 	}
-	public String getDate() {
-		return date;
+	public String getReplyDate() {
+		return replyDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setReplyDate(String replyDate) {
+		this.replyDate = replyDate;
 	}
-	public String getContent() {
-		return content;
+	public String getReplyContent() {
+		return replyContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setReplyContent(String replyContent) {
+		this.replyContent = replyContent;
 	}
 	public int getReplyGID() {
 		return replyGID;

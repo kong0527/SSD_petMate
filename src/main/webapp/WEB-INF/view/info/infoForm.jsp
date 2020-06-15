@@ -19,7 +19,7 @@
 						<div class="col-md-12 form-group">
 							<label for="boardContent">글 쓰기</label>
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
-								class="form-control"></form:textarea>
+								class="form-control" style="width:120%" />
 						</div>
 					</div>
 

@@ -1081,7 +1081,8 @@ h1, h2, h3, h4, h5,
   padding: 0;
   margin: 0; }
   .comment-list .children {
-    padding: 50px 0 0 40px;
+    /* padding: 50px 0 0 40px; */
+    padding: 0 0 0 40px;
     margin: 0;
     float: left;
     width: 100%; }
@@ -1099,7 +1100,7 @@ h1, h2, h3, h4, h5,
         width: 50px;
         border-radius: 50%; }
     .comment-list li .comment-body {
-      float: right;
+      /* float: right; */
       width: calc(100% - 80px); }
       .comment-list li .comment-body h3 {
         font-size: 18px;
@@ -1728,3 +1729,18 @@ h1, h2, h3, h4, h5,
     margin-right: -15px;
     margin-left: -15px;
 }
+
+.replySection-title {
+  color: #000;
+  }
+  .replySection-title h2 {
+    font-size: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid #222;
+    position: relative;
+    display: inline-block; }
+    .replySection-title h2:before {
+      position: absolute;
+      content: "";
+      height: 1px;
+      background: #777; }

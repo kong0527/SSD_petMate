@@ -16,4 +16,5 @@ public interface InfoFacade {
 	Info boardDetail(int boardNum);
 	void insertBoard(Info info);
 	void updateLike(Info info);
+	void updateReplyCnt(Info info);
 }

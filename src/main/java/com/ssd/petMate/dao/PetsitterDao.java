@@ -10,9 +10,10 @@ import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 
 public interface PetsitterDao {
-	public List<Petsitter> getAllBoard(BoardSearch boardSearch) throws DataAccessException;
-	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
-	public Petsitter boardDetail(int boardNum) throws DataAccessException;
-	public void insertBoard(Petsitter petsitter); //게시글 작성
-	public void deleteBoard(int boardNum); //게시글 삭제
+	List<Petsitter> getAllBoard(BoardSearch boardSearch) throws DataAccessException;
+	int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
+	Petsitter boardDetail(int boardNum) throws DataAccessException;
+	void insertBoard(Petsitter petsitter); //게시글 작성
+	void deleteBoard(int boardNum); //게시글 삭제
+	void updateLike(Petsitter petsitter);
 }
