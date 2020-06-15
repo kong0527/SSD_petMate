@@ -13,6 +13,7 @@ import com.ssd.petMate.dao.InfoDao;
 import com.ssd.petMate.dao.SecondhandDao;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
+import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
@@ -52,19 +53,35 @@ public class GpurchaseImpl implements GpurchaseFacade {
 		gpurchaseDao.deleteGpurchase(boardNum);
 	}
 	
-	public int getGpurchaseCartCount(int userId) throws DataAccessException{ //장바구니 수 가져오기
+	public void gpurchaseCartPlus(int boardNum) throws DataAccessException{
+		gpurchaseDao.gpurchaseCartPlus(boardNum);
+	} //장바구니 담은 수 증가
+	
+	public void gpurchaseCartMinus(int boardNum) throws DataAccessException{
+		gpurchaseDao.gpurchaseCartPlus(boardNum);
+	} //장바구니 담은 수 감소
+	
+	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException{
+		return gpurchaseCartDao.getGpurchaseCartListByGpurchase(userID);
+	} //cart+gpuchase
+	
+	public int getGpurchaseCartCount(int userId) throws DataAccessException{ //사용자가 담은 장바구니 수 가져오기
 		return gpurchaseCartDao.getGpurchaseCartCount(userId);
 	}
 	
-	public void insertGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException{
+	public void insertGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException{ //장바구니 추가
 		gpurchaseCartDao.insertGpurchaseCart(gpurchaseCart);
-	} //장바구니 추가
+	}
 	
-	public void deleteGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException{
+	public void deleteGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException{  //장바구니 삭제
 		gpurchaseCartDao.deleteGpurchaseCart(gpurchaseCart);
-	} //장바구니 삭제
+	}
 	
-	public List<GpurchaseCart> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException{
-		return gpurchaseCartDao.getGpurchaseCartListByGpurchase(userID);
-	} //cart+gpuchase
+	public int countCartByboardNum(int boardNum) { // 게시글에 대한 담은 장바구니 총 개수
+		return gpurchaseCartDao.countCartByboardNum(boardNum);
+	}
+	
+	public int isCart(GpurchaseCart gpurchaseCart) { //이 게시글을 사용자가 담았는지 확인
+		return gpurchaseCartDao.isCart(gpurchaseCart);
+	}
 }

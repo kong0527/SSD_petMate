@@ -7,22 +7,31 @@
   	<!-- 공동구매 게시글 목록 가져오기  -->
 	<select id="getGpurchaseList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Gpurchase">
       SELECT *
-      FROM (
-      SELECT gpurchase.*, ROWNUM AS NUM
-      FROM Gpurchase
-      <where>
-         <if test="searchType=='boardTitle' and keyword != null">
-            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='boardContent' and keyword != null">
-            and boardContent LIKE CONCAT('%',#{keyword},'%')
-         </if>
-         <if test="searchType=='userID' and keyword != null">
-            and userID LIKE CONCAT('%',#{keyword},'%')
-         </if>
-      </where>
-      ORDER BY boardNum) Gpurchase
-      WHERE NUM BETWEEN #{startList} AND #{contentNum}
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	gpurchase.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                gpurchase
+                ORDER BY boardNum ASC 
+            )gpurchase)
+			<where>
+				<if test="searchType=='boardTitle' and keyword != null">
+					and boardTitle LIKE '%' ||  #{keyword} || '%'
+				</if>
+				<if test="searchType=='boardContent' and keyword != null">
+					and boardContent LIKE CONCAT('%',#{keyword},'%')
+				</if>
+				<if test="searchType=='userID' and keyword != null">
+					and userID LIKE CONCAT('%',#{keyword},'%')
+				</if>
+				<!-- WHERE NUM BETWEEN #{startList} AND #{endList} -->
+			</where>
+					<!-- WHERE NUM BETWEEN #{startList} AND #{endList} -->
 	</select>
 	
 	<!-- 공동구매 게시글 수 -->
@@ -31,7 +40,7 @@
 		FROM Gpurchase
 		<where>
 			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
-				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+				and boardTitle LIKE '%' ||  #{keyword} || '%'
 			</if>
 			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
 				and boardContent LIKE CONCAT('%',#{keyword},'%')

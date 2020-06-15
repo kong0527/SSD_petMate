@@ -32,7 +32,10 @@
 						<td>${gpurchaseCart.gpurchase.price}</td>
 						<td>1</td>
 						<td>${gpurchaseCart.gpurchase.price}</td>
-						<td><button type="submit" formaction="cart/delete" class="btn">x</button></td>
+						<td><a href="<c:url value="/gpurchaseCartDelete">
+						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
+						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
+						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -93,5 +93,16 @@ public class Gpurchase {
 	public void setCartAdded(int cartAdded) {
 		this.cartAdded = cartAdded;
 	}
+	
+	public Gpurchase() {
+		super();
+	}
+	
+	public Gpurchase (String userID, int boardNum, int price ,String boardTitle) {
+		this.userID = userID;
+		this.boardNum = boardNum;
+		this.price = price;
+		this.boardTitle = boardTitle;
+	}
 
 }

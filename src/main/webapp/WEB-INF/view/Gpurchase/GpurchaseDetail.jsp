@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="site-section">
 	<div class="container">
 		<div class="row">
@@ -19,6 +22,7 @@
 				${gpurchase.userID}  &nbsp;
 				${gpurchase.edate}  &nbsp;
 				${gpurchase.sdate}  &nbsp;
+				${gpurchase.cartAdded}  &nbsp;
 				
 
 				<!-- 추가 -->
@@ -34,9 +38,20 @@
 				</div>
 
 				<div class="pt-5" align="center">
-					<a href="secondhandDetail/likePlus"><img
-						src="resources/img/love.png" border="0" class="zoom"></a>
-					<p>추천수 : 1</p>
+					<!-- <a href="secondhandDetail/likePlus">
+						<img src="resources/img/love.png" border="0" class="zoom"></a> -->
+						<!-- 수정 필요 -->
+						<c:if test="${userID ne null && sessionScope.userID ne gpurchase.userID}">
+							<a href="javascript:void(0);" onclick="checkCart();">
+								<img src="resources/img/love.png" border="0" class="zoom">
+							</a>
+						</c:if>
+						<div id="cartAdded">
+							장바구니 담은 수 : ${gpurchase.cartAdded}
+						</div>
+				</div>
+				<div class="pt-5" align="center">
+					<a href="info"><input type="button" value="목록" class="btn" /></a>
 				</div>
 
 				<!-- comment 작성 부분 -->
@@ -180,3 +195,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function checkCart() {
+		var boardNum = '${gpurchase.boardNum}';
+		$.ajax({
+			url : '/petMate/gpurchaseCartAdded',
+			type : 'post',
+			data : {'boardNum' : boardNum},
+			dataType : 'json',
+			success : function(data) {
+				var html = ''; 
+				if (data.count == 0) {
+					alert('장바구니에 추가되었습니다.');
+				} else {
+					alert('장바구니에 삭되었습니다.');
+				}
+				html += '장바구니 담은 수: ' + data.cartAdded;
+				$("#cartAdded").html(html);
+			}
+		});
+	}
+</script>

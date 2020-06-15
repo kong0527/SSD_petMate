@@ -16,6 +16,7 @@ import com.ssd.petMate.dao.mybatis.mapper.InfoMapper;
 import com.ssd.petMate.dao.mybatis.mapper.SecondhandMapper;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
+import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
@@ -38,7 +39,15 @@ public class MybatisGpurchaseCartDao implements GpurchaseCartDao {
 		gpurchaseCartMapper.deleteGpurchaseCart(gpurchaseCart);
 	}//장바구니 삭제
 	
-	public List<GpurchaseCart> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException{
+	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException{
 		return gpurchaseCartMapper.getGpurchaseCartListByGpurchase(userID);
 	} //cart+gpuchase
+	
+	public int countCartByboardNum(int boardNum) throws DataAccessException { // 게시글에 대한 담은 장바구니 총 개수
+		return gpurchaseCartMapper.countCartByboardNum(boardNum);
+	}
+	
+	public int isCart(GpurchaseCart gpurchaseCart) throws DataAccessException {//이 게시글을 사용자가 담았는지 확인
+		return gpurchaseCartMapper.isCart(gpurchaseCart);
+	}
 }

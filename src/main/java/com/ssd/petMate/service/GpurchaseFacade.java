@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
+import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
@@ -28,11 +29,21 @@ public interface GpurchaseFacade {
 	public void deleteGpurchase(int boardNum) throws DataAccessException; //게시글 삭제
 	
 	
-	public int getGpurchaseCartCount(int userId) throws DataAccessException; //장바구니 수 가져오기
+	
+	public void gpurchaseCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
+	
+	public void gpurchaseCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+	
+	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException; //cart+gpuchase
+	
+	public int getGpurchaseCartCount(int userId) throws DataAccessException; //사용자가 담은 장바구니 수 가져오기
 	
 	public void insertGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException; //장바구니 추가
 	
 	public void deleteGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException; //장바구니 삭제
 	
-	public List<GpurchaseCart> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException; //cart+gpuchase
+	public int countCartByboardNum(int boardNum); // 게시글에 대한 담은 장바구니 총 개수
+	
+	public int isCart(GpurchaseCart gpurchaseCart); //이 게시글을 사용자가 담았는지 확인
+	
 }

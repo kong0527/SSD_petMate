@@ -34,7 +34,7 @@ public interface GpurchaseDao {
 //	
 //	public void secondhandBoardHitPluss(int boardNum) throws DataAccessException; //조회수 증가
 //	
-//	public void secondhandCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
-//	
-//	public void secondhandCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+	public void gpurchaseCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
+	
+	public void gpurchaseCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
 }
