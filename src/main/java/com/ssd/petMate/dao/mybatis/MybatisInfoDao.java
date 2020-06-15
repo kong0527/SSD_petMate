@@ -36,4 +36,8 @@ public class MybatisInfoDao implements InfoDao {
 	public void updateLike(Info info) throws DataAccessException {
 		infoMapper.updateLike(info);
 	}
+
+	public void updateReplyCnt(Info info) throws DataAccessException {
+		infoMapper.updateReplyCnt(info);
+	}
 }
