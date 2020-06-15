@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.ssd.petMate.dao.InfoLikeDao;
+import com.ssd.petMate.dao.LikeDao;
 import com.ssd.petMate.dao.mybatis.mapper.InfoLikeMapper;
 import com.ssd.petMate.domain.InfoLike;
 
 @Repository
-public class MybatisInfoLikeDao implements InfoLikeDao{
+public class MybatisLikeDao implements LikeDao{
 	
 	@Autowired
 	private InfoLikeMapper infoLikeMapper;

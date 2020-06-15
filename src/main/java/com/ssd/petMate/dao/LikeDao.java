@@ -4,7 +4,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.InfoLike;
 
-public interface InfoLikeDao {
+public interface LikeDao {
 
 	public void insertLike(InfoLike infoLike) throws DataAccessException; //좋아요 추가
 	
