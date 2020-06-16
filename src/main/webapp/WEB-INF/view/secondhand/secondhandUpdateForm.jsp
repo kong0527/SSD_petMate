@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title mb-5">
-					<h2>중고거래 폼</h2>
+					<h2>중고거래 수정폼</h2>
 				</div>
-				<form:form modelAttribute="secondhand" action="secondhandInsert">
+				<form:form modelAttribute="secondhand" action="secondhandUpdate">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -35,32 +34,15 @@
 								class="form-control" style="width:120%"></form:textarea>
 						</div>
 					</div>
-
-					<c:choose>
-						<c:when test="${0 ne secondhand.boardNum}">
-							<div class="pt-5" align="right">
-								<form>
-									<input type="hidden" id="boardNum" name="boardNum" value="${secondhand.boardNum}"/>
-									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-									<button type="submit" formaction="gpurchaseUpdate"
-									class="btn">수정</button>
-									<button type="submit" formaction="gpurchaseDelete"
-									class="btn">삭제</button>
-								</form>
-							</div>
-						</c:when>
-						
-						<c:when test="${0 eq secondhand.boardNum}">
-							<div class="row" align="right">
-								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
-								</div>
-							</div>
-						</c:when>
-						
-					</c:choose>
+					<form:hidden path="boardNum"/>
+					<form:hidden path="userID"/>
+					<div class="row">
+						<div class="col-12">
+							<input type="submit" value="수정" class="btn btn-primary py-3 px-5">
+						</div>
+					</div>
 				</form:form>
-				
+			${secondhand.boardNum} &nbsp; ${secondhand.boardDate} &nbsp; ${secondhand.userID} &nbsp; 
 			</div>
 		</div>
 	</div>

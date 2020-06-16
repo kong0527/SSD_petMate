@@ -4,8 +4,8 @@ public class GpurchaseReply {
 	private String userID;
 	private int boardNum;
 	private int replyNum;
-	private String date;
-	private String content;
+	private String boardDate;
+	private String boardContent;
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
@@ -27,17 +27,17 @@ public class GpurchaseReply {
 	public void setReplyNum(int replyNum) {
 		this.replyNum = replyNum;
 	}
-	public String getDate() {
-		return date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 	public int getReplyGID() {
 		return replyGID;
@@ -57,4 +57,6 @@ public class GpurchaseReply {
 	public void setReplyOrder(int replyOrder) {
 		this.replyOrder = replyOrder;
 	}
+	
+	
 }

@@ -3,15 +3,19 @@ package com.ssd.petMate.service;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.ssd.petMate.dao.InfoDao;
+import com.ssd.petMate.dao.SecondhandDao;
 import com.ssd.petMate.domain.Info;
+import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
 @Service
 @Transactional
 public class InfoImpl implements InfoFacade { 
+	
 	@Autowired
 	private InfoDao infoDao;
 
@@ -26,11 +30,11 @@ public class InfoImpl implements InfoFacade {
 	public Info boardDetail(int boardNum) {
 		return infoDao.boardDetail(boardNum);
 	}
-
+	
 	public void insertBoard(Info info) {
 		infoDao.insertBoard(info);
 	}
-
+	
 	public void updateLike(Info info) {
 		infoDao.updateLike(info);
 	}

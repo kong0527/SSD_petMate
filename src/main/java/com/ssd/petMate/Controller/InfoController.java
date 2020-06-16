@@ -125,6 +125,7 @@ public class InfoController {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("count", count);
 		map.put("boardLike", boardLike);
+		System.out.println("infolike : " + mv.getViewName());
 		
 		return map;
 	}

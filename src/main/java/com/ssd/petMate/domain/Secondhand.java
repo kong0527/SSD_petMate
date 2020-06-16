@@ -1,16 +1,18 @@
 package com.ssd.petMate.domain;
 
+import java.util.Date;
+
 public class Secondhand {
 	private int boardNum;
-	private String date;
+	private String boardDate;
 	private String userID;
-	private String content;
+	private String boardContent;
 	private int cartAdded;
 	private int price;
-	private String image;
+	private String boardImage;
 	private int boardHit;
 	private int replyCnt;
-	private String title;
+	private String boardTitle;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -18,11 +20,11 @@ public class Secondhand {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getDate() {
-		return date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
 	public String getUserID() {
 		return userID;
@@ -30,11 +32,11 @@ public class Secondhand {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 	public int getCartAdded() {
 		return cartAdded;
@@ -48,11 +50,11 @@ public class Secondhand {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getImage() {
-		return image;
+	public String getBoardImage() {
+		return boardImage;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setBoardImage(String boardImage) {
+		this.boardImage = boardImage;
 	}
 	public int getBoardHit() {
 		return boardHit;
@@ -66,10 +68,17 @@ public class Secondhand {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
-	public String getTitle() {
-		return title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
+	@Override
+	public String toString() {
+		return userID + " " +boardTitle + " " +boardContent + " " +price + " " +boardNum;
+	}
+	
+	
+	
 }

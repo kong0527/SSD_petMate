@@ -1,8 +1,11 @@
 package com.ssd.petMate.domain;
 
-public class GpurchaseCart {
+import java.io.Serializable;
+
+public class GpurchaseCartCommand implements Serializable{
 	private String userID;
 	private int boardNum;
+	private Gpurchase gpurchase;
 	
 	public String getUserID() {
 		return userID;
@@ -16,13 +19,11 @@ public class GpurchaseCart {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	
-	public GpurchaseCart(String userID, int boardNum) {
-		super();
-		this.userID = userID;
-		this.boardNum = boardNum;
+	public Gpurchase getGpurchase() {
+		return gpurchase;
 	}
-	
-	
-		
+	public void setGpurchase(Gpurchase gpurchase) {
+		this.gpurchase = gpurchase;
+	}
+
 }

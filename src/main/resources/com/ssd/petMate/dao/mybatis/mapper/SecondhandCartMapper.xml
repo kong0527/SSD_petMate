@@ -10,7 +10,7 @@
 		FROM SecondhandCart
 		WHERE userID = #{userID}
 		ORDER BY boardNum
-		LIMIT #{startList}, #{contentNum}
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	<!--  조인이 필요한가? -->
 	

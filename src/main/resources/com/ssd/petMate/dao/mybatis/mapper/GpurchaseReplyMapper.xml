@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
-<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandReplyMapper">
+<mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseReplyMapper">
   <cache />
   	<!-- 댓글 리스트 가져오기  -->
 	<select id="getReplyList" parameterType="Integer">
 		SELECT *
-		FROM SecondhandReply
+		FROM GpurchaseReply
 		WHERE boardNum = #{baordNum}
 		ORDER BY IF(replyParents = 0, replyNum, replyParents) ASC
-		LIMIT #{startList}, #{contentNum}
+		WHERE NUM BETWEEN #{startList} AND #{contentNum}
 	</select>
 	
 	<!-- 댓글 삽입하기  -->
-	<insert id="insertReply" parameterType="SecondhandReply">
+	<insert id="insertReply" parameterType="GpurchaseReply">
  		INSERT 
-		INTO SecondhandReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
+		INTO GpurchaseReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
 		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->
-	<update id="updateReply" parameterType="SecondhandReply">
-		UPDATE SecondhandReply SET
+	<update id="updateReply" parameterType="GpurchaseReply">
+		UPDATE GpurchaseReply SET
 		replyContent = #{replyContent}
 		WHERE replyNum = #{replyNum}
 	</update>
@@ -30,28 +30,28 @@
 	<!-- 댓글 삭제하기  -->
 	<!-- 부모 댓글을 삭제하면 밑에 답글들도 삭제할 수 있도록 or 처리 -->
 	<delete id="deleteReply" parameterType="Integer">
-		DELETE FROM SecondhandReply
+		DELETE FROM GpurchaseReply
 		WHERE replyNum = #{replyNum} or replyGID = #{replyGID}
 	</delete>
 
 	<!-- 댓글 상세정보 가져오기  -->
 	<select id="getReply" parameterType="Integer">
 		SELECT *
-		FROM SecondhandReply
+		FROM GpurchaseReply
 		WHERE replyNum = #{replyNum}
 	</select>
 	
 	<!-- 게시글에 달린 댓글 수   -->
 	<select id="replyCount" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
-		FROM SecondhandReply
+		FROM GpurchaseReply
 		WHERE boardNum = #{boardNum}
 	</select>
 	
 	<!-- 답글 순서 정하기  -->
 	<!-- 답글 추가 시 이전에 있던 답글들에 order + 1 하기  -->
 	<update id="setReplyOrder" parameterType="hashMap">
-		UPDATE SecondhandReply
+		UPDATE GpurchaseReply
 		SET replyOrder = replyOrder + 1
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
 	</update>
@@ -62,14 +62,14 @@
 	<!-- 페이징을 위해서 필요  -->
 	<select id="findLastReplyID" resultType="Integer">
 		SELECT replyNum
-		FROM SecondhandReply
+		FROM GpurchaseReply
 		ORDER BY replyNum DESC LIMIT 1;
 	</select>
 	
 	<!-- 같은 GID를 가진 댓글 수 찾아오기 -->
 	<select id="countSameGID" resultType="Integer" parameterType="Integer">
 		SELECT COUNT(*)
-		FROM SecondhandReply
+		FROM GpurchaseReply
 		WHERE replyGID = #{replyNum}
 	</select>
 </mapper>

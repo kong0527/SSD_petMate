@@ -1,15 +1,15 @@
 package com.ssd.petMate.domain;
 
 public class SecondhandLineItem {
-	private int orderNo;
+	private int orderNum;
 	private int price;
 	private int boardNum;
 	private int lineItemNum;
-	public int getOrderNo() {
-		return orderNo;
+	public int getOrderNum() {
+		return orderNum;
 	}
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 	public int getPrice() {
 		return price;
@@ -29,4 +29,6 @@ public class SecondhandLineItem {
 	public void setLineItemNum(int lineItemNum) {
 		this.lineItemNum = lineItemNum;
 	}
+	
+	
 }
