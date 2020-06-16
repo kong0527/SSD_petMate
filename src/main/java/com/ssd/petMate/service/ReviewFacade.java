@@ -11,4 +11,6 @@ public interface ReviewFacade {
 	int boardPageCount(HashMap<String, Object> map);
 	Review boardDetail(int boardNum);
 	public void insertBoard(Review review); //게시글 작성
+	void updateLike(Review review);
+	void updateReplyCnt(Review review);
 }

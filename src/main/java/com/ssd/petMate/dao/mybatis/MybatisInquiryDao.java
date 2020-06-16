@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ssd.petMate.dao.InquiryDao;
 import com.ssd.petMate.dao.mybatis.mapper.InquiryMapper;
+import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -31,5 +32,13 @@ public class MybatisInquiryDao implements InquiryDao {
 
 	public void insertBoard(Inquiry inquiry) {
 		inquiryMapper.insertBoard(inquiry);
+	}
+	
+	public void updateLike(Inquiry inquiry) throws DataAccessException {
+		inquiryMapper.updateLike(inquiry);
+	}
+
+	public void updateReplyCnt(Inquiry inquiry) throws DataAccessException {
+		inquiryMapper.updateReplyCnt(inquiry);
 	}
 }

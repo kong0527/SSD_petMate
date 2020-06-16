@@ -16,4 +16,9 @@ public class InquiryLike {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
+	public InquiryLike(String userID, int boardNum) {
+		super();
+		this.userID = userID;
+		this.boardNum = boardNum;
+	}
 }

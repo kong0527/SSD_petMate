@@ -12,4 +12,6 @@ public interface ReviewDao {
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
 	public Review boardDetail(int boardNum) throws DataAccessException;
 	public void insertBoard(Review review); //게시글 작성
+	public void updateLike(Review review) throws DataAccessException;
+	public void updateReplyCnt(Review review) throws DataAccessException;
 }

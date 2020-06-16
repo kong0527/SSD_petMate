@@ -12,4 +12,16 @@
 		FROM  InquiryLike
 		WHERE boardNum=#{boardNum} and userID=#{userID}	
 	</delete>
+	
+	<select id="countLike" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM InquiryLike
+		WHERE boardNum = #{boardNum}
+	</select>
+	
+	<select id="isLike" resultType="int" parameterType="com.ssd.petMate.domain.InquiryLike">
+		SELECT COUNT(*)
+		FROM InquiryLike
+		WHERE boardNum=#{boardNum} and userID=#{userID}
+	</select> 
 </mapper>

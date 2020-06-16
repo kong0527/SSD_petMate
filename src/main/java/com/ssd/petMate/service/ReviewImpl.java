@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.ssd.petMate.dao.ReviewDao;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.page.BoardSearch;
@@ -15,9 +16,6 @@ public class ReviewImpl implements ReviewFacade {
 	@Autowired
 	private ReviewDao reviewDao;
 
-	//-------------------------------------------------------------------------
-	// Operation methods, implementing the PetStoreFacade interface
-	//-------------------------------------------------------------------------
 	public List<Review> getAllBoard(BoardSearch boardSearch){
 		return reviewDao.getAllBoard(boardSearch);
 	}
@@ -32,5 +30,13 @@ public class ReviewImpl implements ReviewFacade {
 
 	public void insertBoard(Review review) {
 		reviewDao.insertBoard(review);
+	}
+	
+	public void updateLike(Review review) {
+		reviewDao.updateLike(review);
+	}
+
+	public void updateReplyCnt(Review review) {
+		reviewDao.updateReplyCnt(review);
 	}
 }

@@ -1,11 +1,11 @@
-package com.ssd.petMate.dao.mybatis.mapper;
+package com.ssd.petMate.service;
 
 import java.util.HashMap;
 import java.util.List;
 
 import com.ssd.petMate.domain.ReviewReply;
 
-public interface ReviewReplyMapper {
+public interface ReviewReplyFacade {
 
 	List<ReviewReply> getReplyList(int boardNum);
 	
@@ -20,8 +20,6 @@ public interface ReviewReplyMapper {
 	int replyCnt(int boardNum);
 	
 	void setReplyOrder(HashMap<String, Object> map);
-	
-	int findLastReplyID(int replyNum);
 	
 	int countSameGID(int replyNum);
 }
