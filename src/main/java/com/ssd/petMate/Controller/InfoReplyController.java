@@ -109,7 +109,7 @@ public class InfoReplyController {
 		
 		reReply.setReplyContent(replyContent);
 		reReply.setReplyOrder(originalReply.getReplyOrder() + 1);
-		reReply.setReplyParents(replyNum);
+		reReply.setReplyGID(replyNum);
 		reReply.setUserID(userID);
 		reReply.setBoardNum(originalReply.getBoardNum());
 		

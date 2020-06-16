@@ -13,7 +13,6 @@ $(document).on('click', '#btnReply', function(e){
 		return false;
 	}
 	 var insertData = $('#replyForm').serialize();
-	 alert(insertData);
 	 replyInsert(insertData); 
 });
 	   
