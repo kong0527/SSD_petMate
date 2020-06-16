@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,13 @@ public class InfoController {
 	@ModelAttribute("info")
 	public Info formBacking(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Info info = new Info();
+			Info info;
+			if (request.getParameter("boardNum") != null) {
+				info = infoFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
+			}
+			else {
+				info = new Info();
+			}
 			return info;
 		}
 		else return new Info();
@@ -128,5 +135,16 @@ public class InfoController {
 		System.out.println("infolike : " + mv.getViewName());
 		
 		return map;
+	}
+	
+	@GetMapping("/infoUpdate") 
+	public String infoUpdateForm() {
+		return "info/infoForm";
+	}
+	
+	@PostMapping("/infoUpdate")
+	public String infoUpdate(@ModelAttribute("info") Info info) {
+		infoFacade.updateBoard(info);
+		return "redirect:/info";
 	}
 }

@@ -68,12 +68,12 @@
 		UPDATE Petsitter SET
 		boardTitle = #{boardTitle},
 		boardContent = #{boardContent},
-		petPrice = #{petPrice},
-		petLocal = #{petLocal},
-		petDay = #{petDay},
-		petSize = #{petSize},
-		petDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'),
-		petImage = #{petImage}
+		boardDate = SYSDATE,
+		petPrice = #{petPrice, jdbcType=NUMERIC},
+		petLocal = #{petLocal, jdbcType=VARCHAR},
+		petDay = #{petDay, jdbcType=VARCHAR},
+		petSize = #{petSize, jdbcType=VARCHAR},
+		boardImage = #{boardImage, jdbcType=VARCHAR}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

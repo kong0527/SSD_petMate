@@ -113,4 +113,36 @@ public class Petsitter {
 	public void setDayCodes(String[] dayCodes) {
 		this.dayCodes = dayCodes;
 	}
+	
+	public String sizeCheck(int sizeNum) {
+		String result = "";
+		if ((sizeNum & 1) != 0)
+			result += "소형 ";
+		if ((sizeNum & 2) != 0)
+			result += "중형 ";
+		if ((sizeNum & 4) != 0)
+			result += "대형 ";
+		
+		return result;
+	}
+	
+	public String dayCheck(int dayNum) {
+		String result = "";
+		if ((dayNum & 1) != 0)
+			result += "월요일 ";
+		if ((dayNum & 2) != 0)
+			result += "화요일 ";
+		if ((dayNum & 4) != 0)
+			result += "수요일 ";
+		if ((dayNum & 8) != 0)
+			result += "목요일 ";
+		if ((dayNum & 16) != 0)
+			result += "금요일 ";
+		if ((dayNum & 32) != 0)
+			result += "토요일 ";
+		if ((dayNum & 64) != 0)
+			result += "일요일 ";
+		
+		return result;
+	}
 }

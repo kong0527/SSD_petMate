@@ -18,7 +18,7 @@
 				<table class="table">
 					<tbody>
 					<tr align="center">
-						<td><span style="font-weight:bold;">크d기</span></td>
+						<td><span style="font-weight:bold;">크기</span></td>
 						<td>${size}</td>
 					</tr>
 					<tr align="center">
@@ -42,9 +42,12 @@
 				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<button type="submit" formaction="petsitterDetail/edit"
-						class="btn">수정</button>
-					<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" /></a>
+					<form>
+						<input type="hidden" id="boardNum" name="boardNum" value="${petsitter.boardNum}"/>
+						<button type="submit" formaction="petsitterUpdate"
+							class="btn">수정</button>
+						<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" />
+					</form>
 				</div>
 
 				<div class="pt-5" align="center">

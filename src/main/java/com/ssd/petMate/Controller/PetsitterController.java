@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Code;
+import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.PetsitterLike;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
@@ -38,7 +40,14 @@ public class PetsitterController {
 	@ModelAttribute("petsitter")
 	public Petsitter formBacking(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Petsitter petsitter = new Petsitter();
+			Petsitter petsitter;
+			if (request.getParameter("boardNum") != null) {
+				System.out.println(request.getParameter("boardNum"));
+				petsitter = petsitterFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
+			}
+			else {
+				petsitter = new Petsitter();
+			}
 			return petsitter;
 		}
 		else return new Petsitter();
@@ -141,33 +150,15 @@ public class PetsitterController {
 		@RequestMapping(value = "/petsitterDetail", method = { RequestMethod.GET, RequestMethod.POST })
 		public ModelAndView petsitterDetail(ModelAndView mv, @RequestParam("boardNum") int boardNum) {
 			Petsitter view = petsitterFacade.boardDetail(boardNum);
-			String size = "";
-			String day = "";
+			String size;
+			String day;
 			System.out.println(view);
 			
 			int sizeNum = Integer.parseInt(view.getPetSize());
-			if ((sizeNum & 1) != 0)
-				size += "소형 ";
-			if ((sizeNum & 2) != 0)
-				size += "중형 ";
-			if ((sizeNum & 4) != 0)
-				size += "대형 ";
+			size = view.sizeCheck(sizeNum);
 			
 			int dayNum = Integer.parseInt(view.getPetDay());
-			if ((dayNum & 1) != 0)
-				day += "월요일 ";
-			if ((dayNum & 2) != 0)
-				day += "화요일 ";
-			if ((dayNum & 4) != 0)
-				day += "수요일 ";
-			if ((dayNum & 8) != 0)
-				day += "목요일 ";
-			if ((dayNum & 16) != 0)
-				day += "금요일 ";
-			if ((dayNum & 32) != 0)
-				day += "토요일 ";
-			if ((dayNum & 64) != 0)
-				day += "일요일 ";
+			day = view.dayCheck(dayNum);
 
 			mv.addObject("petsitter", petsitterFacade.boardDetail(boardNum));
 			mv.setViewName("petsitter/petsitterDetail");
@@ -222,5 +213,29 @@ public class PetsitterController {
 			map.put("boardLike", boardLike);
 			
 			return map;
+		}
+		
+		@GetMapping("/petsitterUpdate")
+		public String petsitterUpdateForm() {
+			return "petsitter/petsitterForm";
+		}
+		
+		@PostMapping("/petsitterUpdate")
+		public String petsitterUpdate(@ModelAttribute("petsitter") Petsitter petsitter) {
+			int sizeSum = 0;
+			int daySum = 0;
+			petsitter.setUserID("test4");
+			
+			for (String s : petsitter.getSizeCodes()) {
+				sizeSum += Integer.parseInt(s);
+			}
+			petsitter.setPetSize(Integer.toString(sizeSum));
+			
+			for (String s : petsitter.getDayCodes()) {
+				daySum += Integer.parseInt(s);
+			}
+			petsitter.setPetDay(Integer.toString(daySum));
+			petsitterFacade.updateBoard(petsitter);
+			return "redirect:/petsitterList";
 		}
 }

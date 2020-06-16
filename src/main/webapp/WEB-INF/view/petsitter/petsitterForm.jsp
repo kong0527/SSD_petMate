@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+console.log('tq')
+console.log(${petsitter.boardNum})
+</script>
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -98,12 +102,30 @@
 							<form:errors path="boardContent" />
 						</div>
 					</div>
-					<div class="row">
+					<c:choose>
+						<c:when test="${not empty petsitter.boardNum}">
+							<div class="pt-5" align="right">
+								<form>
+									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
+									<button type="submit" formaction="petsitterUpdate"
+									class="btn">수정</button>
+								</form>
+							</div>
+						</c:when>
+						<c:when test="${empty petsitter.boardNum}">
+							<div class="row" align="right">
+								<div class="col-12">
+									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+								</div>
+							</div>
+						</c:when>
+					</c:choose>
+					<!--  <div class="row" align="right">
 						<div class="col-12">
 							<input type="submit" value="등록"
-								class="btn btn-primary py-3 px-5">
+								class="btn btn-primary py-3 px-5" id="btn">
 						</div>
-					</div>
+					</div>-->
 				</form:form>
 			</div>
 		</div>

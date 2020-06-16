@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +50,11 @@ public class PetsitterImpl implements PetsitterFacade {
 	@Override
 	public void updateReplyCnt(Petsitter petsitter) {
 		petsitterDao.updateReplyCnt(petsitter);
+	}
+
+	@Override
+	public void updateBoard(Petsitter petsitter) throws DataAccessException {
+		petsitterDao.updateBoard(petsitter);	
 	}
 
 }

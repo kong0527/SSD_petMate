@@ -17,10 +17,13 @@
 				${info.boardContent}	
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<button type="submit" formaction="secondhandDetail/edit"
+				<form>
+					<input type="hidden" id="boardNum" name="boardNum" value="${info.boardNum}"/>
+					<button type="submit" formaction="infoUpdate"
 						class="btn">수정</button>
 					<button type="submit" formaction="secondhandDetail/delete"
 						class="btn">삭제</button>
+				</form>
 				</div>
 
 				<div class="pt-5" align="center">
