@@ -46,4 +46,9 @@ public class PetsitterImpl implements PetsitterFacade {
 		petsitterDao.updateLike(petsitter);
 	}
 
+	@Override
+	public void updateReplyCnt(Petsitter petsitter) {
+		petsitterDao.updateReplyCnt(petsitter);
+	}
+
 }

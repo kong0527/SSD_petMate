@@ -16,4 +16,5 @@ public interface PetsitterDao {
 	void insertBoard(Petsitter petsitter); //게시글 작성
 	void deleteBoard(int boardNum); //게시글 삭제
 	void updateLike(Petsitter petsitter);
+	public void updateReplyCnt(Petsitter petsitter) throws DataAccessException;
 }

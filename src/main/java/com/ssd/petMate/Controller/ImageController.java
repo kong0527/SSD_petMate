@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ssd.petMate.domain.PhotoVo;
 
 @Controller
-public class imageController {
+public class ImageController {
 	
 	@RequestMapping("/photoUpload.do")
     public String photoUpload(HttpServletRequest request, PhotoVo vo){

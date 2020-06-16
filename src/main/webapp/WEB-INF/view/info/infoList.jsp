@@ -11,7 +11,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>##</th>
+						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
 					</tr>

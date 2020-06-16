@@ -55,7 +55,7 @@
 			  					<input type="radio" name="petLocal" id="petLocal" value="경기도"> 경기도
 							</label>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label class="radio-inline">
+							<label class="radio-inline"> 
 			  					<input type="radio" name="petLocal" id="petLocal" value="강원도"> 강원도
 							</label>
 							&nbsp;&nbsp;&nbsp;&nbsp;
