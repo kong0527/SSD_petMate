@@ -22,8 +22,17 @@
 	<select id="getAllBoard" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Review">
 		SELECT *
 		FROM (
-		SELECT review.*, ROWNUM AS NUM
-		FROM Review
+            SELECT 
+            ROWNUM AS NUM,
+            review.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Review
+                ORDER BY boardNum ASC 
+            )review)
 		<where>
 			<if test="searchType=='boardTitle' and keyword != null">
 				and boardTitle LIKE CONCAT('%',#{keyword},'%')
@@ -35,8 +44,7 @@
 				and userID LIKE CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
-		ORDER BY boardNum) review
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+		WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 	
 	<!-- 게시글 작성 -->
@@ -91,17 +99,17 @@
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 좋아요 수 증가 -->
-	<update id="plusLike" parameterType="int">
+	<!-- 좋아요 업데이트 -->	
+	<update id="updateLike" parameterType="com.ssd.petMate.domain.Review">
 		UPDATE Review
-		SET boardLike = boardLike + 1
+		SET boardLike = #{boardLike}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 좋아요 수 감소 -->
-	<update id="minusLike" parameterType="int">
+	<!-- 댓글 수 업데이트 -->	
+	<update id="updateReplyCnt" parameterType="com.ssd.petMate.domain.Review">
 		UPDATE Review
-		SET boardLike = boardLike - 1
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 </mapper>

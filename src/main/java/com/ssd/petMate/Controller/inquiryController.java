@@ -12,18 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.InquiryLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InquiryFacade;
+import com.ssd.petMate.service.InquiryLikeFacade;
 
 @Controller
 public class inquiryController {
 	
 	@Autowired
 	private InquiryFacade inquiryFacade;
+	
+	@Autowired
+	private InquiryLikeFacade inquiryLikeFacade;
 	
 	@ModelAttribute("inquiry")
 	public Inquiry formBacking(HttpServletRequest request) {
@@ -87,6 +93,42 @@ public class inquiryController {
 		mv.addObject("inquiryList", inquiryList);
 		mv.setViewName("inquiry/inquiryList");
 		return mv;
+	}
+
+//	게시글 추천 기능
+	@RequestMapping(value="/inquiryLike", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public HashMap<String, Integer> inquiryLike(ModelAndView mv, HttpServletRequest request,
+			@RequestParam(required = false) int boardNum) {
+
+		String userID = (String) request.getSession().getAttribute("userID");
+		Inquiry inquiry = inquiryFacade.boardDetail(boardNum);
+		InquiryLike inquiryLike = new InquiryLike(userID, boardNum);
+
+//		이미 사용자가 게시글에 좋아요를 눌렀는지 누르지 않았는지 판별하기 위해 호출
+		int count = inquiryLikeFacade.isLike(inquiryLike);
+		
+//		만약 이전에 좋아요를 누르지 않았을 때
+//		게시글의 좋아요 개수가 증가하고, like 테이블에 좋아요를 누른 userID와 게시글의 ID가 삽입됨
+		if (count == 0) {
+			inquiryLikeFacade.insertLike(inquiryLike);
+		}
+		else {
+			inquiryLikeFacade.deleteLike(inquiryLike);
+		}
+		
+//		좋아요 개수 가지고 오기
+		int boardLike = inquiryLikeFacade.countLike(boardNum);
+		
+//		좋아요 개수 update
+		inquiry.setBoardLike(boardLike);
+		inquiryFacade.updateLike(inquiry);
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("count", count);
+		map.put("boardLike", boardLike);
+		
+		return map;
 	}
 
 }

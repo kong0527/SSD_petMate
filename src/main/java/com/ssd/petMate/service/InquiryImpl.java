@@ -32,4 +32,12 @@ public class InquiryImpl implements InquiryFacade {
 		inquiryDao.insertBoard(inquiry);
 	}
 	
+	public void updateLike(Inquiry inquiry) {
+		inquiryDao.updateLike(inquiry);
+	}
+
+	public void updateReplyCnt(Inquiry inquiry) {
+		inquiryDao.updateReplyCnt(inquiry);
+	}
+	
 }

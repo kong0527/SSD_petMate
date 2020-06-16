@@ -16,4 +16,9 @@ public class ReviewLike {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
+	public ReviewLike(String userID, int boardNum) {
+		super();
+		this.userID = userID;
+		this.boardNum = boardNum;
+	}
 }

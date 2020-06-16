@@ -105,17 +105,17 @@
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 좋아요 수 감소 -->
-	<update id="minusLike" parameterType="int">
+	<!-- 좋아요 업데이트 -->	
+	<update id="updateLike" parameterType="com.ssd.petMate.domain.Inquiry">
 		UPDATE Inquiry
-		SET boardLike = boardLike - 1
+		SET boardLike = #{boardLike}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 마감 -->
-	<update id="select" parameterType="boolean">
+	<!-- 댓글 수 업데이트 -->	
+	<update id="updateReplyCnt" parameterType="com.ssd.petMate.domain.Inquiry">
 		UPDATE Inquiry
-		SET isSelected = TRUE;
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

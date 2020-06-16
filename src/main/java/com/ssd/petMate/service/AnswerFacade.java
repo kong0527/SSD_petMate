@@ -1,27 +1,25 @@
-package com.ssd.petMate.dao.mybatis.mapper;
+package com.ssd.petMate.service;
 
 import java.util.HashMap;
 import java.util.List;
 
 import com.ssd.petMate.domain.Answer;
 
-public interface AnswerMapper {
+public interface AnswerFacade {
 
 	List<Answer> getReplyList(int boardNum);
 	
-	void insertReply(Answer answer);
+	void insertReply(Answer reply);
 	
-	void updateReply(Answer answer);
+	void updateReply(Answer reply);
 	
-	void deleteReply(int answerNum);
+	void deleteReply(int replyNum);
 	
 	Answer replyDetail(int answerNum);
 	
 	int replyCnt(int boardNum);
 	
 	void setReplyOrder(HashMap<String, Object> map);
-	
-	int findLastReplyID(int answerNum);
 	
 	int countSameGID(int answerNum);
 }
