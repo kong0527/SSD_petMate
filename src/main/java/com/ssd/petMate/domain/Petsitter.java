@@ -1,15 +1,20 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Petsitter {
 	private String boardNum;
 	private String boardDate;
 	private String userID;
+	@NotEmpty
 	private String boardContent;
 	private String petSize;
+	@NotEmpty
 	private String petLocal;
 	private int petPrice;
 	private String petDay;
 	private int boardLike;
+	@NotEmpty
 	private String boardTitle;
 	private int replyCnt;
 	private int boardHit;

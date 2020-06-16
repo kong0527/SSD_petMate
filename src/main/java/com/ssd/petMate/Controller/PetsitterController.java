@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,11 +69,13 @@ public class PetsitterController {
 	}
 	
 	@PostMapping("/petsitterInsert")
-	public String petsitterInsert(@ModelAttribute("petsitter") Petsitter petsitter, SessionStatus sessionStatus, HttpServletRequest request) {
+	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, SessionStatus sessionStatus, 
+			HttpServletRequest request) {
 		sessionStatus.setComplete();
 		int sizeSum = 0;
 		int daySum = 0;
 		petsitter.setUserID("test4");
+		
 		for (String s : petsitter.getSizeCodes()) {
 			sizeSum += Integer.parseInt(s);
 		}
@@ -81,6 +85,30 @@ public class PetsitterController {
 			daySum += Integer.parseInt(s);
 		}
 		petsitter.setPetDay(Integer.toString(daySum));
+		
+		if (petsitter.getBoardTitle().length() > 25) {
+			result.rejectValue("boardTitle", "long");
+		}
+		
+		if (petsitter.getBoardContent().length() >  1500) {
+			result.rejectValue("boardContent", "long2");
+		}
+		
+		if (Integer.parseInt(petsitter.getPetSize()) == 0) {
+			result.rejectValue("sizeCodes", "check");
+		}
+		
+		if (Integer.parseInt(petsitter.getPetDay()) == 0) {
+			result.rejectValue("dayCodes", "check");
+		}
+		
+		if (petsitter.getPetPrice() < 5000 | petsitter.getPetPrice() > 15000) {
+			result.rejectValue("petPrice", "price");
+		}
+		
+		if (result.hasErrors()) {
+			return "petsitter/petsitterForm";
+		}
 		
 		petsitterFacade.insertBoard(petsitter);
 		return "redirect:/petsitterList";

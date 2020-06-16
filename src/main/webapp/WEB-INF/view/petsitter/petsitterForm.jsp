@@ -14,6 +14,7 @@
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
 							<form:input path="boardTitle" class="form-control form-control-lg" />
+							<form:errors path="boardTitle" />
 						</div>
 					</div>
 					<div class="row">
@@ -21,6 +22,8 @@
 							크기
 							<br />
 							<form:checkboxes items="${sizeCodes}" itemLabel="label" itemValue="code" path="sizeCodes" />
+							<br />
+							<form:errors path="sizeCodes" />
 						</div>
 					</div>
 					<div class="row">
@@ -28,12 +31,16 @@
 							<label for="petDay">요일</label>
 							<br />
 							<form:checkboxes items="${dayCodes}" itemLabel="label" itemValue="code" path="dayCodes" />
+							<br />
+							<form:errors path="dayCodes" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="petPrice">가격</label> 
 							<form:input path="petPrice" class="form-control form-control-lg" />
+							<br />
+							<form:errors path="petPrice" />
 						</div>
 					</div>
 					<div class="row">
@@ -79,6 +86,8 @@
 							<label class="radio-inline">
 			  					<input type="radio" name="petLocal" id="petLocal" value="제주도"> 제주도
 							</label>
+							<br />
+							<form:errors path="petLocal" />
 						</div>
 					</div>
 					<div class="row">
@@ -86,6 +95,7 @@
 							<label for="boardContent">글 쓰기</label>
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
 								class="form-control" style="width:120%" />
+							<form:errors path="boardContent" />
 						</div>
 					</div>
 					<div class="row">
