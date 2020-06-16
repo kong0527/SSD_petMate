@@ -46,11 +46,10 @@
 		
 	</div>
 
-	<div class="col-sm-10 col-sm-offset-1">
-		<h2 class="mb-3">Leave a comment</h2>
-	</div>
+	
 
 	<div class="container well well-lg">
+		<h2 class="mb-3">Leave a comment</h2>
 		<form action="#" method="post" class="form-horizontal">
 			<div class="form-group">
 				<label for="comment" class="col-sm-2 control-label">Comment</label>
