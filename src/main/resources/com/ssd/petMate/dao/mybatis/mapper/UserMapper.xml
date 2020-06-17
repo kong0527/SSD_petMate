@@ -51,4 +51,11 @@
 		DELETE FROM userList
 		WHERE userID = #{userID}
 	</delete>
+	
+	<!-- 펫시터인지 체크 -->
+	<select id="isPetsitter" parameterType="String" resultType="Integer">
+		SELECT userType
+		FROM userList
+		WHERE userID = #{userID}
+	</select>
 </mapper>

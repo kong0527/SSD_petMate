@@ -70,7 +70,7 @@
 				<!-- comment 작성 부분 -->
 				<c:if test="${userID ne null}">
 					<div class="comment-form-wrap pt-5">
-						<div class="section-title">
+						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
 						</div>
 	       				<form id="replyForm" class="p-5 bg-light">

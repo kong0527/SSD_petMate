@@ -93,4 +93,9 @@ public class UserImpl implements UserFacade {
 							"ROLE_USER");
 		return user;
 	}
+
+	@Override
+	public int isPetsitter(String userID) {
+		return userDao.isPetsitter(userID);
+	}
 }

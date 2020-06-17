@@ -12,4 +12,5 @@ public interface UserDao {
 	public String getAthorityByUserID(String userID) throws DataAccessException;
 	public void updateUser(UserList user) throws DataAccessException;
 	public void deleteUser(String userID) throws DataAccessException;
+	public int isPetsitter(String userID) throws DataAccessException;
 }

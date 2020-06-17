@@ -21,7 +21,7 @@
 	<insert id="insertReply" parameterType="com.ssd.petMate.domain.InfoReply">
  		INSERT 
 		INTO InfoReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID, jdbcType=NUMERIC}, #{replyOrder, jdbcType=NUMERIC}, #{replyParents, jdbcType=NUMERIC}) 
+		VALUES(#{boardNum}, #{replyContent}, #{userID}, SYSDATE, #{replyGID, jdbcType=NUMERIC}, #{replyOrder, jdbcType=NUMERIC}, #{replyParents, jdbcType=NUMERIC}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->

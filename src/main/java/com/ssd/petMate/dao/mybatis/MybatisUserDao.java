@@ -1,6 +1,7 @@
 package com.ssd.petMate.dao.mybatis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.ssd.petMate.dao.UserDao;
@@ -39,5 +40,10 @@ public class MybatisUserDao implements UserDao {
 	  
 	public void deleteUser(String userID) {
 		userMapper.deleteUser(userID);
+	}
+
+	@Override
+	public int isPetsitter(String userID) throws DataAccessException {
+		return userMapper.isPetsitter(userID);
 	}
 }
