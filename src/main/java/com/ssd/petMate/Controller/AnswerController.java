@@ -28,95 +28,95 @@ public class AnswerController {
 	@Autowired
 	private InquiryFacade inquiryFacade;
 	
-//	게시글 상세보기를 클릭했을 때 댓글 리스트 가져오기
+//	게시글 상세보기를 클릭했을 때 답변 리스트 가져오기
 	@RequestMapping(value = "/answerList", method = { RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public List<Answer> answerList(ModelAndView mv,
 			@RequestParam("boardNum") int boardNum) {
-		List<Answer> replyList = answerFacade.getReplyList(boardNum);
-		return replyList;
+		List<Answer> answerList = answerFacade.getAnswerList(boardNum);
+		return answerList;
 	}	
 	
-//	댓글 입력하기
+//	답변 입력하기
 	@RequestMapping(value = "/insertAnswer", method = RequestMethod.POST)
 	@ResponseBody
 	public void insertAnswer(ModelAndView mv, HttpServletRequest request,
 			@ModelAttribute("infoReply") Answer answer) {
+		System.out.println("In");
 		String userID = (String) request.getSession().getAttribute("userID");
 		answer.setUserID(userID);
-//		댓글 삽입
-		answerFacade.insertReply(answer);
-//		게시글 목록에서 댓글 수 확인이 가능하도록 하기 위해 지정
+//		답변 삽입
+		answerFacade.insertAnswer(answer);
+//		게시글 목록에서 답변 수 확인이 가능하도록 하기 위해 지정
 		
-		int replyCnt = answerFacade.replyCnt(answer.getBoardNum());
+		int answerCnt = answerFacade.answerCnt(answer.getBoardNum());
 		Inquiry inquiry = inquiryFacade.boardDetail(answer.getBoardNum());
-		inquiry.setAnswerCnt(replyCnt);
+		inquiry.setAnswerCnt(answerCnt);
 		
 		inquiryFacade.updateReplyCnt(inquiry);
 	}
 	
-//	댓글 수정
+//	답변 수정
 	@RequestMapping(value= "/updateAnswer", method = RequestMethod.POST) 
     @ResponseBody
     public void updateInfoReply(ModelAndView mv,
     		@RequestParam("answerNum") int answerNum,
-			@RequestParam("replyContent") String replyContent) throws Exception{
-        
+			@RequestParam("answerContent") String replyContent) throws Exception{
 		Answer answer = new Answer();
 		answer.setAnswerNum(answerNum);
 		answer.setAnswerContent(replyContent);
 
-		answerFacade.updateReply(answer);
+		answerFacade.updateAnswer(answer);
     }
 	
-//	댓글 삭제
+//	답변 삭제
 	@RequestMapping(value = "/deleteAnswer", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public void deleteAnswer(ModelAndView mv, HttpServletRequest request,
 			@RequestParam("answerNum") int answerNum,
 			@RequestParam("boardNum") int boardNum) {
 		
-		answerFacade.deleteReply(answerNum); // 실제 댓글 없애기 -> 만약 답글이 달린 글이면 답글까지 전부 삭제
+		answerFacade.deleteAnswer(answerNum); // 실제 답변 없애기 -> 만약 답글이 달린 글이면 답글까지 전부 삭제
 		
-		int replyCnt = answerFacade.replyCnt(boardNum);
+		int replyCnt = answerFacade.answerCnt(boardNum);
 		Inquiry inquiry = inquiryFacade.boardDetail(boardNum);
 		inquiry.setAnswerCnt(replyCnt);
 		inquiryFacade.updateReplyCnt(inquiry);
 	}
 	
-	@RequestMapping(value = "/answerReReply", method = RequestMethod.POST)
+	@RequestMapping(value = "/answerReply", method = RequestMethod.POST)
 	@ResponseBody
 	public void answerComment(ModelAndView mv, HttpServletRequest request,
-			@RequestParam("answerNum") int replyNum,
-			@RequestParam("replyContent") String replyContent) {
-		
+			@RequestParam("answerNum") int answerNum,
+			@RequestParam("answerContent") String answerContent) {
+			
 		String userID = (String) request.getSession().getAttribute("userID");
 
-//		답글을 달 부모  댓글
-		Answer originalReply = answerFacade.replyDetail(replyNum);
+//		답글을 달 부모 답변
+		Answer answer = answerFacade.answerDetail(answerNum);
 		
 //		답글의 객체
-		Answer reReply = new Answer();
+		Answer answerReply = new Answer();
 		
-//		답글의 GID는 부모 댓글의 ID
-		reReply.setReplyParents(replyNum);
+//		답글의 GID는 부모 답변의 ID
+		answerReply.setReplyParents(answerNum);
 
-//		댓글과 답글의 정렬을 위해 지정
+//		답변과 답글의 정렬을 위해 지정
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("replyGID", reReply.getReplyGID());
-		map.put("replyOrder", originalReply.getReplyOrder());
-		answerFacade.setReplyOrder(map);
+		map.put("replyGID", answerReply.getReplyGID());
+		map.put("replyOrder", answer.getReplyOrder());
+		answerFacade.setAnswerOrder(map);
 		
-		reReply.setAnswerContent(replyContent);
-		reReply.setReplyOrder(originalReply.getReplyOrder() + 1);
-		reReply.setReplyParents(replyNum);
-		reReply.setUserID(userID);
-		reReply.setBoardNum(originalReply.getBoardNum());
+		answerReply.setAnswerContent(answerContent);
+		answerReply.setReplyOrder(answer.getReplyOrder() + 1);
+		answerReply.setReplyGID(answerNum);
+		answerReply.setUserID(userID);
+		answerReply.setBoardNum(answer.getBoardNum());
 		
-		answerFacade.insertReply(reReply);
+		answerFacade.insertAnswer(answerReply);
 		
-		int replyCnt = answerFacade.replyCnt(originalReply.getBoardNum());
-		Inquiry inquiry = inquiryFacade.boardDetail(originalReply.getBoardNum());
+		int replyCnt = answerFacade.answerCnt(answer.getBoardNum());
+		Inquiry inquiry = inquiryFacade.boardDetail(answer.getBoardNum());
 		inquiry.setAnswerCnt(replyCnt);
 		
 		inquiryFacade.updateReplyCnt(inquiry);

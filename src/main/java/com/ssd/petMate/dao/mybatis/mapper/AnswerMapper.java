@@ -7,21 +7,21 @@ import com.ssd.petMate.domain.Answer;
 
 public interface AnswerMapper {
 
-	List<Answer> getReplyList(int boardNum);
+	List<Answer> getAnswerList(int boardNum);
 	
-	void insertReply(Answer answer);
+	void insertAnswer(Answer answer);
 	
-	void updateReply(Answer answer);
+	void updateAnswer(Answer answer);
 	
-	void deleteReply(int answerNum);
+	void deleteAnswer(int answerNum);
 	
-	Answer replyDetail(int answerNum);
+	Answer answerDetail(int answerNum);
 	
-	int replyCnt(int boardNum);
+	int answerCnt(int boardNum);
 	
-	void setReplyOrder(HashMap<String, Object> map);
+	void setAnswerOrder(HashMap<String, Object> map);
 	
-	int findLastReplyID(int answerNum);
+	int findLastAnswerID(int answerNum);
 	
 	int countSameGID(int answerNum);
 }

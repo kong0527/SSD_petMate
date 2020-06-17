@@ -16,47 +16,47 @@ public class MybatisAnswerDao implements AnswerDao{
 
 	@Autowired
 	private AnswerMapper answerMapper;
-	
+
 	@Override
-	public List<Answer> getReplyList(int boardNum) throws DataAccessException {
+	public List<Answer> getAnswerList(int boardNum) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return answerMapper.getReplyList(boardNum);
+		return answerMapper.getAnswerList(boardNum);
 	}
 
 	@Override
-	public Answer replyDetail(int answerNum) throws DataAccessException {
+	public Answer answerDetail(int answerNum) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return answerMapper.replyDetail(answerNum);
+		return answerMapper.answerDetail(answerNum);
 	}
 
 	@Override
-	public void insertReply(Answer answer) throws DataAccessException {
+	public void insertAnswer(Answer answer) throws DataAccessException {
 		// TODO Auto-generated method stub
-		answerMapper.insertReply(answer);
+		answerMapper.insertAnswer(answer);
 	}
 
 	@Override
-	public void updateReply(Answer answer) throws DataAccessException {
+	public void updateAnswer(Answer answer) throws DataAccessException {
 		// TODO Auto-generated method stub
-		answerMapper.updateReply(answer);
+		answerMapper.updateAnswer(answer);
 	}
 
 	@Override
-	public void deleteReply(int answerNum) throws DataAccessException {
+	public void deleteAnswer(int answerNum) throws DataAccessException {
 		// TODO Auto-generated method stub
-		answerMapper.deleteReply(answerNum);
+		answerMapper.deleteAnswer(answerNum);
 	}
 
 	@Override
-	public int replyCnt(int boardNum) throws DataAccessException {
+	public int answerCnt(int boardNum) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return answerMapper.replyCnt(boardNum);
+		return answerMapper.answerCnt(boardNum);
 	}
 
 	@Override
-	public void setReplyOrder(HashMap<String, Object> map) throws DataAccessException {
+	public void setAnswerOrder(HashMap<String, Object> map) throws DataAccessException {
 		// TODO Auto-generated method stub
-		answerMapper.setReplyOrder(map);
+		answerMapper.setAnswerOrder(map);
 	}
 
 	@Override

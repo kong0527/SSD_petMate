@@ -1,209 +1,108 @@
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<link href="resources/css/meranda/style.css" rel="stylesheet">
-<link href="resources/css/comment.css" rel="stylesheet">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="answer.jsp" %>
+<!-- <link href="resources/css/comment.css" rel="stylesheet"> -->
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 <div class="site-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<div class="box">
-					<h1 class="mb-4">${inquiry.boardTitle}</h1>
-					<div class="post-meta d-flex mb-5">
-						<div class="vcard">
-							<span class="d-block"><a href="#">${inquiry.userID}</a> </span> 
-							<span class="date-read">${inquiry.boardDate} 
-							<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} 
-							<span class="icon-star2"></span></span>
+				<h1 class="mb-4">${inquiry.boardTitle}</h1>
+				<div class="post-meta d-flex mb-5">
+					<div class="vcard">
+						<span class="d-block"><a href="#">${inquiry.userID}</a></span> 
+						<span class="date-read">${inquiry.boardDate} 
+						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+					</div>
+				</div>
+				${inquiry.boardContent}	
+				<!-- 추가 -->
+				<div class="pt-5" align="right">
+					<button type="submit" formaction="secondhandDetail/edit"
+						class="btn">수정</button>
+					<button type="submit" formaction="secondhandDetail/delete"
+						class="btn">삭제</button>
+				</div>
+
+				<div class="pt-5" align="center">
+						<!-- 수정 필요 -->
+						<c:if test="${userID ne null && sessionScope.userID ne info.userID}">
+							<a href="javascript:void(0);" onclick="checkLike();">
+								<img src="resources/img/love.png" border="0" class="zoom">
+							</a>
+						</c:if>
+						<div id="boardLike">
+							추천 수 : ${inquiry.boardLike}
 						</div>
+				</div>
+				<div class="pt-5" align="center">
+					<a href="info"><input type="button" value="목록" class="btn" /></a>
+				</div>
+
+				<!-- comment 작성 부분 -->				
+				<c:if test="${userID ne null}">
+					<div class="comment-form-wrap pt-5">
+						<div class="replySection-title">
+							<h2 class="mb-5">Leave a comment</h2>
+						</div>
+	       				<form id="answerForm" class="p-5 bg-light">
+				           <div class="form-group">
+				           	   <input type="hidden" name="boardNum" id="boardNum" value="${inquiry.boardNum}"/>
+				               <textarea class="form-control" cols="10" rows="5" id="answerContent" name="answerContent" placeholder="내용을 입력하세요."></textarea>
+				               <div class="form-group">	
+				               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3">등록</button>
+				               </div>
+				            </div>
+				        </form>
+			    	</div>
+			    </c:if>
+
+				<!-- comment 시작 부분 -->
+				<div class="pt-5">
+					<div class="replySection-title">
+						<h2 class="mb-5">Comments</h2>
 					</div>
-					<P>${inquiry.boardContent}</P>
-				</div>
-			</div>
-		</div>
-
-		<!-- 추가 -->
-		<div class="pt-5" align="right">
-			<button type="submit" formaction="inquiryDetail/edit" class="btn">수정</button>
-			<button type="submit" formaction="inquiryDetail/delete" class="btn">삭제</button>
-		</div>
-
-		<div class="pt-5" align="center">
-			<a href="inquiryDetail/likePlus"><img
-				src="resources/img/love.png" border="0" class="zoom"></a>
-			<p>추천수 : ${inquiry.boardLike}</p> <br/>
-			<a href="inquiry"><input type="button" value="목록" class="btn" /></a>
-		</div>
-		<div class="pt-5" align="center">
-		<!-- 공백용 div -->
-		</div>
-		
-	</div>
-
-	
-
-	<div class="container well well-lg">
-		<h2 class="mb-3">Leave a comment</h2>
-		<form action="#" method="post" class="form-horizontal">
-			<div class="form-group">
-				<label for="comment" class="col-sm-2 control-label">Comment</label>
-				<div class="col-sm-10">
-					<textarea class="form-control" name="addComment" id="addComment"
-						cols="10" rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button class="btn btn-success btn-circle text-uppercase"
-						type="submit" id="submitComment">
-						<span class="glyphicon glyphicon-send"></span> Summit comment
-					</button>
-				</div>
-			</div>
-		</form>
-	</div>
-
-	<div class="container">
-		<div class="media-body">
-			<div class="well well-lg">
-				<h4 class="media-heading text-uppercase reviews">Marco</h4>
-				<ul class="media-date text-uppercase reviews list-inline">
-					<li class="dd">22</li>
-					<li class="mm">09</li>
-					<li class="aaaa">2014</li>
-				</ul>
-				<p class="media-comment">Great snippet! Thanks for sharing.</p>
-				<a class="btn btn-info btn-circle text-uppercase" href="#"
-					id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-					Reply</a> <a class="btn btn-warning btn-circle text-uppercase"
-					data-toggle="collapse" href="#replyOne"><span
-					class="glyphicon glyphicon-comment"></span> 2 comments</a> <a
-					class="btn btn-info btn-circle text-uppercase float-right" href="#"
-					id="select">채택</a>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="container" id="replyOne">
-		<ul class="media-list">
-			<li class="media media-replied">
-				<div class="media-body">
-					<div class="well well-lg">
-						<h4 class="media-heading text-uppercase reviews">
-							<span class="glyphicon glyphicon-share-alt"></span> The Hipster
-						</h4>
-						<ul class="media-date text-uppercase reviews list-inline">
-							<li class="dd">22</li>
-							<li class="mm">09</li>
-							<li class="aaaa">2014</li>
+					<ul class="comment-list">
+						<div id="answerList"></div>
+					</ul>
+<!-- 					<ul class="comment-list">
+						<li class="comment">
+							<div class="comment-body">
+								<div class="well well-lg">
+									<h3> Marco </h3>
+			                		<div class="meta">20140922</div>
+									<p>Great snippet! Thanks for sharing.</p>
+									<a class="btn btn-info btn-circle text-uppercase" href="#" id="reply">
+										Reply
+									</a> <a class="btn btn-warning btn-circle text-uppercase"
+										data-toggle="collapse" href="#replyOne"><span
+										class="glyphicon glyphicon-comment"></span> 2 comments</a>
+									<a class="btn btn-info btn-circle text-uppercase float-right" href="#"
+										id="select">채택</a>
+								</div>
+							</div>
+						</li>
+				
+					<div class="container" id="replyOne">
+						<ul class="media-list">
+							<li class="media media-replied">
+								<div class="media-body">
+						<ul class="children">
+							<li class="comment">
+								
+									<div class="well well-lg">
+									<div class="comment-body">
+										<h3> Marco </h3>
+						                <div class="meta">20140922</div>
+											<p class="media-comment">Great snippet! Thanks for sharing.</p>
+										</div>
+									</div>
+							</li>
 						</ul>
-						<p class="media-comment">Nice job Maria.</p>
-						<a class="btn btn-info btn-circle text-uppercase" href="#"
-							id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-							Reply</a>
-					</div>
-				</div>
-			</li>
-
-			<li class="media media-replied" id="replied">
-
-				<div class="media-body">
-					<div class="well well-lg">
-						<h4 class="media-heading text-uppercase reviews">
-							<span class="glyphicon glyphicon-share-alt"></span> Mary
-						</h4>
-						</h4>
-						<ul class="media-date text-uppercase reviews list-inline">
-							<li class="dd">22</li>
-							<li class="mm">09</li>
-							<li class="aaaa">2014</li>
-						</ul>
-						<p class="media-comment">Thank you Guys!</p>
-						<a class="btn btn-info btn-circle text-uppercase" href="#"
-							id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-							Reply</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-
-
-	<div class="container">
-		<div class="media-body">
-			<div class="well well-lg">
-				<h4 class="media-heading text-uppercase reviews">Nico</h4>
-				<ul class="media-date text-uppercase reviews list-inline">
-					<li class="dd">22</li>
-					<li class="mm">09</li>
-					<li class="aaaa">2014</li>
-				</ul>
-				<p class="media-comment">I'm looking for that. Thanks!</p>
-				<a class="btn btn-info btn-circle text-uppercase" href="#"
-					id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-					Reply</a>
+					</ul>
+ -->			</div>
 			</div>
 		</div>
-
-	</div>
-	<div class="container">
-		<div class="media-body">
-			<div class="well well-lg">
-				<h4 class="media-heading text-uppercase reviews">Kriztine</h4>
-				<ul class="media-date text-uppercase reviews list-inline">
-					<li class="dd">22</li>
-					<li class="mm">09</li>
-					<li class="aaaa">2014</li>
-				</ul>
-				<p class="media-comment">Yehhhh... Thanks for sharing.</p>
-				<a class="btn btn-info btn-circle text-uppercase" href="#"
-					id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-					Reply</a> <a class="btn btn-warning btn-circle text-uppercase"
-					data-toggle="collapse" href="#replyTwo"><span
-					class="glyphicon glyphicon-comment"></span> 1 comment</a>
-			</div>
-		</div>
-	</div>
-	<div class="container" id="replyTwo">
-		<ul class="media-list">
-			<li class="media media-replied">
-				<div class="media-body">
-					<div class="well well-lg">
-						<h4 class="media-heading text-uppercase reviews">
-							<span class="glyphicon glyphicon-share-alt"></span> Lizz
-						</h4>
-						<ul class="media-date text-uppercase reviews list-inline">
-							<li class="dd">22</li>
-							<li class="mm">09</li>
-							<li class="aaaa">2014</li>
-						</ul>
-
-						<p class="media-comment">Classy!</p>
-						<a class="btn btn-info btn-circle text-uppercase" href="#"
-							id="reply"><span class="glyphicon glyphicon-share-alt"></span>
-							Reply</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-
-
-	<div class="text-center">
-		<h3 class="reviews">
-			<span class="glyphicon glyphicon-magnet"></span> Uicomments by <a
-				href="https://twitter.com/maridlcrmn">maridlcrmn</a>
-		</h3>
-	</div>
-	<div class="notes text-center">
-		<small>Image credits: uifaces.com</small>
 	</div>
 </div>
