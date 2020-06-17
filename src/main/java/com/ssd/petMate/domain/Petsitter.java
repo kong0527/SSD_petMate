@@ -6,15 +6,15 @@ public class Petsitter {
 	private String boardNum;
 	private String boardDate;
 	private String userID;
-	@NotEmpty
+//	@NotEmpty
 	private String boardContent;
 	private String petSize;
-	@NotEmpty
+//	@NotEmpty
 	private String petLocal;
 	private int petPrice;
 	private String petDay;
 	private int boardLike;
-	@NotEmpty
+//	@NotEmpty
 	private String boardTitle;
 	private int replyCnt;
 	private int boardHit;

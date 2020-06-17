@@ -44,7 +44,7 @@
 				<div class="pt-5" align="right">
 					<form>
 						<input type="hidden" id="boardNum" name="boardNum" value="${petsitter.boardNum}"/>
-						<button type="submit" formaction="petsitterUpdate"
+						<button type="submit" formaction="petsitterForm"
 							class="btn">수정</button>
 						<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" />
 					</form>
