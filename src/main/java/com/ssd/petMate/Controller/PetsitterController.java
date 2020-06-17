@@ -33,47 +33,6 @@ public class PetsitterController {
    
    @Autowired
    private PetsitterLikeFacade petsitterLikeFacade;
-
-//   이건 필요하대서 그냥 드림
-   @ModelAttribute("petsitter")
-   public Petsitter formBacking(HttpServletRequest request) {
-      if (request.getMethod().equalsIgnoreCase("GET")) {
-         Petsitter petsitter;
-         if (request.getParameter("boardNum") != null) {
-            System.out.println(request.getParameter("boardNum"));
-            petsitter = petsitterFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
-         }
-         else {
-            petsitter = new Petsitter();
-         }
-         return petsitter;
-      }
-      else return new Petsitter();
-   }
-   
-   @ModelAttribute("sizeCodes")
-   public List<Code> referenceData1() {
-      List<Code> sizeCodes = new ArrayList<Code>();
-      sizeCodes.add(new Code("1", "소형　　　"));
-      sizeCodes.add(new Code("2", "중형　　　"));
-      sizeCodes.add(new Code("4", "대형"));
-      
-       return sizeCodes;
-   }
-   
-   @ModelAttribute("dayCodes")
-   public List<Code> referencData2() {
-      List<Code> dayCodes = new ArrayList<Code>();
-      dayCodes.add(new Code("1", "월요일　　"));
-      dayCodes.add(new Code("2", "화요일　　"));
-      dayCodes.add(new Code("4", "수요일　　"));
-      dayCodes.add(new Code("8", "목요일　　"));
-      dayCodes.add(new Code("16", "금요일　　"));
-      dayCodes.add(new Code("32", "토요일　　"));
-      dayCodes.add(new Code("64", "일요일"));
-      
-      return dayCodes;
-   }
    
    @ModelAttribute("petsitterChk")
    public int petsitterChk(HttpServletRequest request) {

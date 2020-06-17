@@ -108,6 +108,7 @@ public class PetsitterFormController {
 	      }
 	      
 	      if (request.getParameter("boardNum") == null) {
+	    	  petsitter.setUserID(request.getSession().getAttribute("userID").toString());
 	    	  petsitterFacade.insertBoard(petsitter);
 	      }
 	      else {

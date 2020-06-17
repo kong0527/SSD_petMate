@@ -34,44 +34,6 @@ public class InfoController {
 	@Autowired
 	private InfoLikeFacade infoLikeFacade;
 	
-	@ModelAttribute("info")
-	public Info formBacking(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Info info;
-			if (request.getParameter("boardNum") != null) {
-				info = infoFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
-			}
-			else {
-				info = new Info();
-			}
-			return info;
-		}
-		else return new Info();
-	}
-	
-	@PostMapping("/infoInsert")
-	public String infoInsert(@Valid @ModelAttribute("info") Info info, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {
-		sessionStatus.setComplete();
-		info.setUserID(request.getSession().getAttribute("userID").toString());
-		
-		//게시글 제목 길이
-		if (info.getBoardTitle().length() > 25) {
-			result.rejectValue("boardTitle", "long");
-		}
-		
-		//게시글 내용 길이
-		if (info.getBoardContent().length() >  1500) {
-			result.rejectValue("boardContent", "long2");
-		}
-		
-		if (result.hasErrors()) {
-			return "info/infoForm";
-		}
-		
-		infoFacade.insertBoard(info);
-		return "redirect:/info";
-	}
-	
 	@RequestMapping(value = "/info", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView infoBoard(ModelAndView mv, 
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
@@ -116,13 +78,6 @@ public class InfoController {
 		return mv;
 	}
 	
-	
-	@RequestMapping(value = "/infoForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView InfoForm(ModelAndView mv) {
-		mv.setViewName("info/infoForm");
-		return mv;
-	}
-	
 //	게시글 추천 기능
 	@RequestMapping(value="/infoLike", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
@@ -158,16 +113,5 @@ public class InfoController {
 		System.out.println("infolike : " + mv.getViewName());
 		
 		return map;
-	}
-	
-	@GetMapping("/infoUpdate") 
-	public String infoUpdateForm() {
-		return "info/infoForm";
-	}
-	
-	@PostMapping("/infoUpdate")
-	public String infoUpdate(@Valid @ModelAttribute("info") Info info) {
-		infoFacade.updateBoard(info);
-		return "redirect:/info";
 	}
 }
