@@ -47,20 +47,19 @@ public class LoginController {
 			return formViewName;
 		}
 
-		try {
+//		try {
 			UserDetails user = userService.loadUserByUsername(loginCommand.getUserID());
 //			System.out.println(user.getAuthorities());
 			if(!passwordEncoder.matches(loginCommand.getPwd(), user.getPassword())) {
-//				result.reject("invalidIdOrPassword", new Object[] { loginCommand.getUserID() }, null);
-//				result.rejectValue("loginCommand.userID", "invalidIdOrPassword", "암호가 일치하지 않습니다.");
+				result.rejectValue("userID", "invalidIdOrPassword", "암호가 일치하지 않습니다.");
 				return formViewName;
 			}
-		}
-		catch (Exception e) {
-			result.reject("invalidIdOrPassword", new Object[] { loginCommand.getUserID() }, null);
-			System.out.println("Error!");
-			return formViewName;
-		}
+//		}
+//		catch (Exception e) {
+//			result.reject("invalidIdOrPassword", new Object[] { loginCommand.getUserID() }, null);
+//			System.out.println("Error!");
+//			return formViewName;
+//		}
 		
 //		로그인이 정상적으로 이루어졌으므로 session에 id 저장
 		request.getSession().setAttribute("userID", loginCommand.getUserID());

@@ -63,7 +63,6 @@ public class UserImpl implements UserFacade {
         
         //아이디가 없으면 예외 발생시키기 (throw)
         if(user == null) {
-        	System.out.println("Error!!!!");
         	throw new UsernameNotFoundException(userID);
         }
             
