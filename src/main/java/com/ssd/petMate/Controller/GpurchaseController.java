@@ -25,7 +25,7 @@ import com.ssd.petMate.service.GpurchaseFacade;
 
 
 @Controller
-public class gpurchaseController {	
+public class GpurchaseController {	
 	
 	@Autowired
 	private GpurchaseFacade gpurchaseImpl;
@@ -48,6 +48,7 @@ public class gpurchaseController {
 		}
 	}
 	
+
 	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseList(ModelAndView mv,
@@ -127,6 +128,7 @@ public class gpurchaseController {
 		return "redirect:/gpurchase";
 	}
 	
+	//공구게시판 장바구니 목록
 	@GetMapping("/gpurchaseCart")
 	public ModelAndView gpurchaseCartList(ModelAndView mv, HttpServletRequest request) {
 		String userID = (String) request.getSession().getAttribute("userID");
@@ -193,9 +195,12 @@ public class gpurchaseController {
 		return "redirect:/gpurchaseCart";
 	}	
 	
-	
-	
-	
+//	@RequestMapping(value = "/test_check", method = RequestMethod.POST)
+//	@ResponseBody
+//	public void order(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList) {
+//		
+//	}
+
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {

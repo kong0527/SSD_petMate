@@ -53,23 +53,19 @@ public class MybatisGpurchaseDao implements GpurchaseDao {
 		gpurchaseMapper.deleteGpurchase(boardNum);
 	}
 	
-	public void gpurchaseCartPlus(int boardNum) throws DataAccessException{
-		gpurchaseMapper.gpurchaseCartPlus(boardNum);
+	//조회 수 증가
+	public void gpurchaseBoardHitPlus(int boardNum) throws DataAccessException{
+		gpurchaseMapper.gpurchaseBoardHitPlus(boardNum);
+	}
+	
+	public void gpurchaseCartUpdate(Gpurchase gpurchase) throws DataAccessException{
+		gpurchaseMapper.gpurchaseCartUpdate(gpurchase);
 	} //장바구니 담은 수 증가
 	
-	public void gpurchaseCartMinus(int boardNum) throws DataAccessException{
-		gpurchaseMapper.gpurchaseCartPlus(boardNum);
-	} //장바구니 담은 수 감소
+	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException{
+		gpurchaseMapper.gpurchaseCartUpdate(gpurchase);
+	} //덧글수 증가
 	
 	
-	
-//	public void secondhandReplyCntPlus(int boardNum) throws DataAccessException; //덧글수 증가
-//	
-//	public void secondhandReplyCntMinus(int boardNum) throws DataAccessException; //덧글수 감소
-//	
-//	public void secondhandBoardHitPluss(int boardNum) throws DataAccessException; //조회수 증가
-//	
-//	public void secondhandCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
-//	
-//	public void secondhandCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+
 }

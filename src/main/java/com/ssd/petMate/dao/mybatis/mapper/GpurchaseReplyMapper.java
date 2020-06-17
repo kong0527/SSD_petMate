@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.ssd.petMate.domain.GpurchaseReply;
+import com.ssd.petMate.domain.InfoReply;
 import com.ssd.petMate.page.pageMaker;
 
 public interface GpurchaseReplyMapper {
 
-	List<GpurchaseReply> getReplyList(pageMaker page);
+	List<GpurchaseReply> getReplyList(int boardNum);
 	
 	void insertReply(GpurchaseReply reply);
 	
@@ -16,13 +17,14 @@ public interface GpurchaseReplyMapper {
 	
 	void deleteReply(int replyNum);
 	
-	GpurchaseReply getReply(int replyNum);
+	GpurchaseReply replyDetail(int replyNum);
 	
-	int replyCount(int boardNum);
+	int replyCnt(int boardNum);
 	
 	void setReplyOrder(HashMap<String, Object> map);
 	
 	int findLastReplyID(int replyNum);
 	
 	int countSameGID(int replyNum);
+	
 }

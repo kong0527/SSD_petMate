@@ -28,15 +28,13 @@ public interface GpurchaseFacade {
 	
 	public void deleteGpurchase(int boardNum) throws DataAccessException; //게시글 삭제
 	
+	public void gpurchaseBoardHitPlus(int boardNum) throws DataAccessException; //조회수 증가
 	
+	public void gpurchaseCartUpdate(Gpurchase gpurchase) throws DataAccessException; //장바구니 담은 수 증가
 	
-	public void gpurchaseCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
-	
-	public void gpurchaseCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException; //덧글수 업데이틑
 	
 	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException; //cart+gpuchase
-	
-	public int getGpurchaseCartCount(int userId) throws DataAccessException; //사용자가 담은 장바구니 수 가져오기
 	
 	public void insertGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException; //장바구니 추가
 	

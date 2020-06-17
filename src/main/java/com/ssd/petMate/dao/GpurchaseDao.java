@@ -28,13 +28,10 @@ public interface GpurchaseDao {
 	
 	public void deleteGpurchase(int boardNum) throws DataAccessException; //게시글 삭제
 	
-//	public void secondhandReplyCntPlus(int boardNum) throws DataAccessException; //덧글수 증가
-//	
-//	public void secondhandReplyCntMinus(int boardNum) throws DataAccessException; //덧글수 감소
-//	
-//	public void secondhandBoardHitPluss(int boardNum) throws DataAccessException; //조회수 증가
-//	
-	public void gpurchaseCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
+	public void gpurchaseBoardHitPlus(int boardNum) throws DataAccessException; //조회수 증가
 	
-	public void gpurchaseCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException; //덧글수 업데이틑
+	
+	public void gpurchaseCartUpdate(Gpurchase gpurchase) throws DataAccessException; //장바구니 담은 수 업데이트
+	
 }

@@ -26,8 +26,8 @@
 			<tbody>
 				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 					<tr>
-						<td><input type="checkbox" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
-						<td><img src="resources/img/love.png" border="0"> &nbsp;
+						<td><input type="checkbox" name = "CartNum" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
+						<td ><img src="resources/img/love.png" border="0"> &nbsp;
 						${gpurchaseCart.gpurchase.boardTitle}</td>
 						<td>${gpurchaseCart.gpurchase.price}</td>
 						<td>1</td>
@@ -39,6 +39,23 @@
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
 				</c:forEach>
+				<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				<form:form modelAttribute="gpurchaseCart">
+					<tr>
+						<td><input type="checkbox" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
+						<td ><img src="resources/img/love.png" border="0"> &nbsp;
+						${gpurchaseCart.gpurchase.boardTitle}</td>
+						<td>${gpurchaseCart.gpurchase.price}</td>
+						<td>1</td>
+						<td>${gpurchaseCart.gpurchase.price}</td>
+						<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" />
+						<td><a href="<c:url value="/gpurchaseCartDelete">
+						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
+						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
+						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
+					</tr>
+				</form:form>
+				</c:forEach> --%>
 			</tbody>
 		</table>
 
@@ -123,6 +140,20 @@
 				
 				}
 		  });
-
+		  
+		//체크 된 장바구니 항목들 보냄
+		 var checkArr = [];     // 배열 초기화
+		    $("input[name='cartNum']:checked").each(function(i)) {
+		        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+		    }
+		 
+		    $.ajax({
+		        url: '/petMate/gpurchaseOrder'
+		        , type: 'post'
+		        , dataType: 'text'
+		        , data: {
+		            gpurchaseCartList : checkArr
+		        }
+		    });
 	});
 </script>

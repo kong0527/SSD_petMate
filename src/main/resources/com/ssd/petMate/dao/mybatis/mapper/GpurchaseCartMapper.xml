@@ -19,13 +19,6 @@
 		ORDER BY gc.boardNum
 	</select>
 	
-	<!-- 공동구매 장바구니 수, 사용자가 담은 장바구니 총 개수 -->
-	<select id="getGpurchaseCartCount" resultType="int">
-		SELECT COUNT(*)
-		FROM GpurchaseCart
-		WHERE userID = #{userID}
-	</select>
-	
 	<!-- 공동구매 장바구니 추가하기  -->
 	<insert id="insertGpurchaseCart" parameterType="com.ssd.petMate.domain.GpurchaseCart">
  		INSERT
