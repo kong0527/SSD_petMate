@@ -27,6 +27,7 @@ import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.PetsitterFacade;
 import com.ssd.petMate.service.PetsitterLikeFacade;
+import com.ssd.petMate.validator.PetsitterValidator;
 
 @Controller
 public class PetsitterController {
@@ -78,8 +79,8 @@ public class PetsitterController {
 	}
 	
 	@PostMapping("/petsitterInsert")
-	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, SessionStatus sessionStatus, 
-			HttpServletRequest request) {
+	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, 
+			SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
 		int sizeSum = 0;
 		int daySum = 0;
@@ -95,25 +96,7 @@ public class PetsitterController {
 		}
 		petsitter.setPetDay(Integer.toString(daySum));
 		
-		if (petsitter.getBoardTitle().length() > 25) {
-			result.rejectValue("boardTitle", "long");
-		}
-		
-		if (petsitter.getBoardContent().length() >  1500) {
-			result.rejectValue("boardContent", "long2");
-		}
-		
-		if (Integer.parseInt(petsitter.getPetSize()) == 0) {
-			result.rejectValue("sizeCodes", "check");
-		}
-		
-		if (Integer.parseInt(petsitter.getPetDay()) == 0) {
-			result.rejectValue("dayCodes", "check");
-		}
-		
-		if (petsitter.getPetPrice() < 5000 | petsitter.getPetPrice() > 15000) {
-			result.rejectValue("petPrice", "price");
-		}
+		new PetsitterValidator().validate(petsitter, result);
 		
 		if (result.hasErrors()) {
 			return "petsitter/petsitterForm";
@@ -221,7 +204,7 @@ public class PetsitterController {
 		}
 		
 		@PostMapping("/petsitterUpdate")
-		public String petsitterUpdate(@ModelAttribute("petsitter") Petsitter petsitter) {
+		public String petsitterUpdate(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result) {
 			int sizeSum = 0;
 			int daySum = 0;
 			petsitter.setUserID("test4");
@@ -235,6 +218,12 @@ public class PetsitterController {
 				daySum += Integer.parseInt(s);
 			}
 			petsitter.setPetDay(Integer.toString(daySum));
+			
+			new PetsitterValidator().validate(petsitter, result);
+			if (result.hasErrors()) {
+				return "petsitter/petsitterForm";
+			}
+			
 			petsitterFacade.updateBoard(petsitter);
 			return "redirect:/petsitterList";
 		}
