@@ -62,8 +62,8 @@ public class SignUpController {
 		if (result.hasErrors()) return formViewName;
 		
 		if (!regCommand.isSamePwdConfirmPwd()) {
-			System.out.println("In!!!!!!!!");
 			result.rejectValue("confirmPwd", "notSame", "암호가 일치하지 않습니다."); // 이거 수정해야 함
+			return formViewName;
 		}
 		
 		try {
@@ -79,7 +79,7 @@ public class SignUpController {
 			}
 		}
 		catch (DataIntegrityViolationException ex) {
-			result.rejectValue("userList.userID", "USER_ID_ALREADY_EXISTS",
+			result.rejectValue("userID", "USER_ID_ALREADY_EXISTS",
 					"User ID already exists: choose a different ID.");
 			return formViewName; 
 		}

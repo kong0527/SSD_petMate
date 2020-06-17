@@ -18,4 +18,6 @@ public interface UserMapper {
   void updateUser(UserList user);
   
   void deleteUser(String userID);
+  
+  int isPetsitter(String userID);
 }

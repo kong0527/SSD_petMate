@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,16 +37,37 @@ public class InfoController {
 	@ModelAttribute("info")
 	public Info formBacking(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Info info = new Info();
+			Info info;
+			if (request.getParameter("boardNum") != null) {
+				info = infoFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
+			}
+			else {
+				info = new Info();
+			}
 			return info;
 		}
 		else return new Info();
 	}
 	
 	@PostMapping("/infoInsert")
-	public String infoInsert(@ModelAttribute("info") Info info, SessionStatus sessionStatus, HttpServletRequest request) {
+	public String infoInsert(@Valid @ModelAttribute("info") Info info, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
-		info.setUserID("test1");
+		info.setUserID(request.getSession().getAttribute("userID").toString());
+		
+		//게시글 제목 길이
+		if (info.getBoardTitle().length() > 25) {
+			result.rejectValue("boardTitle", "long");
+		}
+		
+		//게시글 내용 길이
+		if (info.getBoardContent().length() >  1500) {
+			result.rejectValue("boardContent", "long2");
+		}
+		
+		if (result.hasErrors()) {
+			return "info/infoForm";
+		}
+		
 		infoFacade.insertBoard(info);
 		return "redirect:/info";
 	}
@@ -74,6 +98,12 @@ public class InfoController {
 		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("info/infoList");
 		return mv;
+	}
+	
+	@RequestMapping(value = "/infoDetail/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String petsitterDelete(@RequestParam("boardNum") int boardNum) {
+		infoFacade.deleteBoard(boardNum);
+		return "redirect:/info";
 	}
 	
 	@RequestMapping(value = "/infoDetail", method = { RequestMethod.GET, RequestMethod.POST })
@@ -128,5 +158,16 @@ public class InfoController {
 		System.out.println("infolike : " + mv.getViewName());
 		
 		return map;
+	}
+	
+	@GetMapping("/infoUpdate") 
+	public String infoUpdateForm() {
+		return "info/infoForm";
+	}
+	
+	@PostMapping("/infoUpdate")
+	public String infoUpdate(@Valid @ModelAttribute("info") Info info) {
+		infoFacade.updateBoard(info);
+		return "redirect:/info";
 	}
 }

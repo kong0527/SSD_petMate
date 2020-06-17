@@ -17,10 +17,12 @@
 				${info.boardContent}	
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<button type="submit" formaction="secondhandDetail/edit"
+				<form>
+					<input type="hidden" id="boardNum" name="boardNum" value="${info.boardNum}"/>
+					<button type="submit" formaction="infoUpdate"
 						class="btn">수정</button>
-					<button type="submit" formaction="secondhandDetail/delete"
-						class="btn">삭제</button>
+					<input type="button" class="btn" value="삭제" onclick="del(${info.boardNum})" />
+				</form>
 				</div>
 
 				<div class="pt-5" align="center">
@@ -41,7 +43,7 @@
 				<!-- comment 작성 부분 -->				
 				<c:if test="${userID ne null}">
 					<div class="comment-form-wrap pt-5">
-						<div class="section-title">
+						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
 						</div>
 	       				<form id="replyForm" class="p-5 bg-light">
@@ -90,5 +92,12 @@
 				$("#boardLike").html(html);
 			}
 		});
+	}
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='infoDetail/delete?boardNum='+boardNum;
+		}
 	}
 </script>

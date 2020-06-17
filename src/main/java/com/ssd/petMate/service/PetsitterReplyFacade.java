@@ -1,12 +1,11 @@
-package com.ssd.petMate.dao.mybatis.mapper;
+package com.ssd.petMate.service;
 
 import java.util.HashMap;
 import java.util.List;
 
 import com.ssd.petMate.domain.PetsitterReply;
 
-public interface PetsitterReplyMapper {
-
+public interface PetsitterReplyFacade {
 	List<PetsitterReply> getReplyList(int boardNum);
 	
 	void insertReply(PetsitterReply reply);
@@ -20,8 +19,6 @@ public interface PetsitterReplyMapper {
 	int replyCnt(int boardNum);
 	
 	void setReplyOrder(HashMap<String, Object> map);
-	
-	int findLastReplyID(int replyNum);
 	
 	int countSameGID(int replyNum);
 }

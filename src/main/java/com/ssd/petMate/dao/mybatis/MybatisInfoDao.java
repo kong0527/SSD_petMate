@@ -40,4 +40,14 @@ public class MybatisInfoDao implements InfoDao {
 	public void updateReplyCnt(Info info) throws DataAccessException {
 		infoMapper.updateReplyCnt(info);
 	}
+
+	@Override
+	public void updateBoard(Info info) throws DataAccessException {
+		infoMapper.updateBoard(info);
+	}
+
+	@Override
+	public void deleteBoard(int boardNum) {
+		infoMapper.deleteBoard(boardNum);
+	}
 }

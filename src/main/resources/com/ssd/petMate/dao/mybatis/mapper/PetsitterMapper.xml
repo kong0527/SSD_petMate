@@ -68,12 +68,12 @@
 		UPDATE Petsitter SET
 		boardTitle = #{boardTitle},
 		boardContent = #{boardContent},
-		petPrice = #{petPrice},
-		petLocal = #{petLocal},
-		petDay = #{petDay},
-		petSize = #{petSize},
-		petDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'),
-		petImage = #{petImage}
+		boardDate = SYSDATE,
+		petPrice = #{petPrice, jdbcType=NUMERIC},
+		petLocal = #{petLocal, jdbcType=VARCHAR},
+		petDay = #{petDay, jdbcType=VARCHAR},
+		petSize = #{petSize, jdbcType=VARCHAR},
+		boardImage = #{boardImage, jdbcType=VARCHAR}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
@@ -107,30 +107,23 @@
 	<!-- 필터링기능 / 아직은 임시로 작성 -->
 	<!-- 체크박스 or 라디오박스중 어떤 값은 null이 들어올 수도 있는데 이런 경우에 대해 각각 query문을 만들어야할까?
 	아니면 null이 들어와도 상관 없을지 search 해보기. parameterType도 후에 추가해야함 -->
-	<select id="filtering" resultType="com.ssd.petMate.domain.Info">
+	<select id="filtering" resultType="com.ssd.petMate.domain.Petsitter">
 		SELECT *
 		FROM Petsitter
 		WHERE petPrice = #{petPrice}, petLocal = #{petLocal}, petDay = #{petDay}, petSize = #{petSize}
 	</select>
 	
-	<!-- 좋아요 수 증가 -->
-	<update id="plusLike" parameterType="int">
-		UPDATE Petsitter
-		SET boardLike = boardLike + 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 좋아요 수 감소 -->
-	<update id="minusLike" parameterType="int">
-		UPDATE Petsitter
-		SET boardLike = boardLike - 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
 	<!-- 좋아요 업데이트 -->	
 	<update id="updateLike" parameterType="HashMap">
 		UPDATE Petsitter
 		SET boardLike = #{boardLike}
+		WHERE boardNum = #{boardNum}
+	</update>
+	
+	<!-- 댓글 수 업데이트 -->	
+	<update id="updateReplyCnt" parameterType="com.ssd.petMate.domain.Petsitter">
+		UPDATE Petsitter
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 </mapper>
