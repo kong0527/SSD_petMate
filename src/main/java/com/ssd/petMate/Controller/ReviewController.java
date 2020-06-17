@@ -4,9 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.ReviewLikeFacade;
 import com.ssd.petMate.service.ReviewFacade;
-import com.ssd.petMate.service.ReviewReplyFacade;
 
 @Controller
 public class ReviewController {
@@ -57,8 +60,17 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/reviewUpdate")
-	public String reviewUpdate(@ModelAttribute("review") Review review) {
+	public String reviewUpdate(@Valid@ ModelAttribute("review") Review review, BindingResult result) {
 		System.out.println("update review : " + review.toString());
+		
+		//게시글 제목 길이
+		if (review.getBoardTitle().length() > 25) {
+			result.rejectValue("boardTitle", "long");
+		}	
+		if (result.hasErrors()) {
+			return "review/reviewForm";
+		}
+		
 		reviewFacade.updateBoard(review);
 		return "redirect:/review";
 	}
@@ -70,15 +82,18 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/reviewInsert")
-	public String reviewInsert(@ModelAttribute("review") Review review, SessionStatus sessionStatus, HttpServletRequest request) {
+	public String reviewInsert(@Valid @ModelAttribute("review") Review review, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
-		String title = request.getParameter("boardTitle");
-		String content = request.getParameter("boardContent");
-		System.out.println(title);
-		System.out.println(content);
-		review.setUserID("test1");
-		review.setBoardTitle(title);
-		review.setBoardContent(content);
+		review.setUserID(request.getSession().getAttribute("userID").toString());
+		
+		//게시글 제목 길이
+		if (review.getBoardTitle().length() > 25) {
+			result.rejectValue("boardTitle", "long");
+		}	
+		if (result.hasErrors()) {
+			return "review/reviewForm";
+		}
+		
 		reviewFacade.insertBoard(review);
 		return "redirect:/review";
 	}
