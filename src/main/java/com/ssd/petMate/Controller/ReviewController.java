@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
@@ -35,10 +37,36 @@ public class ReviewController {
 	@ModelAttribute("review")
 	public Review formBacking(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Review review = new Review();
+			Review review;
+			if(request.getParameter("boardNum") != null) {
+				review = reviewFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
+			}
+			else {
+				review = new Review();
+			}
 			return review;
 		}
-		else return new Review();
+		else {
+			return new Review();
+		}
+	}
+	
+	@GetMapping("/reviewUpdateForm")
+	public String reviewUpdateForm() {
+		return "review/reviewForm";
+	}
+	
+	@PostMapping("/reviewUpdate")
+	public String reviewUpdate(@ModelAttribute("review") Review review) {
+		System.out.println("update review : " + review.toString());
+		reviewFacade.updateBoard(review);
+		return "redirect:/review";
+	}
+	
+	@RequestMapping(value = "/reviewDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String reviewDelete(@RequestParam("boardNum") int boardNum) {
+		reviewFacade.deleteBoard(boardNum);
+		return "redirect:/review";
 	}
 	
 	@PostMapping("/reviewInsert")
@@ -94,6 +122,7 @@ public class ReviewController {
 		List<Review> reviewList = reviewFacade.getAllBoard(boardSearch);
 
 		mv.addObject("reviewList", reviewList);
+		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("review/reviewList");
 		return mv;
 	}

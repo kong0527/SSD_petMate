@@ -19,10 +19,14 @@
 				
 				
 				<!-- 추가 -->
-		<div class="pt-5" align="right">
-			<button type="submit" formaction="reviewDetail/edit" class="btn">수정</button>
-			<button type="submit" formaction="reviewDetail/delete" class="btn">삭제</button>
-		</div>
+				<div class="pt-5" align="right">
+					<form>
+						<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
+						<button type="submit" formaction="reviewUpdateForm"
+						class="btn">수정</button>
+						<input type="button" class="btn" value="삭제" onclick="del(${review.boardNum})" /></a>
+					</form>
+				</div>
 
 		<div class="pt-5" align="center">
 						<!-- 수정 필요 -->
@@ -92,4 +96,10 @@
 			}
 		});
 	}
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='reviewDelete?boardNum='+boardNum;
+		}
+	}	
 </script>

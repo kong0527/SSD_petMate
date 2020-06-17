@@ -3,6 +3,7 @@ package com.ssd.petMate.service;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,14 @@ public class ReviewImpl implements ReviewFacade {
 
 	public void insertBoard(Review review) {
 		reviewDao.insertBoard(review);
+	}
+	
+	public void updateBoard(Review review) throws DataAccessException{
+		reviewDao.updateBoard(review);
+	}
+	
+	public void deleteBoard(int boardNum) throws DataAccessException{
+		reviewDao.deleteBoard(boardNum);
 	}
 	
 	public void updateLike(Review review) {

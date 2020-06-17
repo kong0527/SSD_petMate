@@ -67,7 +67,7 @@
 		boardTitle = #{boardTitle}, 
 		boardContent = #{boardContent}, 
 		boardDate = SYSDATE, 
-		boardImage = #{boardImage}, 
+		boardImage = #{boardImage,jdbcType=VARCHAR}, 
 		rating = #{rating}
 		WHERE boardNum = #{boardNum}
 	</update>
