@@ -115,7 +115,7 @@
 	<!-- 댓글 수 업데이트 -->	
 	<update id="updateReplyCnt" parameterType="com.ssd.petMate.domain.Inquiry">
 		UPDATE Inquiry
-		SET replyCnt = #{replyCnt}
+		SET answerCnt = #{answerCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

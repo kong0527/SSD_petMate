@@ -16,52 +16,52 @@ public class AnswerImpl implements AnswerFacade{
 
 	@Autowired
 	private AnswerDao answerDao;
-	
+
 	@Override
-	public List<Answer> getReplyList(int boardNum) {
+	public List<Answer> getAnswerList(int boardNum) {
 		// TODO Auto-generated method stub
-		return answerDao.getReplyList(boardNum);
+		return answerDao.getAnswerList(boardNum);
 	}
 
 	@Override
-	public void insertReply(Answer reply) {
+	public void insertAnswer(Answer answer) {
 		// TODO Auto-generated method stub
-		answerDao.insertReply(reply);
+		answerDao.insertAnswer(answer);
 	}
 
 	@Override
-	public void updateReply(Answer reply) {
+	public void updateAnswer(Answer answer) {
 		// TODO Auto-generated method stub
-		answerDao.updateReply(reply);
+		answerDao.updateAnswer(answer);
 	}
 
 	@Override
-	public void deleteReply(int answerNum) {
+	public void deleteAnswer(int answerNum) {
 		// TODO Auto-generated method stub
-		answerDao.deleteReply(answerNum);
+		answerDao.deleteAnswer(answerNum);
 	}
 
 	@Override
-	public Answer replyDetail(int answerNum) {
+	public Answer answerDetail(int answerNum) {
 		// TODO Auto-generated method stub
-		return answerDao.replyDetail(answerNum);
+		return answerDao.answerDetail(answerNum);
 	}
 
 	@Override
-	public int replyCnt(int boardNum) {
+	public int answerCnt(int boardNum) {
 		// TODO Auto-generated method stub
-		return answerDao.replyCnt(boardNum);
+		return answerDao.answerCnt(boardNum);
 	}
 
 	@Override
-	public void setReplyOrder(HashMap<String, Object> map) {
+	public void setAnswerOrder(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		answerDao.setReplyOrder(map);
+		answerDao.setAnswerOrder(map);
 	}
 
 	@Override
 	public int countSameGID(int answerNum) {
 		// TODO Auto-generated method stub
-		return 0;
+		return answerDao.countSameGID(answerNum);
 	}
 }

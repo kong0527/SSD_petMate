@@ -7,19 +7,19 @@ import com.ssd.petMate.domain.Answer;
 
 public interface AnswerFacade {
 
-	List<Answer> getReplyList(int boardNum);
+	List<Answer> getAnswerList(int boardNum);
 	
-	void insertReply(Answer reply);
+	void insertAnswer(Answer answer);
 	
-	void updateReply(Answer reply);
+	void updateAnswer(Answer answer);
 	
-	void deleteReply(int replyNum);
+	void deleteAnswer(int answerNum);
 	
-	Answer replyDetail(int answerNum);
+	Answer answerDetail(int answerNum);
 	
-	int replyCnt(int boardNum);
+	int answerCnt(int boardNum);
 	
-	void setReplyOrder(HashMap<String, Object> map);
+	void setAnswerOrder(HashMap<String, Object> map);
 	
 	int countSameGID(int answerNum);
 }

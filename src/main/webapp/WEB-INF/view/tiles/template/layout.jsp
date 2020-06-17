@@ -28,7 +28,7 @@ ul.dropdown-menu {
 <link rel="stylesheet" href="resources/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="resources/css/meranda/aos.css">
 <link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="resources/css/meranda/style.css?new10">
+<link rel="stylesheet" href="resources/css/meranda/style.css?new12">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css?new">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
