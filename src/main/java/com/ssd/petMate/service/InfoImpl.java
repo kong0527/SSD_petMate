@@ -47,4 +47,9 @@ public class InfoImpl implements InfoFacade {
 	public void updateBoard(Info info) throws DataAccessException {
 		infoDao.updateBoard(info);
 	}
+
+	@Override
+	public void deleteBoard(int boardNum) {
+		infoDao.deleteBoard(boardNum);
+	}
 }

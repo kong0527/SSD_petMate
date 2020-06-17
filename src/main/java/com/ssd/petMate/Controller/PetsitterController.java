@@ -27,6 +27,7 @@ import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.PetsitterFacade;
 import com.ssd.petMate.service.PetsitterLikeFacade;
+import com.ssd.petMate.service.UserImpl;
 import com.ssd.petMate.validator.PetsitterValidator;
 
 @Controller
@@ -34,6 +35,8 @@ public class PetsitterController {
 	@Autowired
 	private PetsitterFacade petsitterFacade;
 	
+	@Autowired
+	private UserImpl userService;
 	
 	@Autowired
 	private PetsitterLikeFacade petsitterLikeFacade;
@@ -78,13 +81,22 @@ public class PetsitterController {
 		return dayCodes;
 	}
 	
+	@ModelAttribute("petsitterChk")
+	public int petsitterChk(HttpServletRequest request) {
+		if (request.getSession().getAttribute("userID") != null) {
+			return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+		}
+		return -1;
+	}
+	
+	
 	@PostMapping("/petsitterInsert")
 	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, 
 			SessionStatus sessionStatus, HttpServletRequest request) {
 		sessionStatus.setComplete();
 		int sizeSum = 0;
 		int daySum = 0;
-		petsitter.setUserID("test4");
+		petsitter.setUserID(request.getSession().getAttribute("userID").toString());
 		
 		for (String s : petsitter.getSizeCodes()) {
 			sizeSum += Integer.parseInt(s);

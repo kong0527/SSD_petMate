@@ -14,4 +14,5 @@ public interface UserFacade extends UserDetailsService{
 	void updateUser(UserList user);
 	void deleteUser(String userID);
 	UserDetails loadUserByUsername(String username);
+	int isPetsitter(String userID);
 }

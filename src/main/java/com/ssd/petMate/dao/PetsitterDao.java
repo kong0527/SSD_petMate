@@ -22,7 +22,7 @@ public interface PetsitterDao {
 	
 	void updateLike(Petsitter petsitter);
 	
-	public void updateReplyCnt(Petsitter petsitter) throws DataAccessException;
+	void updateReplyCnt(Petsitter petsitter) throws DataAccessException;
 	
-	public void updateBoard(Petsitter petsitter) throws DataAccessException; //게시글 수정
+	void updateBoard(Petsitter petsitter) throws DataAccessException; //게시글 수정
 }

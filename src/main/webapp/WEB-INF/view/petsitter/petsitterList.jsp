@@ -165,7 +165,15 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<a href="petsitterForm"><input type="submit" class="btn" value="글 작성" /></a>
+						<c:if test="${petsitterChk < 0}" >
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
+						<c:if test="${petsitterChk == 1}">
+							<a href="#" onclick="alert('펫시터 회원만 작성할 수 있습니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
+						<c:if test="${petsitterChk == 0}">
+							<a href="petsitterForm"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
 					</td>
 				</tr>
 			</table>
@@ -220,5 +228,9 @@
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
+	}
+
+	function isPetsitter(userID) {
+		
 	}
 </script>
