@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.ssd.petMate.domain.InfoReply;
-import com.ssd.petMate.page.pageMaker;
 
 public interface InfoReplyMapper {
 

@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.ssd.petMate.dao.ReplyDao;
+import com.ssd.petMate.dao.InfoReplyDao;
 import com.ssd.petMate.dao.mybatis.mapper.InfoReplyMapper;
 import com.ssd.petMate.domain.InfoReply;
 
 @Repository
-public class MybatisReplyDao implements ReplyDao{
+public class MybatisReplyDao implements InfoReplyDao{
 
 	@Autowired
 	private InfoReplyMapper infoReplyMapper;

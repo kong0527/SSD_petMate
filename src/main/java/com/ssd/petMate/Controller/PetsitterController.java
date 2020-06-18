@@ -1,6 +1,5 @@
 package com.ssd.petMate.Controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.PetsitterLike;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;

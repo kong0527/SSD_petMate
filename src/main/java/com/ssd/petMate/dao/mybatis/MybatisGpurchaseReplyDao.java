@@ -8,11 +8,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.ssd.petMate.dao.GpurchaseReplyDao;
-import com.ssd.petMate.dao.ReplyDao;
 import com.ssd.petMate.dao.mybatis.mapper.GpurchaseReplyMapper;
-import com.ssd.petMate.dao.mybatis.mapper.InfoReplyMapper;
 import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.InfoReply;
 
 @Repository
 public class MybatisGpurchaseReplyDao implements GpurchaseReplyDao{

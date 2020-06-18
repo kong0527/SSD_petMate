@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 
