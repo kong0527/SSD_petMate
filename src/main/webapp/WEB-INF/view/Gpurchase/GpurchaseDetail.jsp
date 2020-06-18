@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ include file="GpurchaseReply.jsp" %>
 <div class="site-section">
 	<div class="container">
 		<div class="row">
@@ -54,142 +54,34 @@
 					<a href="gpurchase"><input type="button" value="목록" class="btn" /></a>
 				</div>
 
-				<!-- comment 작성 부분 -->
-				<div class="comment-form-wrap pt-5">
-					<div class="section-title">
-						<h2 class="mb-5">Leave a comment</h2>
-					</div>
-					<form action="#" class="p-5 bg-light">
-						<div class="form-group">
-							<label for="message">&nbsp&nbsp댓글 쓰기</label>
-							<textarea name="" id="message" cols="10" rows="5"
-								class="form-control"></textarea>
+				<!-- comment 작성 부분 -->				
+				<c:if test="${userID ne null}">
+					<div class="comment-form-wrap pt-5">
+						<div class="section-title">
+							<h2 class="mb-5">Leave a comment</h2>
 						</div>
-						<div class="form-group">
-							<input type="submit" value="등록" class="btn btn-primary py-3">
-						</div>
-					</form>
-				</div>
+	       				<form id="replyForm" class="p-5 bg-light">
+				           <div class="form-group">
+				           	   <input type="hidden" name="boardNum" id="boardNum" value="${gpurchase.boardNum}"/>
+				               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
+				               <div class="form-group">	
+				               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
+				               </div>
+				            </div>
+				        </form>
+			    	</div>
+			    </c:if>
 
 				<!-- comment 시작 부분 -->
 
 				<div class="pt-5">
-					<div class="section-title">
-						<h2 class="mb-5">6 Comments</h2>
+					<div class="replySection-title">
+						<h2 class="mb-5">Comments</h2>
 					</div>
 					<ul class="comment-list">
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-
-							<ul class="children">
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image placeholder">
-									</div>
-									<div class="comment-body">
-										<h3>Jean Doe</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-											vitae autem, eum officia, fugiat saepe enim sapiente iste
-											iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-
-
-									<ul class="children">
-										<li class="comment">
-											<div class="vcard bio">
-												<img src="images/person_1.jpg" alt="Image placeholder">
-											</div>
-											<div class="comment-body">
-												<h3>Jean Doe</h3>
-												<div class="meta">January 9, 2018 at 2:21pm</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-													elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-													vitae autem, eum officia, fugiat saepe enim sapiente iste
-													iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-												<p>
-													<a href="#" class="reply">Reply</a>
-												</p>
-											</div>
-
-											<ul class="children">
-												<li class="comment">
-													<div class="vcard bio">
-														<img src="images/person_1.jpg" alt="Image placeholder">
-													</div>
-													<div class="comment-body">
-														<h3>Jean Doe</h3>
-														<div class="meta">January 9, 2018 at 2:21pm</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit. Pariatur quidem laborum necessitatibus, ipsam
-															impedit vitae autem, eum officia, fugiat saepe enim
-															sapiente iste iure! Quam voluptas earum impedit
-															necessitatibus, nihil?</p>
-														<p>
-															<a href="#" class="reply">Reply</a>
-														</p>
-													</div>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
+						<div id="replyList"></div>
 					</ul>
 					<!-- END comment-list -->
-
 				</div>
 			</div>
 		</div>

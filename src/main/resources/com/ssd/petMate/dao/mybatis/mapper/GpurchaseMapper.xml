@@ -54,13 +54,17 @@
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
  		INSERT
  		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'YYYYMMDDHH24MISS'), TO_DATE(#{edate},'YYYYMMDDHH24MISS'), #{goalNum,jdbcType=NUMERIC})
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC})
  	</insert>
 	
 	<!-- 공동구매 게시글 수정하기  -->
 	<update id="updateGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
-		UPDATE Gpurchase
-		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}, cartAdded = #{cartAdded}
+		UPDATE Gpurchase SET 
+		boardTitle = #{boardTitle}, 
+		boardContent = #{boardContent}, 
+		boardDate = SYSDATE,
+		boardImage = #{boardImage,jdbcType=VARCHAR}, 
+		price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
 
@@ -77,31 +81,17 @@
 		WHERE boardNum = #{boardNum}
 	</select>
 	
-	<!-- 공동구매 장바구니 추가(장바구니 수 증가) -->
-	<update id="gpurchaseCartPlus" parameterType="int">
+	<!-- 공동구매 장바구니 업데이트 -->
+	<update id="gpurchaseCartUpdate" parameterType="com.ssd.petMate.domain.Gpurchase">
 		UPDATE Gpurchase
-		SET cartAdded = cartAdded + 1
+		SET cartAdded = #{cartAdded}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 공동구매 장바구니 삭제(장바구니 수 감소) -->
-	<update id="gpurchaseCartMinus" parameterType="int">
+	<!-- 공동구매 댓글 업데이트 -->
+	<update id="gpurchaseReplyCntUdate" parameterType="com.ssd.petMate.domain.Gpurchase">
 		UPDATE Gpurchase
-		SET cartAdded = cartAdded - 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 공동구매 댓글 추가 -->
-	<update id="gpurchaseReplyCntPlus" parameterType="int">
-		UPDATE Gpurchase
-		SET replyCnt = replyCnt + 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 공동구매 댓글 삭제-->
-	<update id="gpurchaseReplyCntMinus" parameterType="int">
-		UPDATE Gpurchase
-		SET replyCnt = replyCnt - 1
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

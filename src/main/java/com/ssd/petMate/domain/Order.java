@@ -9,6 +9,7 @@ public class Order {
 	private String cardNum;
 	private String cvc;
 	private String address;
+	private String expireDate;
 	
 	public int getOrderNum() {
 		return OrderNum;
@@ -58,6 +59,11 @@ public class Order {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getExpireDate() {
+		return expireDate;
+	}
+	public void setExpireDate(String expireDate) {
+		this.expireDate = expireDate;
+	}
 	
-
 }

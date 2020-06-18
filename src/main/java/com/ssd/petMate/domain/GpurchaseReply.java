@@ -1,14 +1,17 @@
 package com.ssd.petMate.domain;
 
-public class GpurchaseReply {
+import java.io.Serializable;
+
+public class GpurchaseReply implements Serializable{
 	private String userID;
 	private int boardNum;
 	private int replyNum;
-	private String boardDate;
-	private String boardContent;
+	private String replyDate;
+	private String replyContent;
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
+	
 	public String getUserID() {
 		return userID;
 	}
@@ -27,17 +30,17 @@ public class GpurchaseReply {
 	public void setReplyNum(int replyNum) {
 		this.replyNum = replyNum;
 	}
-	public String getBoardDate() {
-		return boardDate;
+	public String getReplyDate() {
+		return replyDate;
 	}
-	public void setBoardDate(String boardDate) {
-		this.boardDate = boardDate;
+	public void setReplyDate(String replyDate) {
+		this.replyDate = replyDate;
 	}
-	public String getBoardContent() {
-		return boardContent;
+	public String getReplyContent() {
+		return replyContent;
 	}
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
+	public void setReplyContent(String replyContent) {
+		this.replyContent = replyContent;
 	}
 	public int getReplyGID() {
 		return replyGID;

@@ -5,23 +5,26 @@
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseReplyMapper">
   <cache />
   	<!-- 댓글 리스트 가져오기  -->
-	<select id="getReplyList" parameterType="Integer">
+	<select id="getReplyList" parameterType="int" resultType="com.ssd.petMate.domain.GpurchaseReply" flushCache="false" useCache="true">
 		SELECT *
 		FROM GpurchaseReply
 		WHERE boardNum = #{baordNum}
-		ORDER BY IF(replyParents = 0, replyNum, replyParents) ASC
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+		ORDER BY 
+		CASE
+			WHEN replyParents = 0 THEN replyNum
+			ELSE replyParents
+			END, replyNum
 	</select>
 	
 	<!-- 댓글 삽입하기  -->
-	<insert id="insertReply" parameterType="GpurchaseReply">
+	<insert id="insertReply" parameterType="com.ssd.petMate.domain.GpurchaseReply">
  		INSERT 
 		INTO GpurchaseReply(boardNum, replyContent, userID, replyDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{replyContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
+		VALUES(#{boardNum}, #{replyContent}, #{userID}, SYSDATE, #{replyGID, jdbcType=NUMERIC}, #{replyOrder, jdbcType=NUMERIC}, #{replyParents, jdbcType=NUMERIC}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->
-	<update id="updateReply" parameterType="GpurchaseReply">
+	<update id="updateReply" parameterType="com.ssd.petMate.domain.GpurchaseReply">
 		UPDATE GpurchaseReply SET
 		replyContent = #{replyContent}
 		WHERE replyNum = #{replyNum}
@@ -35,14 +38,14 @@
 	</delete>
 
 	<!-- 댓글 상세정보 가져오기  -->
-	<select id="getReply" parameterType="Integer">
+	<select id="replyDetail" parameterType="Integer" resultType="com.ssd.petMate.domain.GpurchaseReply">
 		SELECT *
 		FROM GpurchaseReply
 		WHERE replyNum = #{replyNum}
 	</select>
 	
 	<!-- 게시글에 달린 댓글 수   -->
-	<select id="replyCount" parameterType="Integer" resultType="Integer">
+	<select id="replyCnt" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
 		FROM GpurchaseReply
 		WHERE boardNum = #{boardNum}
@@ -60,16 +63,16 @@
 <!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
 	<!-- 마지막 댓글 ID 찾아오기  -->
 	<!-- 페이징을 위해서 필요  -->
-	<select id="findLastReplyID" resultType="Integer">
+<!-- 	<select id="findLastReplyID" resultType="Integer">
 		SELECT replyNum
 		FROM GpurchaseReply
 		ORDER BY replyNum DESC LIMIT 1;
 	</select>
 	
-	<!-- 같은 GID를 가진 댓글 수 찾아오기 -->
+	같은 GID를 가진 댓글 수 찾아오기
 	<select id="countSameGID" resultType="Integer" parameterType="Integer">
 		SELECT COUNT(*)
 		FROM GpurchaseReply
 		WHERE replyGID = #{replyNum}
-	</select>
+	</select> -->
 </mapper>

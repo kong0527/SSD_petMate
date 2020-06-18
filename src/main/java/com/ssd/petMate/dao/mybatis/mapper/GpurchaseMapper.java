@@ -23,14 +23,11 @@ public interface GpurchaseMapper {
 	
 	public void deleteGpurchase(int boardNum); //게시글 삭제
 	
-	public void gpurchaseReplyCntPlus(int boardNum); //덧글수 증가
+	public void gpurchaseBoardHitPlus(int boardNum); //조회수 증가
 	
-	public void gpurchaseReplyCntMinus(int boardNum); //덧글수 감소
+	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase); //덧글수 업데이틑
 	
-	public void gpurchaseBoardHitPluss(int boardNum); //조회수 증가
+	public void gpurchaseCartUpdate(Gpurchase gpurchase); //장바구니 담은 수 업데이트
 	
-	public void gpurchaseCartPlus(int boardNum); //장바구니 담은 수 증가
-	
-	public void gpurchaseCartMinus(int boardNum); //장바구니 담은 수 감소
 	
 }

@@ -1,5 +1,6 @@
 package com.ssd.petMate.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +27,8 @@ import com.ssd.petMate.service.GpurchaseFacade;
 
 
 @Controller
-public class gpurchaseController {	
+@SessionAttributes("cartList")
+public class GpurchaseController {	
 	
 	@Autowired
 	private GpurchaseFacade gpurchaseImpl;
@@ -48,6 +51,7 @@ public class gpurchaseController {
 		}
 	}
 	
+
 	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseList(ModelAndView mv,
@@ -127,6 +131,7 @@ public class gpurchaseController {
 		return "redirect:/gpurchase";
 	}
 	
+	//공구게시판 장바구니 목록
 	@GetMapping("/gpurchaseCart")
 	public ModelAndView gpurchaseCartList(ModelAndView mv, HttpServletRequest request) {
 		String userID = (String) request.getSession().getAttribute("userID");
@@ -193,9 +198,23 @@ public class gpurchaseController {
 		return "redirect:/gpurchaseCart";
 	}	
 	
-	
-	
-	
+	@RequestMapping(value = "/gpurchaseOrderForm", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView gpurchaseOrderForm(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList,ModelAndView mv) {
+		System.out.println("orderForm enter;");
+		int i;
+		Gpurchase gpurchase;
+		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
+		for(i = 0; i < gpurchaseCartList.size(); i++) {
+			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
+			cartList.add(gpurchase);
+		}
+		mv.addObject("cartList",cartList);
+		mv.setViewName("order/paymentForm");
+		return mv;
+	}
+
+
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {
