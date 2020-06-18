@@ -6,12 +6,10 @@ public class Info {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
-	@NotBlank
 	private String boardContent;
 	private int boardLike;
 	private int boardHit;
 	private int replyCnt;
-	@NotBlank
 	private String boardTitle;
 	private String boardImage;
 	

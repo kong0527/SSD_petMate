@@ -27,11 +27,6 @@ public class PetsitterValidator implements Validator {
 			errors.rejectValue("boardTitle", "long");
 		}
 		
-		//게시글 내용 길이
-		if (petsitter.getBoardContent().length() >  1500) {
-			errors.rejectValue("boardContent", "long2");
-		}
-		
 		//펫시터 게시판 옵션 체크
 		if (Integer.parseInt(petsitter.getPetSize()) == 0) {
 			errors.rejectValue("sizeCodes", "check");

@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script>
-console.log('tq')
-console.log(${petsitter.boardNum})
-</script>
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -13,7 +9,7 @@ console.log(${petsitter.boardNum})
 				<div class="section-title mb-5">
 					<h2>펫시터 구인 폼</h2>
 				</div>
-				<form:form name="form" modelAttribute="petsitter" action="petsitterInsert" method="post">
+				<form:form name="form" modelAttribute="petsitter" action="petsitterForm" method="post">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -105,17 +101,14 @@ console.log(${petsitter.boardNum})
 					<c:choose>
 						<c:when test="${not empty petsitter.boardNum}">
 							<div class="pt-5" align="right">
-								<form>
-									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-									<button type="submit" formaction="petsitterUpdate"
-									class="btn">수정</button>
-								</form>
+									<input type="hidden" id="boardNum" name="boardNum" value="${petsitter.boardNum}"/>
+									<button type="submit" class="btn" id="btn">수정</button>
 							</div>
 						</c:when>
 						<c:when test="${empty petsitter.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+									<button type="submit" value="등록" class="btn" id="btn">등록</button>
 								</div>
 							</div>
 						</c:when>
@@ -135,19 +128,24 @@ console.log(${petsitter.boardNum})
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "message",
+		elPlaceHolder: "boardContent",
 		sSkinURI: "resources/se2/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
 
-	function sumSize() {
-		var sum = 0;
-		for (var i = 0; i < 3; i++) {
-			if (document.getElementsByName("petSize")[i].checked) {
-				alert(document.getElementsByName("petSize")[i]);
-				sum += parseInt(document.getElementsByName("petSize")[i].value);
-			}
-		}
-		document.getElementsByName("sumSize").value = sum;
-	}
+	 $(document).on('click', '#btn', function(e){
+         oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	      var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
+	      if(text ==""){
+	         alert("글 내용을 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      if(text.length > 1500){
+	         alert("글 내용은 1500자 내로 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      $("#form").submit();
+     });
 </script>

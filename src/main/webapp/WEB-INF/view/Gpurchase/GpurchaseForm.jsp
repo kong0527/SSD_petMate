@@ -85,7 +85,6 @@
 								</div>
 							</div>
 						</c:when>
-						
 					</c:choose>
 				</form:form>
 				

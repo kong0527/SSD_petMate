@@ -9,7 +9,7 @@
 				<div class="section-title mb-5">
 					<h2>정보게시판 글쓰기 폼</h2>
 				</div>
-				<form:form modelAttribute="info" action="infoInsert" method="post">
+				<form:form modelAttribute="info" action="infoForm" method="post">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -25,22 +25,20 @@
 							<form:errors path="boardContent" />
 						</div>
 					</div>
-
 					<c:choose>
 						<c:when test="${0 ne info.boardNum}">
 							<div class="pt-5" align="right">
 								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${info.boardNum}"/>
-									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-									<button type="submit" formaction="infoUpdate"
-									class="btn">수정</button>
+									<button type="submit" class="btn" id="btn">수정</button>
 								</form>
 							</div>
 						</c:when>
+						
 						<c:when test="${0 eq info.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+									<input type="submit" value="등록" class="btn btn-primary py-3 px-5" id="btn">
 								</div>
 							</div>
 						</c:when>
@@ -59,5 +57,18 @@
 		fCreator: "createSEditor2"
 	});
 	$(document).on('click', '#btn', function(e){
-	      oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);   });
+	      oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	      var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
+	      if(text == ""){
+	         alert("글 내용을 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      if(text.length > 1000){
+	         alert("글 내용은 1000자 내로 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      $("#form").submit();
+	});
 </script>

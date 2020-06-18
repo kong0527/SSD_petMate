@@ -44,9 +44,15 @@
 				<div class="pt-5" align="right">
 					<form>
 						<input type="hidden" id="boardNum" name="boardNum" value="${petsitter.boardNum}"/>
-						<button type="submit" formaction="petsitterUpdate"
-							class="btn">수정</button>
-						<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" />
+						<c:if test="${sessionScope.userID ne null}">
+							<c:if test="${sessionScope.userID eq petsitter.userID}">
+								<button type="submit" formaction="petsitterForm" class="btn">수정</button>
+								<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" />
+							</c:if>
+							<c:if test="${sessionScope.userID eq 'admin'}">
+								<input type="button" class="btn" value="삭제" onclick="del(${petsitter.boardNum})" />
+							</c:if>
+						</c:if>
 					</form>
 				</div>
 
@@ -54,10 +60,23 @@
 					<!-- <a href="secondhandDetail/likePlus">
 						<img src="resources/img/love.png" border="0" class="zoom"></a> -->
 						<!-- 수정 필요 -->
-						<c:if test="${userID ne null && sessionScope.userID ne petsitter.userID}">
-							<a href="javascript:void(0);" onclick="checkLike();">
+						
+						<c:if test="${sessionScope.userID eq null}">
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
 								<img src="resources/img/love.png" border="0" class="zoom">
 							</a>
+						</c:if>
+						<c:if test="${sessionScope.userID ne null}">
+							<c:if test="${sessionScope.userID ne petsitter.userID}">
+								<a href="javascript:void(0);" onclick="checkLike();">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.userID eq petsitter.userID}">
+								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
 						</c:if>
 						<div id="boardLike">
 							추천 수 : ${petsitter.boardLike}
@@ -66,9 +85,8 @@
 				<div class="pt-5" align="center">
 					<a href="petsitterList"><input type="button" value="목록" class="btn" /></a>
 				</div>
-
+				
 				<!-- comment 작성 부분 -->
-				<c:if test="${userID ne null}">
 					<div class="comment-form-wrap pt-5">
 						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
@@ -77,13 +95,18 @@
 				           <div class="form-group">
 				           	   <input type="hidden" name="boardNum" id="boardNum" value="${petsitter.boardNum}"/>
 				               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
-				               <div class="form-group">	
-				               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
-				               </div>
+				               <c:if test="${sessionScope.userID ne null}">
+					               <div class="form-group">	
+					               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
+					               </div>
+				               </c:if>
+				               <c:if test="${sessionScope.userID eq null}">
+				               		<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="button" class="btn" value="글 작성" /></a>
+				               </c:if>
 				            </div>
 				        </form>
 			    	</div>
-			    </c:if>
+
 
 				<!-- comment 시작 부분 -->
 				<div class="pt-5">
