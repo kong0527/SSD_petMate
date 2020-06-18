@@ -17,38 +17,39 @@
                 * 
                 FROM 
                 gpurchase
+                <where>
+		        	<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            	boardTitle LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            	boardContent LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='userID' and keyword != null and keyword != ''">
+		            	userID LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		      	</where>
                 ORDER BY boardNum ASC 
             )gpurchase)
             WHERE NUM BETWEEN #{startList} AND #{endList}
-			<if test="searchType=='boardTitle' and keyword != null">
-				and boardTitle LIKE '%' ||  #{keyword} || '%'
-			</if>
-			<if test="searchType=='boardContent' and keyword != null">
-				and boardContent LIKE '%' ||  #{keyword} || '%'
-			</if>
-			<if test="searchType=='userID' and keyword != null">
-				and userID LIKE '%' ||  #{keyword} || '%'
-			</if>
-				<!-- WHERE NUM BETWEEN #{startList} AND #{endList} -->
 	</select>
-	
+
 	<!-- 공동구매 게시글 수 -->
-	<select id="getGpurchaseBoardCount" resultType="int" parameterType="HashMap">
+	<select id="getGpurchaseBoardCount" resultType="int"
+		parameterType="HashMap">
 		SELECT COUNT(*)
 		FROM Gpurchase
 		<where>
 			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
-				and boardTitle LIKE '%' ||  #{keyword} || '%'
+				boardTitle LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
-				and boardContent LIKE '%' ||  #{keyword} || '%'
+				boardContent LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="searchType=='userID' and keyword != null and keyword != ''">
-				and userID LIKE '%' ||  #{keyword} || '%'
+				userID LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
 	</select>
-	
 	
 	<!-- 공동구매 게시글 삽입하기  -->
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">

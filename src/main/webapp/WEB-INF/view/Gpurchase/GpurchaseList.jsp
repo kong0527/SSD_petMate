@@ -41,17 +41,7 @@
 				</tr>
 			</table>
 		</div>
-		
-		<div class="d-flex justify-content-center" >
-				<select class="form-control form-control-sm" name="searchType" id="searchType" style="width : 10%">
-					<option value="boardTitle">글 제목</option>
-					<option value="boardContent">글 내용</option>
-					<option value="userID">작성자</option>
-				</select>
-	            <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
-	            <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
-       </div>
-       
+		   
        <div class="pagination-row" style="text-align: center;">
 			<ul class="custom-pagination list-unstyled">
 				<c:if test="${boardSearch.prev}">
@@ -81,6 +71,17 @@
 				</c:if>
 			</ul>
 		</div>
+		
+		<!-- 검색  -->
+		<div class="d-flex justify-content-center" >
+			<select class="form-control form-control-sm" name="searchType" id="searchType" style="width : 10%">
+				<option value="boardTitle">글 제목</option>
+				<option value="boardContent">글 내용</option>
+				<option value="userID">작성자</option>
+			</select>
+	        <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
+	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
+       </div>
 	</div>
 </div>
 
