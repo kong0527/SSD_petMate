@@ -2,7 +2,7 @@ package com.ssd.petMate.Controller;
 
 import javax.validation.constraints.NotEmpty;
 
-public class LoginCommand {
+public class SignInCommand {
 	@NotEmpty 
 	private String userID;
 	@NotEmpty

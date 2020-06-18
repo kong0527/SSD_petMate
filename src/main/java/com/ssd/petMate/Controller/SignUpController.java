@@ -62,7 +62,7 @@ public class SignUpController {
 		if (result.hasErrors()) return formViewName;
 		
 		if (!regCommand.isSamePwdConfirmPwd()) {
-			result.rejectValue("confirmPwd", "notSame", "암호가 일치하지 않습니다."); // 이거 수정해야 함
+			result.rejectValue("confirmPwd", "notSame", "암호가 일치하지 않습니다.");
 			return formViewName;
 		}
 		
