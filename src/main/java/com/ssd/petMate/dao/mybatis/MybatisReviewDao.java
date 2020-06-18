@@ -33,6 +33,14 @@ public class MybatisReviewDao implements ReviewDao {
 		reviewMapper.insertBoard(review);
 	}
 	
+	public void updateBoard(Review review) throws DataAccessException{
+		reviewMapper.updateBoard(review);
+	}
+	
+	public void deleteBoard(int boardNum) throws DataAccessException{
+		reviewMapper.deleteBoard(boardNum);
+	}
+	
 	public void updateLike(Review review) throws DataAccessException {
 		reviewMapper.updateLike(review);
 	}

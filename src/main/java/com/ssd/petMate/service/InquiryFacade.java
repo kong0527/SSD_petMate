@@ -11,6 +11,8 @@ public interface InquiryFacade {
 	int boardPageCount(HashMap<String, Object> map);
 	Inquiry boardDetail(int boardNum);
 	public void insertBoard(Inquiry inquiry); //게시글 작성
+	public void updateBoard(Inquiry inquiry);
+	public void deleteBoard(int boardNum);
 	void updateLike(Inquiry inquiry);
 	void updateReplyCnt(Inquiry inquiry);
 }

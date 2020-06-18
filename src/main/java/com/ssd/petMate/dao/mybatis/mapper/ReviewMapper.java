@@ -3,6 +3,7 @@ package com.ssd.petMate.dao.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.page.BoardSearch;
 

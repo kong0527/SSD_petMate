@@ -1,5 +1,8 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 public class Review {
 	private int boardNum;
 	private String boardDate;
@@ -8,6 +11,7 @@ public class Review {
 	private int boardLike;
 	private int boardHit;
 	private int replyCnt;
+	@NotBlank
 	private String boardTitle;
 	private String boardImage;
 	private double rating;

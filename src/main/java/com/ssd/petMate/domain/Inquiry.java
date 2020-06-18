@@ -1,5 +1,7 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Inquiry {
 	private int boardNum;
 	private String boardDate;
@@ -8,6 +10,7 @@ public class Inquiry {
 	private int boardLike;
 	private int boardHit;
 	private int answerCnt;
+	@NotEmpty
 	private String boardTitle;
 	private String boardImage;
 	private boolean isSelected;

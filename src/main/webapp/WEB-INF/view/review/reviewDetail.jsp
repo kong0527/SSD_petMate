@@ -19,17 +19,39 @@
 				
 				
 				<!-- 추가 -->
-		<div class="pt-5" align="right">
-			<button type="submit" formaction="reviewDetail/edit" class="btn">수정</button>
-			<button type="submit" formaction="reviewDetail/delete" class="btn">삭제</button>
-		</div>
+				<div class="pt-5" align="right">
+					<form>
+						<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
+						<c:if test="${sessionScope.userID ne null}">
+							<c:if test="${sessionScope.userID eq review.userID}">
+								<button type="submit" formaction="reviewForm" class="btn">수정</button>
+								<input type="button" class="btn" value="삭제" onclick="del(${review.boardNum})" />
+							</c:if>
+							<c:if test="${sessionScope.userID eq 'admin'}">
+								<input type="button" class="btn" value="삭제" onclick="del(${review.boardNum})" />
+							</c:if>
+						</c:if>
+					</form>
+				</div>
 
-		<div class="pt-5" align="center">
+				<div class="pt-5" align="center">
 						<!-- 수정 필요 -->
-						<c:if test="${userID ne null && sessionScope.userID ne review.userID}">
-							<a href="javascript:void(0);" onclick="checkLike();">
+						<c:if test="${sessionScope.userID eq null}">
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
 								<img src="resources/img/love.png" border="0" class="zoom">
 							</a>
+						</c:if>
+						<c:if test="${sessionScope.userID ne null}">
+							<c:if test="${sessionScope.userID ne review.userID}">
+								<a href="javascript:void(0);" onclick="checkLike();">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.userID eq review.userID}">
+								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
 						</c:if>
 						<div id="boardLike">
 							추천 수 : ${review.boardLike}
@@ -39,23 +61,26 @@
 					<a href="review"><input type="button" value="목록" class="btn" /></a>
 				</div>
 
-				<!-- comment 작성 부분 -->				
-				<c:if test="${userID ne null}">
+				<!-- comment 작성 부분 -->
 					<div class="comment-form-wrap pt-5">
-						<div class="section-title">
+						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
 						</div>
 	       				<form id="replyForm" class="p-5 bg-light">
 				           <div class="form-group">
 				           	   <input type="hidden" name="boardNum" id="boardNum" value="${review.boardNum}"/>
 				               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
-				               <div class="form-group">	
-				               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
-				               </div>
+				               <c:if test="${sessionScope.userID ne null}">
+					               <div class="form-group">	
+					               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
+					               </div>
+				               </c:if>
+				               <c:if test="${sessionScope.userID eq null}">
+				               		<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="button" class="btn" value="글 작성" /></a>
+				               </c:if>
 				            </div>
 				        </form>
 			    	</div>
-			    </c:if>
 				<!-- comment 시작 부분 -->
 				<div class="pt-5">
 					<div class="replySection-title">
@@ -92,4 +117,10 @@
 			}
 		});
 	}
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='reviewDelete?boardNum='+boardNum;
+		}
+	}	
 </script>

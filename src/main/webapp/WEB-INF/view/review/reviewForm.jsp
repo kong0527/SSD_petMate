@@ -9,11 +9,12 @@
 				<div class="section-title mb-5">
 					<h2>리뷰 폼</h2>
 				</div>
-				<form:form modelAttribute="review" action="reviewInsert" method="post">
+				<form:form modelAttribute="review" action="reviewForm" method="post">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label>
 							<form:input path="boardTitle" class="form-control form-control-lg" />
+							<form:errors path="boardTitle" />
 						</div>
 					</div>
 
@@ -71,15 +72,25 @@
 							<label for="boardContent">글 쓰기</label>
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
 								class="form-control" style="width:120%"></form:textarea>
+							<form:errors path="boardContent" />
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="col-12">
-							<input type="submit" value="등록"
-								class="btn btn-primary py-3 px-5" id="btn">
-						</div>
-					</div>
+					
+					<c:choose>
+						<c:when test="${not empty review.boardNum}">
+							<div class="pt-5" align="right">
+									<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
+									<button type="submit" class="btn" id="btn">수정</button>
+							</div>
+						</c:when>
+						<c:when test="${empty review.boardNum}">
+							<div class="row" align="right">
+								<div class="col-12">
+									<button type="submit" value="등록" class="btn" id="btn">등록</button>
+								</div>
+							</div>
+						</c:when>
+					</c:choose>
 				</form:form>
 			</div>
 		</div>
@@ -94,7 +105,20 @@
 		fCreator: "createSEditor2"
 	});
 	$(document).on('click', '#btn', function(e){
-	      oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);   });
+	      oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	      var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
+	      if(text ==""){
+	         alert("글 내용을 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      if(text.length >= 1500){
+	         alert("글 내용은 1500자 내로 입력해 주세요.");
+	         oEditors.getById["boardContent"].exec("FOCUS");
+	         return false;
+	      } 
+	      $("#form").submit();
+	});
 
 	$(document).on('click', '#starRating span', function(e){
 		  $(this).parent().children('span').removeClass('on');

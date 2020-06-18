@@ -3,6 +3,9 @@ package com.ssd.petMate.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -11,6 +14,8 @@ public interface ReviewFacade {
 	int boardPageCount(HashMap<String, Object> map);
 	Review boardDetail(int boardNum);
 	public void insertBoard(Review review); //게시글 작성
+	public void updateBoard(Review review) throws DataAccessException; //게시글 수정
+	public void deleteBoard(int boardNum) throws DataAccessException; //게시글 삭제
 	void updateLike(Review review);
 	void updateReplyCnt(Review review);
 }

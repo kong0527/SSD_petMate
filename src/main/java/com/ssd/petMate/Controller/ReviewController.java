@@ -4,9 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +26,8 @@ import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.ReviewLikeFacade;
+import com.ssd.petMate.service.UserImpl;
 import com.ssd.petMate.service.ReviewFacade;
-import com.ssd.petMate.service.ReviewReplyFacade;
 
 @Controller
 public class ReviewController {
@@ -32,26 +38,20 @@ public class ReviewController {
 	@Autowired
 	private ReviewLikeFacade reviewLikeFacade;
 	
-	@ModelAttribute("review")
-	public Review formBacking(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Review review = new Review();
-			return review;
-		}
-		else return new Review();
-	}
+	@Autowired
+	 private UserImpl userService;
 	
-	@PostMapping("/reviewInsert")
-	public String reviewInsert(@ModelAttribute("review") Review review, SessionStatus sessionStatus, HttpServletRequest request) {
-		sessionStatus.setComplete();
-		String title = request.getParameter("boardTitle");
-		String content = request.getParameter("boardContent");
-		System.out.println(title);
-		System.out.println(content);
-		review.setUserID("test1");
-		review.setBoardTitle(title);
-		review.setBoardContent(content);
-		reviewFacade.insertBoard(review);
+	 @ModelAttribute("reviewChk")
+	   public int reviewChk(HttpServletRequest request) {
+	      if (request.getSession().getAttribute("userID") != null) {
+	         return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+	      }
+	      return -1;
+	   }
+	
+	@RequestMapping(value = "/reviewDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String reviewDelete(@RequestParam("boardNum") int boardNum) {
+		reviewFacade.deleteBoard(boardNum);
 		return "redirect:/review";
 	}
 	
@@ -62,12 +62,6 @@ public class ReviewController {
 		System.out.println(view);
 		mv.addObject("review", reviewFacade.boardDetail(boardNum));
 		mv.setViewName("review/reviewDetail");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/reviewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView reviewForm(ModelAndView mv) {
-		mv.setViewName("review/reviewForm");
 		return mv;
 	}
 	
@@ -94,6 +88,7 @@ public class ReviewController {
 		List<Review> reviewList = reviewFacade.getAllBoard(boardSearch);
 
 		mv.addObject("reviewList", reviewList);
+		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("review/reviewList");
 		return mv;
 	}
