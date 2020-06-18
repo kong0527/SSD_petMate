@@ -26,4 +26,6 @@ public interface PetsitterFacade {
 	void updateReplyCnt(Petsitter petsitter);
 	
 	void updateBoard(Petsitter petsitter) throws DataAccessException; //게시글 수정
+	
+	void updateViews(int boardNum); //조회수 증가
 }

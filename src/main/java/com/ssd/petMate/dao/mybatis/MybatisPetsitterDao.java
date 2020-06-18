@@ -54,4 +54,9 @@ public class MybatisPetsitterDao implements PetsitterDao{
 		petsitterMapper.updateBoard(petsitter);
 		
 	}
+
+	@Override
+	public void updateViews(int boardNum) {
+		petsitterMapper.updateViews(boardNum);
+	}
 }

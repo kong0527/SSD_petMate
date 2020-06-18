@@ -12,7 +12,7 @@ import com.ssd.petMate.dao.mybatis.mapper.InfoReplyMapper;
 import com.ssd.petMate.domain.InfoReply;
 
 @Repository
-public class MybatisReplyDao implements InfoReplyDao{
+public class MybatisInfoReplyDao implements InfoReplyDao{
 
 	@Autowired
 	private InfoReplyMapper infoReplyMapper;

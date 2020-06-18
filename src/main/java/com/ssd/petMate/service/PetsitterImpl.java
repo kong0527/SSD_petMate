@@ -57,4 +57,9 @@ public class PetsitterImpl implements PetsitterFacade {
 		petsitterDao.updateBoard(petsitter);	
 	}
 
+	@Override
+	public void updateViews(int boardNum) {
+		petsitterDao.updateViews(boardNum);
+	}
+
 }

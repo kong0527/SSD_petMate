@@ -66,7 +66,8 @@ public class PetsitterController {
    
       @RequestMapping(value = "/petsitterDetail", method = { RequestMethod.GET, RequestMethod.POST })
       public ModelAndView petsitterDetail(ModelAndView mv, @RequestParam("boardNum") int boardNum) {
-         Petsitter view = petsitterFacade.boardDetail(boardNum);
+         petsitterFacade.updateViews(boardNum);
+    	 Petsitter view = petsitterFacade.boardDetail(boardNum);
          String size;
          String day;
          System.out.println(view);

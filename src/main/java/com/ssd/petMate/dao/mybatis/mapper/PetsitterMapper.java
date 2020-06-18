@@ -36,4 +36,6 @@ public interface PetsitterMapper {
 	public void updateLike(Petsitter petsitter);
 	
 	public void updateReplyCnt(Petsitter petistter);
+	
+	void updateViews(int boardNum); //조회수 증가
 }

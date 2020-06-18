@@ -31,19 +31,19 @@
                 * 
                 FROM 
                 Petsitter
+                <where>
+		        	<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            	boardTitle LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            	boardContent LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='userID' and keyword != null and keyword != ''">
+		            	userID LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		      	</where>
                 ORDER BY boardNum ASC 
-            )petsitter)
-			<where>
-				<if test="searchType=='boardTitle' and keyword != null">
-					and boardTitle LIKE CONCAT('%',#{keyword},'%')
-				</if>
-				<if test="searchType=='boardContent' and keyword != null">
-					and boardContent LIKE CONCAT('%',#{keyword},'%')
-				</if>
-				<if test="searchType=='userID' and keyword != null">
-					and userID LIKE CONCAT('%',#{keyword},'%')
-				</if>
-			</where>
+            )petsitter)                
 		WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 
@@ -98,7 +98,7 @@
 	</update>
 	
 	<!-- 조회수 증가 -->
-	<update id="boardViews" parameterType="int">
+	<update id="updateViews" parameterType="int">
 		UPDATE Petsitter
 		SET boardHit = boardHit + 1
 		WHERE boardNum = #{boardNum}

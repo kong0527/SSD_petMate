@@ -5,17 +5,17 @@
 	<select id="boardPageCount" resultType="int" parameterType="HashMap">
 	      SELECT COUNT(*)
 	      FROM Info
-	      <where>
-	         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
-	            and boardTitle LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	         <if test="searchType=='boardContent' and keyword != null and keyword != ''">
-	            and boardContent LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	         <if test="searchType=='userID' and keyword != null and keyword != ''">
-	            and userID LIKE CONCAT('%',#{keyword},'%')
-	         </if>
-	      </where>
+		<where>
+			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+				boardTitle LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+				boardContent LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="searchType=='userID' and keyword != null and keyword != ''">
+				userID LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
 	   </select>
 	
 	<!-- 게시글 목록 가져오기 -->
@@ -31,20 +31,20 @@
                 * 
                 FROM 
                 Info
+                <where>
+		        	<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            	boardTitle LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            	boardContent LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='userID' and keyword != null and keyword != ''">
+		            	userID LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		      	</where>
                 ORDER BY boardNum ASC 
             )info)
-			<where>
-				<if test="searchType=='boardTitle' and keyword != null">
-					and boardTitle LIKE CONCAT('%',#{keyword},'%')
-				</if>
-				<if test="searchType=='boardContent' and keyword != null">
-					and boardContent LIKE CONCAT('%',#{keyword},'%')
-				</if>
-				<if test="searchType=='userID' and keyword != null">
-					and userID LIKE CONCAT('%',#{keyword},'%')
-				</if>
-			</where>
-		WHERE NUM BETWEEN #{startList} AND #{endList}
+            WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 
 	<!-- 게시글 작성 -->
