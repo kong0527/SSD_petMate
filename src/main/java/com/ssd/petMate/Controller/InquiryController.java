@@ -24,7 +24,7 @@ import com.ssd.petMate.service.InquiryLikeFacade;
 import com.ssd.petMate.service.UserImpl;
 
 @Controller
-public class inquiryController {
+public class InquiryController {
 	
 	@Autowired
 	private InquiryFacade inquiryFacade;
