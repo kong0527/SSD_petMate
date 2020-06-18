@@ -62,7 +62,7 @@
 		UPDATE Gpurchase SET 
 		boardTitle = #{boardTitle}, 
 		boardContent = #{boardContent}, 
-		boardDate = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi')
+		boardDate = SYSDATE,
 		boardImage = #{boardImage,jdbcType=VARCHAR}, 
 		price = #{price}
 		WHERE boardNum = #{boardNum}
