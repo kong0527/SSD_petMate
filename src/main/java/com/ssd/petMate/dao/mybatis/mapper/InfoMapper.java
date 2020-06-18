@@ -19,7 +19,7 @@ public interface InfoMapper {
 	
 	void deleteBoard(int boardNum); //게시글 삭제
 	
-	void boardViews(int boardNum); //조회수 증가
+	void updateViews(int boardNum); //조회수 증가
 	
 	void updateLike(Info like);
 	

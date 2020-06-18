@@ -71,8 +71,7 @@ public class InfoController {
 	@RequestMapping(value = "/infoDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView infoDetail(ModelAndView mv, 
 			@RequestParam("boardNum") int boardNum) {
-		Info view = infoFacade.boardDetail(boardNum);
-		System.out.println(view);
+		infoFacade.updateViews(boardNum);
 		mv.addObject("info", infoFacade.boardDetail(boardNum));
 		mv.setViewName("info/infoDetail");
 		return mv;

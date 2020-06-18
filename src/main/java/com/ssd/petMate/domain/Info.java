@@ -1,15 +1,18 @@
 package com.ssd.petMate.domain;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 public class Info {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
+//	임시로 해놓은 annotation
+	@NotEmpty
 	private String boardContent;
 	private int boardLike;
 	private int boardHit;
 	private int replyCnt;
+	@NotEmpty 
 	private String boardTitle;
 	private String boardImage;
 	

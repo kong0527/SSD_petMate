@@ -44,12 +44,18 @@ public class InfoImpl implements InfoFacade {
 	}
 
 	@Override
-	public void updateBoard(Info info) throws DataAccessException {
+	public void updateBoard(Info info) {
 		infoDao.updateBoard(info);
 	}
 
 	@Override
 	public void deleteBoard(int boardNum) {
 		infoDao.deleteBoard(boardNum);
+	}
+
+	@Override
+	public void updateViews(int boardNum) {
+		// TODO Auto-generated method stub
+		infoDao.updateViews(boardNum);
 	}
 }

@@ -43,16 +43,14 @@ public class InfoFormController {
 	}
 	
 	@PostMapping("/infoForm")
-	public String infoInsert(@Valid @ModelAttribute("info") Info info, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {
-		sessionStatus.setComplete();
-		
+	public String infoInsert(@Valid @ModelAttribute("info") Info info, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {		
 		//게시글 제목 길이
-		if (info.getBoardTitle().length() > 25) {
-			result.rejectValue("boardTitle", "long");
-		}
-		
-		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardTitle", "blank");
-		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardContent", "blank");
+//		if (info.getBoardTitle().length() > 25) {
+//			result.rejectValue("boardTitle", "long");
+//		}
+//		
+//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardTitle", "blank");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardContent", "blank");
 		
 		if (result.hasErrors()) {
 			return "info/infoForm";

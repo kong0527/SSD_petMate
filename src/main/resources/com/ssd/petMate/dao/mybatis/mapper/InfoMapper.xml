@@ -78,7 +78,7 @@
 	</delete>
 		
 	<!-- 조회수 증가 -->
-	<update id="boardViews" parameterType="int">
+	<update id="updateViews" parameterType="int">
 		UPDATE Info
 		SET boardHit = boardHit + 1
 		WHERE boardNum = #{boardNum}

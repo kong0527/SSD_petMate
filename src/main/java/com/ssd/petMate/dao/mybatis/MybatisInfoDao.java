@@ -50,4 +50,10 @@ public class MybatisInfoDao implements InfoDao {
 	public void deleteBoard(int boardNum) {
 		infoMapper.deleteBoard(boardNum);
 	}
+
+	@Override
+	public void updateViews(int boardNum) {
+		// TODO Auto-generated method stub
+		infoMapper.updateViews(boardNum);
+	}
 }

@@ -23,7 +23,9 @@ public interface InfoFacade {
 	
 	void updateReplyCnt(Info info);
 	
-	void updateBoard(Info info) throws DataAccessException; //게시글 수정
+	void updateBoard(Info info); //게시글 수정
 	
 	void deleteBoard(int boardNum); //게시글 삭제
+	
+	void updateViews(int boardNum);
 }
