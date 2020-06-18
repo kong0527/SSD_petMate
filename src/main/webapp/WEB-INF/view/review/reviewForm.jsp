@@ -9,7 +9,7 @@
 				<div class="section-title mb-5">
 					<h2>리뷰 폼</h2>
 				</div>
-				<form:form modelAttribute="review" action="reviewInsert">
+				<form:form modelAttribute="review" action="reviewForm" method="post">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label>
@@ -77,24 +77,19 @@
 					</div>
 					
 					<c:choose>
-						<c:when test="${0 ne review.boardNum}">
+						<c:when test="${not empty review.boardNum}">
 							<div class="pt-5" align="right">
-								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
-									<button type="submit" formaction="reviewUpdate"
-									class="btn" id="btn">수정</button>
-								</form>
+									<button type="submit" class="btn" id="btn">수정</button>
 							</div>
 						</c:when>
-						
-						<c:when test="${0 eq review.boardNum}">
+						<c:when test="${empty review.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5" id="btn">
+									<button type="submit" value="등록" class="btn" id="btn">등록</button>
 								</div>
 							</div>
 						</c:when>
-						
 					</c:choose>
 				</form:form>
 			</div>
@@ -172,13 +167,6 @@
 		  }
 		  return false;
 	});
-
-	function del(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href='reviewDelete?boardNum='+boardNum;
-		}
-	}	
 </script>
 <style>
 	.starR1{

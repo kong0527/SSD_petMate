@@ -37,7 +37,12 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<a href="inquiryForm"><input type="submit" class="btn" value="글 작성" /></a>
+						<c:if test="${inquiryChk < 0}" >
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
+						<c:if test="${inquiryChk == 0}">
+							<a href="inquiryForm"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
 					</td>
 				</tr>
 			</table>
@@ -73,6 +78,7 @@
 		</div>
 	</div>
 </div>
+</div>
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
@@ -92,5 +98,8 @@
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
+	}
+	function isInquiry(userID) {
+		
 	}
 </script>

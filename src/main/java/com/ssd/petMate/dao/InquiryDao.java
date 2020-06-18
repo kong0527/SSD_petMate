@@ -12,6 +12,8 @@ public interface InquiryDao {
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException;
 	public Inquiry boardDetail(int boardNum) throws DataAccessException;
 	public void insertBoard(Inquiry inquiry); //게시글 작성
+	public void updateBoard(Inquiry inquiry);
+	public void deleteBoard(int boardNum);
 	public void updateLike(Inquiry inquiry) throws DataAccessException;
 	public void updateReplyCnt(Inquiry inquiry) throws DataAccessException;
 }

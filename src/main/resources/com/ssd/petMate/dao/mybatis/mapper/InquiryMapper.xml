@@ -66,8 +66,8 @@
 		UPDATE Inquiry SET
 		boardTitle = #{boardTitle},
 		boardContent = #{boardContent},
-		boardImage = #{boardImage},
-		date = TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi')
+		boardImage =  #{boardImage,jdbcType=VARCHAR}, 
+		boardDate = SYSDATE
 		WHERE boardNum = #{boardNum}
 	</update>
 	

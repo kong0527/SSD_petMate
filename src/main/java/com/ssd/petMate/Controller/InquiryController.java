@@ -21,6 +21,7 @@ import com.ssd.petMate.domain.InquiryLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InquiryFacade;
 import com.ssd.petMate.service.InquiryLikeFacade;
+import com.ssd.petMate.service.UserImpl;
 
 @Controller
 public class inquiryController {
@@ -31,14 +32,16 @@ public class inquiryController {
 	@Autowired
 	private InquiryLikeFacade inquiryLikeFacade;
 	
-	@ModelAttribute("inquiry")
-	public Inquiry formBacking(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Inquiry inquiry = new Inquiry();
-			return inquiry;
-		}
-		else return new Inquiry();
-	}
+	 @Autowired
+	 private UserImpl userService;
+	
+	 @ModelAttribute("inquiryChk")
+	   public int inquiryChk(HttpServletRequest request) {
+	      if (request.getSession().getAttribute("userID") != null) {
+	         return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+	      }
+	      return -1;
+	   }
 	
 	@RequestMapping(value = "/inquiryDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView inquiryDetail(ModelAndView mv, 
@@ -50,21 +53,9 @@ public class inquiryController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/inquiryForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView inquiryForm(ModelAndView mv) {
-		mv.setViewName("inquiry/inquiryForm");
-		return mv;
-	}
-	
-	@PostMapping("/inquiryInsert")
-	public String inquiryInsert(@ModelAttribute("inquiry") Inquiry inquiry, SessionStatus sessionStatus, HttpServletRequest request) {
-		sessionStatus.setComplete();
-		String title = request.getParameter("boardTitle");
-		String content = request.getParameter("boardContent");
-		inquiry.setUserID("test1");
-		inquiry.setBoardTitle(title);
-		inquiry.setBoardContent(content);
-		inquiryFacade.insertBoard(inquiry);
+	@RequestMapping(value = "/inquiryDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String inquiryDelete(@RequestParam("boardNum") int boardNum) {
+		inquiryFacade.deleteBoard(boardNum);
 		return "redirect:/inquiry";
 	}
 	
@@ -91,6 +82,7 @@ public class inquiryController {
 		List<Inquiry> inquiryList = inquiryFacade.getAllBoard(boardSearch);
 
 		mv.addObject("inquiryList", inquiryList);
+		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("inquiry/inquiryList");
 		return mv;
 	}

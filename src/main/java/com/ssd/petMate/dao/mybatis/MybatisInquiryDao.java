@@ -34,6 +34,14 @@ public class MybatisInquiryDao implements InquiryDao {
 		inquiryMapper.insertBoard(inquiry);
 	}
 	
+	public void updateBoard(Inquiry inquiry) {
+		inquiryMapper.updateBoard(inquiry);
+	}
+	
+	public void deleteBoard(int boardNum) {
+		inquiryMapper.deleteBoard(boardNum);
+	}
+	
 	public void updateLike(Inquiry inquiry) throws DataAccessException {
 		inquiryMapper.updateLike(inquiry);
 	}

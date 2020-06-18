@@ -26,6 +26,7 @@ import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.ReviewLikeFacade;
+import com.ssd.petMate.service.UserImpl;
 import com.ssd.petMate.service.ReviewFacade;
 
 @Controller
@@ -37,64 +38,20 @@ public class ReviewController {
 	@Autowired
 	private ReviewLikeFacade reviewLikeFacade;
 	
-	@ModelAttribute("review")
-	public Review formBacking(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Review review;
-			if(request.getParameter("boardNum") != null) {
-				review = reviewFacade.boardDetail(Integer.valueOf(request.getParameter("boardNum")));
-			}
-			else {
-				review = new Review();
-			}
-			return review;
-		}
-		else {
-			return new Review();
-		}
-	}
+	@Autowired
+	 private UserImpl userService;
 	
-	@GetMapping("/reviewUpdateForm")
-	public String reviewUpdateForm() {
-		return "review/reviewForm";
-	}
-	
-	@PostMapping("/reviewUpdate")
-	public String reviewUpdate(@Valid@ ModelAttribute("review") Review review, BindingResult result) {
-		System.out.println("update review : " + review.toString());
-		
-		//게시글 제목 길이
-		if (review.getBoardTitle().length() > 25) {
-			result.rejectValue("boardTitle", "long");
-		}	
-		if (result.hasErrors()) {
-			return "review/reviewForm";
-		}
-		
-		reviewFacade.updateBoard(review);
-		return "redirect:/review";
-	}
+	 @ModelAttribute("reviewChk")
+	   public int reviewChk(HttpServletRequest request) {
+	      if (request.getSession().getAttribute("userID") != null) {
+	         return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+	      }
+	      return -1;
+	   }
 	
 	@RequestMapping(value = "/reviewDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewDelete(@RequestParam("boardNum") int boardNum) {
 		reviewFacade.deleteBoard(boardNum);
-		return "redirect:/review";
-	}
-	
-	@PostMapping("/reviewInsert")
-	public String reviewInsert(@Valid @ModelAttribute("review") Review review, BindingResult result, SessionStatus sessionStatus, HttpServletRequest request) {
-		sessionStatus.setComplete();
-		review.setUserID(request.getSession().getAttribute("userID").toString());
-		
-		//게시글 제목 길이
-		if (review.getBoardTitle().length() > 25) {
-			result.rejectValue("boardTitle", "long");
-		}	
-		if (result.hasErrors()) {
-			return "review/reviewForm";
-		}
-		
-		reviewFacade.insertBoard(review);
 		return "redirect:/review";
 	}
 	
@@ -105,12 +62,6 @@ public class ReviewController {
 		System.out.println(view);
 		mv.addObject("review", reviewFacade.boardDetail(boardNum));
 		mv.setViewName("review/reviewDetail");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/reviewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView reviewForm(ModelAndView mv) {
-		mv.setViewName("review/reviewForm");
 		return mv;
 	}
 	

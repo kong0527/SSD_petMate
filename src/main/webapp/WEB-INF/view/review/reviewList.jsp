@@ -37,7 +37,12 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
+						<c:if test="${reviewChk < 0}" >
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
+						<c:if test="${reviewChk == 0}">
+							<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
 					</td>
 				</tr>
 			</table>
@@ -92,5 +97,8 @@
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
+	}
+	function isReview(userID) {
+		
 	}
 </script>
