@@ -20,15 +20,16 @@
 				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<form>
-						<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
-						<button type="submit" formaction="reviewUpdateForm"
-						class="btn">수정</button>
-						<input type="button" class="btn" value="삭제" onclick="del(${review.boardNum})" /></a>
-					</form>
+					<c:if test="${sessionScope.userID eq review.userID}">
+						<form>
+							<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
+							<button type="submit" formaction="reviewUpdateForm" class="btn">수정</button>
+							<input type="button" class="btn" value="삭제" onclick="del(${review.boardNum})"/>
+						</form>
+					</c:if>
 				</div>
 
-		<div class="pt-5" align="center">
+				<div class="pt-5" align="center">
 						<!-- 수정 필요 -->
 						<c:if test="${userID ne null && sessionScope.userID ne review.userID}">
 							<a href="javascript:void(0);" onclick="checkLike();">
