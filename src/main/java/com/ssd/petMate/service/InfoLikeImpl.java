@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssd.petMate.dao.LikeDao;
+import com.ssd.petMate.dao.InfoLikeDao;
 import com.ssd.petMate.domain.InfoLike;
 
 @Service
@@ -12,7 +12,7 @@ import com.ssd.petMate.domain.InfoLike;
 public class InfoLikeImpl implements InfoLikeFacade{
 
 	@Autowired
-	private LikeDao infoLikeDao;
+	private InfoLikeDao infoLikeDao;
 	
 	@Override
 	public void insertLike(InfoLike infoLike) {

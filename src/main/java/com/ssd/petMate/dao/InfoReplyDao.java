@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.InfoReply;
 
-public interface ReplyDao {
+public interface InfoReplyDao {
 	public List<InfoReply> getReplyList(int boardNum) throws DataAccessException;
 	public InfoReply replyDetail(int replyNum) throws DataAccessException;
 	public void insertReply(InfoReply infoReply)throws DataAccessException;

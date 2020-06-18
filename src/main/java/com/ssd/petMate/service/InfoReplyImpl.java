@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssd.petMate.dao.ReplyDao;
+import com.ssd.petMate.dao.InfoReplyDao;
 import com.ssd.petMate.domain.InfoReply;
 
 @Service
@@ -15,7 +15,7 @@ import com.ssd.petMate.domain.InfoReply;
 public class InfoReplyImpl implements InfoReplyFacade{
 
 	@Autowired
-	private ReplyDao infoReplyDao;
+	private InfoReplyDao infoReplyDao;
 	
 	@Override
 	public List<InfoReply> getReplyList(int boardNum) {
