@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssd.petMate.Controller.RegisterCommand;
 import com.ssd.petMate.dao.UserDao;
 import com.ssd.petMate.domain.UserList;
+import com.ssd.petMate.page.BoardSearch;
 
 @Service
 @Transactional
@@ -97,5 +98,17 @@ public class UserImpl implements UserFacade {
 	@Override
 	public int isPetsitter(String userID) {
 		return userDao.isPetsitter(userID);
+	}
+
+	@Override
+	public int userCount(String keyword) {
+		// TODO Auto-generated method stub
+		return userDao.userCount(keyword);
+	}
+
+	@Override
+	public List<UserList> getAllUser(BoardSearch boardSearch) {
+		// TODO Auto-generated method stub
+		return userDao.getAllUser(boardSearch);
 	}
 }

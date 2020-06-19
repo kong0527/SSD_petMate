@@ -10,50 +10,51 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.Petsitter;
+import com.ssd.petMate.domain.UserList;
 import com.ssd.petMate.page.BoardSearch;
-import com.ssd.petMate.service.InfoFacade;
 import com.ssd.petMate.service.MyPageFacade;
-import com.ssd.petMate.service.PetsitterFacade;
+import com.ssd.petMate.service.UserFacade;
 
 @Controller
-public class mainController {	
+public class AdminController {
+	
+	@Autowired
+	private UserFacade userFacade;
 	
 	@Autowired
 	private MyPageFacade myPageFacade;
 	
-	
-	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView index(ModelAndView mv) {
-		mv.setViewName("index");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/paymentForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView paymentForm(ModelAndView mv) {
-		mv.setViewName("paymentForm");
-		return mv;
-	}
+	@RequestMapping(value = "/admin", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView admin(ModelAndView mv,
+			@RequestParam(required = false, defaultValue = "1") int pageNum,
+			@RequestParam(required = false, defaultValue = "10") int contentNum,
+			@RequestParam(required = false) String keyword) {
+		
+		BoardSearch boardSearch = new BoardSearch();
+		boardSearch.setKeyword(keyword);
 
-	@RequestMapping(value = "/cart", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView cart(ModelAndView mv) {
-		mv.setViewName("order/cart");
+		int totalCount = userFacade.userCount(keyword);
+
+//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+		boardSearch.pageInfo(pageNum, contentNum, totalCount);
+		List<UserList> userList = userFacade.getAllUser(boardSearch);
+		
+		mv.addObject("userList", userList);
+		mv.addObject("boardSearch", boardSearch);
+		mv.setViewName("admin/adminPage");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/mypage", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypage(ModelAndView mv, HttpServletRequest request,
+	@RequestMapping(value = "/userpage", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView userpage(ModelAndView mv, HttpServletRequest request,
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
 			@RequestParam(required = false, defaultValue = "10") int contentNum,
 			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
+			@RequestParam(required = false) String keyword,
+			@RequestParam String userID) {
 		
 //		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -62,7 +63,6 @@ public class mainController {
 		map.put("userID", userID);
 
 		int totalCount = myPageFacade.getPrivateInfoCount(map);
-		System.out.println(totalCount);
 		
 		BoardSearch boardSearch = new BoardSearch();
 		boardSearch.setSearchType(searchType);
@@ -71,11 +71,12 @@ public class mainController {
 	
 //		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Info> myInfoList = myPageFacade.getPrivateInfoList(boardSearch);
+		List<Info> userInfoList = myPageFacade.getPrivateInfoList(boardSearch);
 
-		mv.addObject("myInfoList", myInfoList);
+		mv.addObject("userInfoList", userInfoList);
 		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myInfoPage");
+		mv.addObject("writerID", userID);
+		mv.setViewName("admin/userInfoPage");
 		return mv;
 	}
 }

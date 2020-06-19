@@ -8,7 +8,40 @@
 		SELECT *
 		FROM UserList
 		WHERE userID = #{userID} AND pwd = #{pwd}
-		LIMIT 1;
+	</select>
+	
+	<!-- 회원 리스트  -->
+	<select id="getAllUser" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.UserList">
+		SELECT *
+		FROM (
+            SELECT 
+            ROWNUM AS NUM,
+            userList.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                UserList
+                <where>
+					<if test="keyword != null">
+						userID LIKE '%' ||  #{keyword} || '%'
+					</if>
+				</where>
+                ORDER BY userID ASC 
+            )userList)
+		WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+	
+	<!-- 회원 수 가져오기 -->
+	<select id="userCount" resultType="int" parameterType="String">
+	      SELECT COUNT(*)
+	      FROM UserList
+	      <where>
+	         <if test="value != null and value != ''">
+	            userID LIKE '%' ||  #{value} || '%'
+	         </if>
+	      </where>
 	</select>
 	
   	<!-- 회원 가입  -->
