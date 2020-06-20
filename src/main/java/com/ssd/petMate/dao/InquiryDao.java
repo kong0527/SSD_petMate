@@ -14,6 +14,7 @@ public interface InquiryDao {
 	public void insertBoard(Inquiry inquiry); //게시글 작성
 	public void updateBoard(Inquiry inquiry);
 	public void deleteBoard(int boardNum);
+	public void updateViews(int boardNum);
 	public void updateLike(Inquiry inquiry) throws DataAccessException;
 	public void updateReplyCnt(Inquiry inquiry) throws DataAccessException;
 }

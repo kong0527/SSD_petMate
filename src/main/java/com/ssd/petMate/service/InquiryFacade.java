@@ -13,6 +13,7 @@ public interface InquiryFacade {
 	public void insertBoard(Inquiry inquiry); //게시글 작성
 	public void updateBoard(Inquiry inquiry);
 	public void deleteBoard(int boardNum);
+	public void updateViews(int boardNum);
 	void updateLike(Inquiry inquiry);
 	void updateReplyCnt(Inquiry inquiry);
 }

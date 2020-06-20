@@ -41,6 +41,10 @@ public class ReviewImpl implements ReviewFacade {
 		reviewDao.deleteBoard(boardNum);
 	}
 	
+	public void updateViews(int boardNum) throws DataAccessException{
+		reviewDao.updateViews(boardNum);
+	}
+	
 	public void updateLike(Review review) {
 		reviewDao.updateLike(review);
 	}

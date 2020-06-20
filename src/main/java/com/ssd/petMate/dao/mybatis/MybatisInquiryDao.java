@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ssd.petMate.dao.InquiryDao;
 import com.ssd.petMate.dao.mybatis.mapper.InquiryMapper;
-import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -40,6 +39,10 @@ public class MybatisInquiryDao implements InquiryDao {
 	
 	public void deleteBoard(int boardNum) {
 		inquiryMapper.deleteBoard(boardNum);
+	}
+	
+	public void updateViews(int boardNum) {
+		inquiryMapper.updateViews(boardNum);
 	}
 	
 	public void updateLike(Inquiry inquiry) throws DataAccessException {

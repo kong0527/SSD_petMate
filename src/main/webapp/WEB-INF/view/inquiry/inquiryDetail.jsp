@@ -13,7 +13,7 @@
 					<div class="vcard">
 						<span class="d-block"><a href="#">${inquiry.userID}</a></span> 
 						<span class="date-read">${inquiry.boardDate} 
-						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+						<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} <span class="icon-star2"></span></span>
 					</div>
 				</div>
 				${inquiry.boardContent}	

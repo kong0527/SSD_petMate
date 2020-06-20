@@ -40,6 +40,10 @@ public class InquiryImpl implements InquiryFacade {
 		inquiryDao.deleteBoard(boardNum);
 	}
 	
+	public void updateViews(int boardNum) {
+		inquiryDao.updateViews(boardNum);
+	}
+	
 	public void updateLike(Inquiry inquiry) {
 		inquiryDao.updateLike(inquiry);
 	}
