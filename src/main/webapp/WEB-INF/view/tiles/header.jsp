@@ -24,30 +24,50 @@
                <div class="col-12 col-lg-6 ml-auto d-flex">
                   <div class="ml-md-auto top-social d-none d-lg-inline-block">
                   <!-- 후에 spring security로 변경할 것 -->
+                  <c:choose>
+                  	<c:when test="${userID eq null}">
+                  		<a href="${pageContext.request.contextPath}/signIn">로그인</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                       	<a href="${pageContext.request.contextPath}/signUp">회원가입</a>
+                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                    </c:when>
+                    <c:when test="${userID eq 'admin'}">
+						<a href="${pageContext.request.contextPath}/signOut">로그아웃</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                       	<a href="${pageContext.request.contextPath}/admin">관리자 페이지</a>
+                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                    </c:when>
+                    <c:when test="${userID ne null}">
+						<a href="${pageContext.request.contextPath}/signOut">로그아웃</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                       	<a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
+                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                    </c:when>
+                  </c:choose>
+                  	
+                  <%-- </c:choose>
                  	 <c:if test="${userID eq null}">
 						<a href="${pageContext.request.contextPath}/signIn">로그인</a> &nbsp;&nbsp; | &nbsp;&nbsp;
                        	<a href="${pageContext.request.contextPath}/signUp">회원가입</a>
-                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                       	<a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a>
                      </c:if>
                      <c:if test="${userID ne null}">
 						<a href="${pageContext.request.contextPath}/signOut">로그아웃</a> &nbsp;&nbsp; | &nbsp;&nbsp;
                        	<a href="${pageContext.request.contextPath}/mypage">마이페이지</a>
-                       	<%-- <a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a> --%>
+                       	<a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a>
                      </c:if>
+                     <c:if test="${userID eq 'admin'}">
+						<a href="${pageContext.request.contextPath}/signOut">로그아웃</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+                       	<a href="${pageContext.request.contextPath}/admin">관리자 페이지</a>
+                       	<a href="${pageContext.request.contextPath}/signUp">회원정보 수정 (임시)</a>
+                     </c:if> --%>
                      
                        	
-                       	<sec:authorize access="isAnonymous()"> 
+              <%--          	<sec:authorize access="isAnonymous()"> 
                        		<a href="/signIn">로그인</a> 
                        	</sec:authorize> 
                        	 <sec:authorize access="hasRole('USER')">
                        		<a href="/signOut">로그아웃</a> 
-                       	</sec:authorize>
-                       	
-                       	
-                       	
-                       	
+                       	</sec:authorize> --%>
                   </div>
-          </div>
+          	</div>
           </div>
            <ul class="nav justify-content-between">
           	<li><a href="${pageContext.request.contextPath}/inquiry"><span style="color:black">질문게시판</span></a></li>
@@ -64,4 +84,4 @@
           </ul>
 		</div>
 	</div>
-	</div>
+</div>
