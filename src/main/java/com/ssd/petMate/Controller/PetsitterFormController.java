@@ -73,7 +73,7 @@ public class PetsitterFormController {
 		dayCodes.add(new Code("64", "일요일"));
 		
 		return dayCodes;
-	}
+	}	
 	
 	@ModelAttribute("petsitterChk")
 	public int petsitterChk(HttpServletRequest request) {
@@ -100,7 +100,7 @@ public class PetsitterFormController {
 	         daySum += Integer.parseInt(s);
 	      }
 	      petsitter.setPetDay(Integer.toString(daySum));
-	      
+
 	      new PetsitterValidator().validate(petsitter, result);
 	      
 	      if (result.hasErrors()) {

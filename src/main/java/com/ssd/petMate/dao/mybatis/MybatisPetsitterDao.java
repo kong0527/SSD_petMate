@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.ssd.petMate.Controller.FilteringCommand;
 import com.ssd.petMate.dao.PetsitterDao;
 import com.ssd.petMate.dao.mybatis.mapper.PetsitterMapper;
 import com.ssd.petMate.domain.Petsitter;
@@ -58,5 +59,10 @@ public class MybatisPetsitterDao implements PetsitterDao{
 	@Override
 	public void updateViews(int boardNum) {
 		petsitterMapper.updateViews(boardNum);
+	}
+
+	@Override
+	public List<Petsitter> filtering(FilteringCommand filter) {
+		return petsitterMapper.filtering(filter);
 	}
 }

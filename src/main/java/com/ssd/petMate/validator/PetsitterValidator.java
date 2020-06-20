@@ -36,7 +36,7 @@ public class PetsitterValidator implements Validator {
 			errors.rejectValue("dayCodes", "check");
 		}
 		
-		if (petsitter.getPetPrice() < 5000 | petsitter.getPetPrice() > 15000) {
+		if (petsitter.getPetPrice() < 15000 | petsitter.getPetPrice() > 25000) {
 			errors.rejectValue("petPrice", "price");
 		}
 		

@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssd.petMate.Controller.FilteringCommand;
 import com.ssd.petMate.dao.PetsitterDao;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
@@ -60,6 +61,11 @@ public class PetsitterImpl implements PetsitterFacade {
 	@Override
 	public void updateViews(int boardNum) {
 		petsitterDao.updateViews(boardNum);
+	}
+
+	@Override
+	public List<Petsitter> filtering(FilteringCommand filter) {
+		return petsitterDao.filtering(filter);
 	}
 
 }
