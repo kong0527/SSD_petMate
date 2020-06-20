@@ -30,6 +30,7 @@ ul.dropdown-menu {
 <link href="resources/css/meranda/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="resources/css/meranda/style.css?new12">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css?new">
+<link rel="icon" href="resources/img/favicon.ico">
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
