@@ -21,6 +21,7 @@
 						<div class="col-md-6 form-group">
 							<label for="sdate">시작날짜</label> 
 							<form:input path="sdate" class="form-control form-control-lg" />
+							<%-- <form:input path="sdate" class="form-control form-control-lg" value="2019-06-27"/> --%>
 						</div>
 					</div>
 					
@@ -92,3 +93,46 @@
 		</div>
 	</div>
 </div>
+<script>
+	/* $(function() {	
+		$('#sdate').datepicker({
+		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+		    endDate: '+10d',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
+		    autoclose : true,	//사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
+		    immediateUpdates: false,	//사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
+		    title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
+		    todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
+		    toggleActive : true,	//이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
+		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
+		    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+		    
+		});//datepicker end
+	});//ready end */
+
+	$("#sdate").datepicker({
+		format: 'yyyy-mm-dd',
+		startDate: '0d',
+		autoclose: true,
+		language : "ko"	,
+		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
+		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
+	}).on('changeDate', function (selected) {
+		var startDate = new Date(selected.date.valueOf());
+		$('#edate').datepicker('setStartDate', startDate);
+	}).on('clearDate', function (selected) {
+		$('#edate').datepicker('setStartDate', null);
+	});
+
+	$("#edate").datepicker({
+		format: 'yyyy-mm-dd',
+		autoclose: true,
+		language : "ko"	,
+		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
+		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
+	}).on('changeDate', function (selected) {
+		var endDate = new Date(selected.date.valueOf());
+		$('#sdate').datepicker('setEndDate', endDate);
+	}).on('clearDate', function (selected) {
+		$('#sdate').datepicker('setEndDate', null);
+	});
+</script>
