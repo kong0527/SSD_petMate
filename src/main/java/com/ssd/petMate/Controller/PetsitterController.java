@@ -1,5 +1,6 @@
 package com.ssd.petMate.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.PetsitterLike;
+import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.PetsitterFacade;
@@ -32,6 +36,35 @@ public class PetsitterController {
    @Autowired
    private PetsitterLikeFacade petsitterLikeFacade;
    
+	@ModelAttribute("sizeCodes")
+	public List<Code> referenceData1() {
+		List<Code> sizeCodes = new ArrayList<Code>();
+		sizeCodes.add(new Code("1", "소형　　　"));
+		sizeCodes.add(new Code("2", "중형　　　"));
+		sizeCodes.add(new Code("4", "대형"));
+		
+		 return sizeCodes;
+	}
+	
+	@ModelAttribute("dayCodes")
+	public List<Code> referencData2() {
+		List<Code> dayCodes = new ArrayList<Code>();
+		dayCodes.add(new Code("1", "월요일　　"));
+		dayCodes.add(new Code("2", "화요일　　"));
+		dayCodes.add(new Code("4", "수요일　　"));
+		dayCodes.add(new Code("8", "목요일　　"));
+		dayCodes.add(new Code("16", "금요일　　"));
+		dayCodes.add(new Code("32", "토요일　　"));
+		dayCodes.add(new Code("64", "일요일"));
+		
+		return dayCodes;
+	}
+	
+	@ModelAttribute("filtering")
+	public FilteringCommand formBacking(HttpServletRequest request) throws Exception {
+		return new FilteringCommand();
+	}
+   
    @ModelAttribute("petsitterChk")
    public int petsitterChk(HttpServletRequest request) {
       if (request.getSession().getAttribute("userID") != null) {
@@ -40,12 +73,10 @@ public class PetsitterController {
       return -1;
    }
    
-   @RequestMapping(value = "/petsitterList", method = { RequestMethod.GET,
-   RequestMethod.POST }) public ModelAndView petsitterList(ModelAndView mv,
-   @RequestParam(required = false, defaultValue = "1") int pageNum,
-   @RequestParam(required = false, defaultValue = "10") int contentNum,  
-   @RequestParam(required = false) String searchType,
-   @RequestParam(required = false) String keyword) {
+   @RequestMapping(value = "/petsitterList", method = { RequestMethod.GET, RequestMethod.POST }) 
+   public ModelAndView petsitterList(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int pageNum,
+   @RequestParam(required = false, defaultValue = "10") int contentNum,  @RequestParam(required = false) String searchType,
+   @RequestParam(required = false) String keyword, HttpServletRequest request, @ModelAttribute("filtering") FilteringCommand filter) {
         BoardSearch boardSearch = new BoardSearch();
         boardSearch.setSearchType(searchType); boardSearch.setKeyword(keyword);
         
@@ -53,10 +84,37 @@ public class PetsitterController {
         HashMap<String, Object> map = new HashMap<String, Object>(); map.put("keyword", keyword);
         map.put("searchType", searchType);
         
-        int totalCount = petsitterFacade.boardPageCount(map);
         
+        int totalCount = petsitterFacade.boardPageCount(map);
+       
         // 페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴 
-        boardSearch.pageInfo(pageNum, contentNum,totalCount); List<Petsitter> petsitterList = petsitterFacade.getAllBoard(boardSearch);
+        boardSearch.pageInfo(pageNum, contentNum,totalCount); 
+       
+        List<Petsitter> petsitterList = null;
+        //GET방식인 경우 (그냥 리스트 출력하거나 검색기능)
+        if (request.getMethod().equals("GET")) {
+        	petsitterList = petsitterFacade.getAllBoard(boardSearch);
+        }
+        
+        //POST방식인 경우(필터링 사용했을 때)
+        if (request.getMethod().equals("POST")) {
+  	      int sizeSum = 0;
+  	      int daySum = 0;
+  	      if (filter.getSizeCodes() != null) {
+	  	      for (String s : filter.getSizeCodes()) {
+	 	         sizeSum += Integer.parseInt(s);
+	 	      }
+	  	      filter.setPetSize(Integer.toString(sizeSum));
+  	      }
+ 	      
+  	      if (filter.getDayCodes() != null) {
+	 	      for (String s : filter.getDayCodes()) {
+	 	         daySum += Integer.parseInt(s);
+	 	      }
+	 	     filter.setPetDay(Integer.toString(daySum));
+  	     }
+ 	      petsitterList = petsitterFacade.filtering(filter);
+        }
         
         mv.addObject("petsitterList", petsitterList);
         mv.addObject("boardSearch", boardSearch);

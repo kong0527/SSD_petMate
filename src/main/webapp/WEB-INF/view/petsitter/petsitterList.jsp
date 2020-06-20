@@ -7,77 +7,46 @@
 	<span class="caption d-block small">Categories</span>
 		<h2>구인게시판</h2>
 </div>
+	<form:form modelAttribute="filtering" action="petsitterList" method="post">
 	<table class="table">
 		<tbody>
 			<tr>
 				<td align="center"><span style="font-weight:bold;">크기</span></td>
 				<td align="center">
-					<label class="radio-inline">
-						<input type="radio" name="petSize" id="petSize" value="소형"> 소형
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-						<input type="radio" name="petSize" id="petSize" value="중형"> 중형
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="radio-inline">
-						<input type="radio" name="petSize" id="petSize" value="대형"> 대형
-					</label>
+					<form:checkboxes items="${sizeCodes}" itemLabel="label" itemValue="code" path="sizeCodes" />
+					<br />
+					<form:errors path="sizeCodes" />					
 				</td>
 			</tr>
 			<tr>
 				<td align="center"><span style="font-weight:bold;">요일</span></td>
 				<td align="center">
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="월요일"> 월요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="화요일"> 화요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="수요일"> 수요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="목요일"> 목요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="금요일"> 금요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="토요일"> 토요일
-					</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="checkbox-inline">
-	  					<input type="checkbox" name="petDay" id="petDay" value="일요일"> 일요일
-					</label>
+					<form:checkboxes items="${dayCodes}" itemLabel="label" itemValue="code" path="dayCodes" />
+					<br />
+					<form:errors path="dayCodes" />
 				</td>
-			</tr>
+			</tr> 
 			<tr>
 				<td align="center"><span style="font-weight:bold;">요금</span></td>
 				<td align="center">
 					<label class="radio-inline">
-						<input type="radio" name="petPrice" id="petPrice" value="price1"> \5000-\7000
+						<input type="radio" name="petPrice" id="petPrice" value="1"> \15000-\17000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="petPrice" id="petPrice" value="price2"> \7100-\9000
+						<input type="radio" name="petPrice" id="petPrice" value="2"> \17001-\19000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="petPrice" id="petPrice" value="price3"> \9100-\11000
+						<input type="radio" name="petPrice" id="petPrice" value="3"> \19001-\21000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="petPrice" id="petPrice" value="price4"> \11000-\13000
+						<input type="radio" name="petPrice" id="petPrice" value="4"> \21001-\23000
 					</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="radio-inline">
-						<input type="radio" name="petPrice" id="petPrice" value="price5"> \13100-\15000
+						<input type="radio" name="petPrice" id="petPrice" value="5"> \23001-\25000
 					</label>
 				</td>
 			</tr>
@@ -127,11 +96,12 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
-					<a href="#"><span style="color:black">선택한 조건으로 검색하기</span></a>
+					<input type="submit" value="선택한 조건으로 검색하기" class="btn">
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	</form:form>
 </div>
 <div class="site-section">
 	<div class="container">
@@ -238,9 +208,5 @@
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
-	}
-
-	function isPetsitter(userID) {
-		
 	}
 </script>

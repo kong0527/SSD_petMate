@@ -107,10 +107,37 @@
 	<!-- 필터링기능 / 아직은 임시로 작성 -->
 	<!-- 체크박스 or 라디오박스중 어떤 값은 null이 들어올 수도 있는데 이런 경우에 대해 각각 query문을 만들어야할까?
 	아니면 null이 들어와도 상관 없을지 search 해보기. parameterType도 후에 추가해야함 -->
-	<select id="filtering" resultType="com.ssd.petMate.domain.Petsitter">
+	<select id="filtering" parameterType="com.ssd.petMate.Controller.FilteringCommand" resultType="com.ssd.petMate.domain.Petsitter">
 		SELECT *
 		FROM Petsitter
-		WHERE petPrice = #{petPrice}, petLocal = #{petLocal}, petDay = #{petDay}, petSize = #{petSize}
+	 	<where>
+	 		<if test="petLocal != null || petLocal != ''">
+	 			petLocal = #{petLocal, jdbcType=VARCHAR} AND
+	 		</if>
+	 		<if test="petDay != null || petDay != ''">
+	 			petDay = #{petDay, jdbcType=VARCHAR} AND
+	 		</if>
+	 		<if test="petSize != null || petSize != ''">
+	 			petSize = #{petSize, jdbcType=VARCHAR} AND
+	 		</if>
+		 	<if test="petPrice != null || petPrice != ''">
+			 	<if test="petPrice == 1">
+					petPrice Between 15000 AND 17000
+				</if>
+				<if test="petPrice == 2">
+					petPrice Between 17001 AND 19000
+				</if>
+				<if test="petPrice == 3">
+					petPrice Between 19001 AND 21000
+				</if>
+				<if test="petPrice == 4">
+					petPrice Between 21001 AND 23000
+				</if>
+				<if test="petPrice == 5">
+					petPrice Between 23001 AND 25000
+				</if>
+		 	</if>
+		</where>
 	</select>
 	
 	<!-- 좋아요 업데이트 -->	
