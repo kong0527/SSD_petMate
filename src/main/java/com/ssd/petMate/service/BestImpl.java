@@ -18,8 +18,14 @@ public class BestImpl implements BestFacade{
 	private BestDao bestDao;
 
 	@Override
-	public List<Info> bestInfo(Date date) {
+	public List<Info> weeklyBestInfo(Date date) {
 		// TODO Auto-generated method stub
-		return bestDao.bestInfo(date);
+		return bestDao.weeklyBestInfo(date);
+	}
+
+	@Override
+	public Info dailyBestInfo() {
+		// TODO Auto-generated method stub
+		return bestDao.dailyBestInfo();
 	}
 }

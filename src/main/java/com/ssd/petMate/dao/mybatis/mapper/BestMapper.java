@@ -7,5 +7,6 @@ import com.ssd.petMate.domain.Info;
 
 public interface BestMapper {
 
-	List<Info> bestInfo(Date date); 
+	List<Info> weeklyBestInfo(Date date);
+	Info dailyBestInfo(); 
 }

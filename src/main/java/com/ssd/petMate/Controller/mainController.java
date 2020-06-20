@@ -33,9 +33,12 @@ public class mainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		List<Info> bestInfo = bestFacade.bestInfo(mon);		
-		mv.addObject("bestInfo", bestInfo);
-		
+
+        List<Info> weeklyBestInfo = bestFacade.weeklyBestInfo(mon);	
+        Info dailyBestInfo = bestFacade.dailyBestInfo();
+        
+		mv.addObject("weeklyBestInfo", weeklyBestInfo);
+		mv.addObject("dailyBestInfo", dailyBestInfo);
 		mv.setViewName("index");
 		return mv;
 	}

@@ -17,8 +17,14 @@ public class MybatisBestDao implements BestDao{
 	private BestMapper bestMapper;
 
 	@Override
-	public List<Info> bestInfo(Date date) throws DataAccessException {
+	public List<Info> weeklyBestInfo(Date date) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return bestMapper.bestInfo(date);
+		return bestMapper.weeklyBestInfo(date);
+	}
+
+	@Override
+	public Info dailyBestInfo() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return bestMapper.dailyBestInfo();
 	}
 }

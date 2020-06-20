@@ -6,5 +6,6 @@ import java.util.List;
 import com.ssd.petMate.domain.Info;
 
 public interface BestFacade {
-	List<Info> bestInfo(Date date); 
+	List<Info> weeklyBestInfo(Date date); 
+	Info dailyBestInfo(); 
 }

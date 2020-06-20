@@ -8,5 +8,6 @@ import org.springframework.dao.DataAccessException;
 import com.ssd.petMate.domain.Info;
 
 public interface BestDao {
-	List<Info> bestInfo(Date date) throws DataAccessException; 
+	List<Info> weeklyBestInfo(Date date) throws DataAccessException;
+	Info dailyBestInfo() throws DataAccessException;
 }

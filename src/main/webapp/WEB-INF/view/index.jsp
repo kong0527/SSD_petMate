@@ -12,20 +12,14 @@
 					<div class="contents">
 						<span class="caption">Editor's Pick</span>
 						<h2>
-							<a href="blog-single.html">News Needs to Meet Its Audiences
-								Where They Are</a>
+							<a href="blog-single.html">${dailyBestInfo.boardTitle}</a>
 						</h2>
-						<p class="mb-3">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Voluptate vero obcaecati natus adipisci
-							necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium
-							magni delectus cum, tempore deserunt aliquid quaerat culpa nemo
-							veritatis, iste adipisci excepturi consectetur doloribus aliquam
-							accusantium beatae?</p>
+						<p class="mb-3">${dailyBestInfo.boardContent}</p>
 
 						<div class="post-meta">
-							<span class="d-block"><a href="#">Dave Rogers</a> in <a
-								href="#">Food</a></span> <span class="date-read">Jun 14 <span
-								class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+							<span class="d-block">${dailyBestInfo.userID}</span> 
+							<span class="date-read">${dailyBestInfo.boardDate} <span class="mx-1">&bullet;</span> 
+								${dailyBestInfo.boardLike} <span class="icon-star2"></span></span>
 						</div>
 					</div>
 				</div>
@@ -70,7 +64,7 @@
 				<div class="section-title">
 					<h2>정보 게시판</h2>
 				</div>
-				<c:forEach var="infoList" items="${bestInfo}">
+				<c:forEach var="infoList" items="${weeklyBestInfo}">
 				<div class="post-entry-2 d-flex">
 		<!-- 		<div class="thumbnail"
 						style="background-image: url('resources/img/first.png')"></div> -->
