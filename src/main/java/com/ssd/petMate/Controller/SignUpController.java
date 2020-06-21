@@ -6,6 +6,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +33,9 @@ public class SignUpController {
 	
 	@Autowired
 	private UserImpl userService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@ModelAttribute("registerForm")
 	public RegisterCommand formBackingObject(HttpServletRequest request) throws Exception {
@@ -84,5 +89,20 @@ public class SignUpController {
 			return formViewName; 
 		}
 		return successViewName;  
+	}
+	
+//	패스워드 확인 후 회원정보 수정 가능
+	@RequestMapping(value = "/confirmPwd", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public int myPageModify(HttpServletRequest request,
+			@RequestParam("confirmPwd") String confirmPwd) {
+		String userID = (String)request.getSession().getAttribute("userID");
+		UserDetails user = userService.loadUserByUsername(userID);
+		
+		if(passwordEncoder.matches(confirmPwd, user.getPassword())) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
