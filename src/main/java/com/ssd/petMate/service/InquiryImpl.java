@@ -44,6 +44,11 @@ public class InquiryImpl implements InquiryFacade {
 		inquiryDao.updateViews(boardNum);
 	}
 	
+	public void selectInquiry(int boardNum) {
+		inquiryDao.selectInquiry(boardNum);
+		
+	}
+	
 	public void updateLike(Inquiry inquiry) {
 		inquiryDao.updateLike(inquiry);
 	}

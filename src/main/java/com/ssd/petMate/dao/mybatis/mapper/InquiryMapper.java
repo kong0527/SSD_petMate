@@ -21,6 +21,8 @@ public interface InquiryMapper {
 	
 	public void updateViews(int boardNum); //조회수 증가
 	
+	void selectInquiry(int boardNum);
+	
 	public void updateLike(Inquiry like);
 	
 	public void updateReplyCnt(Inquiry inquiry);

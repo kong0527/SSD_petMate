@@ -40,6 +40,12 @@ public class AnswerImpl implements AnswerFacade{
 		// TODO Auto-generated method stub
 		answerDao.deleteAnswer(answerNum);
 	}
+	
+	@Override
+	public void selectAnswer(int answerNum) {
+		// TODO Auto-generated method stub
+		answerDao.selectAnswer(answerNum);
+	}
 
 	@Override
 	public Answer answerDetail(int answerNum) {

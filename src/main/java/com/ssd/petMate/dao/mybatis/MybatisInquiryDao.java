@@ -45,6 +45,10 @@ public class MybatisInquiryDao implements InquiryDao {
 		inquiryMapper.updateViews(boardNum);
 	}
 	
+	public void selectInquiry(int boardNum) throws DataAccessException {
+		inquiryMapper.selectInquiry(boardNum);
+	}
+	
 	public void updateLike(Inquiry inquiry) throws DataAccessException {
 		inquiryMapper.updateLike(inquiry);
 	}

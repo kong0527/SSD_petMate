@@ -15,6 +15,7 @@ public interface InquiryDao {
 	public void updateBoard(Inquiry inquiry);
 	public void deleteBoard(int boardNum);
 	public void updateViews(int boardNum);
+	public void selectInquiry(int boardNum)throws DataAccessException;
 	public void updateLike(Inquiry inquiry) throws DataAccessException;
 	public void updateReplyCnt(Inquiry inquiry) throws DataAccessException;
 }

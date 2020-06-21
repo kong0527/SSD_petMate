@@ -104,4 +104,11 @@
 		SET answerCnt = #{answerCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
+	
+	<!-- 댓글 수 업데이트 -->	
+	<update id="selectInquiry" parameterType="com.ssd.petMate.domain.Inquiry">
+		UPDATE Inquiry
+		SET isSelected = 1
+		WHERE boardNum = #{boardNum}
+	</update>
 </mapper>
