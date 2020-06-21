@@ -3,7 +3,6 @@ package com.ssd.petMate.dao.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -20,7 +19,7 @@ public interface ReviewMapper {
 	
 	public void deleteBoard(int boardNum); //게시글 삭제
 	
-	public void boardViews(int boardNum); //조회수 증가
+	public void updateViews(int boardNum); //조회수 증가
 	
 	public void updateLike(Review like);
 	

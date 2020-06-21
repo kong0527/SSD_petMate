@@ -19,7 +19,9 @@ public interface InquiryMapper {
 	
 	public void deleteBoard(int boardNum); //게시글 삭제
 	
-	public void boardViews(int boardNum); //조회수 증가
+	public void updateViews(int boardNum); //조회수 증가
+	
+	void selectInquiry(int boardNum);
 	
 	public void updateLike(Inquiry like);
 	
