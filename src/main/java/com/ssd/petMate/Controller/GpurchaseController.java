@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
+import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GpurchaseFacade;
 
@@ -51,7 +52,11 @@ public class GpurchaseController {
 		}
 	}
 	
-
+	@ModelAttribute("gpurchaseOrder")
+	public Order formBacking2(HttpServletRequest request) {
+//		if (request.getMethod().equalsIgnoreCase("GET")) 
+			return new Order();
+	}
 	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseList(ModelAndView mv,
@@ -199,21 +204,24 @@ public class GpurchaseController {
 	}	
 	
 	@RequestMapping(value = "/gpurchaseOrderForm", method = RequestMethod.POST)
-	@ResponseBody
+//	@ResponseBody
 	public ModelAndView gpurchaseOrderForm(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList,ModelAndView mv) {
 		System.out.println("orderForm enter;");
 		int i;
 		Gpurchase gpurchase;
+		System.out.println(gpurchaseCartList.toString());
 		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
 		for(i = 0; i < gpurchaseCartList.size(); i++) {
 			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
+			System.out.println(gpurchase.toString());
 			cartList.add(gpurchase);
 		}
+		System.out.println(cartList.toString());
 		mv.addObject("cartList",cartList);
 		mv.setViewName("order/paymentForm");
+		System.out.println(mv.getViewName());
 		return mv;
 	}
-
 
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })

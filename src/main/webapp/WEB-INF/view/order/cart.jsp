@@ -107,7 +107,7 @@
 <script>
 
 
-	/* $(document).on("click","#btnOrder", function() {
+	$(document).on("click","#btnOrder", function() {
 	  	var checkArr = new Array();     // 배열 초기화
 	    $('.check:checked').each(function(i){
 	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
@@ -117,8 +117,17 @@
 	        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
 	        type: 'post',
 	        data: { gpurchaseCartList : checkArr }
+	   		/* success:function(data) {
+				if(data.MESSAGE) {
+					 alert("로그인성공");
+					 window.location.href = "order/paymennt.jsp";
+				} else {
+					alert("로그인실패");
+				}
+			} */
 	    });
-	}); */
+	   
+	});
 
 
 	/* $(document).on("click","#btnOrder", function() {
@@ -131,7 +140,7 @@
 		}
 	}); */
 
-	$(document).on('change', '#box', function(e){
+	/* $(document).on('change', '#box', function(e){
 		e.preventDefault();
 		var val = "";
 		$("#box").each(function() {
@@ -139,7 +148,7 @@
 				val += $("#box").val();
 		});
 		alert(val);	
-	});
+	}); */
 	
 	 /* $(document).ready(function() {
 
