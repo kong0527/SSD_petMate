@@ -13,12 +13,12 @@
 					<h2>결제 폼</h2>
 				</div>
 				
-				<ul class="dropdown">
+				<%-- <ul class="dropdown">
           		<a class="dropdown-toggle" data-toggle="dropdown"><span style="color:black">주문 상품 정보</span><span class="caret"></span></a>
 	          		<ul class="dropdown-menu">
 	          			<div class="table-wrapper">
 							<table class="table table-striped">
-								<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+								<c:forEach var="gpurchaseCart" items="${cartList}">
 									<tr>
 										<td ><a href="<c:url value="/gpurchaseDetail">
 										<c:param name="boardNum" value="${cart.boardNum}"/></c:url>">
@@ -26,15 +26,15 @@
 											${cart.boardTitle}</a></td>
 										<td>수량 : 1</td>
 										<td>${cart.price}</td>
-										<%-- <td><input type="hidden" name="price" value="${cart.price}" /> --%>
+										<td><input type="hidden" name="price" value="${cart.price}" />
 									</tr>
 								</c:forEach>
 							</table>
 						</div>
 					</ul>
-				</ul>
+				</ul> --%>
 				
-				<form:form modelAttribute="gpurchaseOrder" >
+				<%-- <form:form modelAttribute="gpurchaseOrder" >
 					
 					<div class="row">
 						<div class="col-md-6 form-group">
@@ -44,7 +44,7 @@
 					
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="cardNum">카드번호</label> <form:input path="cardNUM" class="form-control form-control-lg"/>
+							<label for="cardNum">카드번호</label> <form:input path="cardNum" class="form-control form-control-lg"/>
 						</div>
 					</div>
 					
@@ -74,7 +74,7 @@
 							<input type="submit" value="order" class="btn btn-primary py-3 px-5">
 						</div>
 					</div>
-				</form:form>
+				</form:form> --%>
 			</div>
 
 		</div>

@@ -104,5 +104,9 @@ public class Gpurchase {
 		this.price = price;
 		this.boardTitle = boardTitle;
 	}
+	
+	public String toString() {
+		return "gpurchase domaind content : "  + boardNum + userID + boardTitle + boardContent + price;
+	}
 
 }
