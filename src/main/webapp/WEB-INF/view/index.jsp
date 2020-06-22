@@ -4,11 +4,11 @@
 <body>
 <div class="site-section py-0">
 	<div class="owl-carousel hero-slide owl-style">
-		<div class="site-section">
+	<div class="site-section">
 			<div class="container">
 				<div class="half-post-entry d-block d-lg-flex bg-light">
-					<div class="img-bg"
-						style="background-image: url('resources/img/big_img_1.jpg')"></div>
+					<!-- <div class="img-bg"
+						style="background-image: url('resources/img/big_img_1.jpg')"></div> -->
 					<div class="contents">
 						<span class="caption">Editor's Pick</span>
 						<h2>
@@ -66,7 +66,7 @@
 				</div>
 				<c:forEach var="infoList" items="${weeklyBestInfo}">
 				<div class="post-entry-2 d-flex">
-		<!-- 		<div class="thumbnail"
+		 		<!-- <div class="thumbnail"
 						style="background-image: url('resources/img/first.png')"></div> -->
 					<div class="contents">
 						<h2>
@@ -149,3 +149,10 @@
 	</div>
 </div>
 </body>
+<style>
+.selector img{
+position: absolute; top:0; left: 0;
+width: 100%;
+height: 100%;
+}
+</style>
