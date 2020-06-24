@@ -113,6 +113,9 @@ public class PetsitterController {
 	 	      }
 	 	     filter.setPetDay(Integer.toString(daySum));
   	     }
+  	      
+  	      System.out.println(filter.getPetPrice());
+  	      
  	      petsitterList = petsitterFacade.filtering(filter);
         }
         
