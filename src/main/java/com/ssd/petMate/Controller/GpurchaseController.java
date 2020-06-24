@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
+import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GpurchaseFacade;
@@ -205,19 +206,20 @@ public class GpurchaseController {
 	
 	@RequestMapping(value = "/gpurchaseOrderForm", method = RequestMethod.POST)
 //	@ResponseBody
-	public ModelAndView gpurchaseOrderForm(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList,ModelAndView mv) {
+	public ModelAndView gpurchaseOrderForm(@ModelAttribute("gpurchaseCartList") List<Gpurchase> cartList, ModelAndView mv) {
 		System.out.println("orderForm enter;");
-		int i;
-		Gpurchase gpurchase;
-		System.out.println(gpurchaseCartList.toString());
-		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
-		for(i = 0; i < gpurchaseCartList.size(); i++) {
-			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
-			System.out.println(gpurchase.toString());
-			cartList.add(gpurchase);
-		}
+//		int i;
+//		Gpurchase gpurchase;
+//		System.out.println(cartList.toString());
+//		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
+//		for(i = 0; i < gpurchaseCartList.size(); i++) {
+//			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
+//			System.out.println(gpurchase.toString());
+//			cartList.add(gpurchase);
+//		}
+		System.out.println("***********");
 		System.out.println(cartList.toString());
-		mv.addObject("cartList",cartList);
+		mv.addObject("cartList", cartList);
 		mv.setViewName("order/paymentForm");
 		System.out.println(mv.getViewName());
 		return mv;

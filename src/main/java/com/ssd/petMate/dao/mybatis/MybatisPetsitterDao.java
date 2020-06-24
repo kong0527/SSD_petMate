@@ -63,6 +63,7 @@ public class MybatisPetsitterDao implements PetsitterDao{
 
 	@Override
 	public List<Petsitter> filtering(FilteringCommand filter) {
+		System.out.println(filter);
 		return petsitterMapper.filtering(filter);
 	}
 }

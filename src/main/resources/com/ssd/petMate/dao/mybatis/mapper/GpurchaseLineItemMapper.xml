@@ -3,7 +3,7 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseLineItemMapper">
-  <cache />
+
   	<!-- 공동구매 lineItem 목록 가져오기  -->
 	<select id="getGpurchaseLineItemList" parameterType="int" resultType="com.ssd.petMate.domain.GpurchaseLineItem">
 		 SELECT *

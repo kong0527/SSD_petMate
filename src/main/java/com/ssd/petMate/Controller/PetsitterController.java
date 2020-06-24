@@ -106,15 +106,20 @@ public class PetsitterController {
 	 	      }
 	  	      filter.setPetSize(Integer.toString(sizeSum));
   	      }
- 	      
+  	      
+  	      if (filter.getSizeCodes() == null)
+  	    	  System.out.println("야!!!!!!!!!!!!");
+  	      if (filter.getSizeCodes().equals(""))
+  	    	  System.out.println("힝구..");
+ 	      for (String s : filter.getSizeCodes())
+ 	    	  System.out.println(s);
+  	      
   	      if (filter.getDayCodes() != null) {
 	 	      for (String s : filter.getDayCodes()) {
 	 	         daySum += Integer.parseInt(s);
 	 	      }
 	 	     filter.setPetDay(Integer.toString(daySum));
   	     }
-  	      
-  	      System.out.println(filter.getPetPrice());
   	      
  	      petsitterList = petsitterFacade.filtering(filter);
         }
