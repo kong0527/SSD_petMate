@@ -63,7 +63,7 @@ public class MybatisGpurchaseDao implements GpurchaseDao {
 	} //장바구니 담은 수 증가
 	
 	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException{
-		gpurchaseMapper.gpurchaseCartUpdate(gpurchase);
+		gpurchaseMapper.gpurchaseReplyCntUpdate(gpurchase);
 	} //덧글수 증가
 	
 	

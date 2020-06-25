@@ -13,12 +13,12 @@
 					<h2>결제 폼</h2>
 				</div>
 				
-				<%-- <ul class="dropdown">
+				<ul class="dropdown">
           		<a class="dropdown-toggle" data-toggle="dropdown"><span style="color:black">주문 상품 정보</span><span class="caret"></span></a>
 	          		<ul class="dropdown-menu">
 	          			<div class="table-wrapper">
 							<table class="table table-striped">
-								<c:forEach var="gpurchaseCart" items="${cartList}">
+								<c:forEach var="cart" items="${cartList}">
 									<tr>
 										<td ><a href="<c:url value="/gpurchaseDetail">
 										<c:param name="boardNum" value="${cart.boardNum}"/></c:url>">
@@ -32,9 +32,9 @@
 							</table>
 						</div>
 					</ul>
-				</ul> --%>
+				</ul>
 				
-				<%-- <form:form modelAttribute="gpurchaseOrder" >
+				<form:form modelAttribute="gpurchaseOrder" action="gpurchaseOrder">
 					
 					<div class="row">
 						<div class="col-md-6 form-group">
@@ -68,13 +68,20 @@
 							<form:input path="address" class="form-control form-control-lg"/>
 						</div>
 					</div>
+					
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<label for="price">총가격</label>
+							<form:input path="price" class="form-control form-control-lg"/>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="col-12">
 							<input type="submit" value="order" class="btn btn-primary py-3 px-5">
 						</div>
 					</div>
-				</form:form> --%>
+				</form:form>
 			</div>
 
 		</div>
