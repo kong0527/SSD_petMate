@@ -109,22 +109,21 @@
 
 	$(document).on("click","#btnOrder", function() {
 	  	var checkArr = new Array();     // 배열 초기화
-	    $('.check:checked').each(function(i){
+	  	var price = 0;
+	    $('#box:checked').each(function(i){
 	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
 	    });
+	    price = $("#expectPrice").val();
 	    
 	    $.ajax({
-	        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
+	        url: '${pageContext.request.contextPath}/gpurchaseCartToOrder',
 	        type: 'post',
-	        data: { gpurchaseCartList : checkArr }
-	   		/* success:function(data) {
-				if(data.MESSAGE) {
-					 alert("로그인성공");
-					 window.location.href = "order/paymennt.jsp";
-				} else {
-					alert("로그인실패");
-				}
-			} */
+	        data: { gpurchaseCartList : checkArr,
+		        	price : price },
+	    	success : function(result) {
+				alert(result);
+				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
+			}
 	    });
 	   
 	});
@@ -150,36 +149,10 @@
 		alert(val);	
 	}); */
 	
-	 /* $(document).ready(function() {
+	  $(document).ready(function() {
 
-
-			/* $("#btnOrder").click(function(){ 
-			var checkArr = [];     // 배열 초기화
-			    $(".check:checked").each(function(i)) {
-			        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-			    }
-			    
-			    $.ajax({
-			        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
-			        type: 'post',
-			        dateType: 'text'
-			        data: {
-			            gpurchaseCartList : checkArr
-			        }
-			    });
-				var checkArr = [];     // 배열 초기화
-			    $('input:[name="cartNum"]:checked').each(function(i)) {
-			        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-			    }
-			    $.ajax({
-			        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
-			        type: 'post',
-			        dataType: 'json',
-			        data: gpurchaseCartList : checkArr
-			    });
-			}); */
 		  // 체크 박스 해제
-		/*  $("#uncheck").on('click', function() {
+		$("#uncheck").on('click', function() {
 			$(".check").each(function() {
 				if($(this).is(":checked"))
 					$(".check").prop("checked", false);
@@ -205,13 +178,14 @@
 				}
 				html += fabric_seq;
 				html2 = html + 2500;
+				$("#expectPrice").val(html2);
 				$("#totalPrice").html(html + '₩');
 				$("#expectPrice").html(html2 + '₩');
 				}
-		  }); */
+		  });
 
 		 
-	/* }); */
+	 });
 
 	  /* function cartList(){
 			var checkArr = [];     // 배열 초기화

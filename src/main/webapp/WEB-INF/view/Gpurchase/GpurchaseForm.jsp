@@ -9,7 +9,7 @@
 				<div class="section-title mb-5">
 					<h2>공동구매 폼</h2>
 				</div>
-				<form:form modelAttribute="gpurchase" action="gpurchaseInsert">
+				<form:form modelAttribute="gpurchase" action="gpurchaseForm">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -71,10 +71,7 @@
 								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${gpurchase.boardNum}"/>
 									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-									<button type="submit" formaction="gpurchaseUpdate"
-									class="btn">수정</button>
-									<button type="submit" formaction="gpurchaseDelete"
-									class="btn">삭제</button>
+									<button type="submit" id="btn" class="btn">수정</button>
 								</form>
 							</div>
 						</c:when>
@@ -82,7 +79,7 @@
 						<c:when test="${0 eq gpurchase.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+									<input type="submit" value="등록"  id="btn" class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
 						</c:when>
@@ -93,7 +90,30 @@
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "boardContent",
+	sSkinURI: "resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2"
+});
+
+ $(document).on('click', '#btn', function(e){
+    oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
+     var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
+     if(text ==""){
+        alert("글 내용을 입력해 주세요.");
+        oEditors.getById["boardContent"].exec("FOCUS");
+        return false;
+     } 
+     if(text.length > 1500){
+        alert("글 내용은 1500자 내로 입력해 주세요.");
+        oEditors.getById["boardContent"].exec("FOCUS");
+        return false;
+     } 
+     $("#form").submit();
+});
 	/* $(function() {	
 		$('#sdate').datepicker({
 		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
@@ -117,7 +137,7 @@
 		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
 	}).on('changeDate', function (selected) {
-		var startDate = new Date(selected.date.valueOf());
+		var startDate = new Date(selected.date.valueOf().ToString("yyyy-mm-dd"));
 		$('#edate').datepicker('setStartDate', startDate);
 	}).on('clearDate', function (selected) {
 		$('#edate').datepicker('setStartDate', null);
@@ -127,10 +147,10 @@
 		format: 'yyyy-mm-dd',
 		autoclose: true,
 		language : "ko"	,
-		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
+		title: "종료 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
 	}).on('changeDate', function (selected) {
-		var endDate = new Date(selected.date.valueOf());
+		var endDate = new Date(selected.date.valueOf().ToString("yyyy-mm-dd"));
 		$('#sdate').datepicker('setEndDate', endDate);
 	}).on('clearDate', function (selected) {
 		$('#sdate').datepicker('setEndDate', null);

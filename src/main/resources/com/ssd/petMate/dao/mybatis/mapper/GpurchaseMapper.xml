@@ -55,7 +55,7 @@
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
  		INSERT
  		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC})
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC})
  	</insert>
 	
 	<!-- 공동구매 게시글 수정하기  -->
@@ -90,7 +90,7 @@
 	</update>
 	
 	<!-- 공동구매 댓글 업데이트 -->
-	<update id="gpurchaseReplyCntUdate" parameterType="com.ssd.petMate.domain.Gpurchase">
+	<update id="gpurchaseReplyCntUpdate" parameterType="com.ssd.petMate.domain.Gpurchase">
 		UPDATE Gpurchase
 		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}

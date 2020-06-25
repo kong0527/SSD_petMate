@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,35 +29,11 @@ import com.ssd.petMate.service.GpurchaseFacade;
 
 
 @Controller
-@SessionAttributes("cartList")
 public class GpurchaseController {	
 	
 	@Autowired
 	private GpurchaseFacade gpurchaseImpl;
 	
-	
-	@ModelAttribute("gpurchase")
-	public Gpurchase formBacking(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Gpurchase gpurchase;
-			if(request.getParameter("boardNum") != null) {
-				gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.valueOf(request.getParameter("boardNum")));
-			}
-			else {
-				gpurchase = new Gpurchase();
-			}
-			return gpurchase;
-		}
-		else {
-			return new Gpurchase();
-		}
-	}
-	
-	@ModelAttribute("gpurchaseOrder")
-	public Order formBacking2(HttpServletRequest request) {
-//		if (request.getMethod().equalsIgnoreCase("GET")) 
-			return new Order();
-	}
 	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseList(ModelAndView mv,
@@ -96,45 +73,12 @@ public class GpurchaseController {
 	@RequestMapping(value = "/gpurchaseDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseDetail(ModelAndView mv,
 			@RequestParam("boardNum") int boardNum) {
-		Gpurchase view = gpurchaseImpl.getGpurchaseDetail(boardNum);
-		System.out.println(view);
+		gpurchaseImpl.gpurchaseBoardHitPlus(boardNum);
 		mv.addObject("gpurchase", gpurchaseImpl.getGpurchaseDetail(boardNum));
 		mv.setViewName("Gpurchase/GpurchaseDetail");
 		return mv;
 	}
 
-	//공구게시판 글 작성 폼
-	@GetMapping("/gpurchaseForm")
-	public String gpurchaseForm() {
-		return "Gpurchase/GpurchaseForm";
-	}
-	//공구게시판 글 등록
-	@PostMapping("/gpurchaseInsert")
-	public String gpurchaseInsert(@ModelAttribute("gpurchase") Gpurchase gpurchase, SessionStatus sessionStatus, HttpServletRequest request) {
-		String userID = (String) request.getSession().getAttribute("userID");
-		sessionStatus.setComplete();
-		gpurchase.setUserID(userID);
-//		info.setBoardTitle(title);
-//		info.setBoardContent(content);
-		System.out.println("공동구매 시작날짜 : " + gpurchase.getEdate());
-		System.out.println("공동구매 종료날짜 : " + gpurchase.getSdate());
-		gpurchaseImpl.insertGpurchase(gpurchase);
-		return "redirect:/gpurchase";
-	}
-	
-	//공구게시판 글 수정 폼
-	@GetMapping("/gpurchaseUpdateForm")
-	public String gpurchaseUpdateForm() {
-		return "Gpurchase/GpurchaseForm";
-	}
-	
-	//공구게시판 글 수정
-	@PostMapping("/gpurchaseUpdate")
-	public String gpurchaseUpdate(@ModelAttribute("gpurchase") Gpurchase gpurchase) {
-		System.out.println("update gpurchase : " + gpurchase.toString());
-		gpurchaseImpl.updateGpurchase(gpurchase);
-		return "redirect:/gpurchase";
-	}
 	
 	//공구게시판 장바구니 목록
 	@GetMapping("/gpurchaseCart")
@@ -160,6 +104,7 @@ public class GpurchaseController {
 //		이미 사용자가 게시글에 좋아요를 눌렀는지 누르지 않았는지 판별하기 위해 호출
 		int count = gpurchaseImpl.isCart(gpurchaseCart);
 		
+		System.out.println("before : count = " + count);
 		System.out.println("before : cartAdded = " + gpurchase.getCartAdded() );
 		
 //		만약 이전에 좋아요를 누르지 않았을 때
@@ -175,12 +120,16 @@ public class GpurchaseController {
 		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
 //		좋아요 개수 update
 		gpurchase.setCartAdded(cartAdded);
-		gpurchaseImpl.updateGpurchase(gpurchase);
+		gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
+		gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
+		
+		System.out.println("after cartAdded : " + cartAdded);
+		System.out.println("after gcartAdded : " + gpurchase.getCartAdded());
 		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("count", count);
 		map.put("cartAdded", cartAdded);
-		System.out.println("infolike : " + mv.getViewName());
+		
 		
 		return map;
 	}
@@ -198,30 +147,12 @@ public class GpurchaseController {
 		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
 //		좋아요 개수 update
 		gpurchase.setCartAdded(cartAdded);
-		gpurchaseImpl.updateGpurchase(gpurchase);
+		gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
 		
 		return "redirect:/gpurchaseCart";
 	}	
 	
-	@RequestMapping(value = "/gpurchaseOrderForm", method = RequestMethod.POST)
-//	@ResponseBody
-	public ModelAndView gpurchaseOrderForm(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList,ModelAndView mv) {
-		System.out.println("orderForm enter;");
-		int i;
-		Gpurchase gpurchase;
-		System.out.println(gpurchaseCartList.toString());
-		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
-		for(i = 0; i < gpurchaseCartList.size(); i++) {
-			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
-			System.out.println(gpurchase.toString());
-			cartList.add(gpurchase);
-		}
-		System.out.println(cartList.toString());
-		mv.addObject("cartList",cartList);
-		mv.setViewName("order/paymentForm");
-		System.out.println(mv.getViewName());
-		return mv;
-	}
+	
 
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })

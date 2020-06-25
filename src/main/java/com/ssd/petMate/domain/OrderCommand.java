@@ -1,6 +1,8 @@
 package com.ssd.petMate.domain;
 
-public class Order {
+import java.util.List;
+
+public class OrderCommand {
 	private int OrderNum;
 	private String orderDate;
 	private int price;
@@ -10,6 +12,7 @@ public class Order {
 	private String cvc;
 	private String address;
 	private String expireDate;
+	private List<GpurchaseLineItem> gLineItems;
 	
 	public int getOrderNum() {
 		return OrderNum;
@@ -65,12 +68,13 @@ public class Order {
 	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
 	}
-	
-	@Override
-	public String toString() {
-		return "Order [OrderNum=" + OrderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID=" + userID
-				+ ", bank=" + bank + ", cardNum=" + cardNum + ", cvc=" + cvc + ", address=" + address + ", expireDate="
-				+ expireDate + "]";
+	public List<GpurchaseLineItem> getgLineItems() {
+		return gLineItems;
 	}
+	public void setgLineItems(List<GpurchaseLineItem> gLineItems) {
+		this.gLineItems = gLineItems;
+	}
+	
+	
 	
 }

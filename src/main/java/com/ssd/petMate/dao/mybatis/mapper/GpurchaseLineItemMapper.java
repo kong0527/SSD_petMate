@@ -9,7 +9,7 @@ import com.ssd.petMate.page.pageMaker;
 
 public interface GpurchaseLineItemMapper {
 	
-	public List<GpurchaseLineItem> getGpurchaseLineItemList(Integer orderNum); //공동구매 order에 대한 lineitemList 가져오기
+	public List<GpurchaseLineItem> getGpurchaseLineItemList(int orderNum); //공동구매 order에 대한 lineitemList 가져오기
 	
 	public void insertGpurchaseLineItem(GpurchaseLineItem gpurchaseLineItem); //공동구매 order에 대한 lineitem 추가
 	

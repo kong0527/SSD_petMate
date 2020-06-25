@@ -14,7 +14,7 @@
   </select>
  
 <!-- 주문 내용 가져오기 lineitem 조인(?)--> 
- <select id="getOrder" resultType="com.ssd.petMate.domain.Order" parameterType="com.ssd.petMate.domain.Order">
+ <select id="getOrder" resultType="com.ssd.petMate.domain.Order"  parameterType="com.ssd.petMate.domain.Order">
     SELECT *
     FROM ORDERLIST
     WHERE userID = #{userID} and orderNum = #{orderNum}
@@ -22,8 +22,11 @@
 
 <!-- 주문 추가하기 -->
   <insert id="insertOrder" parameterType="com.ssd.petMate.domain.Order">
-    INSERT INTO OrderLIST (orderDate, price, userID, bank, cardNum, cvc, expire, address)
-    VALUES (SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, #{expire,jdbcType=DATE}, #{address,jdbcType=VARCHAR})
+  <selectKey keyProperty="orderNum" resultType="int" order="BEFORE">
+ 		SELECT ON_SEQ.nextval AS orderNum FROM DUAL
+ </selectKey>
+    INSERT INTO OrderLIST (orderNum,orderDate, price, userID, bank, cardNum, cvc, expireDate, address)
+    VALUES (#{orderNum}, SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, TO_DATE(#{expireDate},'yyyy.mm.dd hh24:mi'), #{address,jdbcType=VARCHAR})
   </insert>
   
  <!--  <insert id="msSqlServerInsertOrder" useGeneratedKeys="true">
