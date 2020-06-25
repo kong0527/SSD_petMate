@@ -13,6 +13,7 @@ public interface AnswerDao {
 	public void insertAnswer(Answer answer)throws DataAccessException;
 	public void updateAnswer(Answer answer)throws DataAccessException;
 	public void deleteAnswer(int answerNum)throws DataAccessException;
+	public void selectAnswer(int answerNum)throws DataAccessException;
 	public int answerCnt(int boardNum) throws DataAccessException;
 	public void setAnswerOrder(HashMap<String, Object> map) throws DataAccessException;
 	public int countSameGID(int answerNum) throws DataAccessException;

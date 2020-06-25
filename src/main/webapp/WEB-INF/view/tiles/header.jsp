@@ -17,9 +17,12 @@
          <div class="container">
             <div class="row align-items-center">
                <div class="col-12 col-lg-6 d-flex">
+               	 <img src="resources/img/dog.png" width="64px" height="64px"/>
                   <a href="${pageContext.request.contextPath}/index" class="site-logo"> petMate </a> <a href="#"
                      class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                     class="icon-menu h3"></span></a>
+                     class="icon-menu h3"></span></a> 
+                     <img src="resources/img/cat.png" width="64px" height="64px"/>
+                     
                </div>
                <div class="col-12 col-lg-6 ml-auto d-flex">
                   <div class="ml-md-auto top-social d-none d-lg-inline-block">

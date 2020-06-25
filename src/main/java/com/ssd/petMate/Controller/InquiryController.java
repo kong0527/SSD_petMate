@@ -7,13 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Inquiry;
@@ -21,7 +18,6 @@ import com.ssd.petMate.domain.InquiryLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InquiryFacade;
 import com.ssd.petMate.service.InquiryLikeFacade;
-import com.ssd.petMate.service.UserImpl;
 
 @Controller
 public class InquiryController {
@@ -32,22 +28,10 @@ public class InquiryController {
 	@Autowired
 	private InquiryLikeFacade inquiryLikeFacade;
 	
-	 @Autowired
-	 private UserImpl userService;
-	
-	 @ModelAttribute("inquiryChk")
-	   public int inquiryChk(HttpServletRequest request) {
-	      if (request.getSession().getAttribute("userID") != null) {
-	         return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
-	      }
-	      return -1;
-	   }
-	
 	@RequestMapping(value = "/inquiryDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView inquiryDetail(ModelAndView mv, 
 			@RequestParam("boardNum") int boardNum) {
-		Inquiry view = inquiryFacade.boardDetail(boardNum);
-		System.out.println(view);
+		inquiryFacade.updateViews(boardNum);
 		mv.addObject("inquiry", inquiryFacade.boardDetail(boardNum));
 		mv.setViewName("inquiry/inquiryDetail");
 		return mv;

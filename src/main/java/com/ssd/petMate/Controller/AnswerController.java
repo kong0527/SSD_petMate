@@ -84,6 +84,16 @@ public class AnswerController {
 		inquiryFacade.updateReplyCnt(inquiry);
 	}
 	
+//	답변 채택
+	@RequestMapping(value = "/selectAnswer", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public void selectAnswer(ModelAndView mv, HttpServletRequest request,
+			@RequestParam("boardNum") int boardNum,
+			@RequestParam("answerNum") int answerNum)	{
+		inquiryFacade.selectInquiry(boardNum); 
+		answerFacade.selectAnswer(answerNum);
+	}
+	
 	@RequestMapping(value = "/answerReply", method = RequestMethod.POST)
 	@ResponseBody
 	public void answerComment(ModelAndView mv, HttpServletRequest request,

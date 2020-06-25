@@ -15,6 +15,8 @@ public interface AnswerFacade {
 	
 	void deleteAnswer(int answerNum);
 	
+	void selectAnswer(int answerNum);
+	
 	Answer answerDetail(int answerNum);
 	
 	int answerCnt(int boardNum);

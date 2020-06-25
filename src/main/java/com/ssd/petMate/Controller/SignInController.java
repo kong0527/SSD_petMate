@@ -55,9 +55,7 @@ public class SignInController {
 			}
 		}
 		catch (Exception e) {
-//			result.rejectValue("userID", "invalidIdOrPassword", "암호가 일치하지 않습니다.");
-			result.reject("invalidIdOrPwd", new Object[] { signInCommand.getUserID() }, null);
-			System.out.println("Error!");
+			result.rejectValue("userID", "invalidIdOrPwd", "아이디 혹은 암호가 일치하지 않습니다.");
 			return formViewName;
 		}
 		

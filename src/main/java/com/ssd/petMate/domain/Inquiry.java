@@ -13,7 +13,7 @@ public class Inquiry {
 	@NotEmpty
 	private String boardTitle;
 	private String boardImage;
-	private boolean isSelected;
+	private int isSelected;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -69,10 +69,12 @@ public class Inquiry {
 	public void setBoardImage(String boardImage) {
 		this.boardImage = boardImage;
 	}
-	public boolean isSelected() {
+	public int getIsSelected() {
 		return isSelected;
 	}
-	public void setSelected(boolean isSelected) {
+	public void setIsSelected(int isSelected) {
 		this.isSelected = isSelected;
 	}
+	
+	
 }

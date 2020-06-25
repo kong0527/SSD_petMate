@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 var boardNum = '${inquiry.boardNum}'; //게시글 번호
-
+var inId = '${inquiry.userID}'; //게시글 작성자
+var isSelected = '${inquiry.isSelected}'; //게시글 채택 여부
 /* 댓글 내용이 없으면 alert창 띄우기  */
 $(document).on('click', '#btnAnswer', function(e){
 	if($("#answerContent").val()==""){
@@ -22,7 +23,7 @@ function answerList(){
     $.ajax({
         url : url,
         type : 'get',
-        data : {"boardNum":boardNum},
+        data : {"boardNum":boardNum, "inId":inId, "isSelected":isSelected}, 
         dataType: 'json',
         success : function(data){
             var html =''; 
@@ -37,6 +38,14 @@ function answerList(){
 		            	html += '<li class="comment">';
 		                html += '<div class="comment-body" id="answerNum' + this.answerNum + '">';
 		                html += '<div class="well well-lg">';
+		                if (inId == userID) {
+			                if (isSelected != 1)
+		                        html += '<a onclick="answerSelect('+value.answerNum+',\''+ value.boardNum+'\');" class="btn btn-info btn-circle text-uppercase float-right"> 채택 </a>';
+	                	}
+		                if (value.isSelected == 1)
+               				html +='<img src="resources/img/select.png" align="right">'	
+               			else
+                   			html+='<p/>'
 		                html += '<h3>' + value.userID + '</h3>';
 		                html += '<div class="meta">' + value.answerDate + '</div>';
 	                    html += '<p>' + value.answerContent + '</p>';
@@ -95,7 +104,6 @@ function answerInsert(insertData){
         }
     });
 }
-
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 function answerUpdate(answerNum, answerContent, userID){
 	var htmls = "";
@@ -129,7 +137,6 @@ function answerUpdateProc(answerNum){
         }
     });
 }
-
 // 답글 작성
 function insertAnswerReply(answerNum, boardNum){
 	var htmls = "";
@@ -178,6 +185,19 @@ function answerDelete(answerNum, boardNum){
 	}
 }
 
+//댓글 채택
+function answerSelect(answerNum, boardNum){
+	if (confirm('댓글을 채택하시겠습니까?')) {
+	    $.ajax({
+	        url : '${pageContext.request.contextPath}/selectAnswer',
+	        data: {'answerNum':answerNum, 'boardNum':boardNum},
+	        type : 'post',
+	        success : function(data){
+	       		location.reload();
+	        }
+	    });
+	}
+}
 $(document).ready(function(){
 	answerList(); //페이지 로딩시 댓글 목록 출력 
 });
