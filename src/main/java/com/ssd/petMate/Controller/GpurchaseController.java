@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
-import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GpurchaseFacade;
@@ -137,39 +136,22 @@ public class GpurchaseController {
 	}
 	
 	//공구게시판 장바구니 삭제
-		@GetMapping("/gpurchaseCartDelete")
-		public String gpurchaseCartDelete(@RequestParam(required = false) int boardNum, HttpServletRequest request) {
-			String userID = (String) request.getSession().getAttribute("userID");
-			Gpurchase gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
-			GpurchaseCart gpurchaseCart = new GpurchaseCart(userID, boardNum);
-			
-			gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
-			
-//			좋아요 개수 가지고 오기
-			int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
-//			좋아요 개수 update
-			gpurchase.setCartAdded(cartAdded);
-			gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
-			
-			return "redirect:/gpurchaseCart";	
-		}
-//	//공구게시판 장바구니 삭제
-//	@RequestMapping(value="/gpurchaseCartDelete", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String gpurchaseCartDelete(@RequestParam(required = false) int boardNum, HttpServletRequest request) {
-//		String userID = (String) request.getSession().getAttribute("userID");
-//		Gpurchase gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
-//		GpurchaseCart gpurchaseCart = new GpurchaseCart(userID, boardNum);
-//		
-//		gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
-//		
-////		좋아요 개수 가지고 오기
-//		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
-////		좋아요 개수 update
-//		gpurchase.setCartAdded(cartAdded);
-//		gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
-//		
-//		return "redirect:/gpurchaseCart";
-//	}	
+	@GetMapping("/gpurchaseCartDelete")
+	public String gpurchaseCartDelete(@RequestParam(required = false) int boardNum, HttpServletRequest request) {
+		String userID = (String) request.getSession().getAttribute("userID");
+		Gpurchase gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
+		GpurchaseCart gpurchaseCart = new GpurchaseCart(userID, boardNum);
+		
+		gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+		
+//		좋아요 개수 가지고 오기
+		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
+//		좋아요 개수 update
+		gpurchase.setCartAdded(cartAdded);
+		gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
+		
+		return "redirect:/gpurchaseCart";
+	}	
 
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })

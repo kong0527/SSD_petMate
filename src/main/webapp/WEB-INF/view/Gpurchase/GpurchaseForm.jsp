@@ -31,12 +31,12 @@
 							<form:input path="edate" class="form-control form-control-lg" />
 						</div>
 					</div>
-					<%-- <div class="row">
+					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardName">물건 이름</label>
 							<form:input path="boardName" class="form-control form-control-lg" />
 						</div>
-					</div> --%>
+					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="price">가격</label> 
