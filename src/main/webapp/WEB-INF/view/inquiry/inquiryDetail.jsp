@@ -9,11 +9,14 @@
 		<div class="row">
 			<div class="col-lg-8 single-content">
 				<h1 class="mb-4">${inquiry.boardTitle}</h1>
+				<c:if test="${inquiry.isSelected eq 1}">
+					<img src="resources/img/lock.png" align="right">
+				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${inquiry.userID}</a></span> 
 						<span class="date-read">${inquiry.boardDate} 
-						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+						<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} <span class="icon-star2"></span></span>
 					</div>
 				</div>
 				${inquiry.boardContent}	
@@ -61,6 +64,7 @@
 				</div>
 				
 				<!-- comment 작성 부분 -->
+				<c:if test="${inquiry.isSelected ne 1}">
 					<div class="comment-form-wrap pt-5">
 						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
@@ -71,7 +75,7 @@
 				               <textarea class="form-control" cols="10" rows="5" id="answerContent" name="answerContent" placeholder="내용을 입력하세요."></textarea>
 				               <c:if test="${sessionScope.userID ne null}">
 					               <div class="form-group">	
-					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3">등록</button>
+					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3 float-right">등록</button>
 					               </div>
 				               </c:if>
 				               <c:if test="${sessionScope.userID eq null}">
@@ -80,7 +84,7 @@
 				            </div>
 				        </form>
 			    	</div>
-			    	
+			    </c:if>
 				<!-- comment 시작 부분 -->
 				<div class="pt-5">
 					<div class="replySection-title">
@@ -149,10 +153,4 @@
 			}
 		});
 	}
-	function del(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href='inquiryDelete?boardNum='+boardNum;
-		}
-	}	
 </script>

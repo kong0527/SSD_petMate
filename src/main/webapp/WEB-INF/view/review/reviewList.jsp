@@ -37,10 +37,10 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<c:if test="${reviewChk < 0}" >
+						<c:if test="${sessionScope.userID eq null}" >
 							<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="submit" class="btn" value="글 작성" /></a>
 						</c:if>
-						<c:if test="${reviewChk == 0}">
+						<c:if test="${sessionScope.userID ne null}">
 							<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
 						</c:if>
 					</td>
@@ -76,6 +76,16 @@
 				</c:if>
 			</ul>
 		</div>
+		<!-- 검색  -->
+		<div class="d-flex justify-content-center" >
+			<select class="form-control form-control-sm" name="searchType" id="searchType" style="width : 10%">
+				<option value="boardTitle">글 제목</option>
+				<option value="boardContent">글 내용</option>
+				<option value="userID">작성자</option>
+			</select>
+	        <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
+	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
+       </div>
 	</div>
 </div>
 <script>
@@ -97,8 +107,5 @@
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
-	}
-	function isReview(userID) {
-		
 	}
 </script>

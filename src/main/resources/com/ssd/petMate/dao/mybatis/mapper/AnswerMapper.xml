@@ -31,13 +31,20 @@
 		WHERE answerNum = #{answerNum}
 	</update>
 	
+	<!-- 댓글 채택하기  -->
+	<update id="selectAnswer" parameterType="com.ssd.petMate.domain.Answer">
+		UPDATE Answer SET
+		isSelected = 1
+		WHERE answerNum = #{answerNum}
+	</update>
+	
 	<!-- 답글 삭제하기  -->
 	<!-- 부모 답글을 삭제하면 밑에 대댓글들도 삭제할 수 있도록 or 처리 -->
 	<delete id="deleteAnswer" parameterType="Integer">
 		DELETE FROM Answer
 		WHERE answerNum = #{answerNum} or replyGID = #{replyGID}
 	</delete>
-
+	
 	<!-- 댓글 상세정보 가져오기  -->
 	<select id="answerDetail" parameterType="Integer" resultType="com.ssd.petMate.domain.Answer">
 		SELECT *

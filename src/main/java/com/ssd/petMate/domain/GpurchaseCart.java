@@ -22,7 +22,7 @@ public class GpurchaseCart {
 		this.userID = userID;
 		this.boardNum = boardNum;
 	}
-	
-	
-		
+	public GpurchaseCart() {
+		super();
+	}		
 }

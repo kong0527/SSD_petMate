@@ -46,6 +46,12 @@ public class MybatisAnswerDao implements AnswerDao{
 		// TODO Auto-generated method stub
 		answerMapper.deleteAnswer(answerNum);
 	}
+	
+	@Override
+	public void selectAnswer(int answerNum) throws DataAccessException {
+		// TODO Auto-generated method stub
+		answerMapper.selectAnswer(answerNum);
+	}
 
 	@Override
 	public int answerCnt(int boardNum) throws DataAccessException {

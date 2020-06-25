@@ -24,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 					<tr>
 						<td><input type="checkbox" id="box" name ="box" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 						<td ><img src="resources/img/love.png" border="0"> &nbsp;
@@ -38,9 +38,10 @@
 						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
-				</c:forEach>
-				<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
-				<form:form modelAttribute="gpurchaseCart">
+				</c:forEach> --%>
+				
+				<form:form modelAttribute="gpurchaseCartList" action="gpurchaseOrderForm">
+				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 					<tr>
 						<td><input type="checkbox" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 						<td ><img src="resources/img/love.png" border="0"> &nbsp;
@@ -52,10 +53,13 @@
 						<td><a href="<c:url value="/gpurchaseCartDelete">
 						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
 						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
+						
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
+					</c:forEach>
+					<input type="hidden" id="checkArr" name="checkArr">
 				</form:form>
-				</c:forEach> --%>
+				
 			</tbody>
 		</table>
 
@@ -76,9 +80,11 @@
 				<td id="expectPrice">2500₩</td>
 			</tr>
 			<tr>
-				<td><input type="button" id="uncheck" value="cancle" class="btn" /></td>
+				
+				<td><input type="button" id="uncheck" value="cancel" class="btn" /></td>
 				<td>&nbsp;</td>
 				<td><button type="button" id="btnOrder" name ="btnOrder" class="btn">order</button></td>
+				
 			</tr>
 		</table>
 		
@@ -105,14 +111,13 @@
 </div>
 
 <script>
-
-
 	$(document).on("click","#btnOrder", function() {
 	  	var checkArr = new Array();     // 배열 초기화
 	  	var price = 0;
 	    $('#box:checked').each(function(i){
 	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
 	    });
+
 	    price = $("#expectPrice").val();
 	    
 	    $.ajax({
@@ -125,6 +130,7 @@
 				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
 			}
 	    });
+
 	   
 	});
 

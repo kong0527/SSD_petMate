@@ -15,6 +15,52 @@
 						<!-- 별점표시하기 -->
 					</div>
 				</div>
+				<div class="post-meta d-flex mb-5">
+				<div id="starRating">
+						<c:set var="rating" value="${review.rating}" />
+							<c:choose>
+								<c:when test="${rating == 5.0}">
+									<% for(int i = 1; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+								</c:when>
+								<c:when test="${rating == 4.5}">
+									<% for(int i = 1; i < 10; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 10; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 4.0}">
+									<% for(int i = 1; i < 9; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 9; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 3.5}">
+									<% for(int i = 1; i < 8; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 8; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>   
+								</c:when>
+								<c:when test="${rating == 3.0}">
+									<% for(int i = 1; i < 7; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+									<% for(int i = 7; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>   
+								</c:when>
+								<c:when test="${rating == 2.5}">
+									<% for(int i = 1; i < 6; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>
+									<% for(int i = 6; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 2.0}">
+									<% for(int i = 1; i < 5; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%> 
+									<% for(int i = 5; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 1.5}">
+									<% for(int i = 1; i < 4; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>  
+									<% for(int i = 4; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:when test="${rating == 1.0}">
+									<% for(int i = 1; i < 3; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 on" <%}%><% else {%> "starR1 on" <% }%>id= star<%=i%> ></span><% }%>  
+									<% for(int i = 3; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%> 
+								</c:when>
+								<c:otherwise>
+									<span class="starR1 on" id="star1">0.5</span>
+									<% for(int i = 2; i < 11; i++) {%><span class=<% if (i % 2 == 0) {%> "starR2 " <%}%><% else {%> "starR1 " <% }%>id= star<%=i%> ></span><% }%>    
+								</c:otherwise>
+							</c:choose>
+						</div>
+						</div>
 				${review.boardContent}
 				
 				
@@ -124,3 +170,25 @@
 		}
 	}	
 </script>
+<style>
+	.starR1{
+	    background: url('resources/img/rating.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR2{
+	    background: url('resources/img/rating.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR1.on{background-position:0 0;}
+	.starR2.on{background-position:-15px 0;}
+</style>

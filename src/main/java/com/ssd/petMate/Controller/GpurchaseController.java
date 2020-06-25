@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
+import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GpurchaseFacade;
@@ -151,8 +152,6 @@ public class GpurchaseController {
 		
 		return "redirect:/gpurchaseCart";
 	}	
-	
-	
 
 //	//중고물품 삭제
 //	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })

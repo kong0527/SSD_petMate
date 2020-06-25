@@ -9,7 +9,7 @@ public class Answer { //Answer�� ��ǻ� �����̶�
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
-	private boolean isSeleted;
+	private int isSelected;
 	
 	public String getUserID() {
 		return userID;
@@ -59,10 +59,10 @@ public class Answer { //Answer�� ��ǻ� �����̶�
 	public void setReplyOrder(int replyOrder) {
 		this.replyOrder = replyOrder;
 	}
-	public boolean isSeleted() {
-		return isSeleted;
+	public int getIsSelected() {
+		return isSelected;
 	}
-	public void setSeleted(boolean isSeleted) {
-		this.isSeleted = isSeleted;
+	public void setIsSelected(int isSelected) {
+		this.isSelected = isSelected;
 	}
 }

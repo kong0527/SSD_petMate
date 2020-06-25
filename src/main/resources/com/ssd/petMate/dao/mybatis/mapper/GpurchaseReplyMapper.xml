@@ -3,7 +3,7 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.GpurchaseReplyMapper">
-  <cache />
+
   	<!-- 댓글 리스트 가져오기  -->
 	<select id="getReplyList" parameterType="int" resultType="com.ssd.petMate.domain.GpurchaseReply" flushCache="false" useCache="true">
 		SELECT *

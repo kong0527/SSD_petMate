@@ -4,29 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.ReviewLikeFacade;
-import com.ssd.petMate.service.UserImpl;
 import com.ssd.petMate.service.ReviewFacade;
 
 @Controller
@@ -38,17 +27,6 @@ public class ReviewController {
 	@Autowired
 	private ReviewLikeFacade reviewLikeFacade;
 	
-	@Autowired
-	 private UserImpl userService;
-	
-	 @ModelAttribute("reviewChk")
-	   public int reviewChk(HttpServletRequest request) {
-	      if (request.getSession().getAttribute("userID") != null) {
-	         return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
-	      }
-	      return -1;
-	   }
-	
 	@RequestMapping(value = "/reviewDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewDelete(@RequestParam("boardNum") int boardNum) {
 		reviewFacade.deleteBoard(boardNum);
@@ -58,8 +36,7 @@ public class ReviewController {
 	@RequestMapping(value = "/reviewDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView reviewDetail(ModelAndView mv, 
 			@RequestParam("boardNum") int boardNum) {
-		Review view = reviewFacade.boardDetail(boardNum);
-		System.out.println(view);
+		reviewFacade.updateViews(boardNum);
 		mv.addObject("review", reviewFacade.boardDetail(boardNum));
 		mv.setViewName("review/reviewDetail");
 		return mv;
@@ -128,5 +105,4 @@ public class ReviewController {
 		
 		return map;
 	}
-
 }

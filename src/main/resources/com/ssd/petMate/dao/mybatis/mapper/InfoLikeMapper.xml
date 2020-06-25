@@ -3,8 +3,8 @@
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.InfoLikeMapper">
 	<insert id="insertLike" parameterType="com.ssd.petMate.domain.InfoLike">
 		INSERT
-		INTO InfoLike(boardNum, userID)
-		VALUES(#{boardNum}, #{userID})
+		INTO InfoLike(boardNum, userID, likeDate)
+		VALUES(#{boardNum}, #{userID}, SYSDATE)
 	</insert>
 	
 	<delete id="deleteLike" parameterType="com.ssd.petMate.domain.InfoLike">

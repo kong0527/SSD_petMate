@@ -1,5 +1,7 @@
 package com.ssd.petMate.Controller;
 
+import java.util.Arrays;
+
 public class FilteringCommand {
 	private String petSize;
 	private String petLocal;
@@ -44,4 +46,11 @@ public class FilteringCommand {
 	public void setDayCodes(String[] dayCodes) {
 		this.dayCodes = dayCodes;
 	}
+	@Override
+	public String toString() {
+		return "FilteringCommand [petSize=" + petSize + ", petLocal=" + petLocal + ", petPrice=" + petPrice
+				+ ", petDay=" + petDay + ", sizeCodes=" + Arrays.toString(sizeCodes) + ", dayCodes="
+				+ Arrays.toString(dayCodes) + "]";
+	}
+	
 }
