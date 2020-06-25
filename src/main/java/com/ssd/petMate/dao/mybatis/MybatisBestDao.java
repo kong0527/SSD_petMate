@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.ssd.petMate.dao.BestDao;
 import com.ssd.petMate.dao.mybatis.mapper.BestMapper;
 import com.ssd.petMate.domain.Info;
+import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Review;
 
 @Repository
 public class MybatisBestDao implements BestDao{
@@ -26,5 +28,29 @@ public class MybatisBestDao implements BestDao{
 	public Info dailyBestInfo() throws DataAccessException {
 		// TODO Auto-generated method stub
 		return bestMapper.dailyBestInfo();
+	}
+
+	@Override
+	public List<Inquiry> weeklyBestInquiry(Date date) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return bestMapper.weeklyBestInquiry(date);
+	}
+
+	@Override
+	public Inquiry dailyBestInquiry() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return bestMapper.dailyBestInquiry();
+	}
+
+	@Override
+	public List<Review> weeklyBestReview(Date date) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return bestMapper.weeklyBestReview(date);
+	}
+
+	@Override
+	public Review dailyBestReview() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return bestMapper.dailyBestReview();
 	}
 }

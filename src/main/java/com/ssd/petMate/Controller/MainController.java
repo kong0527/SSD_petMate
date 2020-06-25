@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Info;
+import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.service.BestFacade;
 
 @Controller
-public class mainController {	
+public class MainController {	
 
 	@Autowired
 	private BestFacade bestFacade;
@@ -29,7 +31,6 @@ public class mainController {
            Calendar cal = Calendar.getInstance();
            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
            mon = cal.getTime();
-           System.out.println(mon.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,8 +38,18 @@ public class mainController {
         List<Info> weeklyBestInfo = bestFacade.weeklyBestInfo(mon);	
         Info dailyBestInfo = bestFacade.dailyBestInfo();
         
+        List<Inquiry> weeklyBestInquiry = bestFacade.weeklyBestInquiry(mon);
+        Inquiry dailyBestInquiry = bestFacade.dailyBestInquiry();
+        
+        List<Review> weeklyBestReview = bestFacade.weeklyBestReview(mon);
+        Review dailyBestReview = bestFacade.dailyBestReview();
+                
 		mv.addObject("weeklyBestInfo", weeklyBestInfo);
+		mv.addObject("weeklyBestInquiry", weeklyBestInquiry);
+		mv.addObject("weeklyBestReview", weeklyBestReview);
 		mv.addObject("dailyBestInfo", dailyBestInfo);
+		mv.addObject("dailyBestInquiry", dailyBestInquiry);
+		mv.addObject("dailyBestReview", dailyBestReview);
 		mv.setViewName("index");
 		return mv;
 	}

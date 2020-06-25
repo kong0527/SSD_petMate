@@ -2,22 +2,22 @@
 [ FONT ]*/
 @font-face {
   font-family: NanumSquare_extraBold;
-  src: url('../../fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
+  src: url('/petMate/resources/fonts/Nanumsquare/NanumSquare_acEB.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_bold;
-  src: url('../../fonts/Nanumsquare/NanumSquare_acB.ttf'); 
+  src: url('/petMate/resources/fonts/Nanumsquare/NanumSquare_acB.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_regular;
-  src: url('../../fonts/Nanumsquare/NanumSquare_acR.ttf'); 
+  src: url('/petMate/resources/fonts/Nanumsquare/NanumSquare_acR.ttf'); 
 }
 
 @font-face {
   font-family: NanumSquare_light;
-  src: url('../../fonts/Nanumsquare/NanumSquare_acL.ttf'); 
+  src: url('/petMate/resources/fonts/Nanumsquare/NanumSquare_acL.ttf'); 
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -1200,7 +1200,7 @@ h1, h2, h3, h4, h5,
 .half-post-entry .contents {
   padding: 50px;
   font-size: .9rem;
-  height: auto; }
+  height: 370px; }
   @media (max-width: 991.98px) {
     .half-post-entry .contents {
       padding: 30px; } }
