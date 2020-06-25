@@ -139,6 +139,7 @@
 				</if>
 		 	</if>
 		</where>
+		ORDER BY boardNum ASC
 	</select>
 	
 	<!-- 좋아요 업데이트 -->	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.Petsitter;
@@ -85,8 +86,7 @@ public class PetsitterFormController {
 
 	@PostMapping("/petsitterForm")
 	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, 
-	         SessionStatus sessionStatus, HttpServletRequest request) {
-	      sessionStatus.setComplete();
+	         SessionStatus sessionStatus, HttpServletRequest request, ModelAndView mv) {
 	      int sizeSum = 0;
 	      int daySum = 0;
 	      petsitter.setUserID(request.getSession().getAttribute("userID").toString());
