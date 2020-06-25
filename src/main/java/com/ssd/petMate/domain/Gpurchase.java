@@ -14,6 +14,7 @@ public class Gpurchase {
 	private int boardHit;
 	private String boardImage;
 	private int goalNum;
+	private String productName;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -93,7 +94,12 @@ public class Gpurchase {
 	public void setCartAdded(int cartAdded) {
 		this.cartAdded = cartAdded;
 	}
-	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public Gpurchase() {
 		super();
 	}
@@ -108,5 +114,4 @@ public class Gpurchase {
 	public String toString() {
 		return "gpurchase domaind content : "  + boardNum + userID + boardTitle + boardContent + price;
 	}
-
 }
