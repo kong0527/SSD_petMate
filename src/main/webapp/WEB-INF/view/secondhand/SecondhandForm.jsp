@@ -49,7 +49,7 @@
 						<c:when test="${0 eq secondhand.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" id="" value="등록" class="btn btn-primary py-3 px-5">
+									<input type="submit" id="btn" value="등록" class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
 						</c:when>	
@@ -83,4 +83,5 @@
 	        return false;
 	     } 
 	     $("#form").submit();
+	});
 </script>
