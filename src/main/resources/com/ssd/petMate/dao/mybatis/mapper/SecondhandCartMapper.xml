@@ -3,34 +3,39 @@
 
 <!-- mapper interface랑 경로를 똑같이 정함 -->
 <mapper namespace="com.ssd.petMate.dao.mybatis.mapper.SecondhandCartMapper">
-  <cache />
-  	<!-- 중고물품 장바구니 목록 가져오기  -->
-	<select id="getSecondhandCartList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.SecondhandCart">
-		SELECT *
-		FROM SecondhandCart
-		WHERE userID = #{userID}
-		ORDER BY boardNum
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
-	</select>
-	<!--  조인이 필요한가? -->
-	
-	<!-- 중고물품 장바구니 수(페이지네이션?) -->
-	<select id="getSecondhandCartCount" resultType="int">
-		SELECT COUNT(*)
-		FROM SecondhandCart
-		WHERE userID = #{userID}
+
+ 	<select id="getSecondhandCartListBySecondhand" parameterType="String" resultType="com.ssd.petMate.domain.SecondhandCartCommand">
+		SELECT sc.userID, sc.boardNum, s.userID AS "secondhand.userID", s.boardNum AS "secondhand.boardNum", s.price AS "secondhand.price", s.boardTitle AS "secondhand.boardTitle"
+		FROM SecondhandCart sc, Secondhand s
+		WHERE sc.boardNum = s.boardNum AND sc.userID = #{userID}
+		ORDER BY sc.boardNum
 	</select>
 	
-	<!-- 중고물품 장바구니 추가하기  -->
+	<!-- 공동구매 장바구니 추가하기  -->
 	<insert id="insertSecondhandCart" parameterType="com.ssd.petMate.domain.SecondhandCart">
  		INSERT
  		INTO SecondhandCart(boardNum, userID) VALUES(#{boardNum}, #{userID})
-	</insert>
+ 	</insert>
 	
-	<!-- 중고물품 장바구니 삭제하기  -->
+	<!-- 공동구매 장바구니 삭제하기  -->
 	<delete id="deleteSecondhandCart" parameterType="com.ssd.petMate.domain.SecondhandCart">
 		DELETE
 		FROM SecondhandCart
 		WHERE boardNum=#{boardNum} and userID=#{userID}
 	</delete>
+	
+	<!-- 게시글에 대한 추천이 몇개인지 -->
+	<select id="countCartByboardNum" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM SecondhandCart
+		WHERE boardNum = #{boardNum}
+	</select>
+	
+	<!-- 사용자가 장바구니로 담았는지 확인 -->
+	<select id="isCart" resultType="int" parameterType="com.ssd.petMate.domain.SecondhandCart">
+		SELECT COUNT(*)
+		FROM SecondhandCart
+		WHERE boardNum=#{boardNum} and userID=#{userID}
+	</select> 
+
 </mapper>

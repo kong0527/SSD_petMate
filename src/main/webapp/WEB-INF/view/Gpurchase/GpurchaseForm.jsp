@@ -56,6 +56,7 @@
 								class="form-control" style="width:120%"></form:textarea>
 						</div>
 					</div>
+					<%-- <form:hidden path="boardNum" /> --%>
 					<%-- <c:if test="${empty gpurchase.boardNum}">
 					<div class="row">
 						<div class="col-12">
@@ -85,7 +86,6 @@
 						</c:when>
 					</c:choose>
 				</form:form>
-				
 			</div>
 		</div>
 	</div>

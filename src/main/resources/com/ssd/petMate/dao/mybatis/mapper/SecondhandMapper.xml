@@ -7,37 +7,45 @@
     <!-- 중고물품 게시글 목록 가져오기  -->
 	<select id="getSecondhandList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Secondhand">
      	SELECT *
-		FROM (
-		SELECT secondhand.*, ROWNUM AS NUM
-		FROM Secondhand
-     	<where>
-			<if test="searchType=='boardTitle' and keyword != null">
-				and boardTitle LIKE CONCAT('%',#{keyword},'%')
-			</if>
-			<if test="searchType=='boardContent' and keyword != null">
-				and boardContent LIKE CONCAT('%',#{keyword},'%')
-			</if>
-			<if test="searchType=='userID' and keyword != null">
-				and userID LIKE CONCAT('%',#{keyword},'%')
-			</if>
-		</where>
-     	ORDER BY boardNum) secondhand
-		WHERE NUM BETWEEN #{startList} AND #{contentNum}
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	secondhand.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                secondhand
+                <where>
+		        	<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            	boardTitle LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            	boardContent LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		         	<if test="searchType=='userID' and keyword != null and keyword != ''">
+		            	userID LIKE '%' ||  #{keyword} || '%'
+		         	</if>
+		      	</where>
+                ORDER BY boardNum ASC 
+            )secondhand)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 	
 	<!-- 중고물품 게시글 수 -->
-	<select id="getSecondhandboardCount" resultType="int" parameterType="HashMap">
+	<select id="getSecondhandBoardCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
 		FROM Secondhand
 		<where>
 			<if test="searchType=='boardTitle' and keyword != null and keyword != ''">
-				and boardTitle LIKE CONCAT('%',#{keyword},'%')
+				boardTitle LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="searchType=='boardContent' and keyword != null and keyword != ''">
-				and boardContent LIKE CONCAT('%',#{keyword},'%')
+				boardContent LIKE '%' || #{keyword} || '%'
 			</if>
 			<if test="searchType=='userID' and keyword != null and keyword != ''">
-				and userID LIKE CONCAT('%',#{keyword},'%')
+				userID LIKE '%' || #{keyword} || '%'
 			</if>
 		</where>
 	</select>
@@ -52,7 +60,11 @@
 	<!-- 중고물품 게시글 수정하기  -->
 	<update id="updateSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
 		UPDATE Secondhand
-		SET boardTitle = #{boardTitle}, boardContent = #{boardContent}, boardDate = SYSDATE, boardImage = #{boardImage,jdbcType=VARCHAR}, price = #{price}
+		SET boardTitle = #{boardTitle},
+		boardContent = #{boardContent},
+		boardDate = SYSDATE,
+		boardImage = #{boardImage,jdbcType=VARCHAR},
+		price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
@@ -69,31 +81,17 @@
 		WHERE boardNum = #{boardNum}
 	</select>
 	
-	<!-- 중고물품 장바구니 추가(장바구니 수 증가) -->
-	<update id="secondhandCartPlus" parameterType="int">
-		UPDATE Secondhand
-		SET cartAdded = cartAdded + 1
+	<!-- 중고물품 장바구니 업데이트 -->
+	<update id="secondhandCartUpdate" parameterType="com.ssd.petMate.domain.Secondhand">
+		UPDATE secondhand
+		SET cartAdded = #{cartAdded}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	<!-- 중고물품 장바구니 삭제(장바구니 수 감소) -->
-	<update id="secondhandCartMinus" parameterType="int">
-		UPDATE Secondhand
-		SET cartAdded = cartAdded - 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 중고물품 댓글 추가 -->
-	<update id="secondhandReplyCntPlus" parameterType="int">
-		UPDATE Secondhand
-		SET replyCnt = replyCnt + 1
-		WHERE boardNum = #{boardNum}
-	</update>
-	
-	<!-- 중고물품 댓글 삭제-->
-	<update id="secondhandReplyCntMinus" parameterType="int">
-		UPDATE Secondhand
-		SET replyCnt = replyCnt - 1
+	<!-- 중고물품 댓글 업데이트 -->
+	<update id="secondhandReplyCntUpdate" parameterType="com.ssd.petMate.domain.Secondhand">
+		UPDATE secondhand
+		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
 	

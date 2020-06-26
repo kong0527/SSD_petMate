@@ -10,6 +10,7 @@ import com.ssd.petMate.dao.InfoDao;
 import com.ssd.petMate.dao.SecondhandDao;
 import com.ssd.petMate.dao.mybatis.mapper.InfoMapper;
 import com.ssd.petMate.dao.mybatis.mapper.SecondhandMapper;
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
@@ -26,8 +27,8 @@ public class MybatisSecondhandDao implements SecondhandDao {
 	}
 	
 	//게시글 수 가져오기
-	public int getSecondhandboardCount(HashMap<String, Object> map) throws DataAccessException {
-		return secondhandMapper.getSecondhandboardCount(map);
+	public int getSecondhandBoardCount(HashMap<String, Object> map) throws DataAccessException {
+		return secondhandMapper.getSecondhandBoardCount(map);
 	}
 	
 	//게시글 작성
@@ -50,15 +51,17 @@ public class MybatisSecondhandDao implements SecondhandDao {
 		secondhandMapper.deleteSecondhand(boardNum);
 	}
 	
+	//조회 수 증가
+	public void secondhandBoardHitPlus(int boardNum) throws DataAccessException{
+		secondhandMapper.secondhandBoardHitPlus(boardNum);
+	}
 	
+	public void secondhandCartUpdate(Secondhand secondhand) throws DataAccessException{
+		secondhandMapper.secondhandCartUpdate(secondhand);
+	} //장바구니 담은 수 증가
 	
-//	public void secondhandReplyCntPlus(int boardNum) throws DataAccessException; //덧글수 증가
-//	
-//	public void secondhandReplyCntMinus(int boardNum) throws DataAccessException; //덧글수 감소
-//	
-//	public void secondhandBoardHitPluss(int boardNum) throws DataAccessException; //조회수 증가
-//	
-//	public void secondhandCartPlus(int boardNum) throws DataAccessException; //장바구니 담은 수 증가
-//	
-//	public void secondhandCartMinus(int boardNum) throws DataAccessException; //장바구니 담은 수 감소
+	public void secondhandReplyCntUpdate(Secondhand secondhand) throws DataAccessException{
+		secondhandMapper.secondhandReplyCntUpdate(secondhand);
+	} //덧글수 증가
+
 }

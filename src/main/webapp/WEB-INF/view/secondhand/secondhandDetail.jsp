@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="secondhandReply.jsp" %>
 <div class="site-section">
 	<div class="container">
 		<div class="row">
@@ -9,7 +12,7 @@
 					<div class="vcard">
 						<span class="d-block"><a href="#">${secondhand.userID}</a></span> 
 						<span class="date-read">${secondhand.boardDate} 
-						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+						<span class="mx-1">&bullet;</span> ${secondhand.boardHit} min read <span class="icon-star2"></span></span>
 					</div>
 				</div>
 				${secondhand.boardContent} &nbsp;
@@ -17,23 +20,44 @@
 				${secondhand.price}  &nbsp;
 				${secondhand.boardDate}  &nbsp;
 				${secondhand.userID}  &nbsp;
-
+				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
-					<form>
-						<input type="hidden" id="boardNum" name="boardNum" value="${secondhand.boardNum}"/>
-						<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-						<button type="submit" formaction="secondhandUpdateForm"
-						class="btn">수정</button>
-						<button type="submit" formaction="secondhandDelete"
-						class="btn">삭제</button>
-					</form>
+				<form>
+					<input type="hidden" id="boardNum" name="boardNum" value="${secondhand.boardNum}"/>
+					<c:if test="${sessionScope.userID ne null}">
+						<c:if test="${sessionScope.userID eq secondhand.userID}">
+							<button type="submit" formaction="secondhandForm" class="btn">수정</button>
+							<input type="button" class="btn" value="삭제" onclick="del(${secondhand.boardNum})" />
+						</c:if>
+						<c:if test="${sessionScope.userID eq 'admin'}">
+							<input type="button" class="btn" value="삭제" onclick="del(${secondhand.boardNum})" />
+						</c:if>
+					</c:if>
+				</form>
 				</div>
 
 				<div class="pt-5" align="center">
-					<a href="secondhandDetail/likePlus"><img
-						src="resources/img/love.png" border="0" class="zoom"></a>
-					<p>추천수 : 1</p>
+						<c:if test="${sessionScope.userID eq null}">
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
+								<img src="resources/img/love.png" border="0" class="zoom">
+							</a>
+						</c:if>
+						<c:if test="${sessionScope.userID ne null}">
+							<c:if test="${sessionScope.userID ne secondhand.userID}">
+								<a href="javascript:void(0);" onclick="checkCart();">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.userID eq secondhand.userID}">
+								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
+									<img src="resources/img/love.png" border="0" class="zoom">
+								</a>
+							</c:if>
+						</c:if>
+						<div id="cartAdded">
+							장바구니 담은 수 : ${secondhand.cartAdded}
+						</div>
 				</div>
 				
 				<div class="pt-5" align="center">
@@ -41,142 +65,64 @@
 				</div>
 				<!-- comment 작성 부분 -->
 				<div class="comment-form-wrap pt-5">
-					<div class="section-title">
-						<h2 class="mb-5">Leave a comment</h2>
-					</div>
-					<form action="#" class="p-5 bg-light">
-						<div class="form-group">
-							<label for="message">&nbsp&nbsp댓글 쓰기</label>
-							<textarea name="" id="message" cols="10" rows="5"
-								class="form-control"></textarea>
+						<div class="replySection-title">
+							<h2 class="mb-5">Leave a comment</h2>
 						</div>
-						<div class="form-group">
-							<input type="submit" value="등록" class="btn btn-primary py-3">
-						</div>
-					</form>
-				</div>
+	       				<form id="replyForm" class="p-5 bg-light">
+				           <div class="form-group">
+				           	   <input type="hidden" name="boardNum" id="boardNum" value="${secondhand.boardNum}"/>
+				               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
+				               <c:if test="${sessionScope.userID ne null}">
+					               <div class="form-group">	
+					               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
+					               </div>
+				               </c:if>
+				               <c:if test="${sessionScope.userID eq null}">
+				               		<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="button" class="btn" value="글 작성" /></a>
+				               </c:if>
+				            </div>
+				        </form>
+			    </div>
 
 				<!-- comment 시작 부분 -->
 
 				<div class="pt-5">
-					<div class="section-title">
-						<h2 class="mb-5">6 Comments</h2>
+					<div class="replySection-title">
+						<h2 class="mb-5">Comments</h2>
 					</div>
 					<ul class="comment-list">
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-
-							<ul class="children">
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Image placeholder">
-									</div>
-									<div class="comment-body">
-										<h3>Jean Doe</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-											vitae autem, eum officia, fugiat saepe enim sapiente iste
-											iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-										<p>
-											<a href="#" class="reply">Reply</a>
-										</p>
-									</div>
-
-
-									<ul class="children">
-										<li class="comment">
-											<div class="vcard bio">
-												<img src="images/person_1.jpg" alt="Image placeholder">
-											</div>
-											<div class="comment-body">
-												<h3>Jean Doe</h3>
-												<div class="meta">January 9, 2018 at 2:21pm</div>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-													elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-													vitae autem, eum officia, fugiat saepe enim sapiente iste
-													iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-												<p>
-													<a href="#" class="reply">Reply</a>
-												</p>
-											</div>
-
-											<ul class="children">
-												<li class="comment">
-													<div class="vcard bio">
-														<img src="images/person_1.jpg" alt="Image placeholder">
-													</div>
-													<div class="comment-body">
-														<h3>Jean Doe</h3>
-														<div class="meta">January 9, 2018 at 2:21pm</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit. Pariatur quidem laborum necessitatibus, ipsam
-															impedit vitae autem, eum officia, fugiat saepe enim
-															sapiente iste iure! Quam voluptas earum impedit
-															necessitatibus, nihil?</p>
-														<p>
-															<a href="#" class="reply">Reply</a>
-														</p>
-													</div>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Image placeholder">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
+						<div id="replyList"></div>
 					</ul>
 					<!-- END comment-list -->
-
 				</div>
-			</div>
 		</div>
 	</div>
 </div>
+<script>
+	function checkCart() {
+		var boardNum = '${secondhand.boardNum}';
+		$.ajax({
+			url : '/petMate/secondhandCartAdded',
+			type : 'post',
+			data : {'boardNum' : boardNum},
+			dataType : 'json',
+			success : function(data) {
+				var html = '';
+				if (data.count == 0) {
+					alert('장바구니에 추가되었습니다.');
+				} else {
+					alert('이미 담은 상품입니다.');
+				}
+				html += '장바구니 담은 수: ' + data.cartAdded;
+				$("#cartAdded").html(html);
+			}
+		});
+	}
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='secondhandDetail/delete?boardNum='+boardNum;
+		}
+	}
+</script>

@@ -1,8 +1,9 @@
 package com.ssd.petMate.domain;
 
-public class SecondhandCart {
+public class SecondhandCartCommand {
 	private String userID;
 	private int boardNum;
+	private Secondhand secondhand;
 	
 	public String getUserID() {
 		return userID;
@@ -16,13 +17,11 @@ public class SecondhandCart {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	
-	public SecondhandCart(String userID, int boardNum) {
-		super();
-		this.userID = userID;
-		this.boardNum = boardNum;
+	public Secondhand getSecondhand() {
+		return secondhand;
 	}
-	public SecondhandCart() {
-		super();
-	}		
+	public void setSecondhand(Secondhand secondhand) {
+		this.secondhand = secondhand;
+	}
+	
 }

@@ -5,6 +5,7 @@ public class SecondhandLineItem {
 	private int price;
 	private int boardNum;
 	private int lineItemNum;
+	
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -29,6 +30,19 @@ public class SecondhandLineItem {
 	public void setLineItemNum(int lineItemNum) {
 		this.lineItemNum = lineItemNum;
 	}
+	
+	public void CartToLineItem(Secondhand secondhand, int orderNum) {
+		this.price = secondhand.getPrice();
+		this.boardNum = secondhand.getBoardNum();
+		this.orderNum = orderNum;
+	}
+	
+	@Override
+	public String toString() {
+		return "SecondhandLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum
+				+ ", lineItemNum=" + lineItemNum + "]";
+	}
+	
 	
 	
 }

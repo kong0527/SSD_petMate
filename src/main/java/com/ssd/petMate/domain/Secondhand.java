@@ -79,6 +79,4 @@ public class Secondhand {
 		return userID + " " +boardTitle + " " +boardContent + " " +price + " " +boardNum;
 	}
 	
-	
-	
 }

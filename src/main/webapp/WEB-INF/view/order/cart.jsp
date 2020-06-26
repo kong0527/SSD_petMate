@@ -32,10 +32,8 @@
 						<td>${gpurchaseCart.gpurchase.price}</td>
 						<td>1</td>
 						<td>${gpurchaseCart.gpurchase.boardNum} ${gpurchaseCart.gpurchase.price}</td>
-						<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" />
-						<td><a href="<c:url value="/gpurchaseCartDelete">
-						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
-						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
+						<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" /></td>
+						<td><input type="submit" class = "btn" value="x" onclick="del(${gpurchaseCart.gpurchase.boardNum})" /></td>
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
 				</c:forEach>
@@ -106,21 +104,18 @@
 
 <script>
 
-<<<<<<< HEAD
-	 $(document).on("click","#btnOrder", function() {
-=======
-
 	$(document).on("click","#btnOrder", function() {
->>>>>>> branch 'develop' of https://github.com/hjyeon-n/SSD_petMate.git
 	  	var checkArr = new Array();     // 배열 초기화
 	  	var price = 0;
 	    $('#box:checked').each(function(i){
 	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
 	    });
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'develop' of https://github.com/hjyeon-n/SSD_petMate.git
+	    if(checkArr == "" || checkArr == null || checkArr == undefined || (checkArr != null && typeof checkArr == "object" && !Object.keys(checkArr).length)){
+		   alert("담은 상품이 없습니다.");
+		   return;
+		}
+		
 	    price = $("#expectPrice").val();
 	    
 	    $.ajax({
@@ -133,13 +128,7 @@
 				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
 			}
 	    });
-<<<<<<< HEAD
-	 });
-=======
-	   
 	});
-
->>>>>>> branch 'develop' of https://github.com/hjyeon-n/SSD_petMate.git
 
 	/* $(document).on("click","#btnOrder", function() {
 
@@ -198,6 +187,14 @@
 
 		 
 	 });
+
+
+	function del(boardNum) {
+		var chk = confirm("해당 상품을 삭제하시겠습니까?");
+		if (chk) {
+			location.href='gpurchaseCartDelete?boardNum='+boardNum;
+		}
+	}
 
 	  /* function cartList(){
 			var checkArr = [];     // 배열 초기화

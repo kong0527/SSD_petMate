@@ -9,7 +9,7 @@
 				<div class="section-title mb-5">
 					<h2>중고거래 폼</h2>
 				</div>
-				<form:form modelAttribute="secondhand" action="secondhandInsert">
+				<form:form modelAttribute="secondhand" action="secondhandForm">
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -42,35 +42,45 @@
 								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${secondhand.boardNum}"/>
 									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
-									<button type="submit" formaction="gpurchaseUpdate"
-									class="btn">수정</button>
-									<button type="submit" formaction="gpurchaseDelete"
-									class="btn">삭제</button>
+									<button type="submit" id="btn" class="btn">수정</button>
 								</form>
 							</div>
 						</c:when>
-						
 						<c:when test="${0 eq secondhand.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
+									<input type="submit" id="" value="등록" class="btn btn-primary py-3 px-5">
 								</div>
 							</div>
-						</c:when>
-						
+						</c:when>	
 					</c:choose>
 				</form:form>
-				
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
-		elPlaceHolder: "message",
+		elPlaceHolder: "boardContent",
 		sSkinURI: "resources/se2/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
+
+	$(document).on('click', '#btn', function(e){
+	    oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
+	     var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
+	     if(text ==""){
+	        alert("글 내용을 입력해 주세요.");
+	        oEditors.getById["boardContent"].exec("FOCUS");
+	        return false;
+	     } 
+	     if(text.length > 1500){
+	        alert("글 내용은 1500자 내로 입력해 주세요.");
+	        oEditors.getById["boardContent"].exec("FOCUS");
+	        return false;
+	     } 
+	     $("#form").submit();
 </script>

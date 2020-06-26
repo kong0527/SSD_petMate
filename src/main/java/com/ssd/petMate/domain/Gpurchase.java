@@ -100,6 +100,7 @@ public class Gpurchase {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+	
 	public Gpurchase() {
 		super();
 	}
@@ -110,8 +111,12 @@ public class Gpurchase {
 		this.price = price;
 		this.boardTitle = boardTitle;
 	}
-	
+	@Override
 	public String toString() {
-		return "gpurchase domaind content : "  + boardNum + userID + boardTitle + boardContent + price;
+		return "Gpurchase [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID + ", price="
+				+ price + ", sdate=" + sdate + ", edate=" + edate + ", boardContent=" + boardContent + ", cartAdded="
+				+ cartAdded + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle + ", boardHit=" + boardHit
+				+ ", boardImage=" + boardImage + ", goalNum=" + goalNum + ", productName=" + productName + "]";
 	}
+	
 }

@@ -65,7 +65,5 @@ public class MybatisGpurchaseDao implements GpurchaseDao {
 	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException{
 		gpurchaseMapper.gpurchaseReplyCntUpdate(gpurchase);
 	} //덧글수 증가
-	
-	
 
 }
