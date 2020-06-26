@@ -24,22 +24,16 @@
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
-						<th>덧글수</th>
-						<th>추천수</th>
-						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="infoList" items="${myInfoList}">
+				<c:forEach var="secondhandList" items="${mySecondhandList}">
 					<tr>
-						<td>${infoList.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
-						<c:param name="boardNum" value="${infoList.boardNum}"/>
-						</c:url>">${infoList.boardTitle}</a></td>
-						<td>${infoList.userID}</td>
-						<td>${infoList.replyCnt}</td>
-						<td>${infoList.boardLike}</td>
-						<td>${infoList.boardHit}</td>
+						<td>${secondhandList.boardNum}</td>
+						<td><a href="<c:url value="/secondhandDetail">
+						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
+						</c:url>">${secondhandList.boardTitle}</a></td>
+						<td>${secondhandList.userID}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -163,7 +157,7 @@
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/mypage";
+		var url = "${pageContext.request.contextPath}/myCommentSecondhand";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
@@ -172,7 +166,7 @@
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/mypage";
+		var url = "${pageContext.request.contextPath}/myCommentSecondhand";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;

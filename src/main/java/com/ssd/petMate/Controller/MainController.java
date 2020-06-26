@@ -18,7 +18,7 @@ import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.service.BestFacade;
 
 @Controller
-public class MainController {	
+public class mainController {	
 
 	@Autowired
 	private BestFacade bestFacade;
@@ -53,12 +53,6 @@ public class MainController {
 		mv.setViewName("index");
 		return mv;
 	}
-	
-//	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView index(ModelAndView mv) {
-//		mv.setViewName("index");
-//		return mv;
-//	}
 	
 	@RequestMapping(value = "/paymentForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView paymentForm(ModelAndView mv) {

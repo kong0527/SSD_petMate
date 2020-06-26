@@ -30,16 +30,16 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="infoList" items="${myInfoList}">
+				<c:forEach var="reviewList" items="${myReviewList}">
 					<tr>
-						<td>${infoList.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
-						<c:param name="boardNum" value="${infoList.boardNum}"/>
-						</c:url>">${infoList.boardTitle}</a></td>
-						<td>${infoList.userID}</td>
-						<td>${infoList.replyCnt}</td>
-						<td>${infoList.boardLike}</td>
-						<td>${infoList.boardHit}</td>
+						<td>${reviewList.boardNum}</td>
+						<td><a href="<c:url value="/reviewDetail">
+						<c:param name="boardNum" value="${reviewList.boardNum}"/>
+						</c:url>">${reviewList.boardTitle}</a></td>
+						<td>${reviewList.userID}</td>
+						<td>${reviewList.replyCnt}</td>
+						<td>${reviewList.boardLike}</td>
+						<td>${reviewList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -163,7 +163,7 @@
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/mypage";
+		var url = "${pageContext.request.contextPath}/myCommentReview";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
@@ -172,7 +172,7 @@
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/mypage";
+		var url = "${pageContext.request.contextPath}/myCommentReview";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
