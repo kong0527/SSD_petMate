@@ -63,4 +63,9 @@ public class PetsitterReplyImpl implements PetsitterReplyFacade{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void petsitterReplySelect(int replyNum) {
+		petsitterReplyDao.petsitterReplySelect(replyNum);
+	}
 }

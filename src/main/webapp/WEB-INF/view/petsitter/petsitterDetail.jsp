@@ -7,6 +7,9 @@
 		<div class="row">
 			<div class="col-lg-8 single-content">
 				<h1 class="mb-4">${petsitter.boardTitle}</h1>
+				<c:if test="${not empty petsitter.isSelected}">
+					<img src="resources/img/lock.png" align="right">
+				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${petsitter.userID}</a></span> 
@@ -57,10 +60,6 @@
 				</div>
 
 				<div class="pt-5" align="center">
-					<!-- <a href="secondhandDetail/likePlus">
-						<img src="resources/img/love.png" border="0" class="zoom"></a> -->
-						<!-- 수정 필요 -->
-						
 						<c:if test="${sessionScope.userID eq null}">
 							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
 								<img src="resources/img/love.png" border="0" class="zoom">
@@ -87,6 +86,7 @@
 				</div>
 				
 				<!-- comment 작성 부분 -->
+				<c:if test="${empty petsitter.isSelected}">
 					<div class="comment-form-wrap pt-5">
 						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
@@ -106,6 +106,7 @@
 				            </div>
 				        </form>
 			    	</div>
+			    </c:if>
 
 
 				<!-- comment 시작 부분 -->
