@@ -8,11 +8,14 @@
 		<div class="row">
 			<div class="col-lg-8 single-content">
 				<h1 class="mb-4">SecondhandDetail</h1>
+				<c:if test="${secondhand.isSold eq 1}">
+					<img src="resources/img/lock.png" align="right">
+				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${secondhand.userID}</a></span> 
 						<span class="date-read">${secondhand.boardDate} 
-						<span class="mx-1">&bullet;</span> ${secondhand.boardHit} min read <span class="icon-star2"></span></span>
+						<span class="mx-1">&bullet;</span> 조회 ${secondhand.boardHit}<span class="icon-star2"></span></span>
 					</div>
 				</div>
 				${secondhand.boardContent} &nbsp;
@@ -38,23 +41,32 @@
 				</div>
 
 				<div class="pt-5" align="center">
-						<c:if test="${sessionScope.userID eq null}">
+					<c:choose>
+						<c:when test="${sessionScope.userID eq null}">
 							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
 								<img src="resources/img/love.png" border="0" class="zoom">
 							</a>
-						</c:if>
-						<c:if test="${sessionScope.userID ne null}">
-							<c:if test="${sessionScope.userID ne secondhand.userID}">
-								<a href="javascript:void(0);" onclick="checkCart();">
+						</c:when>
+						<c:when test="${secondhand.isSold eq 1}">
+								<a href="#" onclick="alert('판매종료 된 상품입니다.')">
 									<img src="resources/img/love.png" border="0" class="zoom">
 								</a>
-							</c:if>
-							<c:if test="${sessionScope.userID eq secondhand.userID}">
-								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
-									<img src="resources/img/love.png" border="0" class="zoom">
-								</a>
-							</c:if>
-						</c:if>
+						</c:when>
+						<c:when test="${sessionScope.userID ne null}">
+							<c:choose>
+								<c:when test="${sessionScope.userID ne secondhand.userID}">
+									<a href="javascript:void(0);" onclick="checkCart();">
+										<img src="resources/img/love.png" border="0" class="zoom">
+									</a>
+								</c:when>
+								<c:when test="${sessionScope.userID eq secondhand.userID}">
+									<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
+										<img src="resources/img/love.png" border="0" class="zoom">
+									</a>
+								</c:when>
+							</c:choose>
+						</c:when>
+					</c:choose>
 						<div id="cartAdded">
 							장바구니 담은 수 : ${secondhand.cartAdded}
 						</div>
@@ -64,25 +76,27 @@
 					<a href="secondhand"><input type="button" value="목록" class="btn" /></a>
 				</div>
 				<!-- comment 작성 부분 -->
-				<div class="comment-form-wrap pt-5">
-						<div class="replySection-title">
-							<h2 class="mb-5">Leave a comment</h2>
-						</div>
-	       				<form id="replyForm" class="p-5 bg-light">
-				           <div class="form-group">
-				           	   <input type="hidden" name="boardNum" id="boardNum" value="${secondhand.boardNum}"/>
-				               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
-				               <c:if test="${sessionScope.userID ne null}">
-					               <div class="form-group">	
-					               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
-					               </div>
-				               </c:if>
-				               <c:if test="${sessionScope.userID eq null}">
-				               		<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="button" class="btn" value="글 작성" /></a>
-				               </c:if>
-				            </div>
-				        </form>
-			    </div>
+				<c:if test="${secondhand.isSold ne 1}">
+					<div class="comment-form-wrap pt-5">
+							<div class="replySection-title">
+								<h2 class="mb-5">Leave a comment</h2>
+							</div>
+		       				<form id="replyForm" class="p-5 bg-light">
+					           <div class="form-group">
+					           	   <input type="hidden" name="boardNum" id="boardNum" value="${secondhand.boardNum}"/>
+					               <textarea class="form-control" cols="10" rows="5" id="replyContent" name="replyContent" placeholder="내용을 입력하세요."></textarea>
+					               <c:if test="${sessionScope.userID ne null}">
+						               <div class="form-group">	
+						               		<button type="button" name="btnReply" id="btnReply" class="btn btn-primary py-3">등록</button>
+						               </div>
+					               </c:if>
+					               <c:if test="${sessionScope.userID eq null}">
+					               		<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="button" class="btn" value="글 작성" /></a>
+					               </c:if>
+					            </div>
+					        </form>
+				    </div>
+			    </c:if>
 
 				<!-- comment 시작 부분 -->
 

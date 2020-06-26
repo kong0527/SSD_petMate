@@ -30,5 +30,7 @@ public interface SecondhandMapper {
 	
 	void secondhandCartUpdate(Secondhand secondhand); //장바구니 담은 수 업데이트
 	
+	void secondhandIsSold(Secondhand secondhand); // 판매완료
+	
 	
 }

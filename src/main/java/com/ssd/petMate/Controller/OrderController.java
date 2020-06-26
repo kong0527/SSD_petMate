@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,7 @@ import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Order;
+import com.ssd.petMate.domain.SecondhandCart;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GLineItemFacade;
 import com.ssd.petMate.service.GpurchaseFacade;
@@ -83,20 +85,31 @@ public class OrderController {
 	}
 	
 	//공구게시판 주문
+	@Transactional
 	@PostMapping("/gpurchaseOrder")
-	public String gpurchaseOrder(@ModelAttribute("gpurchaseOrder") Order order, @ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request) {
+	public String gpurchaseOrder(@ModelAttribute("gpurchaseOrder") Order order, @ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request, SessionStatus status) {
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
+			GpurchaseCart gpurchaseCart;
+			//order 생
 			orderImpl.insertOrder(order);
 			System.out.println(order.toString());
 			System.out.println("orderNum : " + order.getOrderNum());
 			int orderNum = order.getOrderNum();
+			//orderNum에 대한 lineItem 매칭
 			GpurchaseLineItem gLineItem = new GpurchaseLineItem();
 			for(int i = 0; i < cartList.size(); i++) {
 				gLineItem.CartToLineItem(cartList.get(i), orderNum);
 				System.out.println(gLineItem.toString());
 				gLineItemImpl.insertGpurchaseLineItem(gLineItem);
-			}		
+				gpurchaseImpl.updateParticipant(cartList.get(i).getBoardNum());
+			}
+			//cart제거(주문한 상품 장바구니에서 제거)
+			for(int i = 0; i < cartList.size(); i++) {
+				gpurchaseCart = new GpurchaseCart(userID, cartList.get(i).getBoardNum());
+				gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+			}
+			status.setComplete();
 		return "order/commit";
 	}	
 

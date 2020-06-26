@@ -35,4 +35,6 @@ public interface GpurchaseDao {
 	public void gpurchaseCartUpdate(Gpurchase gpurchase) throws DataAccessException; //장바구니 담은 수 업데이트
 	
 	public void updateResult(Gpurchase gpurchase) throws DataAccessException;
+	
+	public void updateParticipant(int boardNum) throws DataAccessException;//공동구매 참여자 수 증가
 }

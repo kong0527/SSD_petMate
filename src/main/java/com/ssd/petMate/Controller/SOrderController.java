@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,7 @@ import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.domain.Secondhand;
+import com.ssd.petMate.domain.SecondhandCart;
 import com.ssd.petMate.domain.SecondhandLineItem;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GLineItemFacade;
@@ -89,8 +91,11 @@ public class SOrderController {
 	
 	
 	//공구게시판 주문
+	@Transactional
 	@PostMapping("/secondhandOrder")
-	public String secondhandOrder(@ModelAttribute("secondhandOrder") Order order, @ModelAttribute("sCartList") List<Secondhand> sCartList, HttpServletRequest request) {
+	public String secondhandOrder(@ModelAttribute("secondhandOrder") Order order, @ModelAttribute("sCartList") List<Secondhand> sCartList, HttpServletRequest request, SessionStatus status) {
+			Secondhand secondhand;
+			SecondhandCart secondhandCart;
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
 			orderImpl.insertOrder(order);
@@ -102,7 +107,15 @@ public class SOrderController {
 				sLineItem.CartToLineItem(sCartList.get(i), orderNum);
 				System.out.println(sLineItem.toString());
 				sLineItemImpl.insertSecondhandLineItem(sLineItem);
-			}		
+				secondhand = sCartList.get(i);
+				secondhand.setBoardTitle("[판매완료] " + sCartList.get(i).getBoardTitle());
+				secondhandImpl.secondhandIsSold(sCartList.get(i));
+			}
+			for(int i = 0; i < sCartList.size(); i++) {
+				secondhandCart = new SecondhandCart(userID, sCartList.get(i).getBoardNum());
+				secondhandImpl.deleteSecondhandCart(secondhandCart);
+			}
+			status.setComplete();
 		return "order/commit";
 	}	
 

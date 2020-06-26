@@ -79,7 +79,7 @@
           	<li><a href="${pageContext.request.contextPath}/secondhand"><span style="color:black">중고게시판</span></a></li>
           	<li>
           		<c:if test="${sessionScope.userID ne null}">
-					<span style="color:black"><a href="${pageContext.request.contextPath}/secondhandCart">관리자(임시)</a></span>
+					<span style="color:black"><a href="${pageContext.request.contextPath}/gpurchaseCart">관리자(임시)</a></span>
 				</c:if>
 				<c:if test="${sessionScope.userID eq null}" >
 					<span style="color:black"><a href="signIn" onclick="alert('로그인이 필요합니다.')">관리자(임시)</a></span>

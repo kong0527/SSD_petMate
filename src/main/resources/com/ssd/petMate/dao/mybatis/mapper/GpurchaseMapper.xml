@@ -113,4 +113,11 @@
 		SET status = #{status}
 		WHERE boardNum = #{boardNum}
 	</update>
+	
+	<!-- 공동구매 참여자 수 업데이트  -->
+	<update id="updateParticipant" parameterType="int">
+		UPDATE Gpurchase
+		SET participant = participant + 1
+		WHERE boardNum = #{boardNum}
+	</update>
 </mapper>

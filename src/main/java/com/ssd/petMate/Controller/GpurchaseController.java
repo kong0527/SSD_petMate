@@ -153,7 +153,7 @@ public class GpurchaseController {
 		return "redirect:/gpurchaseCart";
 	}	
 
-	//공구물 삭제
+	//공구물품 삭제
 	@RequestMapping(value = "gpurchaseDetail/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {
 		gpurchaseImpl.deleteGpurchase(boardNum);

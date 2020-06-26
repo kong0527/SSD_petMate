@@ -66,6 +66,11 @@ public class GpurchaseImpl implements GpurchaseFacade {
 		gpurchaseDao.gpurchaseReplyCntUpdate(gpurchase);	
 	} // 댓글 수 업데이트
 	
+	//공동구매 참여자 수 증가
+	public void updateParticipant(int boardNum) throws DataAccessException{
+		gpurchaseDao.updateParticipant(boardNum);
+	}
+	
 	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException{
 		return gpurchaseCartDao.getGpurchaseCartListByGpurchase(userID);
 	} //cart+gpuchase

@@ -102,7 +102,6 @@ public class Gpurchase {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 	public int getParticipant() {
 		return participant;
 	}

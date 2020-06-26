@@ -73,6 +73,10 @@ public class SecondhandImpl implements SecondhandFacade {
 		secondhandDao.secondhandReplyCntUpdate(secondhand);
 	} //덧글수 증가
 	
+	public void secondhandIsSold(Secondhand secondhand)throws DataAccessException{ // 판매완료
+		secondhandDao.secondhandIsSold(secondhand);
+	}
+	
 	public void insertSecondhandCart(SecondhandCart secondhandCart) throws DataAccessException{ //장바구니 추가
 		secondhandCartDao.insertSecondhandCart(secondhandCart);
 	}
@@ -90,4 +94,6 @@ public class SecondhandImpl implements SecondhandFacade {
 	public int isCart(SecondhandCart secondhandCart) { //이 게시글을 사용자가 담았는지 확인
 		return secondhandCartDao.isCart(secondhandCart);
 	}	
+	
+	
 }

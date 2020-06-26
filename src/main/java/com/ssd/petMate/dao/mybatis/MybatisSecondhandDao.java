@@ -63,5 +63,9 @@ public class MybatisSecondhandDao implements SecondhandDao {
 	public void secondhandReplyCntUpdate(Secondhand secondhand) throws DataAccessException{
 		secondhandMapper.secondhandReplyCntUpdate(secondhand);
 	} //덧글수 증가
+	
+	public void secondhandIsSold(Secondhand secondhand)throws DataAccessException{ // 판매완료
+		secondhandMapper.secondhandIsSold(secondhand);
+	}
 
 }

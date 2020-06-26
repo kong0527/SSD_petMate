@@ -34,4 +34,6 @@ public interface SecondhandDao {
 	public void secondhandCartUpdate(Secondhand secondhand) throws DataAccessException;
 	
 	public void secondhandReplyCntUpdate(Secondhand secondhand) throws DataAccessException;
+	
+	public void secondhandIsSold(Secondhand secondhand)throws DataAccessException; // 판매완료
 }

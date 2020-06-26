@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssd.petMate.domain.Answer;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseReply;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.InfoReply;
+import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.service.GpurchaseFacade;
 import com.ssd.petMate.service.GpurchaseReplyFacade;
 import com.ssd.petMate.service.InfoFacade;
@@ -127,4 +129,16 @@ public class GpurchaseReplyController {
 		
 		gpurchaseFacade.gpurchaseReplyCntUpdate(gpurchase);
 	}
+	
+////	답변 채택
+//	@RequestMapping(value = "/selectAnswer", method = { RequestMethod.GET, RequestMethod.POST })
+//	@ResponseBody
+//	public void selectAnswer(ModelAndView mv, HttpServletRequest request,
+//			@RequestParam("boardNum") int boardNum,
+//			@RequestParam("answerNum") int answerNum)	{
+//		inquiryFacade.selectInquiry(boardNum); 
+//		answerFacade.selectAnswer(answerNum);
+//	}
+//	
+
 }
