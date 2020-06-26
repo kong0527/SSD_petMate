@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,17 +27,20 @@ import com.ssd.petMate.parser.ShopParser;
 @Controller
 public class ApiController {
 	
+	@Value("#{file['clientId']}")
+	String clientId;
+	@Value("#{file['clientSecret']}")
+	String clientSecret;
+	
 //	제목 자동완성 -> json parsing
 	@RequestMapping(value = "/shopAPI", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public List<ShopParser> shopAPI(ModelAndView mv, HttpServletRequest request,
 			@RequestParam(required = false) String keyword, RedirectAttributes rttr) {
-		
-		System.out.println(keyword);
-		String clientId = "_bH_KOJZJm1DX1AA1Qex";
-        String clientSecret = "UXtV3ROVfX";
-        StringBuffer response = new StringBuffer();
+                StringBuffer response = new StringBuffer();
         List<ShopParser> shopList = new ArrayList<>();
+        System.out.println(keyword);
+
         try {
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text; // json 결과
@@ -54,7 +58,7 @@ public class ApiController {
             } else {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
             }
-//            System.out.println(responseCode);
+            System.out.println(responseCode);
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
                 response.append(inputLine);
