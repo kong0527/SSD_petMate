@@ -39,9 +39,11 @@ function answerList(){
 		                html += '<div class="comment-body" id="answerNum' + this.answerNum + '">';
 		                html += '<div class="well well-lg">';
 		                if (inId == userID) {
-			                if (isSelected != 1)
+			                if (value.isSelected != 1) {
 		                        html += '<a onclick="answerSelect('+value.answerNum+',\''+ value.boardNum+'\');" class="btn btn-info btn-circle text-uppercase float-right"> 채택 </a>';
-	                	}
+								console.log("왜 안되니..");
+			                }
+		                }
 		                if (value.isSelected == 1)
                				html +='<img src="resources/img/select.png" align="right">'	
                			else

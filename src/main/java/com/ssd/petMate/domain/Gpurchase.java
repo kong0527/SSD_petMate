@@ -15,6 +15,8 @@ public class Gpurchase {
 	private String boardImage;
 	private int goalNum;
 	private String productName;
+	private String participant;
+	private int isSuccess;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -99,6 +101,18 @@ public class Gpurchase {
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	public String getParticipant() {
+		return participant;
+	}
+	public void setParticipant(String participant) {
+		this.participant = participant;
+	}
+	public int getIsSuccess() {
+		return isSuccess;
+	}
+	public void setIsSuccess(int isSuccess) {
+		this.isSuccess = isSuccess;
 	}
 	public Gpurchase() {
 		super();

@@ -9,6 +9,7 @@ public class PetsitterReply {
 	private int replyGID;
 	private int replyParents;
 	private int replyOrder;
+	private int isSelected;
 	public String getUserID() {
 		return userID;
 	}
@@ -56,5 +57,11 @@ public class PetsitterReply {
 	}
 	public void setReplyOrder(int replyOrder) {
 		this.replyOrder = replyOrder;
+	}
+	public int getIsSelected() {
+		return isSelected;
+	}
+	public void setIsSelected(int isSelected) {
+		this.isSelected = isSelected;
 	}
 }

@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssd.petMate.Controller.RegisterCommand;
+import com.ssd.petMate.Controller.SignUpCommand;
 import com.ssd.petMate.dao.UserDao;
 import com.ssd.petMate.domain.UserList;
 import com.ssd.petMate.page.BoardSearch;
@@ -71,10 +71,6 @@ public class UserImpl implements UserFacade {
         List<GrantedAuthority> authority=new ArrayList<GrantedAuthority>();
         authority.add(new SimpleGrantedAuthority(user.getAuthority())); 
         
-        for (int i = 0; i < authority.size(); i++) {
-        	System.out.println(authority.get(i).getAuthority());
-        }
-        
         return new User(user.getUserID(), user.getPwd(), authority);
 	}
 
@@ -86,7 +82,7 @@ public class UserImpl implements UserFacade {
 		userDao.insertUser(user);
 	}
 	
-	public UserList regComToUser (RegisterCommand  regReq) {
+	public UserList regComToUser (SignUpCommand  regReq) {
 		UserList user = new UserList(regReq.getUserID(), 
 							regReq.getPwd(), 
 							regReq.getEmail(),

@@ -139,7 +139,14 @@
 				</if>
 		 	</if>
 		</where>
+		ORDER BY boardNum ASC
 	</select>
+	
+	<update id="selectPetsitter" parameterType="HashMap">
+		UPDATE Petsitter
+		SET isSelected = #{isSelected}
+		WHERE boardNum = #{boardNum}
+	</update>
 	
 	<!-- 좋아요 업데이트 -->	
 	<update id="updateLike" parameterType="HashMap">

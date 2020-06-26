@@ -1,7 +1,5 @@
 package com.ssd.petMate.domain;
 
-import javax.validation.constraints.NotEmpty;
-
 public class Petsitter {
 	private String boardNum;
 	private String boardDate;
@@ -19,9 +17,9 @@ public class Petsitter {
 	private int replyCnt;
 	private int boardHit;
 	private String boardImage;
+	private String isSelected;
 	private String[] sizeCodes;
 	private String[] dayCodes;
-	
 	
 	public String getBoardNum() {
 		return boardNum;
@@ -113,6 +111,12 @@ public class Petsitter {
 	public void setDayCodes(String[] dayCodes) {
 		this.dayCodes = dayCodes;
 	}
+	public String getIsSelected() {
+		return isSelected;
+	}
+	public void setIsSelected(String isSelected) {
+		this.isSelected = isSelected;
+	}
 	
 	public String sizeCheck(int sizeNum) {
 		String result = "";
@@ -144,5 +148,9 @@ public class Petsitter {
 			result += "일요일 ";
 		
 		return result;
+	}
+	@Override
+	public String toString() {
+		return "Petsitter [isSelected=" + isSelected + "]";
 	}
 }

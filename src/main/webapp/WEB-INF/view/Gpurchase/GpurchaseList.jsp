@@ -14,6 +14,9 @@
 						<th>##</th>
 						<th>글 제목</th>
 						<th>작성자</th>
+						<th>덧글수</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,6 +27,9 @@
 						<c:param name="boardNum" value="${gpurchaseList.boardNum}"/>
 						</c:url>">${gpurchaseList.boardTitle}</a></td>
 						<td>${gpurchaseList.userID}</td>
+						<td>${gpurchaseList.replyCnt}</td>
+						<td>${gpurchaseList.cartAdded}</td>
+						<td>${gpurchaseList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				<!-- 	<tr>
@@ -36,7 +42,12 @@
 			<table class="text-right" align="right">
 				<tr>
 					<td>
-						<a href="gpurchaseForm"><input type="submit" class="btn" value="글 작성" /></a>
+						<c:if test="${sessionScope.userID ne null}">
+							<a href="gpurchaseForm"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
+						<c:if test="${sessionScope.userID eq null}" >
+							<a href="signIn" onclick="alert('로그인이 필요합니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+						</c:if>
 					</td>
 				</tr>
 			</table>

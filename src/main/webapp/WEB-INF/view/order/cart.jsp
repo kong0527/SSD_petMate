@@ -24,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 					<tr>
 						<td><input type="checkbox" id="box" name ="box" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 						<td ><img src="resources/img/love.png" border="0"> &nbsp;
@@ -38,10 +38,9 @@
 						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
-				</c:forEach> --%>
-				
-				<form:form modelAttribute="gpurchaseCartList" action="gpurchaseOrderForm">
-				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				</c:forEach>
+				<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				<form:form modelAttribute="gpurchaseCart">
 					<tr>
 						<td><input type="checkbox" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 						<td ><img src="resources/img/love.png" border="0"> &nbsp;
@@ -53,13 +52,10 @@
 						<td><a href="<c:url value="/gpurchaseCartDelete">
 						<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
 						</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
-						
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
-					</c:forEach>
-					<input type="hidden" id="checkArr" name="checkArr">
 				</form:form>
-				
+				</c:forEach> --%>
 			</tbody>
 		</table>
 
@@ -80,11 +76,9 @@
 				<td id="expectPrice">2500₩</td>
 			</tr>
 			<tr>
-				
-				<td><input type="button" id="uncheck" value="cancel" class="btn" /></td>
+				<td><input type="button" id="uncheck" value="cancle" class="btn" /></td>
 				<td>&nbsp;</td>
 				<td><button type="button" id="btnOrder" name ="btnOrder" class="btn">order</button></td>
-				
 			</tr>
 		</table>
 		
@@ -111,27 +105,26 @@
 </div>
 
 <script>
+
+
 	$(document).on("click","#btnOrder", function() {
 	  	var checkArr = new Array();     // 배열 초기화
-	    $('.check:checked').each(function(i){
+	  	var price = 0;
+	    $('#box:checked').each(function(i){
 	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
 	    });
-	    $("#checkArr").val(checkArr);
-	    alert($("#checkArr").val());
-	    /* $.ajax({
-	        url : '${pageContext.request.contextPath}/gpurchaseOrderForm',
-	        type : 'post',
-	        data : { gpurchaseCartList : checkArr },
-	   		success : function(data) {
-				 if(data.MESSAGE) {
-					 alert("로그인성공");
-					 window.location.href = "";
-				} else {
-					alert("로그인실패");
-				} 
-				alert("Good");
+	    price = $("#expectPrice").val();
+	    
+	    $.ajax({
+	        url: '${pageContext.request.contextPath}/gpurchaseCartToOrder',
+	        type: 'post',
+	        data: { gpurchaseCartList : checkArr,
+		        	price : price },
+	    	success : function(result) {
+				alert(result);
+				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
 			}
-	    }); */
+	    });
 	   
 	});
 
@@ -156,36 +149,10 @@
 		alert(val);	
 	}); */
 	
-	 /* $(document).ready(function() {
+	  $(document).ready(function() {
 
-
-			/* $("#btnOrder").click(function(){ 
-			var checkArr = [];     // 배열 초기화
-			    $(".check:checked").each(function(i)) {
-			        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-			    }
-			    
-			    $.ajax({
-			        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
-			        type: 'post',
-			        dateType: 'text'
-			        data: {
-			            gpurchaseCartList : checkArr
-			        }
-			    });
-				var checkArr = [];     // 배열 초기화
-			    $('input:[name="cartNum"]:checked').each(function(i)) {
-			        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-			    }
-			    $.ajax({
-			        url: '${pageContext.request.contextPath}/gpurchaseOrderForm',
-			        type: 'post',
-			        dataType: 'json',
-			        data: gpurchaseCartList : checkArr
-			    });
-			}); */
 		  // 체크 박스 해제
-		/*  $("#uncheck").on('click', function() {
+		$("#uncheck").on('click', function() {
 			$(".check").each(function() {
 				if($(this).is(":checked"))
 					$(".check").prop("checked", false);
@@ -211,13 +178,14 @@
 				}
 				html += fabric_seq;
 				html2 = html + 2500;
+				$("#expectPrice").val(html2);
 				$("#totalPrice").html(html + '₩');
 				$("#expectPrice").html(html2 + '₩');
 				}
-		  }); */
+		  });
 
 		 
-	/* }); */
+	 });
 
 	  /* function cartList(){
 			var checkArr = [];     // 배열 초기화

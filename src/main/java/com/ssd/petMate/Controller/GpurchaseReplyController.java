@@ -53,6 +53,7 @@ public class GpurchaseReplyController {
 //		게시글 목록에서 댓글 수 확인이 가능하도록 하기 위해 지정
 		
 		int replyCnt = gpurchaseReplyFacade.replyCnt(gpurchaseReply.getBoardNum());
+		System.out.println("replyCnt : " + replyCnt);
 		Gpurchase gpurchase = gpurchaseFacade.getGpurchaseDetail(gpurchaseReply.getBoardNum());
 		gpurchase.setReplyCnt(replyCnt);
 		
