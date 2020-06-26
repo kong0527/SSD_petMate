@@ -33,8 +33,9 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="boardName">물건 이름</label>
-							<form:input path="boardName" class="form-control form-control-lg" />
+							<label for="productName">물건 이름</label>
+							<form:input path="productName" class="form-control form-control-lg"/>
+							<div id = "shopResult" class="auto_tx_area"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -85,11 +86,19 @@
 						</c:when>
 					</c:choose>
 				</form:form>
-				
 			</div>
 		</div>
 	</div>
 </div>
+<style>
+	.auto_tx_area {
+	    clear: both;
+	    position: absolute;
+	    z-index: 10002;
+	    width: 500px;
+	    background: #fff;
+	}s
+</style>
 <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
@@ -135,9 +144,9 @@ nhn.husky.EZCreator.createInIFrame({
 		autoclose: true,
 		language : "ko"	,
 		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
-		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
+		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false   
 	}).on('changeDate', function (selected) {
-		var startDate = new Date(selected.date.valueOf().ToString("yyyy-mm-dd"));
+		var startDate = new Date(selected.date.valueOf());
 		$('#edate').datepicker('setStartDate', startDate);
 	}).on('clearDate', function (selected) {
 		$('#edate').datepicker('setStartDate', null);
@@ -149,10 +158,63 @@ nhn.husky.EZCreator.createInIFrame({
 		language : "ko"	,
 		title: "종료 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
-	}).on('changeDate', function (selected) {
-		var endDate = new Date(selected.date.valueOf().ToString("yyyy-mm-dd"));
+	})
+	 .on('changeDate', function (selected) {
+		var endDate = new Date(selected.date.valueOf());
 		$('#sdate').datepicker('setEndDate', endDate);
 	}).on('clearDate', function (selected) {
 		$('#sdate').datepicker('setEndDate', null);
 	});
+
+	// 키보드를 누를 때마다 수행 -> 자동완성 기능
+	$(document).on('keyup', '#productName', function(e){
+		$("#shopResult").css('display', 'block');
+		var keyword = $("#productName").val();
+ 	    $.ajax({
+ 	        url : '${pageContext.request.contextPath}/shopAPI?keyword='+ keyword,
+ 	        type : 'post',
+ 	        success : function(data){
+ 	        	var html = '';
+ 	        	html += '<div class="autoComplete">';
+ 	        	html += '<ul>';
+ 	 	        for (var i = 0 in data) {
+ 	 	 	        html += '<li>';
+ 	 	 	     	html += '<a href="javascript:void(0);" onclick="fillValue(\'' + data[i].lprice + '\');">';
+ 	 	 	        html += '<div>';
+ 	 	 	        html += '<p>';
+ 	 	 	        if (data[i].image == "") {
+ 	 	 	 	        html += '<img src="resources/img/noImage.PNG" width="80" height="100">'; // 이미지가 없는 경우 기본 이미지로 대체
+ 	 	 	 	    }
+ 	 	 	        else {
+ 	 					html += '<img src="' + data[i].image + '" width="70" height="100">';
+ 	 	 	        }
+ 	 	 	        html += '</p>';
+ 	 	 	        html += '<p>'+ data[i].title + '</p>';
+ 	 	 	        html += '<p>최저가: ' + data[i].lprice + '</p>';
+ 	 	 	        html += '</div>';
+ 	 	 	     	html += '</a>';
+ 	 	 	        html += '</li>';
+ 	 	 	    }
+ 	 	 	    html += '</ul>';
+ 	 	 	    html += '</div>';
+ 	 	 	
+ 	 	      	$('#shopResult').html(html);
+ 	        }
+ 	    });
+	});
+
+	function fillValue(keyword) {
+		var keyword = keyword.replace(/[<][^>]*[>]/gi, "");
+		$("#productName").val(keyword);
+		$("#shopResult").css('display', 'none');
+	}
+
+	$("body").click(function(e) { 
+	     if($("#shopResult").css("display") == "block") {
+	         if(!$('#shopResult, #productName').has(e.target).length) { 
+	               $("#shopResult").hide();
+	          } 
+	     }
+	});
+	
 </script>

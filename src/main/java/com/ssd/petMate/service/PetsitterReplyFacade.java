@@ -26,3 +26,4 @@ public interface PetsitterReplyFacade {
 	
 	void petsitterReplySelect(int replyNum);
 }
+

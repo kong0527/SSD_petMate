@@ -54,7 +54,7 @@
 	<!-- 공동구매 게시글 삽입하기  -->
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
  		INSERT
- 		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum)
+ 		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum, productName)
  		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC}, #{productName,jdbcType=VARCHAR})
  	</insert>
 	

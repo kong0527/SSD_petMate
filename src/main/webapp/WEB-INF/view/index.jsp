@@ -13,7 +13,9 @@
 					<div class="contents">
 						<span class="caption">Today's Best</span>
 						<h2>
-							<a href="blog-single.html">${dailyBestInfo.boardTitle}</a>
+							<a href="<c:url value="/infoDetail">
+							<c:param name="boardNum" value="${dailyBestInfo.boardNum}"/>
+							</c:url>">${dailyBestInfo.boardTitle}</a>
 						</h2>
 						<p class="mb-3">
 							<c:choose>
@@ -44,7 +46,9 @@
 					<div class="contents">
 						<span class="caption">Today's Best</span>
 						<h2>
-							<a href="blog-single.html">${dailyBestInquiry.boardTitle}</a>
+							<a href="<c:url value="/inquiryDetail">
+							<c:param name="boardNum" value="${dailyBestInquiry.boardNum}"/>
+							</c:url>">${dailyBestInquiry.boardTitle}</a>
 						</h2>
 						<p class="mb-3">
 							<c:choose>
@@ -74,7 +78,9 @@
 					<div class="contents">
 						<span class="caption">Today's Best</span>
 						<h2>
-							<a href="blog-single.html">${dailyBestReview.boardTitle}</a>
+							<a href="<c:url value="/reviewDetail">
+							<c:param name="boardNum" value="${dailyBestReview.boardNum}"/>
+							</c:url>">${dailyBestReview.boardTitle}</a>
 						</h2>
 						<p class="mb-3">
 							<c:choose>
@@ -174,7 +180,7 @@
 							style="background-image: url('resources/img/second.png')"></div> -->
 						<div class="contents">
 							<h2>
-								<a href="<c:url value="/infoDetail">
+								<a href="<c:url value="/inquiryDetail">
 							<c:param name="boardNum" value="${inquiryList.boardNum}"/>
 							</c:url>">${inquiryList.boardTitle}</a>
 							</h2>
@@ -208,7 +214,7 @@
 							style="background-image: url('resources/img/second.png')"></div> -->
 						<div class="contents">
 							<h2>
-								<a href="<c:url value="/infoDetail">
+								<a href="<c:url value="/reviewDetail">
 							<c:param name="boardNum" value="${reviewList.boardNum}"/>
 							</c:url>">${reviewList.boardTitle}</a>
 							</h2>
