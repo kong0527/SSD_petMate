@@ -28,15 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//        .antMatchers("/**").hasRole("USER");
-////        	.antMatchers("/user/getOperatorList").access("hasRole('USER')");
-////        		.antMatchers("/petMate/info").authenticated();
-////                .antMatchers("/mypage/**").hasRole("USER")
-////                .antMatchers("/inquiry/**").hasRole("ADMIN")
-////                .antMatchers("/info/**").authenticated() // 차후 수정 필요
-////        		.antMatchers("/index/**").permitAll(); 
-//        http.csrf().disable();
+        http.authorizeRequests()
+        	.antMatchers("/**").permitAll();
+        http.csrf().disable();
 
         http.formLogin()
                 .loginPage("/singIn")

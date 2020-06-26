@@ -71,10 +71,6 @@ public class UserImpl implements UserFacade {
         List<GrantedAuthority> authority=new ArrayList<GrantedAuthority>();
         authority.add(new SimpleGrantedAuthority(user.getAuthority())); 
         
-        for (int i = 0; i < authority.size(); i++) {
-        	System.out.println(authority.get(i).getAuthority());
-        }
-        
         return new User(user.getUserID(), user.getPwd(), authority);
 	}
 
