@@ -24,6 +24,9 @@
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
+						<th>덧글수</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,6 +37,9 @@
 						<c:param name="boardNum" value="${gpurchaseList.boardNum}"/>
 						</c:url>">${gpurchaseList.boardTitle}</a></td>
 						<td>${gpurchaseList.userID}</td>
+						<td>${gpurchaseList.replyCnt}</td>
+						<td>${gpurchaseList.cartAdded}</td>
+						<td>${gpurchaseList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

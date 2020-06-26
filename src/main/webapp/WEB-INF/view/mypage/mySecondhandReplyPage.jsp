@@ -24,6 +24,9 @@
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
+						<th>덧글수</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,6 +37,9 @@
 						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
 						</c:url>">${secondhandList.boardTitle}</a></td>
 						<td>${secondhandList.userID}</td>
+						<td>${secondhandList.replyCnt}</td>
+						<td>${secondhandList.cartAdded}</td>
+						<td>${secondhandList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

@@ -18,7 +18,7 @@ import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.service.BestFacade;
 
 @Controller
-public class mainController {	
+public class MainController {	
 
 	@Autowired
 	private BestFacade bestFacade;
