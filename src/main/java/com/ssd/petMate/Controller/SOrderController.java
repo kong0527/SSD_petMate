@@ -25,30 +25,34 @@ import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Order;
+import com.ssd.petMate.domain.Secondhand;
+import com.ssd.petMate.domain.SecondhandLineItem;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GLineItemFacade;
 import com.ssd.petMate.service.GpurchaseFacade;
 import com.ssd.petMate.service.OrderFacade;
+import com.ssd.petMate.service.SLineItemFacade;
+import com.ssd.petMate.service.SecondhandFacade;
 
 
 @Controller
-@SessionAttributes({"cartList", "price"})
-public class OrderController {	
+@SessionAttributes({"sCartList","sprice"})
+public class SOrderController {	
 	
 	@Autowired
 	private OrderFacade orderImpl;
 	
 	@Autowired
-	private GLineItemFacade gLineItemImpl;
+	private SLineItemFacade sLineItemImpl;
 	
 	@Autowired
-	private GpurchaseFacade gpurchaseImpl;
+	private SecondhandFacade secondhandImpl;
 	
-	@ModelAttribute("gpurchaseOrder")
-	public Order formBacking(HttpServletRequest request) {
+	@ModelAttribute("secondhandOrder")
+	public Order formBacking2(HttpServletRequest request) {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			Order order = new Order();
-			order.setPrice((int)request.getSession().getAttribute("price"));
+			order.setPrice((int)request.getSession().getAttribute("sprice"));
 			return order;
 		}
 		else
@@ -56,46 +60,48 @@ public class OrderController {
 	}
 	
 	//장바구니 -> 오더
-	@RequestMapping(value = "/gpurchaseCartToOrder", method = RequestMethod.POST)
+	@RequestMapping(value = "/secondhandCartToOrder", method = RequestMethod.POST)
 	@ResponseBody
-	public String gpurchaseCartToOrder(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList, @RequestParam(value = "price") Integer price, Model model) {
+	public String secondhandCartToOrder(@RequestParam(value = "secondhandCartList[]") List<String> secondhandCartList, @RequestParam(value = "sprice") Integer sprice, Model model) {
 		System.out.println("orderForm enter;");
 		int i;
-		Gpurchase gpurchase;
-		System.out.println(gpurchaseCartList.toString());
-		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
-		for(i = 0; i < gpurchaseCartList.size(); i++) {
-			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
-			System.out.println(gpurchase.toString());
-			cartList.add(gpurchase);
+		Secondhand secondhand;
+		System.out.println(secondhandCartList.toString());
+		List<Secondhand> sCartList = new ArrayList<Secondhand>();
+		for(i = 0; i < secondhandCartList.size(); i++) {
+			secondhand = secondhandImpl.getSecondhandDetail(Integer.parseInt(secondhandCartList.get(i)));
+			System.out.println(secondhand.toString());
+			sCartList.add(secondhand);
 		}
-		System.out.println(cartList.toString());
-		System.out.println("price : " + price);
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("price", price);
+		System.out.println(sCartList.toString());
+		System.out.println("sprice : " + sprice);
+		model.addAttribute("sCartList", sCartList);
+		model.addAttribute("sprice", sprice);
 		String result = "May I take your order?";
 		return result;
 	}
 	
-	@GetMapping("/gpurchaseOrderForm")
-	public String gpurchaseOrderForm() {
-		return "order/paymentForm";
+	@GetMapping("/secondhandOrderForm")
+	public String secondhandOrderForm(@ModelAttribute("sCartList") List<Secondhand> sCartList) {
+		System.out.println(sCartList.toString());
+		return "order/SpaymentForm";
 	}
 	
+	
 	//공구게시판 주문
-	@PostMapping("/gpurchaseOrder")
-	public String gpurchaseOrder(@ModelAttribute("gpurchaseOrder") Order order, @ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request) {
+	@PostMapping("/secondhandOrder")
+	public String secondhandOrder(@ModelAttribute("secondhandOrder") Order order, @ModelAttribute("sCartList") List<Secondhand> sCartList, HttpServletRequest request) {
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
 			orderImpl.insertOrder(order);
 			System.out.println(order.toString());
 			System.out.println("orderNum : " + order.getOrderNum());
 			int orderNum = order.getOrderNum();
-			GpurchaseLineItem gLineItem = new GpurchaseLineItem();
-			for(int i = 0; i < cartList.size(); i++) {
-				gLineItem.CartToLineItem(cartList.get(i), orderNum);
-				System.out.println(gLineItem.toString());
-				gLineItemImpl.insertGpurchaseLineItem(gLineItem);
+			SecondhandLineItem sLineItem = new SecondhandLineItem();
+			for(int i = 0; i < sCartList.size(); i++) {
+				sLineItem.CartToLineItem(sCartList.get(i), orderNum);
+				System.out.println(sLineItem.toString());
+				sLineItemImpl.insertSecondhandLineItem(sLineItem);
 			}		
 		return "order/commit";
 	}	

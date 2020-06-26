@@ -84,7 +84,7 @@ public class SecondhandController {
 		System.out.println("userID : " + userID);
 		List<SecondhandCartCommand> secondhandCartList = secondhandImpl.getSecondhandCartListBySecondhand(userID);
 		mv.addObject("secondhandCartList", secondhandCartList);
-//고치기		mv.setViewName("order/cart");
+		mv.setViewName("order/secondhandCart");
 		return mv;
 	}
 	

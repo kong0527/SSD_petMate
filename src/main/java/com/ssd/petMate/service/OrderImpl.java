@@ -38,7 +38,7 @@ public class OrderImpl implements OrderFacade {
 		return orderDao.getOrder(order);
 	}
 	
-	public void insertGpurchase(Order order) throws DataAccessException{ // 주문 생성
+	public void insertOrder(Order order) throws DataAccessException{ // 주문 생성
 		orderDao.insertOrder(order);
 	}
 	
