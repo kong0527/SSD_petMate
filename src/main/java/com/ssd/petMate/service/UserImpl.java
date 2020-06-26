@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssd.petMate.Controller.RegisterCommand;
+import com.ssd.petMate.Controller.SignUpCommand;
 import com.ssd.petMate.dao.UserDao;
 import com.ssd.petMate.domain.UserList;
 import com.ssd.petMate.page.BoardSearch;
@@ -86,7 +86,7 @@ public class UserImpl implements UserFacade {
 		userDao.insertUser(user);
 	}
 	
-	public UserList regComToUser (RegisterCommand  regReq) {
+	public UserList regComToUser (SignUpCommand  regReq) {
 		UserList user = new UserList(regReq.getUserID(), 
 							regReq.getPwd(), 
 							regReq.getEmail(),

@@ -38,13 +38,13 @@ public class SignUpController {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@ModelAttribute("registerForm")
-	public RegisterCommand formBackingObject(HttpServletRequest request) throws Exception {
+	public SignUpCommand formBackingObject(HttpServletRequest request) throws Exception {
 		if (request.getSession().getAttribute("userID") != null) {	// edit an existing account
 			String userID = (String)request.getSession().getAttribute("userID");
-			return new RegisterCommand(userService.getUserByUserID(userID));
+			return new SignUpCommand(userService.getUserByUserID(userID));
 		}
 		else {	// create a new account
-			return new RegisterCommand();
+			return new SignUpCommand();
 		}
 	}
 	
@@ -61,7 +61,7 @@ public class SignUpController {
 	
 	@PostMapping("/signUp")
 	public String onSubmit(
-			HttpServletRequest request, @Valid @ModelAttribute("registerForm") RegisterCommand regCommand,
+			HttpServletRequest request, @Valid @ModelAttribute("registerForm") SignUpCommand regCommand,
 			BindingResult result, Model model) throws Exception {
 
 		if (result.hasErrors()) return formViewName;
