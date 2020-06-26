@@ -15,8 +15,8 @@ public class Gpurchase {
 	private String boardImage;
 	private int goalNum;
 	private String productName;
-	private String participant;
-	private int isSuccess;
+	private int participant;
+	private String status;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -102,17 +102,17 @@ public class Gpurchase {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getParticipant() {
+	public int getParticipant() {
 		return participant;
 	}
-	public void setParticipant(String participant) {
+	public void setParticipant(int participant) {
 		this.participant = participant;
 	}
-	public int getIsSuccess() {
-		return isSuccess;
+	public String getStatus() {
+		return status;
 	}
-	public void setIsSuccess(int isSuccess) {
-		this.isSuccess = isSuccess;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public Gpurchase() {
 		super();
