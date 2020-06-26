@@ -34,4 +34,5 @@ public interface GpurchaseDao {
 	
 	public void gpurchaseCartUpdate(Gpurchase gpurchase) throws DataAccessException; //장바구니 담은 수 업데이트
 	
+	public void updateResult(Gpurchase gpurchase) throws DataAccessException;
 }

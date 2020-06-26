@@ -86,5 +86,9 @@ public class GpurchaseImpl implements GpurchaseFacade {
 		return gpurchaseCartDao.isCart(gpurchaseCart);
 	}
 
-	
+	@Override
+	public void updateResult(Gpurchase gpurchase) {
+		// TODO Auto-generated method stub
+		gpurchaseDao.updateResult(gpurchase);
+	}
 }

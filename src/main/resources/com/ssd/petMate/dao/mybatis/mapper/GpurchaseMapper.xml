@@ -53,9 +53,12 @@
 	
 	<!-- 공동구매 게시글 삽입하기  -->
 	<insert id="insertGpurchase" parameterType="com.ssd.petMate.domain.Gpurchase">
+	 <selectKey keyProperty="boardNum" resultType="int" order="BEFORE">
+ 		SELECT GBN_SEQ.nextval AS boardNum FROM DUAL
+ 	</selectKey>
  		INSERT
- 		INTO Gpurchase(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum, productName, participant, isSuccess)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC}, #{productName,jdbcType=VARCHAR}, #{participant,jdbcType=NUMERIC}, #{isSuccess,jdbcType=NUMERIC})
+ 		INTO Gpurchase(boardNum, userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum, productName, participant, status)
+ 		VALUES(#{boardNum}, #{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC}, #{productName,jdbcType=VARCHAR}, #{participant,jdbcType=NUMERIC}, #{status,jdbcType=VARCHAR})
  	</insert>
 	
 	<!-- 공동구매 게시글 수정하기  -->
@@ -104,4 +107,10 @@
 		WHERE boardNum = #{boardNum}
 	</update>
 	
+	<!-- 공동구매 결과 업데이트  -->
+	<update id="updateResult" parameterType="com.ssd.petMate.domain.Gpurchase">
+		UPDATE Gpurchase
+		SET status = #{status}
+		WHERE boardNum = #{boardNum}
+	</update>
 </mapper>

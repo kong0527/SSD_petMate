@@ -1,5 +1,10 @@
 package com.ssd.petMate.Controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -7,21 +12,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.ssd.petMate.domain.Gpurchase;
-import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.service.GpurchaseFacade;
-import com.ssd.petMate.service.InfoFacade;
+import com.ssd.petMate.service.SchedulerFacade;
 
 @Controller
 public class GpurchaseFormController {
 	@Autowired
 	private GpurchaseFacade gpurchaseFacade;
+	
+	@Autowired
+	private SchedulerFacade schedulerFacade;
 	
 	@Value("Gpurchase/GpurchaseForm")
 	private String formViewName;
@@ -47,24 +52,24 @@ public class GpurchaseFormController {
 	}
 	
 	@PostMapping("/gpurchaseForm")
-	public String gpurchaseInsert(@Valid @ModelAttribute("gpurchase") Gpurchase gpurchase, BindingResult result, HttpServletRequest request) {		
-		//게시글 제목 길이
-//		if (info.getBoardTitle().length() > 25) {
-//			result.rejectValue("boardTitle", "long");
-//		}
-//		
-//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardTitle", "blank");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardContent", "blank");
-		
+	public String gpurchaseInsert(@Valid @ModelAttribute("gpurchase") Gpurchase gpurchase, BindingResult result, HttpServletRequest request) {				
 		if (result.hasErrors()) {
 			return "Gpurchase/GpurchaseForm";
 		}
-		
 		if (request.getParameter("boardNum") == null) {
 			gpurchase.setUserID(request.getSession().getAttribute("userID").toString());
 			gpurchaseFacade.insertGpurchase(gpurchase);
+			DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+			try {
+				System.out.println(gpurchase.getEdate());
+				Date edate = dateFormat.parse(gpurchase.getEdate()); // 이제 곧 수정해야 함
+				int boardNum = gpurchase.getBoardNum();
+				schedulerFacade.testScheduler(edate, boardNum);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 		else {
 			gpurchaseFacade.updateGpurchase(gpurchase);
 		}
@@ -75,5 +80,4 @@ public class GpurchaseFormController {
 	public String gpurchaseForm() {
 		return formViewName;
 	}
-		
 }

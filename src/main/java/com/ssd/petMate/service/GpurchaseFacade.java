@@ -44,4 +44,5 @@ public interface GpurchaseFacade {
 	
 	public int isCart(GpurchaseCart gpurchaseCart); //이 게시글을 사용자가 담았는지 확인
 	
+	public void updateResult(Gpurchase gpurchase); // 공동구매 결과 업데이트
 }

@@ -29,5 +29,5 @@ public interface GpurchaseMapper {
 	
 	public void gpurchaseCartUpdate(Gpurchase gpurchase); //장바구니 담은 수 업데이트
 	
-	
+	public void updateResult(Gpurchase gpurchase); // 공동구매 결과 업데이트
 }

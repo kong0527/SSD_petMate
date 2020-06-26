@@ -66,4 +66,9 @@ public class MybatisGpurchaseDao implements GpurchaseDao {
 		gpurchaseMapper.gpurchaseReplyCntUpdate(gpurchase);
 	} //덧글수 증가
 
+	@Override
+	public void updateResult(Gpurchase gpurchase) throws DataAccessException {
+		// TODO Auto-generated method stub
+		gpurchaseMapper.updateResult(gpurchase);
+	}
 }
