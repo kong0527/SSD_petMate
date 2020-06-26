@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 var boardNum = '${petsitter.boardNum}'; //게시글 번호
+var petId = '${petsitter.userID}'; //게시글 작성자
+var isSelected = '${petsitter.isSelected}'; //펫시팅 채택 여부
 
 /* 댓글 내용이 없으면 alert창 띄우기  */
 $(document).on('click', '#btnReply', function(e){
@@ -22,7 +24,7 @@ function replyList(){
     $.ajax({
         url : url,
         type : 'get',
-        data : {"boardNum":boardNum},
+        data : {"boardNum":boardNum, "petId":petId, "isSelected":isSelected},
         dataType: 'json',
         success : function(data){
             var html =''; 
@@ -31,22 +33,36 @@ function replyList(){
 			}
             else {
 	            $.each(data, function(key, value){
-	            	var userID = "<%=(String)session.getAttribute("userID")%>"
+	            	var userID = "<%=(String)session.getAttribute("userID")%>";
 	            	/* 부모 댓글일 경우  */
 	            	if (value.replyParents == 0) {
 		            	html += '<li class="comment">';
-		                html += '<div class="comment-body" id="replyNum' + this.replyNum + '">'
+		                html += '<div class="comment-body" id="replyNum' + this.replyNum + '">';
+		                html += '<div class="well well-lg">';
+		                if (petId == userID) {
+			                if (isSelected == 0)
+		                        html += '<a onclick="petsitterSelect(' + value.replyNum + ', \'' + value.boardNum + '\', \'' + value.userID + '\');" class="btn btn-info btn-circle text-uppercase float-right"> 선택 </a>';
+		                }
+						if (value.isSelected == 1)
+							html +='<img src="resources/img/select.png" align="right">';
+						else
+	             			html+='<p/>';
+		                
 		                html += '<h3>' + value.userID + '</h3>';
 		                html += '<div class="meta">' + value.replyDate + '</div>';
 	                    html += '<p>' + value.replyContent + '</p>';
 	                    /* 로그인한 사용자에게만 적용 */
 	                    if (userID != 'null') {
-	                    	html += '<p><a onclick="insertReReply('+value.replyNum+',\''+ value.boardNum+'\');" class="reply">Reply</a></p>';
+		                    if (isSelected == 0) {
+	                    		html += '<p><a onclick="insertReReply('+value.replyNum+',\''+ value.boardNum+'\');" class="reply">Reply</a></p>';
+		                    }
 	                   		/* 현재 사용자가 댓글 작성자일 때  */
 		                   	if (userID == value.userID) {
-		                       	html += '<a style="padding-right:5px" onclick="replyUpdate(' + this.replyNum + ', \'' + this.replyContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
-		                        html += '<a onclick="replyDelete('+value.replyNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
-		                    }
+								if (isSelected == 0) {
+		                       		html += '<a style="padding-right:5px" onclick="replyUpdate(' + this.replyNum + ', \'' + this.replyContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
+		                        	html += '<a onclick="replyDelete('+value.replyNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
+								}
+			                }
 	                    }
 	  	              	html += '</div>';
 	  	              	html += '</li>';
@@ -169,6 +185,20 @@ function replyDelete(replyNum, boardNum){
 	        type : 'post',
 	        success : function(data){
 	          	replyList(); //댓글 삭제후 목록 출력 
+	        }
+	    });
+	}
+}
+
+//댓글 채택
+function petsitterSelect(replyNum, boardNum, userID){
+	if (confirm('해당 사용자를 선택하시겠습니까?')) {
+	    $.ajax({
+	        url : '${pageContext.request.contextPath}/selectPetsitter',
+	        data: {'replyNum':replyNum, 'boardNum':boardNum, 'userID':userID},
+	        type : 'post',
+	        success : function(data){
+	       		location.reload();
 	        }
 	    });
 	}

@@ -63,4 +63,9 @@ public class MybatisPetsitterReplyDao implements PetsitterReplyDao{
 		// TODO Auto-generated method stub
 		return petsitterReplyMapper.countSameGID(replyNum);
 	}
+
+	@Override
+	public void petsitterReplySelect(int replyNum) throws DataAccessException {
+		petsitterReplyMapper.petsitterReplySelect(replyNum);
+	}
 }
