@@ -2,29 +2,40 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="GpurchaseReply.jsp" %>
 <div class="site-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">GpurchaseDetail</h1>
+				<h1 class="mb-4">${gpurchase.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
 						<span class="d-block"><a href="#">${gpurchase.userID}</a></span> 
-						<span class="date-read">${gpurchase.boardDate} 
-						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+						<span class="date-read">${gpurchase.boardDate}</span>
 					</div>
 				</div>
-				${gpurchase.boardContent} &nbsp;
-				${gpurchase.boardNum}  &nbsp;
-				${gpurchase.price}  &nbsp;
-				${gpurchase.boardDate}  &nbsp;
-				${gpurchase.userID}  &nbsp;
-				${gpurchase.edate}  &nbsp;
-				${gpurchase.sdate}  &nbsp;
-				${gpurchase.cartAdded}  &nbsp;
 				
-
+				상품 가격: ${gpurchase.price}  <br>
+				<fmt:parseDate var="sdate" value="${gpurchase.sdate}" pattern="yy-MM-dd" /> 
+				시작 날짜: <fmt:formatDate value="${sdate}" pattern="yy-MM-dd" /> <br>
+				<fmt:parseDate var="edate" value="${gpurchase.edate}" pattern="yy-MM-dd" /> 
+				마감 날짜: <fmt:formatDate value="${edate}" pattern="yy-MM-dd" /> <br>
+			
+				<hr class="dashed">
+				<br>
+								
+				${gpurchase.boardContent} <br>
+				
+				<div class="pt-5" align="center">
+				<c:if test="${gpurchase.status eq 'success'}">
+					결제가 성공하였습니다!
+				</c:if>
+				<c:if test="${gpurchase.status eq 'fail'}">
+					결제가 실패하였습니다!
+				</c:if>
+				</div>
+				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
 				<form>
@@ -41,22 +52,21 @@
 				</form>
 				</div>
 				
-				
 				<div class="pt-5" align="center">
 						<c:if test="${sessionScope.userID eq null}">
 							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
-								<img src="resources/img/love.png" border="0" class="zoom">
+								<img src="resources/img/cart.png" border="0" class="zoom">
 							</a>
 						</c:if>
 						<c:if test="${sessionScope.userID ne null}">
 							<c:if test="${sessionScope.userID ne gpurchase.userID}">
 								<a href="javascript:void(0);" onclick="checkCart();">
-									<img src="resources/img/love.png" border="0" class="zoom">
+									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 							</c:if>
 							<c:if test="${sessionScope.userID eq gpurhcase.userID}">
 								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
-									<img src="resources/img/love.png" border="0" class="zoom">
+									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 							</c:if>
 						</c:if>
@@ -70,8 +80,6 @@
 				</div>
 
 				<!-- comment 작성 부분 -->		
-				
-				
 				<div class="comment-form-wrap pt-5">
 						<div class="replySection-title">
 							<h2 class="mb-5">Leave a comment</h2>
@@ -136,3 +144,8 @@
 		}
 	}
 </script>
+<style>
+hr.dashed {
+  border-top: 3px dashed #bbb;
+}
+</style>

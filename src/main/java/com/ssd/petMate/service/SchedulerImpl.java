@@ -29,7 +29,7 @@ public class SchedulerImpl implements SchedulerFacade {
 			public void run() {   // 스케쥴러에 의해 미래의 특정 시점에 실행될 작업을 정의				
 				Gpurchase gpurchase = gpurchaseDao.getGpurchaseDetail(boardNum);
 				System.out.println(gpurchase.getBoardNum());
-				if (gpurchase.getGoalNum() == gpurchase.getParticipant()) {
+				if (gpurchase.getGoalNum() <= gpurchase.getParticipant()) {
 					gpurchase.setStatus("success");
 					gpurchaseDao.updateResult(gpurchase);
 				}
