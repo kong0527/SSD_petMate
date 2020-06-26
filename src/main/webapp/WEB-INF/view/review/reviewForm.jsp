@@ -77,16 +77,19 @@
 					</div>
 					
 					<c:choose>
-						<c:when test="${not empty review.boardNum}">
+						<c:when test="${0 ne review.boardNum}">
 							<div class="pt-5" align="right">
+								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${review.boardNum}"/>
 									<button type="submit" class="btn" id="btn">수정</button>
+								</form>
 							</div>
 						</c:when>
-						<c:when test="${empty review.boardNum}">
+						
+						<c:when test="${0 eq review.boardNum}">
 							<div class="row" align="right">
 								<div class="col-12">
-									<button type="submit" value="등록" class="btn" id="btn">등록</button>
+									<input type="submit" value="등록" class="btn btn-primary py-3 px-5" id="btn">
 								</div>
 							</div>
 						</c:when>

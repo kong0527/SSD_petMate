@@ -54,12 +54,6 @@ public class MainController {
 		return mv;
 	}
 	
-//	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView index(ModelAndView mv) {
-//		mv.setViewName("index");
-//		return mv;
-//	}
-	
 	@RequestMapping(value = "/paymentForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView paymentForm(ModelAndView mv) {
 		mv.setViewName("paymentForm");
