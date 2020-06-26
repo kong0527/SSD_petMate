@@ -10,6 +10,9 @@
 					<h2>펫시터 구인 폼</h2>
 				</div>
 				<form:form name="form" modelAttribute="petsitter" action="petsitterForm" method="post">
+					<input type="hidden" name="size" id="size" value="${petsitter.petSize}" />
+					<input type="hidden" name="day" id="day" value="${petsitter.petDay}" />
+					<input type="hidden" name="local" id="local" value="${petsitter.petLocal}" />
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
@@ -136,7 +139,7 @@
 	 $(document).on('click', '#btn', function(e){
          oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
 	      var text = $("#boardContent").val().replace(/[<][^>]*[>]/gi, "");
-	      if(text ==""){
+	      if(text == ""){
 	         alert("글 내용을 입력해 주세요.");
 	         oEditors.getById["boardContent"].exec("FOCUS");
 	         return false;
@@ -148,4 +151,91 @@
 	      } 
 	      $("#form").submit();
      });
+
+	// 펫시터 게시판에서 수정시 체크박스와 라디오박스에 체크가 되어있기 위함. 
+	 $(function(){
+		 	var size = $("#size").val();
+	 	var day = $("#day").val();
+	 	var local = $("#local").val();
+
+		if((size & 1) != 0) {
+			$("input:checkbox[id='sizeCodes1']").prop("checked", true);
+		}
+	 	
+		if ((size & 2) != 0) {
+			$("input:checkbox[id='sizeCodes2']").prop("checked", true);
+		}
+		
+		if ((size & 4) != 0) {
+			$("input:checkbox[id='sizeCodes3']").prop("checked", true);
+		}
+
+		if((day & 1) != 0) {
+			$("input:checkbox[id='dayCodes1']").prop("checked", true);
+		}
+
+		if((day & 2) != 0) {
+			$("input:checkbox[id='dayCodes2']").prop("checked", true);
+		}
+
+		if((day & 4) != 0) {
+			$("input:checkbox[id='dayCodes3']").prop("checked", true);
+		}
+
+		if((day & 8) != 0) {
+			$("input:checkbox[id='dayCodes4']").prop("checked", true);
+		}
+
+		if((day & 16) != 0) {
+			$("input:checkbox[id='dayCodes5']").prop("checked", true);
+		}
+
+		if((day & 32) != 0) {
+			$("input:checkbox[id='dayCodes6']").prop("checked", true);
+		}
+
+		if((day & 64) != 0) {
+			$("input:checkbox[id='dayCodes7']").prop("checked", true);
+		}
+
+		if (local == '서울') {
+			$("input:radio[name='petLocal']:radio[value='서울']").prop('checked', true);
+		}
+
+		if (local == '경기도') {
+			$("input:radio[name='petLocal']:radio[value='경기도']").prop('checked', true);
+		}
+
+		if (local == '강원도') {
+			$("input:radio[name='petLocal']:radio[value='강원도']").prop('checked', true);
+		}
+
+		if (local == '충청남도') {
+			$("input:radio[name='petLocal']:radio[value='충청남도']").prop('checked', true);
+		}
+
+		if (local == '충청북도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+
+		if (local == '전라남도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+
+		if (local == '전라북도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+
+		if (local == '경상남도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+
+		if (local == '경상북도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+
+		if (local == '제주도') {
+			$("input:radio[name='petLocal']:radio[value='충청북도']").prop('checked', true);
+		}
+	 });     
 </script>

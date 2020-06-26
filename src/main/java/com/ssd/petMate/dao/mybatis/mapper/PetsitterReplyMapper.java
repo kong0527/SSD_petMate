@@ -3,6 +3,8 @@ package com.ssd.petMate.dao.mybatis.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.ssd.petMate.domain.PetsitterReply;
 
 public interface PetsitterReplyMapper {
@@ -24,4 +26,6 @@ public interface PetsitterReplyMapper {
 	int findLastReplyID(int replyNum);
 	
 	int countSameGID(int replyNum);
+	
+	void petsitterReplySelect(int replyNum);
 }

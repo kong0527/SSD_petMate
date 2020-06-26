@@ -31,4 +31,6 @@ public interface PetsitterFacade {
 	void updateViews(int boardNum); //조회수 증가
 	
 	List<Petsitter> filtering(FilteringCommand filter);
+	
+	void selectPetsitter(HashMap<String, Object> map);
 }

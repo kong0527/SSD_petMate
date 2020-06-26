@@ -121,4 +121,16 @@ public class PetsitterReplyController {
 		
 		petsitterFacade.updateReplyCnt(petsitter);
 	}
+	
+	@RequestMapping(value="/selectPetsitter", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public void selecetPetsitter(ModelAndView mv, HttpServletRequest request, 
+			@RequestParam("boardNum") int boardNum,
+			@RequestParam("replyNum") int replyNum, @RequestParam("userID") String userID) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("isSelected", userID);
+		petsitterFacade.selectPetsitter(map);
+		replyFacade.petsitterReplySelect(replyNum);
+	}
 }

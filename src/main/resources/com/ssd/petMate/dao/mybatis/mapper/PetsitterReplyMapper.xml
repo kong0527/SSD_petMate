@@ -59,6 +59,12 @@
 		SET replyOrder = replyOrder + 1
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
 	</update>
+	
+	<update id="petsitterReplySelect" parameterType="Integer">
+		UPDATE PetsitterReply
+		SET isSelected = 1
+		WHERE replyNum = #{replyNum}
+	</update>
 
 <!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
 	<!-- 마지막 댓글 ID 찾아오기  -->

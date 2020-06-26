@@ -7,13 +7,13 @@ import javax.validation.constraints.Size;
 
 import com.ssd.petMate.domain.UserList;
 
-public class RegisterCommand {
+public class SignUpCommand {
 	private UserList user;
 	private boolean newAccount;
 	@NotBlank
 	private String userID;
 	@NotEmpty 
-	@Size(min=6)
+	@Size(min=6, max=100)
 	private String pwd;
 	@NotBlank
 	private String confirmPwd;
@@ -64,14 +64,14 @@ public class RegisterCommand {
 	public void setNewAccount(boolean newAccount) {
 		this.newAccount = newAccount;
 	}
-	public RegisterCommand(UserList user) {
+	public SignUpCommand(UserList user) {
 		this.userID = user.getUserID();
 		this.email = user.getEmail();
 		this.userType = user.isUserType();
 		this.pwd = user.getPwd();
 		this.newAccount = false;
 	}
-	public RegisterCommand() {
+	public SignUpCommand() {
 		super();
 		this.newAccount = true;
 	}

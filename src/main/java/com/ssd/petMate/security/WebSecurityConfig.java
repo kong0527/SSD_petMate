@@ -29,23 +29,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        		.antMatchers("/**").hasRole("USER");
-//                .antMatchers("/mypage/**").hasRole("USER")
-//                .antMatchers("/inquiry/**").hasRole("ADMIN")
-//                .antMatchers("/info/**").authenticated() // 차후 수정 필요
-//        		.antMatchers("/index/**").permitAll(); 
+        	.antMatchers("/**").permitAll();
         http.csrf().disable();
-    	
-
-		http.authorizeRequests()
-			.antMatchers("/").permitAll()
-			.anyRequest().authenticated()
-			.and();
 
         http.formLogin()
                 .loginPage("/singIn")
                 .loginProcessingUrl("/signIn")
-//                .failureUrl("/signIn-error")
                 .defaultSuccessUrl("/index", true)
                 .usernameParameter("userID")
                 .passwordParameter("pwd");
@@ -56,16 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
     }
     
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//	     auth.inMemoryAuthentication()
-//	     .passwordEncoder(passwordEncoder())
-//	     .withUser("ssd0202")
-//	     .password(passwordEncoder().encode("kong0527"))
-//	     .roles("USER");
-//    }
-//
-
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userFacade).passwordEncoder(passwordEncoder());
