@@ -98,9 +98,7 @@ public class SignUpController {
 			@RequestParam("confirmPwd") String confirmPwd) {
 		String userID = (String)request.getSession().getAttribute("userID");
 		UserDetails user = userService.loadUserByUsername(userID);
-		System.out.println("pw: " + confirmPwd);
 		if(passwordEncoder.matches(confirmPwd, user.getPassword())) {
-			System.out.println("In");
 			return 1;
 		} 
 		return 0;
