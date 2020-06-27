@@ -21,6 +21,7 @@ public class PetsitterValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "boardTitle", "blank");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "boardContent", "blank");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "petLocal", "blank");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "petAddress", "blank");
 		
 		//게시글 제목 길이
 		if (petsitter.getBoardTitle().length() > 25) {
@@ -38,6 +39,10 @@ public class PetsitterValidator implements Validator {
 		
 		if (petsitter.getPetPrice() < 15000 | petsitter.getPetPrice() > 25000) {
 			errors.rejectValue("petPrice", "price");
+		}
+		
+		if (petsitter.getPetAddress().length() > 20) {
+			errors.rejectValue("petAddress", "addressLength");
 		}
 		
 	}

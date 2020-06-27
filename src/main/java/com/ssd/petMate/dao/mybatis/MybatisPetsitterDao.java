@@ -52,7 +52,6 @@ public class MybatisPetsitterDao implements PetsitterDao{
 
 	@Override
 	public void updateBoard(Petsitter petsitter) throws DataAccessException {
-		System.out.println(petsitter);
 		petsitterMapper.updateBoard(petsitter);
 		
 	}

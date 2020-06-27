@@ -61,6 +61,7 @@ public class GpurchaseFormController {
 			gpurchaseFacade.insertGpurchase(gpurchase);
 			DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
 			try {
+				System.out.println("스케줄러 시작");
 				System.out.println(gpurchase.getEdate());
 				Date edate = dateFormat.parse(gpurchase.getEdate()); // 이제 곧 수정해야 함
 				int boardNum = gpurchase.getBoardNum();

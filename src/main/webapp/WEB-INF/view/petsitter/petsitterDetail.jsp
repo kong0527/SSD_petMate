@@ -39,7 +39,10 @@
 					<tr><td></td><td></td></tr>
 					</tbody>
 				</table>
-				<br /> <br />
+				<br />
+				<span style="font-weight:bold;">상세주소</span>
+				<div id="map" style="width:400px; height:400px;"></div>
+				<br /><br />
 				${petsitter.boardContent}
 				
 				
@@ -123,7 +126,52 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${appkey}&libraries=services"></script>
 <script>
+var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+//커스텀 마커 생성
+var imageSrc = 'resources/img/marker.png',
+	imageSize = new kakao.maps.Size(64, 64), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(27, 69)};
+var geocoder = new kakao.maps.services.Geocoder();
+geocoder.addressSearch('${petsitter.petAddress}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+        markerPosition = coords;
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            position: coords,
+            image:markerImage,
+            clickable: true
+        });
+
+        var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: coords, //지도의 중심좌표.
+				level: 3, //지도의 레벨(확대, 축소 정도)
+			};
+		
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		marker.setMap(map);
+		var iwContent = '<div style="padding:15px;"><span style="font-weight:bold;">펫시팅주소</span><br/>${petsitter.petAddress}</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+	    iwRemoveable = true;
+		var infowindow = new kakao.maps.InfoWindow({
+		    content : iwContent,
+		    removable : iwRemoveable
+		});
+		kakao.maps.event.addListener(marker, 'click', function() {
+		      // 마커 위에 인포윈도우를 표시합니다
+		      infowindow.open(map, marker);  
+		});
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});
+
 function checkLike() {
 	var boardNum = '${petsitter.boardNum}';
 	$.ajax({

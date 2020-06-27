@@ -107,7 +107,7 @@ public class MyPageController {
 		
 		if (request.getServletPath().equals("/mypagePetsitter")) {
 			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-					int totalCount = myPageFacade.getPrivateSecondhandCount(map);
+					int totalCount = myPageFacade.getPrivatePetsitterCount(map);
 					System.out.println(totalCount);
 					boardSearch.pageInfo(pageNum, contentNum, totalCount);
 					List<Petsitter> myboardList = myPageFacade.getPrivatePetsitterList(boardSearch);
@@ -117,12 +117,12 @@ public class MyPageController {
 		
 		if (request.getServletPath().equals("/mypageReview")) {
 			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-					int totalCount = myPageFacade.getPrivateSecondhandCount(map);
+					int totalCount = myPageFacade.getPrivateReviewCount(map);
 					System.out.println(totalCount);
 					boardSearch.pageInfo(pageNum, contentNum, totalCount);
 					List<Review> myboardList = myPageFacade.getPrivateReviewList(boardSearch);
 					mv.addObject("myboardList", myboardList);
-					mv.addObject("boardName", "후기게시판");
+					mv.addObject("boardName", "리뷰게시판");
 		}
 		
 		mv.addObject("boardSearch", boardSearch);
