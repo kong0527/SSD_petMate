@@ -56,8 +56,10 @@ function answerList(){
 	                    	html += '<p><a onclick="insertAnswerReply('+value.answerNum+',\''+ value.boardNum+'\');" class="btn btn-info btn-circle text-uppercase">Reply</a></p>';
 	                   		/* 현재 사용자가 댓글 작성자일 때  */
 		                   	if (userID == value.userID) {
-		                       	html += '<a style="padding-right:5px" onclick="answerUpdate(' + this.answerNum + ', \'' + this.answerContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
-		                        html += '<a onclick="answerDelete('+value.answerNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
+			                   	if (isSelected == 0){
+		                       		html += '<a style="padding-right:5px" onclick="answerUpdate(' + this.answerNum + ', \'' + this.answerContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
+		                        	html += '<a onclick="answerDelete('+value.answerNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
+			                   	}
 		                    }
 	                    }
 	  	              	html += '</div>';
