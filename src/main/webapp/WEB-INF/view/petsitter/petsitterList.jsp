@@ -123,7 +123,11 @@
 						<td>${petsitterList.boardNum}</td>
 						<td><a href="<c:url value="/petsitterDetail">
 						<c:param name="boardNum" value="${petsitterList.boardNum}"/>
-						</c:url>">${petsitterList.boardTitle}</a></td>
+						</c:url>">
+						<c:if test="${not empty petsitterList.isSelected}">
+							[매칭완료] &nbsp;
+						</c:if>
+						${petsitterList.boardTitle}</a></td>
 						<td>${petsitterList.userID}</td>
 						<td>${petsitterList.replyCnt}</td>
 						<td>${petsitterList.boardLike}</td>
