@@ -16,8 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Order;
+import com.ssd.petMate.domain.OrderCommand;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.domain.Review;
+import com.ssd.petMate.domain.SOrderCommand;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.MyPageFacade;
@@ -328,6 +331,50 @@ public class MyPageController {
 		mv.addObject("myReviewList", myReviewList);
 		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("mypage/myReviewReplyPage");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/myOrderList", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView myOrderList(ModelAndView mv, HttpServletRequest request,
+			@RequestParam(required = false, defaultValue = "1") int pageNum,
+			@RequestParam(required = false, defaultValue = "10") int contentNum,
+			@RequestParam(required = false) String searchType,
+			@RequestParam(required = false) String keyword) {
+		
+		String userID = request.getSession().getAttribute("userID").toString();
+		System.out.println(userID);
+
+		int totalCount = myPageFacade.getPrivateOrderListCount(userID);
+		System.out.println(totalCount);
+		
+		BoardSearch boardSearch = new BoardSearch();
+		boardSearch.setUserID(userID);
+	
+//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+		boardSearch.pageInfo(pageNum, contentNum, totalCount);
+		List<Order> myOrderList = myPageFacade.getPrivateOrderList(boardSearch);
+
+		mv.addObject("myOrderList", myOrderList);
+		mv.addObject("boardSearch", boardSearch);
+		mv.setViewName("mypage/myOrderListPage");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/myOrderDetail", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView myGOrderDetail(ModelAndView mv, HttpServletRequest request,
+			@RequestParam("orderNum") int orderNum) {
+		
+		String userID = request.getSession().getAttribute("userID").toString();
+		System.out.println(userID);
+		OrderCommand gOrder = myPageFacade.getOrderLineItems(orderNum);
+		SOrderCommand sOrder = myPageFacade.getOrderSLineItems(orderNum);
+		if(gOrder != null)
+			gOrder.getTotalPrice();
+		if(sOrder != null)
+			sOrder.getTotalPrice();
+		mv.addObject("gOrder", gOrder);
+		mv.addObject("sOrder", sOrder);
+		mv.setViewName("mypage/myOrderDetailPage");
 		return mv;
 	}
 }

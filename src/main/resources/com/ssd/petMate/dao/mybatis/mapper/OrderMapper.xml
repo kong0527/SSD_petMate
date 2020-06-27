@@ -29,19 +29,5 @@
     VALUES (#{orderNum}, SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, TO_DATE(#{expireDate},'mm/yy'), #{address,jdbcType=VARCHAR})
   </insert>
   
- <!--  <insert id="msSqlServerInsertOrder" useGeneratedKeys="true">
-  	insert into orders (userid, orderdate, shipaddr1, shipaddr2,
-	  	shipcity, shipstate, shipzip, shipcountry, billaddr1, billaddr2,
-	  	billcity, billstate, billzip, billcountry, courier, totalprice,
-	  	billtofirstname, billtolastname, shiptofirstname, shiptolastname,
-	  	creditcard, exprdate, cardtype, locale) values (#username#,
-	  	#orderDate#, #shipAddress1#, #shipAddress2:VARCHAR#, #shipCity#,
-	  	#shipState#, #shipZip#, #shipCountry#, #billAddress1#,
-	  	#billAddress2:VARCHAR#, #billCity#, #billState#, #billZip#,
-	  	#billCountry#, #courier#, #totalPrice#, #billToFirstName#,
-	  	#billToLastName#, #shipToFirstName#, #shipToLastName#,
-	  	#creditCard#, #expiryDate#, #cardType#, #locale#); 
-  	select @@identity as value
-  </insert> -->
 
 </mapper>
