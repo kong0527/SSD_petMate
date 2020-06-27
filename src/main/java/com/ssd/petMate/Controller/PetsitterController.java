@@ -106,11 +106,7 @@ public class PetsitterController {
 	 	      }
 	  	      filter.setPetSize(Integer.toString(sizeSum));
   	      }
-  	      
-  	      if (filter.getSizeCodes() == null)
-  	    	  System.out.println("야!!!!!!!!!!!!");
-  	      if (filter.getSizeCodes().equals(""))
-  	    	  System.out.println("힝구..");
+  	    
  	      for (String s : filter.getSizeCodes())
  	    	  System.out.println(s);
   	      

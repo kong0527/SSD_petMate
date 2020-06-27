@@ -18,6 +18,28 @@ public interface MyPageMapper {
 
 	List<Info> getPrivateInfoList(BoardSearch boardSearch);
 	
+	int getPrivateInquiryCount(HashMap<String, Object> map) throws DataAccessException; 
+
+	List<Inquiry> getPrivateInquiryList(BoardSearch boardSearch) throws DataAccessException; 
+	
+	int getPrivateSecondhandCount(HashMap<String, Object> map) throws DataAccessException; 
+
+	List<Secondhand> getPrivateSecondhandList(BoardSearch boardSearch) throws DataAccessException; 
+	
+	int getPrivateGpurchaseCount(HashMap<String, Object> map) throws DataAccessException; 
+
+	List<Gpurchase> getPrivateGpurchaseList(BoardSearch boardSearch) throws DataAccessException; 
+	
+	int getPrivatePetsitterCount(HashMap<String, Object> map) throws DataAccessException; 
+
+	List<Petsitter> getPrivatePetsitterList(BoardSearch boardSearch) throws DataAccessException; 
+	
+	int getPrivateReviewCount(HashMap<String, Object> map) throws DataAccessException; 
+
+	List<Review> getPrivateReviewList(BoardSearch boardSearch) throws DataAccessException; 
+	
+	//여기서부턴 덧글 목록
+	
 	int getPrivateInquiryReplyCount(HashMap<String, Object> map) throws DataAccessException; 
 	
 	List<Inquiry> getPrivateInquiryReplyList(BoardSearch boardSearch) throws DataAccessException;
