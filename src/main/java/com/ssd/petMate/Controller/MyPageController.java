@@ -209,7 +209,7 @@ public class MyPageController {
 		}
 		
 		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myPage");
+		mv.setViewName("mypage/myReply");
 		return mv;
 	}
 }
