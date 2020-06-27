@@ -68,8 +68,14 @@
 					</div>
 					<div class="row">
 						<div class="col-12">
-							<input type="submit" value="회원가입"
+							<c:if test="${registerForm.newAccount}">
+								<input type="submit" value="회원가입"
 								class="btn btn-primary py-3 px-5">
+							</c:if>
+							<c:if test="${!registerForm.newAccount}">
+								<input type="submit" value="회원정보 수정"
+								class="btn btn-primary py-3 px-5">
+							</c:if>
 						</div>
 					</div>
 				</form:form>

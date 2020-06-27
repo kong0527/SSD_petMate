@@ -4,13 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?new">
 </head>
 <body>
 	<div class="limiter">
@@ -36,12 +31,7 @@
 						<span class="focus-input100"></span>
 					</div>
 
-				<!-- 	<div class="flex-sb-m w-full p-b-48">
-						<div>
-							<a href="#" class="txt3"> Forgot Password? </a>
-						</div>
-					</div> -->
-
+					<form:errors style="color:red"/>
 					<div class="container-login100-form-btn">
 						<input type="submit" value="로그인"
 								class="login100-form-btn">

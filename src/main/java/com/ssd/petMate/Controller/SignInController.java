@@ -50,12 +50,12 @@ public class SignInController {
 		try {
 			UserDetails user = userService.loadUserByUsername(signInCommand.getUserID());
 			if(!passwordEncoder.matches(signInCommand.getPwd(), user.getPassword())) {
-				result.rejectValue("userID", "invalidIdOrPassword", "암호가 일치하지 않습니다.");
+				result.rejectValue("", "invalidIdOrPassword");
 				return formViewName;
 			}
 		}
 		catch (Exception e) {
-			result.rejectValue("userID", "invalidIdOrPwd", "아이디 혹은 암호가 일치하지 않습니다.");
+			result.rejectValue("", "iinvalidIdOrPassword");
 			return formViewName;
 		}
 		
