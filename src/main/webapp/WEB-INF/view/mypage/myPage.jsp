@@ -113,12 +113,12 @@
 	          		<li>
 			            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 댓글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu3">
-			                <li><a href="myCommentInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
-			                <li><a href="myCommentInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="myCommentGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
-			                <li><a href="myCommentSecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
-			                <li><a href="myCommentPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
-			                <li><a href="myCommentReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+			                <li><a href="myReplyInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="myReplyInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="myReplyGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="myReplySecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+			                <li><a href="myReplyPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+			                <li><a href="myReplyReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 			            </ul>
 	          		</li>
 	          		<li>
