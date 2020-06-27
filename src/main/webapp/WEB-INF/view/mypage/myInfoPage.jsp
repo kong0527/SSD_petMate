@@ -13,7 +13,7 @@
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
-		<h2>Politics</h2>
+		<h2>${boardName}</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
@@ -30,16 +30,14 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="infoList" items="${myInfoList}">
+			<c:forEach var="boardList" items="${myboardList}">
 					<tr>
-						<td>${infoList.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
-						<c:param name="boardNum" value="${infoList.boardNum}"/>
-						</c:url>">${infoList.boardTitle}</a></td>
-						<td>${infoList.userID}</td>
-						<td>${infoList.replyCnt}</td>
-						<td>${infoList.boardLike}</td>
-						<td>${infoList.boardHit}</td>
+						<td>${boardList.boardNum}</td>
+						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td>${boardList.userID}</td>
+						<td>${boardList.replyCnt}</td>
+						<td>${boardList.boardLike}</td>
+						<td>${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -88,11 +86,19 @@
 				<!-- <span style="color:black"><h5>Categories</h5></span> -->
 				<ul class="list-unstyled components mb-5">
 					<li><a href="#" data-toggle="modal" data-target="#myModal">회원 정보 수정</a></li>
-          			<li>
+ 					<li>
 			            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu2">
 			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
 			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+							<c:if test="${petsitterChk == 1}">
+								<li><a href="#"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+							</c:if>
+							<c:if test="${petsitterChk == 0}">
+								<li><a href="#"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+							</c:if>
 			            </ul>
 	          		</li>
 	          		<li>
@@ -177,6 +183,14 @@
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
+		location.href = url;
+	}
+
+	function urlCheck(boardNum) {
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "infoDetail?boardNum=" + boardNum;
 		location.href = url;
 	}
 	

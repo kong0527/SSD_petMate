@@ -53,9 +53,10 @@ public class MyPageController {
 	
 //		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Info> myInfoList = myPageFacade.getPrivateInfoList(boardSearch);
+		List<Info> myboardList = myPageFacade.getPrivateInfoList(boardSearch);
 
-		mv.addObject("myInfoList", myInfoList);
+		mv.addObject("boardName", "정보게시판");
+		mv.addObject("myboardList", myboardList);
 		mv.addObject("boardSearch", boardSearch);
 		mv.setViewName("mypage/myInfoPage");
 		return mv;

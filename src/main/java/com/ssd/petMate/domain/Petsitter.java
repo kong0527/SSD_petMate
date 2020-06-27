@@ -16,6 +16,7 @@ public class Petsitter {
 	private String boardTitle;
 	private int replyCnt;
 	private int boardHit;
+	private String petAddress;
 	private String boardImage;
 	private String isSelected;
 	private String[] sizeCodes;
@@ -116,8 +117,13 @@ public class Petsitter {
 	}
 	public void setIsSelected(String isSelected) {
 		this.isSelected = isSelected;
+	}	
+	public String getPetAddress() {
+		return petAddress;
 	}
-	
+	public void setPetAddress(String petAddress) {
+		this.petAddress = petAddress;
+	}
 	public String sizeCheck(int sizeNum) {
 		String result = "";
 		if ((sizeNum & 1) != 0)
