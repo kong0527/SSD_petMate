@@ -39,6 +39,183 @@
 		    and boardContent LIKE '%' ||  #{keyword} || '%'
 		</if>
 	</select>
+	<select id="getPrivateInquiryList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
+      SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	inquiry.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Inquiry
+                WHERE userID = #{userID}
+                <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            and boardTitle LIKE '%' ||  #{keyword} || '%'
+		        </if>
+		        <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            and boardContent LIKE '%' ||  #{keyword} || '%'
+		        </if>
+                ORDER BY boardNum ASC 
+            )inquiry)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivateInquiryCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Inquiry
+		WHERE userID = #{userID}
+        <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			and boardTitle LIKE '%' ||  #{keyword} || '%'
+		</if>
+		<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		    and boardContent LIKE '%' ||  #{keyword} || '%'
+		</if>
+	</select>
+	<select id="getPrivateGpurchaseList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Gpurchase">
+      SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	gpurchase.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Gpurchase
+                WHERE userID = #{userID}
+                <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            and boardTitle LIKE '%' ||  #{keyword} || '%'
+		        </if>
+		        <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            and boardContent LIKE '%' ||  #{keyword} || '%'
+		        </if>
+                ORDER BY boardNum ASC 
+            )gpurchase)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivateGpurchaseCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Gpurchase
+		WHERE userID = #{userID}
+        <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			and boardTitle LIKE '%' ||  #{keyword} || '%'
+		</if>
+		<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		    and boardContent LIKE '%' ||  #{keyword} || '%'
+		</if>
+	</select>
+	
+	<select id="getPrivateSecondhandList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Secondhand">
+      SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	secondhand.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Secondhand
+                WHERE userID = #{userID}
+                <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            and boardTitle LIKE '%' ||  #{keyword} || '%'
+		        </if>
+		        <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            and boardContent LIKE '%' ||  #{keyword} || '%'
+		        </if>
+                ORDER BY boardNum ASC 
+            )secondhand)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivateSecondhandCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Secondhand
+		WHERE userID = #{userID}
+        <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			and boardTitle LIKE '%' ||  #{keyword} || '%'
+		</if>
+		<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		    and boardContent LIKE '%' ||  #{keyword} || '%'
+		</if>
+	</select>
+
+	<select id="getPrivatePetsitterList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Petsitter">
+      SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	petsitter.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Petsitter
+                WHERE userID = #{userID}
+                <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            and boardTitle LIKE '%' ||  #{keyword} || '%'
+		        </if>
+		        <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            and boardContent LIKE '%' ||  #{keyword} || '%'
+		        </if>
+                ORDER BY boardNum ASC 
+            )petsitter)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivatePetsitterCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Petsitter
+		WHERE userID = #{userID}
+        <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			and boardTitle LIKE '%' ||  #{keyword} || '%'
+		</if>
+		<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		    and boardContent LIKE '%' ||  #{keyword} || '%'
+		</if>
+	</select>
+	<select id="getPrivateReviewList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Review">
+      SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	review.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                Review
+                WHERE userID = #{userID}
+                <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		            and boardTitle LIKE '%' ||  #{keyword} || '%'
+		        </if>
+		        <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		            and boardContent LIKE '%' ||  #{keyword} || '%'
+		        </if>
+                ORDER BY boardNum ASC 
+            )reivew)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivateReviewCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+		FROM Review
+		WHERE userID = #{userID}
+        <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			and boardTitle LIKE '%' ||  #{keyword} || '%'
+		</if>
+		<if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		    and boardContent LIKE '%' ||  #{keyword} || '%'
+		</if>
+	</select>
 	
 	<!-- user 게시글 목록 가져오기  -->
 	<select id="getPrivateInquiryReplyList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">

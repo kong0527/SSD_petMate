@@ -3,13 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
-<link rel="stylesheet" type="text/css" href="resources/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
@@ -35,8 +28,22 @@
 						<td>${boardList.boardNum}</td>
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
 						<td>${boardList.userID}</td>
-						<td>${boardList.replyCnt}</td>
-						<td>${boardList.boardLike}</td>
+						<td>
+							<c:if test="${boardName eq '질문게시판'}">
+								${boardList.answerCnt}
+							</c:if>
+							<c:if test="${boardName ne '질문게시판'}">
+								${boardList.replyCnt}
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${boardName eq '공구게시판' || boardName eq '중고게시판'}">
+								${boardList.cartAdded}
+							</c:if>
+							<c:if test="${boardName ne '공구게시판' && boardName ne '중고게시판'}">
+								${boardList.boardLike}
+							</c:if>
+						</td>
 						<td>${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
@@ -89,15 +96,15 @@
  					<li>
 			            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu2">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
-							<c:if test="${petsitterChk == 1}">
-								<li><a href="#"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
-							</c:if>
+			                <li><a href="mypageInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="mypageInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="mypageGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="mypageSecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
 							<c:if test="${petsitterChk == 0}">
-								<li><a href="#"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+								<li><a href="mypagePetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+							</c:if>
+							<c:if test="${petsitterChk == 1}">
+								<li><a href="mypageReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 							</c:if>
 			            </ul>
 	          		</li>
@@ -191,6 +198,16 @@
 		var url = "${pageContext.request.contextPath}/";
 		if (name == '정보게시판')
 			url = url + "infoDetail?boardNum=" + boardNum;
+		if (name == '질문게시판')
+			url = url + "inquiryDetail?boardNum=" + boardNum;
+		if (name == '공구게시판')
+			url = url + "gpurchaseDetail?boardNum=" + boardNum;
+		if (name == '중고게시판')
+			url = url + "secondhandDetail?boardNum=" + boardNum;
+		if (name == '구인게시판')
+			url = url + "petsitterDetail?boardNum=" + boardNum;
+		if (name == '후기게시판')
+			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}
 	

@@ -106,4 +106,64 @@ public class MybatisMyPageDao implements MyPageDao{
 		// TODO Auto-generated method stub
 		return myPageMapper.getPrivatePetsitterReplyList(boardSearch);
 	}
+
+	@Override
+	public int getPrivateInquiryCount(HashMap<String, Object> map) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateInquiryCount(map);
+	}
+
+	@Override
+	public List<Inquiry> getPrivateInquiryList(BoardSearch boardSearch) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateInquiryList(boardSearch);
+	}
+
+	@Override
+	public int getPrivateSecondhandCount(HashMap<String, Object> map) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateSecondhandCount(map);
+	}
+
+	@Override
+	public List<Secondhand> getPrivateSecondhandList(BoardSearch boardSearch) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateSecondhandList(boardSearch);
+	}
+
+	@Override
+	public int getPrivateGpurchaseCount(HashMap<String, Object> map) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateGpurchaseCount(map);
+	}
+
+	@Override
+	public List<Gpurchase> getPrivateGpurchaseList(BoardSearch boardSearch) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateGpurchaseList(boardSearch);
+	}
+
+	@Override
+	public int getPrivatePetsitterCount(HashMap<String, Object> map) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivatePetsitterCount(map);
+	}
+
+	@Override
+	public List<Petsitter> getPrivatePetsitterList(BoardSearch boardSearch) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivatePetsitterList(boardSearch);
+	}
+
+	@Override
+	public int getPrivateReviewCount(HashMap<String, Object> map) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateReviewCount(map);
+	}
+
+	@Override
+	public List<Review> getPrivateReviewList(BoardSearch boardSearch) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return myPageMapper.getPrivateReviewList(boardSearch);
+	}
 }
