@@ -26,7 +26,7 @@
  		SELECT ON_SEQ.nextval AS orderNum FROM DUAL
  </selectKey>
     INSERT INTO OrderLIST (orderNum, orderDate, price, userID, bank, cardNum, cvc, expireDate, address)
-    VALUES (#{orderNum}, SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, TO_DATE(#{expireDate},'yyyy.mm.dd hh24:mi'), #{address,jdbcType=VARCHAR})
+    VALUES (#{orderNum}, SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, TO_DATE(#{expireDate},'mm/yy'), #{address,jdbcType=VARCHAR})
   </insert>
   
  <!--  <insert id="msSqlServerInsertOrder" useGeneratedKeys="true">

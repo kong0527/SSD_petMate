@@ -1,14 +1,20 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class Order {
 	private int OrderNum;
 	private String orderDate;
 	private int price;
 	private String userID;
 	private String bank;
+	@Pattern(regexp="\\d{4}-\\d{4}-\\d{4}-\\d{4}$")
 	private String cardNum;
+	@Pattern(regexp="\\d{3}$")
 	private String cvc;
 	private String address;
+	@Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$")
 	private String expireDate;
 	
 	public int getOrderNum() {

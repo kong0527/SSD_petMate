@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
@@ -57,6 +60,22 @@ public class OrderController {
 			return new Order();
 	}
 	
+	@ModelAttribute("bankList")
+	public List<String> bankList() {
+		List<String> bankList = new ArrayList<String>();
+		bankList.add("BC");
+		bankList.add("하나");
+		bankList.add("우리");
+		bankList.add("신한");
+		bankList.add("삼성");
+		bankList.add("현대");
+		bankList.add("롯데");
+		bankList.add("KB");
+		bankList.add("NH");
+		bankList.add("외환");
+		return bankList;
+	}
+	
 	//장바구니 -> 오더
 	@RequestMapping(value = "/gpurchaseCartToOrder", method = RequestMethod.POST)
 	@ResponseBody
@@ -87,7 +106,12 @@ public class OrderController {
 	//공구게시판 주문
 	@Transactional
 	@PostMapping("/gpurchaseOrder")
-	public String gpurchaseOrder(@ModelAttribute("gpurchaseOrder") Order order, @ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request, SessionStatus status) {
+	public String gpurchaseOrder(@Valid @ModelAttribute("gpurchaseOrder") Order order, BindingResult result,@ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request, SessionStatus status) {
+			
+			if (result.hasErrors()) {
+				return "order/paymentForm";
+			}
+			
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
 			GpurchaseCart gpurchaseCart;

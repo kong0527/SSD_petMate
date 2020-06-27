@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,13 +54,27 @@ public class SOrderController {
 	
 	@ModelAttribute("secondhandOrder")
 	public Order formBacking2(HttpServletRequest request) {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			Order order = new Order();
+		Order order = new Order();
+		if (request.getMethod().equalsIgnoreCase("GET")) 
 			order.setPrice((int)request.getSession().getAttribute("sprice"));
-			return order;
-		}
-		else
-			return new Order();
+		return order;
+		
+	}
+	
+	@ModelAttribute("bankList")
+	public List<String> bankList() {
+		List<String> bankList = new ArrayList<String>();
+		bankList.add("BC");
+		bankList.add("하나");
+		bankList.add("우리");
+		bankList.add("신한");
+		bankList.add("삼성");
+		bankList.add("현대");
+		bankList.add("롯데");
+		bankList.add("KB");
+		bankList.add("NH");
+		bankList.add("외환");
+		return bankList;
 	}
 	
 	//장바구니 -> 오더
@@ -93,7 +109,11 @@ public class SOrderController {
 	//공구게시판 주문
 	@Transactional
 	@PostMapping("/secondhandOrder")
-	public String secondhandOrder(@ModelAttribute("secondhandOrder") Order order, @ModelAttribute("sCartList") List<Secondhand> sCartList, HttpServletRequest request, SessionStatus status) {
+	public String secondhandOrder(@Valid @ModelAttribute("secondhandOrder") Order order, BindingResult result ,@ModelAttribute("sCartList") List<Secondhand> sCartList, HttpServletRequest request, SessionStatus status) {
+			
+			if (result.hasErrors()) {
+				return "order/SpaymentForm";
+			}
 			Secondhand secondhand;
 			SecondhandCart secondhandCart;
 			String userID = (String) request.getSession().getAttribute("userID");

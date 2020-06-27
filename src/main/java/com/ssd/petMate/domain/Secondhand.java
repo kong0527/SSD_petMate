@@ -2,16 +2,28 @@ package com.ssd.petMate.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Secondhand {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
+	@NotBlank
+	@Length(max=1500)
 	private String boardContent;
 	private int cartAdded;
+	@NotNull
+	@Min(1)
 	private int price;
 	private String boardImage;
 	private int boardHit;
 	private int replyCnt;
+	@NotBlank
+	@Length(max=30)
 	private String boardTitle;
 	private int isSold;
 	

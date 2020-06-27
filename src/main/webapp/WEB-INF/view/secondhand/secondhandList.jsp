@@ -25,7 +25,7 @@
 						<td>${secondhandList.boardNum}</td>
 						<td><a href="<c:url value="/secondhandDetail">
 						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
-						</c:url>">${secondhandList.boardTitle}</a></td>
+						</c:url>">${secondhandList.boardTitle}&emsp; <span style="color:red">&nbsp;&nbsp; [${secondhandList.replyCnt}]</span><span class="caret"></a></td>
 						<td>${secondhandList.userID}</td>
 						<td>${secondhandList.replyCnt}</td>
 						<td>${secondhandList.cartAdded}</td>

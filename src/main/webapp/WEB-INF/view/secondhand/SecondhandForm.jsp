@@ -14,6 +14,7 @@
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
 							<form:input path="boardTitle" class="form-control form-control-lg" />
+							<form:errors path="boardTitle" />
 						</div>
 					</div>
 					<%-- <div class="row">
@@ -26,6 +27,7 @@
 						<div class="col-md-6 form-group">
 							<label for="price">가격</label> 
 							<form:input path="price" class="form-control form-control-lg" />
+							<form:errors path="price" />
 						</div>
 					</div>
 					<div class="row">
@@ -33,6 +35,7 @@
 							<label for="boardContent">글 쓰기</label>
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
 								class="form-control" style="width:120%"></form:textarea>
+								<form:errors path="boardContent" />
 						</div>
 					</div>
 
@@ -59,6 +62,15 @@
 		</div>
 	</div>
 </div>
+<style>
+	.auto_tx_area {
+	    clear: both;
+	    position: absolute;
+	    z-index: 10002;
+	    width: 500px;
+	    background: #fff;
+	}s
+</style>
 <script type="text/javascript">
 
 	var oEditors = [];

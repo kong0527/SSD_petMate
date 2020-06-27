@@ -1,19 +1,34 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Gpurchase {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
+	@Min(1)
 	private int price;
+	@NotBlank
 	private String sdate;
+	@NotBlank
 	private String edate;
+	@NotBlank
+	@Length(max=1500)
 	private String boardContent;
 	private int cartAdded;
 	private int replyCnt;
+	@NotBlank
+	@Length(max=30)
 	private String boardTitle;
 	private int boardHit;
 	private String boardImage;
+	@Min(1)
 	private int goalNum;
+	@NotBlank
+	@Length(max=30)
 	private String productName;
 	private int participant;
 	private String status;

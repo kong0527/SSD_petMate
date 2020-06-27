@@ -44,24 +44,24 @@
 					<c:choose>
 						<c:when test="${sessionScope.userID eq null}">
 							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
-								<img src="resources/img/love.png" border="0" class="zoom">
+								<img src="resources/img/cart.png" border="0" class="zoom">
 							</a>
 						</c:when>
 						<c:when test="${secondhand.isSold eq 1}">
 								<a href="#" onclick="alert('판매종료 된 상품입니다.')">
-									<img src="resources/img/love.png" border="0" class="zoom">
+									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 						</c:when>
 						<c:when test="${sessionScope.userID ne null}">
 							<c:choose>
 								<c:when test="${sessionScope.userID ne secondhand.userID}">
 									<a href="javascript:void(0);" onclick="checkCart();">
-										<img src="resources/img/love.png" border="0" class="zoom">
+										<img src="resources/img/cart.png" border="0" class="zoom">
 									</a>
 								</c:when>
 								<c:when test="${sessionScope.userID eq secondhand.userID}">
 									<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
-										<img src="resources/img/love.png" border="0" class="zoom">
+										<img src="resources/img/cart.png" border="0" class="zoom">
 									</a>
 								</c:when>
 							</c:choose>

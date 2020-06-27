@@ -14,6 +14,7 @@
 						<div class="col-md-6 form-group">
 							<label for="boardTitle">제목</label> 
 							<form:input path="boardTitle" class="form-control form-control-lg" />
+							<form:errors path="boardTitle" />
 						</div>
 					</div>
 					
@@ -35,6 +36,7 @@
 						<div class="col-md-6 form-group">
 							<label for="productName">물건 이름</label>
 							<form:input path="productName" class="form-control form-control-lg"/>
+							<form:errors path="productName" />
 							<div id = "shopResult" class="auto_tx_area"></div>
 						</div>
 					</div>
@@ -42,12 +44,14 @@
 						<div class="col-md-6 form-group">
 							<label for="price">가격</label> 
 							<form:input path="price" class="form-control form-control-lg" />
+							<form:errors path="price" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<label for="goalNum">목표 인원 수</label> 
 							<form:input path="goalNum" class="form-control form-control-lg" />
+							<form:errors path="goalNum" />
 						</div>
 					</div>
 					<div class="row">
@@ -55,6 +59,7 @@
 							<label for="boardContent">글 쓰기</label>
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
 								class="form-control" style="width:120%"></form:textarea>
+							<form:errors path="boardContent" />
 						</div>
 					</div>
 					<%-- <form:hidden path="boardNum" /> --%>

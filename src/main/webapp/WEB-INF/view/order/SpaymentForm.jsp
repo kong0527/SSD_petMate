@@ -40,13 +40,16 @@
 						
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<label for="bank">은행명</label> <form:input path="bank" class="form-control form-control-lg" />
+								<label for="bank">은행명</label>
+								<form:select items="${bankList}" path="bank" class="form-control form-control-sm" style="width : 20%"/>
+								<br />
 							</div>
 						</div>
 						
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label for="cardNum">카드번호</label> <form:input path="cardNum" class="form-control form-control-lg"/>
+								<form:errors path="cardNum" />
 							</div>
 						</div>
 						
@@ -54,6 +57,7 @@
 							<div class="col-md-12 form-group">
 								<label for="cvc">CVC 번호</label>
 								<form:input path="cvc" class="form-control form-control-lg"/>
+								<form:errors path="cvc" />
 							</div>
 						</div>
 								<!-- yyyy/mm/dd 같은 제약조건 추가 -->
@@ -61,6 +65,7 @@
 							<div class="col-md-12 form-group">
 								<label for="expireDate">유효기간</label>
 								<form:input path="expireDate" class="form-control form-control-lg"/>
+								<form:errors path="expireDate" />
 							</div>
 						</div>
 						
@@ -72,13 +77,7 @@
 						</div>
 						
 						<form:hidden path="price" class="form-control form-control-lg"/>
-	
-						<div class="row">
-							<div class="col-12">
-								<input type="submit" value="order" class="btn btn-primary py-3 px-5">
-							</div>
-						</div>
-					</form:form>
+					
 				</div>
 				<br />
 				
@@ -88,7 +87,13 @@
 	          			<span style="color:red">&nbsp;&nbsp; ${secondhandOrder.price}원</span><span class="caret">
 					</div>
 				<br />
-
+				
+				<div class="row">
+						<div class="col-12">
+							<input type="submit" value="order" class="btn btn-primary py-3 px-5">
+						</div>
+				</div>
+			</form:form>
 			</div>
 
 		</div>
@@ -96,3 +101,12 @@
 
 	</div>
 </div>
+<style>
+	.auto_tx_area {
+	    clear: both;
+	    position: absolute;
+	    z-index: 10002;
+	    width: 500px;
+	    background: #fff;
+	}s
+</style>

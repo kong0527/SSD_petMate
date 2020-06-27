@@ -66,7 +66,7 @@
 							</c:if>
 							<c:if test="${sessionScope.userID eq gpurhcase.userID}">
 								<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
-									<img src="resources/img/love.png" border="0" class="zoom">
+									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 							</c:if>
 						</c:if>
