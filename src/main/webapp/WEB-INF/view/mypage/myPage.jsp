@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
@@ -148,8 +146,9 @@
 				<h4 class="modal-title">비밀번호 확인</h4>
 			</div>
 			<div class="modal-body">
-				<form id="checkPW"
+				<form method="post"
 				class="login100-form validate-form flex-sb flex-w">
+					<!-- <span class="login100-form-title p-b-32"> Account Login </span>  -->
 					<span class="txt1 p-b-11"> 
 						비밀번호 
 					</span>
@@ -186,7 +185,20 @@
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/mypage";
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "mypageInfo";
+		if (name == '질문게시판')
+			url = url + "mypageInquiry";
+		if (name == '중고게시판')
+			url = url + "mypageSecondhand";
+		if (name == '공구게시판')
+			url = url + "mypageGpurchase";
+		if (name == '구인게시판')
+			url = url + "mypagePetsitter";
+		if (name == '리뷰게시판')
+			url = url + "mypageReview";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
@@ -205,31 +217,28 @@
 			url = url + "gpurchaseDetail?boardNum=" + boardNum;
 		if (name == '중고게시판')
 			url = url + "secondhandDetail?boardNum=" + boardNum;
-		if (name == '구인게시판')
+		if (name == '리뷰게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
 		if (name == '후기게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}
-	$(document).on('click', '#btnConfirm', function(e){
+	
+	$("#btnConfirm").on("click", function(){
 		var pass1 = $("#pwd").val();
 		var pass2 = $("#confirmPwd").val();
-		if (pass1 == "" || pass2 == "") {
-			alert("비밀번호를 입력하세요.");
-			$("#pwd").focus();
-			return false;
-		}
+		alert(pass1);
+		alert(pass2);
 		if(pass1 != pass2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#confirmPwd").focus();
 			return false;
 		}
+		var confirmPwd = $("#pwd").val();
 		$.ajax({
 	        url : '${pageContext.request.contextPath}/confirmPwd',
 	        type : 'post',
-	        cache: false,
-	        async: false,
-	        data : {'confirmPwd' : pass2},
+	        data : {'confirmPwd' : confirmPwd},
 	        success : function(data){
 	        	if (data == 1) {
 	        		location.href="${pageContext.request.contextPath}/signUp";
@@ -241,7 +250,4 @@
 	    });
 	});
 
-	$("#checkPW").submit(function(e){
-	    e.preventDefault();
-	});
 </script>

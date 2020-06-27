@@ -120,18 +120,18 @@
 				<tbody>
 				<c:forEach var="petsitterList" items="${petsitterList}">
 					<tr>
-						<td>${petsitterList.boardNum}</td>
-						<td><a href="<c:url value="/petsitterDetail">
+						<td width=100 style="word-break:break-all">${petsitterList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/petsitterDetail">
 						<c:param name="boardNum" value="${petsitterList.boardNum}"/>
 						</c:url>">
 						<c:if test="${not empty petsitterList.isSelected}">
 							[매칭완료] &nbsp;
 						</c:if>
 						${petsitterList.boardTitle}</a></td>
-						<td>${petsitterList.userID}</td>
+						<td width=150 style="word-break:break-all">${petsitterList.userID}</td>
 						<td>${petsitterList.replyCnt}</td>
 						<td>${petsitterList.boardLike}</td>
-						<td>${petsitterList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${petsitterList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
