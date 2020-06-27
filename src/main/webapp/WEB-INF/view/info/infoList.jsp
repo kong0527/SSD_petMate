@@ -22,14 +22,14 @@
 				<tbody>
 				<c:forEach var="infoList" items="${infoList}">
 					<tr>
-						<td>${infoList.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
+						<td width=100 style="word-break:break-all">${infoList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/infoDetail">
 						<c:param name="boardNum" value="${infoList.boardNum}"/>
 						</c:url>">${infoList.boardTitle}</a></td>
-						<td>${infoList.userID}</td>
+						<td width=150 style="word-break:break-all">${infoList.userID}</td>
 						<td>${infoList.replyCnt}</td>
 						<td>${infoList.boardLike}</td>
-						<td>${infoList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${infoList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
