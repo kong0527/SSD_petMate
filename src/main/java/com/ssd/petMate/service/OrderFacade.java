@@ -13,6 +13,6 @@ public interface OrderFacade {
 	
 	public Order getOrder(Order order) throws DataAccessException; //게시글 수 가져오기
 	
-	public void insertGpurchase(Order order) throws DataAccessException; //게시글 작성
+	public void insertOrder(Order order) throws DataAccessException; //게시글 작성
 	
 }

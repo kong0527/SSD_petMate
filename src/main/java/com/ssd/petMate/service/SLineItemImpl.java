@@ -7,39 +7,36 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssd.petMate.dao.GLineItemDao;
 import com.ssd.petMate.dao.GpurchaseCartDao;
 import com.ssd.petMate.dao.GpurchaseDao;
 import com.ssd.petMate.dao.InfoDao;
-import com.ssd.petMate.dao.OrderDao;
+import com.ssd.petMate.dao.SLineItemDao;
 import com.ssd.petMate.dao.SecondhandDao;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
+import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.domain.Secondhand;
+import com.ssd.petMate.domain.SecondhandLineItem;
 import com.ssd.petMate.page.BoardSearch;
 
 @Service
 @Transactional
-public class OrderImpl implements OrderFacade { 
+public class SLineItemImpl implements SLineItemFacade { 
 	
 	@Autowired
-	private OrderDao orderDao;
-	
-//	@Autowired
-//	private GpurchaseCartDao gpurchaseCartDao;
-	
-	public List<Order> getOrderList(int userID) throws DataAccessException{ //주문 목록 가져오기 
-		return orderDao.getOrderList(userID);
+	private SLineItemDao sLineItemDao;
+
+	@Override
+	public List<SecondhandLineItem> getSecondhandLineItemList(int orderNum) throws DataAccessException {
+		return sLineItemDao.getSecondhandLineItemList(orderNum);
 	}
-	
-	public Order getOrder(Order order) throws DataAccessException{ // 주문 상세정보 가져오기
-		return orderDao.getOrder(order);
-	}
-	
-	public void insertOrder(Order order) throws DataAccessException{ // 주문 생성
-		orderDao.insertOrder(order);
+
+	@Override
+	public void insertSecondhandLineItem(SecondhandLineItem secondhandLineItem) throws DataAccessException {
+		sLineItemDao.insertSecondhandLineItem(secondhandLineItem);
 	}
 	
 }

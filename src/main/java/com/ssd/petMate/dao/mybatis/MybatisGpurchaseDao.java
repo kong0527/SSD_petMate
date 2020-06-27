@@ -71,4 +71,9 @@ public class MybatisGpurchaseDao implements GpurchaseDao {
 		// TODO Auto-generated method stub
 		gpurchaseMapper.updateResult(gpurchase);
 	}
+	
+	//공동구매 참여자 수 증가
+	public void updateParticipant(int boardNum) throws DataAccessException{
+		gpurchaseMapper.updateParticipant(boardNum);
+	}
 }

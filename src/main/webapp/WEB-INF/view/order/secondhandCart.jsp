@@ -24,16 +24,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+				<c:forEach var="secondhandCart" items="${secondhandCartList}">
 					<tr>
-						<td><input type="checkbox" id="box" name ="box" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
+						<td><input type="checkbox" id="box" name ="box" class="check" value="${secondhandCart.secondhand.boardNum}"/></td>
 						<td ><img src="resources/img/love.png" border="0"> &nbsp;
-						${gpurchaseCart.gpurchase.boardTitle}</td>
-						<td>${gpurchaseCart.gpurchase.price}</td>
+						${secondhandCart.secondhand.boardTitle}</td>
+						<td>${secondhandCart.secondhand.price}</td>
 						<td>1</td>
-						<td>${gpurchaseCart.gpurchase.boardNum} ${gpurchaseCart.gpurchase.price}</td>
-						<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" /></td>
-						<td><input type="submit" class = "btn" value="x" onclick="del(${gpurchaseCart.gpurchase.boardNum})" /></td>
+						<td>${secondhandCart.secondhand.boardNum} ${secondhandCart.secondhand.price}</td>
+						<td><input type="hidden" name="price" value="${secondhandCart.secondhand.price}" /></td>
+						<td><input type="submit" class = "btn" value="x" onclick="del(${secondhandCart.secondhand.boardNum})" /></td>
 						<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 					</tr>
 				</c:forEach>
@@ -119,13 +119,13 @@
 	    price = $("#expectPrice").val();
 	    
 	    $.ajax({
-	        url: '${pageContext.request.contextPath}/gpurchaseCartToOrder',
+	        url: '${pageContext.request.contextPath}/secondhandCartToOrder',
 	        type: 'post',
-	        data: { gpurchaseCartList : checkArr,
-		        	price : price },
+	        data: { secondhandCartList : checkArr,
+		        	sprice : price },
 	    	success : function(result) {
 				alert(result);
-				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
+				location.href = "${pageContext.request.contextPath}/secondhandOrderForm";
 			}
 	    });
 	});
@@ -192,7 +192,7 @@
 	function del(boardNum) {
 		var chk = confirm("해당 상품을 삭제하시겠습니까?");
 		if (chk) {
-			location.href='gpurchaseCartDelete?boardNum='+boardNum;
+			location.href='secondhandCartDelete?boardNum='+boardNum;
 		}
 	}
 

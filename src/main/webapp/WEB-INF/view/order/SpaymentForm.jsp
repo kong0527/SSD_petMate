@@ -17,9 +17,9 @@
 	          		<br />
 	          		<div class="table-wrapper collapse" id="table">
 						<table class="table table-striped">
-							<c:forEach var="cart" items="${cartList}">
+							<c:forEach var="cart" items="${sCartList}">
 								<tr>
-									<td ><a href="<c:url value="/gpurchaseDetail">
+									<td ><a href="<c:url value="/secondhandDetail">
 										<c:param name="boardNum" value="${cart.boardNum}"/></c:url>">
 										<img src="resources/img/love.png" border="0"> &nbsp;
 										${cart.boardTitle}</a>
@@ -36,11 +36,11 @@
 				<a data-toggle="collapse" data-target="#od"><span style="color:black">결제 정보 ▼</span><span class="caret"></span></a><br />
 				<br />
 				<div class="table-wrapper collapse show" id="od">
-					<form:form modelAttribute="gpurchaseOrder" action="gpurchaseOrder">
+					<form:form modelAttribute="secondhandOrder" action="secondhandOrder">
 						
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<label for="bank">은행명</label> &nbsp; &nbsp;
+								<label for="bank">은행명</label>
 								<form:select items="${bankList}" path="bank" class="form-control form-control-sm" style="width : 20%"/>
 								<br />
 							</div>
@@ -48,8 +48,7 @@
 						
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<label for="cardNum">카드번호</label>
-								<form:input path="cardNum" class="form-control form-control-lg"/>
+								<label for="cardNum">카드번호</label> <form:input path="cardNum" class="form-control form-control-lg"/>
 								<form:errors path="cardNum" />
 							</div>
 						</div>
@@ -85,16 +84,18 @@
 				<a data-toggle="collapse" data-target="#pr"><span style="color:black">최종 결제 금액 ▼</span><span class="caret"></span></a><br />
 	          		<br />
 	          		<div class="collapse" id="pr">
-	          			<span style="color:red">&nbsp;&nbsp; ${gpurchaseOrder.price}원</span><span class="caret">
+	          			<span style="color:red">&nbsp;&nbsp; ${secondhandOrder.price}원</span><span class="caret">
 					</div>
 				<br />
+				
 				<div class="row">
-							<div class="col-12">
-								<input type="submit" value="order" class="btn btn-primary py-3 px-5">
-							</div>
+						<div class="col-12">
+							<input type="submit" value="order" class="btn btn-primary py-3 px-5">
 						</div>
 				</div>
 			</form:form>
+			</div>
+
 		</div>
 
 

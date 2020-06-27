@@ -34,6 +34,8 @@ public interface GpurchaseFacade {
 	
 	public void gpurchaseReplyCntUpdate(Gpurchase gpurchase) throws DataAccessException; //덧글수 업데이틑
 	
+	public void updateParticipant(int boardNum) throws DataAccessException;//참여자 수 증가
+	
 	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException; //cart+gpuchase
 	
 	public void insertGpurchaseCart(GpurchaseCart gpurchaseCart) throws DataAccessException; //장바구니 추가

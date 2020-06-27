@@ -1,19 +1,34 @@
 package com.ssd.petMate.domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Gpurchase {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
+	@Min(1)
 	private int price;
+	@NotBlank
 	private String sdate;
+	@NotBlank
 	private String edate;
+	@NotBlank
+	@Length(max=1500)
 	private String boardContent;
 	private int cartAdded;
 	private int replyCnt;
+	@NotBlank
+	@Length(max=30)
 	private String boardTitle;
 	private int boardHit;
 	private String boardImage;
+	@Min(1)
 	private int goalNum;
+	@NotBlank
+	@Length(max=30)
 	private String productName;
 	private int participant;
 	private String status;
@@ -114,6 +129,7 @@ public class Gpurchase {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public Gpurchase() {
 		super();
 	}
@@ -124,8 +140,12 @@ public class Gpurchase {
 		this.price = price;
 		this.boardTitle = boardTitle;
 	}
-	
+	@Override
 	public String toString() {
-		return "gpurchase domaind content : "  + boardNum + userID + boardTitle + boardContent + price;
+		return "Gpurchase [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID + ", price="
+				+ price + ", sdate=" + sdate + ", edate=" + edate + ", boardContent=" + boardContent + ", cartAdded="
+				+ cartAdded + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle + ", boardHit=" + boardHit
+				+ ", boardImage=" + boardImage + ", goalNum=" + goalNum + ", productName=" + productName + "]";
 	}
+	
 }

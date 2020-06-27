@@ -65,7 +65,7 @@
 								</a>
 							</c:if>
 							<c:if test="${sessionScope.userID eq gpurhcase.userID}">
-								<a href="#" onclick="alert('자신의 글에는 추천을 누를 수 없습니다.')">
+								<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
 									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 							</c:if>

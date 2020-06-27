@@ -10,9 +10,9 @@ import com.ssd.petMate.page.pageMaker;
 
 public interface SecondhandLineItemMapper {
 	
-	public List<SecondhandLineItem> getSecondhandLineItemList(Integer orderNum); //중고물품 order에 대한 lineitemList 가져오기
+	List<SecondhandLineItem> getSecondhandLineItemList(int orderNum); //중고물품 order에 대한 lineitemList 가져오기
 	
-	public void insertSecondhandLineItem(SecondhandLineItem secondhandLineItem); //중고물품 order에 대한 lineitem 추가
+	void insertSecondhandLineItem(SecondhandLineItem secondhandLineItem); //중고물품 order에 대한 lineitem 추가
 	
 
 }

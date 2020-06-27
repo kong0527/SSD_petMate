@@ -2,17 +2,30 @@ package com.ssd.petMate.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Secondhand {
 	private int boardNum;
 	private String boardDate;
 	private String userID;
+	@NotBlank
+	@Length(max=1500)
 	private String boardContent;
 	private int cartAdded;
+	@NotNull
+	@Min(1)
 	private int price;
 	private String boardImage;
 	private int boardHit;
 	private int replyCnt;
+	@NotBlank
+	@Length(max=30)
 	private String boardTitle;
+	private int isSold;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -74,11 +87,18 @@ public class Secondhand {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
+	public int getIsSold() {
+		return isSold;
+	}
+	public void setIsSold(int isSold) {
+		this.isSold = isSold;
+	}
 	@Override
 	public String toString() {
-		return userID + " " +boardTitle + " " +boardContent + " " +price + " " +boardNum;
+		return "Secondhand [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID
+				+ ", boardContent=" + boardContent + ", cartAdded=" + cartAdded + ", price=" + price + ", boardImage="
+				+ boardImage + ", boardHit=" + boardHit + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle
+				+ ", isSold=" + isSold + "]";
 	}
-	
-	
 	
 }
