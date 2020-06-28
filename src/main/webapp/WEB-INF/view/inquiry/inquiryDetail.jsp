@@ -9,7 +9,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">${inquiry.boardTitle}</h1>
+				<h1 class="mb-4">
+				<c:if test="${inquiry.isSelected eq 1}">[채택완료] &nbsp;</c:if>${inquiry.boardTitle}</h1>
 				<c:if test="${inquiry.isSelected eq 1}">
 					<img src="resources/img/lock.png" align="right">
 				</c:if>
