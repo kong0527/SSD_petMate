@@ -17,7 +17,11 @@
 				</div>
 				
 				<div style="font-weight: bold; font-size: 15px;">
+					상품명: ${gpurchase.productName} <br>
+					인터넷 최저가: ${gpurchase.lprice} <br>
 					상품 가격: ${gpurchase.price}  <br>
+					목표 인원: ${gpurchase.goalNum} <br>
+					현재 인원: ${gpurchase.participant} <br>
 					<fmt:parseDate var="sdate" value="${gpurchase.sdate}" pattern="yy-MM-dd" /> 
 					시작 날짜: <fmt:formatDate value="${sdate}" pattern="yy-MM-dd" /> <br>
 					<fmt:parseDate var="edate" value="${gpurchase.edate}" pattern="yy-MM-dd" /> 

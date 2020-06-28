@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
 	<div class="section-title">
-	<span class="caption d-block small">Categories</span>
 		<h2>구인게시판</h2>
 </div>
 	<form:form modelAttribute="filtering" action="petsitterList" method="post">

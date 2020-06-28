@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
 <div class="site-section py-0">
 	<div class="owl-carousel hero-slide owl-style">
@@ -30,7 +31,10 @@
 
 						<div class="post-meta">
 							<span class="d-block">${dailyBestInfo.userID}</span> 
-							<span class="date-read">${dailyBestInfo.boardDate} <span class="mx-1">&bullet;</span> 
+							<span class="date-read">
+								<fmt:parseDate var="dateString" value="${dailyBestInfo.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+								<span class="mx-1">&bullet;</span> 
 								${dailyBestInfo.boardLike} <span class="icon-star2"></span></span>
 						</div>
 					</div>
@@ -62,7 +66,10 @@
 						</p>
 						<div class="post-meta">
 							<span class="d-block">${dailyBestInquiry.userID}</span> 
-							<span class="date-read">${dailyBestInquiry.boardDate} <span class="mx-1">&bullet;</span> 
+							<span class="date-read">
+								<fmt:parseDate var="dateString" value="${dailyBestInquiry.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/> 
+							<span class="mx-1">&bullet;</span> 
 								${dailyBestInquiry.boardLike} <span class="icon-star2"></span></span>
 						</div>
 					</div>
@@ -94,7 +101,10 @@
 						</p>
 						<div class="post-meta">
 							<span class="d-block">${dailyBestReview.userID}</span> 
-							<span class="date-read">${dailyBestReview.boardDate} <span class="mx-1">&bullet;</span> 
+							<span class="date-read">
+								<fmt:parseDate var="dateString" value="${dailyBestReview.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+							<span class="mx-1">&bullet;</span> 
 								${dailyBestReview.boardLike} <span class="icon-star2"></span></span>
 						</div>
 					</div>
@@ -163,7 +173,8 @@
 						<div class="post-meta">
 							<span class="d-block">${infoList.userID}</span> 
 							<span class="date-read">
-								${infoList.boardDate}
+								<fmt:parseDate var="dateString" value="${infoList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 							<span class="mx-1">&bullet;</span> ${infoList.boardLike} <span class="icon-star2"></span></span>
 						</div>
 					</div>
@@ -197,7 +208,8 @@
 							<div class="post-meta">
 								<span class="d-block">${inquiryList.userID}</span> 
 								<span class="date-read">
-									${inquiryList.boardDate}
+									<fmt:parseDate var="dateString" value="${inquiryList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 								<span class="mx-1">&bullet;</span> ${inquiryList.boardLike} <span class="icon-star2"></span></span>
 							</div>
 						</div>
@@ -231,7 +243,8 @@
 							<div class="post-meta">
 								<span class="d-block">${reviewList.userID}</span> 
 								<span class="date-read">
-									${reviewList.boardDate}
+									<fmt:parseDate var="dateString" value="${reviewList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 								<span class="mx-1">&bullet;</span> ${reviewList.boardLike} <span class="icon-star2"></span></span>
 							</div>
 						</div>

@@ -2,12 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import= "java.util.*" %>
-<%
-List<HashMap<String, Object>> petsitterList = new ArrayList<HashMap<String, Object>>();
-petsitterList = (List<HashMap<String, Object>>)request.getAttribute("petsitterList");
-%>
-
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -86,11 +80,11 @@ petsitterList = (List<HashMap<String, Object>>)request.getAttribute("petsitterLi
 					<div class="row">
 						<div class="col-md-12 form-group">
 							<label for="petsitterName">펫시터 이름</label>
-							<form:select path="petsitterName">
-							<c:if test="${!empty petsitterList}" >
-      								<%for (int i = 0; i < petsitterList.size(); i++) {%>
-         								<form:option value="<%=petsitterList.get(i).get(\"USERID\")%>"/>
-      								<% } %>
+							<form:select path="petsitterName" items="${petsitterList}">
+								<c:if test="${!empty petsitterList}" >
+	      							<c:forEach var="list" items="${petsitterList}" varStatus="i">
+	         							<form:option value="${list.get(i)}"/>
+	      							</c:forEach>
 								</c:if>
 							</form:select>
 						</div>

@@ -58,8 +58,12 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/infoForm" />
-<!-- 			<mvc:mapping path="/members/delete" />
- -->			<bean class="com.ssd.petMate.interceptor.LoginCheckInterceptor" />
+			<mvc:mapping path="/inquiryForm" />
+			<mvc:mapping path="/gpurchaseForm" />
+			<mvc:mapping path="/secondhandForm" />
+			<mvc:mapping path="/petsitterForm" />
+			<mvc:mapping path="/reviewForm" />
+				<bean class="com.ssd.petMate.interceptor.LoginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

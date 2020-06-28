@@ -62,7 +62,10 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						</div>
+				</div>
+				
+				<p style="font-weight: bold; font-size: 20px;">펫시터: ${review.petsitterName}님 </p>
+				<hr class="dashed">
 				${review.boardContent}
 				
 				
@@ -193,4 +196,9 @@
 	}
 	.starR1.on{background-position:0 0;}
 	.starR2.on{background-position:-15px 0;}
+</style>
+<style>
+hr.dashed {
+  border-top: 3px dashed #bbb;
+}
 </style>

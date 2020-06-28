@@ -1,21 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="petsitterReply.jsp" %>
 <div class="site-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">${petsitter.boardTitle}</h1>
+				<h1 class="mb-4">
+					<c:if test="${not empty petsitter.isSelected}">
+						[매칭완료]&nbsp;
+					</c:if>
+					${petsitter.boardTitle}
+				</h1>
 				<c:if test="${not empty petsitter.isSelected}">
 					<img src="resources/img/lock.png" align="right">
 				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${petsitter.userID}</a></span> 
-						<span class="date-read">${petsitter.boardDate} 
-						<span class="mx-1">&bullet;</span> 조회 ${petsitter.boardHit} 
-						<span class="icon-star2"></span></span>
+						<span class="d-block">
+   							<a href="<c:url value="/userpage">
+   							<c:param name="userID" value="${petsitter.userID}"/>
+   							</c:url>">${petsitter.userID}</a>
+							</span>
+						<span class="date-read">
+						<fmt:parseDate var="dateString" value="${petsitter.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+						조회 ${petsitter.boardHit}</span>
 					</div>
 				</div>
 				<table class="table">

@@ -14,7 +14,6 @@ public class Info {
 	private int replyCnt;
 	@NotEmpty 
 	private String boardTitle;
-	private String boardImage;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -63,11 +62,5 @@ public class Info {
 	}
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
-	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
 	}
 }
