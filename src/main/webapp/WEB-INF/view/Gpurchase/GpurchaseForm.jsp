@@ -22,7 +22,6 @@
 						<div class="col-md-6 form-group">
 							<label for="sdate">시작날짜</label> 
 							<form:input path="sdate" class="form-control form-control-lg" />
-							<%-- <form:input path="sdate" class="form-control form-control-lg" value="2019-06-27"/> --%>
 						</div>
 					</div>
 					
@@ -34,10 +33,17 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group">
-							<label for="productName">물건 이름</label>
-							<form:input path="productName" class="form-control form-control-lg"/>
+							<label for="productName">상품명</label>
+							<form:input path="productName" class="form-control form-control-lg" placeholder="상품명을 입력하세요"/>
 							<form:errors path="productName" />
 							<div id = "shopResult" class="auto_tx_area"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 form-group">
+							<label for="lprice">최저가</label>
+							<form:input path="lprice" class="form-control form-control-lg"/>
+							<form:errors path="lprice" />
 						</div>
 					</div>
 					<div class="row">
@@ -62,22 +68,11 @@
 							<form:errors path="boardContent" />
 						</div>
 					</div>
-					<%-- <form:hidden path="boardNum" /> --%>
-					<%-- <c:if test="${empty gpurchase.boardNum}">
-					<div class="row">
-						<div class="col-12">
-							<input type="submit" value="등록" class="btn btn-primary py-3 px-5">
-						</div>
-					</div>
-					</c:if> --%>
-					
-					${gpurchase.boardNum} 
 					<c:choose>
 						<c:when test="${0 ne gpurchase.boardNum}">
 							<div class="pt-5" align="right">
 								<form>
 									<input type="hidden" id="boardNum" name="boardNum" value="${gpurchase.boardNum}"/>
-									<!-- <a href="secondhandUpdateForm"><input type="submit" class="btn" value="수정" /></a> -->
 									<button type="submit" id="btn" class="btn">수정</button>
 								</form>
 							</div>
@@ -127,6 +122,18 @@ nhn.husky.EZCreator.createInIFrame({
         oEditors.getById["boardContent"].exec("FOCUS");
         return false;
      } 
+     var goalNum = $("#goalNum").val()
+     if (goalNum == '') {
+         alert('목표 인원 수를 입력하세요.');
+     }
+     var price = $("#price").val()
+     if (price == '') {
+         alert('가격을 입력하세요.');
+     }
+     var productName= $("#productName").val()
+     if (prductName.length > 100) {
+         alert('상품명은 100자 내로 입력해 주세요.');
+     }
      $("#form").submit();
 });
 	/* $(function() {	
@@ -185,7 +192,7 @@ nhn.husky.EZCreator.createInIFrame({
  	        	html += '<ul>';
  	 	        for (var i = 0 in data) {
  	 	 	        html += '<li>';
- 	 	 	     	html += '<a href="javascript:void(0);" onclick="fillValue(\'' + data[i].lprice + '\');">';
+ 	 	 	     	html += '<a href="javascript:void(0);" onclick="fillValue(\'' + data[i].title + '\'' + ',\''+ data[i].lprice+'\');">';
  	 	 	        html += '<div>';
  	 	 	        html += '<p>';
  	 	 	        if (data[i].image == "") {
@@ -209,9 +216,10 @@ nhn.husky.EZCreator.createInIFrame({
  	    });
 	});
 
-	function fillValue(keyword) {
+	function fillValue(keyword, lprice) {
 		var keyword = keyword.replace(/[<][^>]*[>]/gi, "");
 		$("#productName").val(keyword);
+		$("#lprice").val(lprice);
 		$("#shopResult").css('display', 'none');
 	}
 
