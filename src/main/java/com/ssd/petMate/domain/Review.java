@@ -15,6 +15,8 @@ public class Review {
 	private String boardTitle;
 	private String boardImage;
 	private double rating;
+	private String petsitterName;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -75,6 +77,10 @@ public class Review {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	
-	
+	public String getPetsitterName() {
+		return petsitterName;
+	}
+	public void setPetsitterName(String petsitterName) {
+		this.petsitterName = petsitterName;
+	}	
 }

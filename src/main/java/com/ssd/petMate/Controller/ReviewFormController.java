@@ -1,18 +1,25 @@
 package com.ssd.petMate.Controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssd.petMate.domain.Review;
+import com.ssd.petMate.service.PetsitterFacade;
 import com.ssd.petMate.service.ReviewFacade;
 
 @Controller
@@ -28,7 +35,14 @@ public class ReviewFormController {
 	private String successViewName;
 	
 	@ModelAttribute("review")
-	public Review formBacking(HttpServletRequest request) {
+	public Review formBacking(HttpServletRequest request, Model model) {
+		String userID = (String) request.getSession().getAttribute("userID");
+		List<HashMap<String, Object>> petsitterList = new ArrayList<HashMap<String, Object>>();
+		petsitterList.addAll(reviewFacade.petsitterChoice(userID));
+		for (int i = 0; i < petsitterList.size(); i++)
+			System.out.println(petsitterList.get(i).get("USERID"));
+		
+		model.addAttribute("petsitterList", petsitterList);
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			Review review;
 			if (request.getParameter("boardNum") != null) {
@@ -71,5 +85,4 @@ public class ReviewFormController {
 	public String reviewUpdateForm() {
 		return formViewName;
 	}
-
 }

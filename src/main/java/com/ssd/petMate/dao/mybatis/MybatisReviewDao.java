@@ -52,4 +52,8 @@ public class MybatisReviewDao implements ReviewDao {
 	public void updateReplyCnt(Review review) throws DataAccessException {
 		reviewMapper.updateReplyCnt(review);
 	}
+	
+	public List<HashMap<String, Object>> petsitterChoice(String userID) throws DataAccessException {
+		return reviewMapper.petsitterChoice(userID);
+	}
 }

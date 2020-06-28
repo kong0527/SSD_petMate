@@ -50,8 +50,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Review">
 		INSERT
-		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage, rating)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent, jdbcType=VARCHAR}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{rating})
+		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage, rating, petsitterName)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent, jdbcType=VARCHAR}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{rating}, #{petsitterName, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -98,4 +98,11 @@
 		SET replyCnt = #{replyCnt}
 		WHERE boardNum = #{boardNum}
 	</update>
+	
+	<!-- 펫시터 선택 -->
+	<select id="petsitterChoice" resultType="map" parameterType="string">
+		SELECT DISTINCT userID 
+		FROM Petsitter
+		WHERE isSelected = #{isSelected} 		
+	</select>
 </mapper>

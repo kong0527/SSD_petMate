@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String userID = "USERID";
+System.out.println(userID);
+%>
+
 <div class="site-section bg-light">
 	<div class="container">
 		<div class="row">
@@ -73,6 +78,20 @@
 							<form:textarea path="boardContent" id="boardContent" cols="30" rows="10"
 								class="form-control" style="width:120%"></form:textarea>
 							<form:errors path="boardContent" />
+						</div>
+					</div>
+					
+					
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<label for="petsitterName">펫시터 이름</label>
+							<form:select path="petsitterName" items="${petsitterList}">
+							<c:if test="${!empty petsitterList}" >
+      								<c:forEach var="list" items="${petsitterList}" varStatus="i">
+         								<form:option value="${list.get(i).get(userID)}"/>
+      								</c:forEach>
+								</c:if>
+							</form:select>
 						</div>
 					</div>
 					

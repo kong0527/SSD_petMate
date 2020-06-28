@@ -21,7 +21,7 @@
 	<insert id="insertAnswer" parameterType="Answer">
  		INSERT 
 		INTO Answer(boardNum, answerContent, userID, answerDate, replyGID, replyOrder, replyParents)
-		VALUES(#{boardNum}, #{answerContent}, #{userID}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{replyGID}, #{replyOrder}, #{replyParents}) 
+		VALUES(#{boardNum}, #{answerContent}, #{userID}, SYSDATE, #{replyGID}, #{replyOrder}, #{replyParents}) 
 	</insert>
 	
 	<!-- 댓글 수정하기  -->
@@ -66,20 +66,4 @@
 		SET replyOrder = replyOrder + 1
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
 	</update>
-
-<!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
-	<!-- 마지막 댓글 ID 찾아오기  -->
-	<!-- 페이징을 위해서 필요  -->
-<!-- <select id="findLastAnswerID" resultType="Integer">
-		SELECT answerNum
-		FROM Answer
-		ORDER BY answerNum DESC LIMIT 1;
-	</select>
-	
-	같은 GID를 가진 댓글 수 찾아오기 
-	<select id="countSameGID" resultType="Integer" parameterType="Integer">
-		SELECT COUNT(*)
-		FROM Answer
-		WHERE replyGID = #{replyID}
-	</select>-->
 </mapper>
