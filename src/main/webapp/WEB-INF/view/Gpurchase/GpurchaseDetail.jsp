@@ -16,25 +16,18 @@
 					</div>
 				</div>
 				
-				상품 가격: ${gpurchase.price}  <br>
-				<fmt:parseDate var="sdate" value="${gpurchase.sdate}" pattern="yy-MM-dd" /> 
-				시작 날짜: <fmt:formatDate value="${sdate}" pattern="yy-MM-dd" /> <br>
-				<fmt:parseDate var="edate" value="${gpurchase.edate}" pattern="yy-MM-dd" /> 
-				마감 날짜: <fmt:formatDate value="${edate}" pattern="yy-MM-dd" /> <br>
+				<div style="font-weight: bold; font-size: 15px;">
+					상품 가격: ${gpurchase.price}  <br>
+					<fmt:parseDate var="sdate" value="${gpurchase.sdate}" pattern="yy-MM-dd" /> 
+					시작 날짜: <fmt:formatDate value="${sdate}" pattern="yy-MM-dd" /> <br>
+					<fmt:parseDate var="edate" value="${gpurchase.edate}" pattern="yy-MM-dd" /> 
+					마감 날짜: <fmt:formatDate value="${edate}" pattern="yy-MM-dd" /> <br>
+				</div>
 			
 				<hr class="dashed">
 				<br>
 								
 				${gpurchase.boardContent} <br>
-				
-				<div class="pt-5" align="center">
-				<c:if test="${gpurchase.status eq 'success'}">
-					결제가 성공하였습니다!
-				</c:if>
-				<c:if test="${gpurchase.status eq 'fail'}">
-					결제가 실패하였습니다!
-				</c:if>
-				</div>
 				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
@@ -52,28 +45,42 @@
 				</form>
 				</div>
 				
-				<div class="pt-5" align="center">
-						<c:if test="${sessionScope.userID eq null}">
-							<a href="signIn" onclick="alert('로그인이 필요합니다.')">
-								<img src="resources/img/cart.png" border="0" class="zoom">
-							</a>
-						</c:if>
-						<c:if test="${sessionScope.userID ne null}">
-							<c:if test="${sessionScope.userID ne gpurchase.userID}">
-								<a href="javascript:void(0);" onclick="checkCart();">
+				<c:if test="${gpurchase.status eq null}">
+					<div class="pt-5" align="center">
+							<c:if test="${sessionScope.userID eq null}">
+								<a href="signIn" onclick="alert('로그인이 필요합니다.')">
 									<img src="resources/img/cart.png" border="0" class="zoom">
 								</a>
 							</c:if>
-							<c:if test="${sessionScope.userID eq gpurhcase.userID}">
-								<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
-									<img src="resources/img/cart.png" border="0" class="zoom">
-								</a>
+							<c:if test="${sessionScope.userID ne null}">
+								<c:if test="${sessionScope.userID ne gpurchase.userID}">
+									<a href="javascript:void(0);" onclick="checkCart();">
+										<img src="resources/img/cart.png" border="0" class="zoom">
+									</a>
+								</c:if>
+								<c:if test="${sessionScope.userID eq gpurhcase.userID}">
+									<a href="#" onclick="alert('자신의 상품은 담을 수 없습니다.')">
+										<img src="resources/img/cart.png" border="0" class="zoom">
+									</a>
+								</c:if>
 							</c:if>
-						</c:if>
-						<div id="cartAdded">
-							장바구니 담은 수 : ${gpurchase.cartAdded}
-						</div>
-				</div>
+							<div id="cartAdded">
+								장바구니 담은 수 : ${gpurchase.cartAdded}
+							</div>
+					</div>
+				</c:if>
+				<c:if test="${gpurchase.status eq 'success'}">
+					<div class="pt-5" align="center">
+						<p style="color:red">결제가 성공하였습니다!</p>
+						<img src="resources/img/success.png">
+					</div>
+				</c:if>
+				<c:if test="${gpurchase.status eq 'fail'}">
+					<div class="pt-5" align="center">
+						<p style="color:red">결제가 실패하였습니다!</p>	
+						<img src="resources/img/fail.png">
+					</div>
+				</c:if>
 
 				<div class="pt-5" align="center">
 					<a href="gpurchase"><input type="button" value="목록" class="btn" /></a>

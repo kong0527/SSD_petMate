@@ -55,7 +55,7 @@ public class SignInController {
 			}
 		}
 		catch (Exception e) {
-			result.rejectValue("", "iinvalidIdOrPassword");
+			result.rejectValue("", "invalidIdOrPassword");
 			return formViewName;
 		}
 		

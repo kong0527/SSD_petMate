@@ -13,7 +13,7 @@
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
-		<h2>SecondhandCart</h2>
+		<h2>GpurchaseCart</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
@@ -30,18 +30,36 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="secondhandCart" items="${secondhandCartList}">
+					<c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
 						<tr>
-							<td><input type="checkbox" id="box" name ="box" class="check" value="${secondhandCart.secondhand.boardNum}"/></td>
+							<td><input type="checkbox" id="box" name ="box" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
 							<td ><img src="resources/img/love.png" border="0"> &nbsp;
-							${secondhandCart.secondhand.boardTitle}</td>
-							<td>${secondhandCart.secondhand.price}</td>
+							${gpurchaseCart.gpurchase.boardTitle}</td>
+							<td>${gpurchaseCart.gpurchase.price}</td>
 							<td>1</td>
-							<td>${secondhandCart.secondhand.boardNum} ${secondhandCart.secondhand.price}</td>
-							<td><input type="hidden" name="price" value="${secondhandCart.secondhand.price}" /></td>
-							<td><input type="submit" class = "btn" value="x" onclick="del(${secondhandCart.secondhand.boardNum})" /></td>
+							<td>${gpurchaseCart.gpurchase.boardNum} ${gpurchaseCart.gpurchase.price}</td>
+							<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" /></td>
+							<td><input type="submit" class = "btn" value="x" onclick="del(${gpurchaseCart.gpurchase.boardNum})" /></td>
+							<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
 						</tr>
 					</c:forEach>
+					<%-- <c:forEach var="gpurchaseCart" items="${gpurchaseCartList}">
+					<form:form modelAttribute="gpurchaseCart">
+						<tr>
+							<td><input type="checkbox" id="box" name="box" class="check" value="${gpurchaseCart.gpurchase.boardNum}"/></td>
+							<td ><img src="resources/img/love.png" border="0"> &nbsp;
+							${gpurchaseCart.gpurchase.boardTitle}</td>
+							<td>${gpurchaseCart.gpurchase.price}</td>
+							<td>1</td>
+							<td>${gpurchaseCart.gpurchase.price}</td>
+							<td><input type="hidden" name="price" value="${gpurchaseCart.gpurchase.price}" />
+							<td><a href="<c:url value="/gpurchaseCartDelete">
+							<c:param name="boardNum" value="${gpurchaseCart.gpurchase.boardNum}"/>
+							</c:url>"><input type="submit" class = "btn" value="x" /></a></td>
+							<!-- <td><button type="submit" formaction="gpurchaseCartDelete" class="btn">x</button></td> -->
+						</tr>
+					</form:form>
+					</c:forEach> --%>
 				</tbody>
 			</table>
 	
@@ -67,6 +85,7 @@
 					<td><button type="button" id="btnOrder" name ="btnOrder" class="btn">order</button></td>
 				</tr>
 			</table>
+		
 		</div>
 
 		<nav id="sidebar">
@@ -182,13 +201,13 @@
 	    price = $("#expectPrice").val();
 	    
 	    $.ajax({
-	        url: '${pageContext.request.contextPath}/secondhandCartToOrder',
+	        url: '${pageContext.request.contextPath}/gpurchaseCartToOrder',
 	        type: 'post',
-	        data: { secondhandCartList : checkArr,
-		        	sprice : price },
+	        data: { gpurchaseCartList : checkArr,
+		        	price : price },
 	    	success : function(result) {
 				alert(result);
-				location.href = "${pageContext.request.contextPath}/secondhandOrderForm";
+				location.href = "${pageContext.request.contextPath}/gpurchaseOrderForm";
 			}
 	    });
 	});
@@ -235,7 +254,7 @@
 	function del(boardNum) {
 		var chk = confirm("해당 상품을 삭제하시겠습니까?");
 		if (chk) {
-			location.href='secondhandCartDelete?boardNum='+boardNum;
+			location.href='gpurchaseCartDelete?boardNum='+boardNum;
 		}
 	}
 	

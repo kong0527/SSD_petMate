@@ -1121,7 +1121,7 @@ h1, h2, h3, h4, h5,
           background: #e3e3e3; }
 
 .post-meta {
-  font-size: .8rem; }
+  font-size: .rem; }
   .post-meta a {
     color: #000; }
 
@@ -1228,7 +1228,7 @@ h1, h2, h3, h4, h5,
       .custom-pagination li a:hover {
         color: #000; }
     .custom-pagination li.active a {
-      color: #000; }
+      color: #8bc34a; }
 
 .form-control {
   margin-right: 10px;

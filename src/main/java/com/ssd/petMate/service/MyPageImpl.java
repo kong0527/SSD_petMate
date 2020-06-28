@@ -12,8 +12,11 @@ import com.ssd.petMate.dao.MyPageDao;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Order;
+import com.ssd.petMate.domain.OrderCommand;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.domain.Review;
+import com.ssd.petMate.domain.SOrderCommand;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -165,5 +168,37 @@ public class MyPageImpl implements MyPageFacade {
 	public List<Review> getPrivateReviewList(BoardSearch boardSearch) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return myPageDao.getPrivateReviewList(boardSearch);
+	}
+	
+	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateOrderList(boardSearch);
+	}
+	
+	public int getPrivateOrderListCount(String userID) throws DataAccessException{
+		return myPageDao.getPrivateOrderListCount(userID);
+	}
+	
+	public OrderCommand getOrderLineItems(int orderNum) throws DataAccessException{
+		return myPageDao.getOrderLineItems(orderNum);
+	}
+	
+	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException{
+		return myPageDao.getOrderSLineItems(orderNum);
+	}
+	
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInfoLike(boardSearch);
+	}
+	
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInquiryLike(boardSearch);
+	}
+	
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivateInfoLikeCount(map);
+	}
+	
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException{
+		return myPageDao.getPrivateInfoLikeCount(map);
 	}
 }

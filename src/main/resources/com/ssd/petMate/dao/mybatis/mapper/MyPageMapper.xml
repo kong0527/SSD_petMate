@@ -469,4 +469,174 @@
 		    and boardContent LIKE '%' ||  #{keyword} || '%'
 		</if>
 	</select>
+	
+	
+	<select id="getPrivateOrderList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Order">
+      SELECT orderNum, orderDate, price
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	orderList.*
+            FROM
+            (
+                SELECT 
+                * 
+                FROM 
+                orderList
+                WHERE userID = #{userID}
+                ORDER BY orderNum ASC 
+            )orderList)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+
+	<select id="getPrivateOrderListCount" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM orderList
+		WHERE userID = #{userID}
+	</select>
+	
+	<resultMap id="orderCommand" type="com.ssd.petMate.domain.OrderCommand">
+		<id column="orderNum" property="orderNum" />
+		<result column="orderDate" property="orderDate" />
+		<result column="price" property="price" />
+		<result column="userID" property="userID" />
+		<result column="bank" property="bank" />
+		<result column="address" property="address" />
+		<collection property="gLineItems" ofType="GLineItemCommand">
+			<id property="lineItemNum" column="lineItemNum" />
+			<id property="orderNum" column="orderNum" />
+			<result property="price" column="lineItem_price" />
+			<result property="boardNum" column="boardNum" />
+			<result property="boardTitle" column="boardTitle" />
+		</collection>
+	</resultMap>	
+	
+	
+	<resultMap id="sOrderCommand" type="com.ssd.petMate.domain.SOrderCommand">
+		<id column="orderNum" property="orderNum" />
+		<result column="orderDate" property="orderDate" />
+		<result column="price" property="price" />
+		<result column="userID" property="userID" />
+		<result column="bank" property="bank" />
+		<result column="address" property="address" />
+		<collection property="sLineItems" ofType="SLineItemCommand">
+			<id property="lineItemNum" column="lineItemNum" />
+			<id property="orderNum" column="orderNum" />
+			<result property="price" column="lineItem_price" />
+			<result property="boardNum" column="boardNum" />
+			<result property="boardTitle" column="boardTitle" />
+		</collection>
+	</resultMap>	
+	
+	<select id="getOrderLineItems" parameterType="int" resultMap="orderCommand">
+		SELECT o.orderNum, o.orderDate, o.price, o.userID, o.bank, o.address,l.lineItemNum, l.price AS lineItem_price, l.boardNum, l.boardTitle
+		FROM orderList o,
+			(SELECT gt.orderNum, gt.price, gt.boardNum, gt.lineItemNum, g.boardTitle AS boardTitle
+			FROM GLineItem gt, gpurchase g
+			where gt.boardNum = g.boardNum
+			) l
+		WHERE o.orderNum = l.orderNum and o.orderNum = #{orderNum}
+	</select>
+	
+	<select id="getOrderSLineItems" parameterType="int" resultMap="sOrderCommand">
+		SELECT o.orderNum, o.orderDate, o.price, o.userID, o.bank, o.address,l.lineItemNum, l.price AS lineItem_price, l.boardNum, l.boardTitle
+		FROM orderList o,
+			(SELECT st.orderNum, st.price, st.boardNum, st.lineItemNum, s.boardTitle AS boardTitle
+			FROM SLineItem st, secondhand s
+			where st.boardNum = s.boardNum
+			) l
+		WHERE o.orderNum = l.orderNum and o.orderNum = #{orderNum}
+	</select>
+	
+	<select id="getPrivateInfoLikeCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+          FROM info
+	      where boardNum in
+          (
+                SELECT boardNum
+                FROM 
+                infoLike
+                WHERE userID = #{userID}
+           )
+           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		       and boardTitle LIKE '%' ||  #{keyword} || '%'
+		   </if>
+		   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		        and boardContent LIKE '%' ||  #{keyword} || '%'
+		   </if>
+	</select>
+	
+	<select id="getPrivateInquiryLikeCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+          FROM Inquiry
+	      where boardNum in
+          (
+                SELECT boardNum
+                FROM 
+                InquiryLike
+                WHERE userID = #{userID}
+           )
+           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		       and boardTitle LIKE '%' ||  #{keyword} || '%'
+		   </if>
+		   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		        and boardContent LIKE '%' ||  #{keyword} || '%'
+		   </if>
+	</select>
+	
+	<select id="getPrivateInfoLike" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Info">
+		SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	info.*
+            FROM
+            (
+               SELECT *
+          		FROM info
+	      		where boardNum in
+          		(
+	                SELECT boardNum
+	                FROM infoLike
+	                WHERE userID = #{userID}
+           		)
+	           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			       and boardTitle LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+			        and boardContent LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   ORDER BY boardNum ASC 
+            )info)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+	
+	 
+	<select id="getPrivateInquiryLike" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
+		SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+            Inquiry.*
+            FROM
+            (
+               SELECT *
+          		FROM Inquiry
+	      		where boardNum in
+          		(
+	                SELECT boardNum
+	                FROM InquiryLike
+	                WHERE userID = #{userID}
+           		)
+	           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			       and boardTitle LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+			        and boardContent LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   ORDER BY boardNum ASC 
+            )Inquiry)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+	
 </mapper>

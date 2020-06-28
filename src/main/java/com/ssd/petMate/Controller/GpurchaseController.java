@@ -87,7 +87,7 @@ public class GpurchaseController {
 		System.out.println("userID : " + userID);
 		List<GpurchaseCartCommand> gpurchaseCartList = gpurchaseImpl.getGpurchaseCartListByGpurchase(userID);	
 		mv.addObject("gpurchaseCartList", gpurchaseCartList);
-		mv.setViewName("order/cart");
+		mv.setViewName("order/gpurchaseCart");
 		return mv;
 	}
 	

@@ -8,8 +8,11 @@ import org.springframework.dao.DataAccessException;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
+import com.ssd.petMate.domain.Order;
+import com.ssd.petMate.domain.OrderCommand;
 import com.ssd.petMate.domain.Petsitter;
 import com.ssd.petMate.domain.Review;
+import com.ssd.petMate.domain.SOrderCommand;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
@@ -63,4 +66,20 @@ public interface MyPageMapper {
 	int getPrivateReviewReplyCount(HashMap<String, Object> map); 
 
 	List<Review> getPrivateReviewReplyList(BoardSearch boardSearch); 
+	
+	List<Order> getPrivateOrderList(BoardSearch boardSearch);
+	
+	int getPrivateOrderListCount(String userID);
+	
+	OrderCommand getOrderLineItems(int orderNum);
+	
+	SOrderCommand getOrderSLineItems(int orderNum);
+	
+	List<Info> getPrivateInfoLike(BoardSearch boardSearch);
+	
+	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch);
+	
+	int getPrivateInfoLikeCount(HashMap<String, Object> map);
+	
+	int getPrivateInquiryLikeCount(HashMap<String, Object> map);
 }

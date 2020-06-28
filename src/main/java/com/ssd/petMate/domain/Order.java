@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class Order {
-	private int OrderNum;
+	private int orderNum;
 	private String orderDate;
 	private int price;
 	private String userID;
@@ -18,10 +18,10 @@ public class Order {
 	private String expireDate;
 	
 	public int getOrderNum() {
-		return OrderNum;
+		return orderNum;
 	}
 	public void setOrderNum(int orderNum) {
-		OrderNum = orderNum;
+		this.orderNum = orderNum;
 	}
 	public String getOrderDate() {
 		return orderDate;
@@ -71,10 +71,9 @@ public class Order {
 	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Order [OrderNum=" + OrderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID=" + userID
+		return "Order [orderNum=" + orderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID=" + userID
 				+ ", bank=" + bank + ", cardNum=" + cardNum + ", cvc=" + cvc + ", address=" + address + ", expireDate="
 				+ expireDate + "]";
 	}

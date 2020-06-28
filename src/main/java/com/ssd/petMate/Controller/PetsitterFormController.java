@@ -9,12 +9,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.Petsitter;
@@ -24,6 +26,9 @@ import com.ssd.petMate.validator.PetsitterValidator;
 
 @Controller
 public class PetsitterFormController {
+	@Value("#{file['appkey']}")
+	String appkey;
+	
 	@Autowired
 	private PetsitterFacade petsitterFacade;
 	
@@ -35,6 +40,11 @@ public class PetsitterFormController {
 	
 	@Value("redirect:/petsitterList")
 	private String successViewName;
+	
+	@ModelAttribute("appkey")
+	public String formBacking1(HttpServletRequest request) {
+		return appkey;
+	}
 	
 	@ModelAttribute("petsitter")
 	public Petsitter formBacking(HttpServletRequest request) {
@@ -86,7 +96,7 @@ public class PetsitterFormController {
 
 	@PostMapping("/petsitterForm")
 	public String petsitterInsert(@Valid @ModelAttribute("petsitter") Petsitter petsitter, BindingResult result, 
-	         SessionStatus sessionStatus, HttpServletRequest request, ModelAndView mv) {
+	         SessionStatus sessionStatus, HttpServletRequest request) {
 	      int sizeSum = 0;
 	      int daySum = 0;
 	      petsitter.setUserID(request.getSession().getAttribute("userID").toString());
@@ -104,7 +114,7 @@ public class PetsitterFormController {
 	      new PetsitterValidator().validate(petsitter, result);
 	      
 	      if (result.hasErrors()) {
-	         return formViewName;
+	    	  return formViewName;
 	      }
 	      
 	      if (request.getParameter("boardNum") == null) {
@@ -114,7 +124,7 @@ public class PetsitterFormController {
 	      else {
 	    	  petsitterFacade.updateBoard(petsitter);
 	      }
-	      
+	      //mv.setViewName("petsitter/petsitterList");
 	      return successViewName;
 	   }
 

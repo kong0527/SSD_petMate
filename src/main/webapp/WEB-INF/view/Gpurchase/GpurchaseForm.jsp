@@ -224,3 +224,8 @@ nhn.husky.EZCreator.createInIFrame({
 	});
 	
 </script>
+<style>
+	ul{
+   list-style:none;
+   }
+</style>

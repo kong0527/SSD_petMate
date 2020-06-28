@@ -2,14 +2,14 @@ package com.ssd.petMate.domain;
 
 import java.util.List;
 
-public class OrderCommand {
+public class SOrderCommand {
 	private int orderNum;
 	private String orderDate;
 	private int price;
 	private String userID;
 	private String bank;
 	private String address;
-	private List<GLineItemCommand> gLineItems;
+	private List<SLineItemCommand> sLineItems;
 	private int productPrice;
 	
 	public int getOrderNum() {
@@ -48,16 +48,16 @@ public class OrderCommand {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public List<GLineItemCommand> getgLineItems() {
-		return gLineItems;
-	}
-	public void setgLineItems(List<GLineItemCommand> gLineItems) {
-		this.gLineItems = gLineItems;
-	}
+	
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-	
+	public List<SLineItemCommand> getsLineItems() {
+		return sLineItems;
+	}
+	public void setsLineItems(List<SLineItemCommand> sLineItems) {
+		this.sLineItems = sLineItems;
+	}
 	public int getProductPrice() {
 		return productPrice;
 	}
@@ -65,15 +65,15 @@ public class OrderCommand {
 	public void getTotalPrice() {
 		int i;
 		productPrice = 0;
-		for(i = 0; i < gLineItems.size(); i++) {
-			productPrice += gLineItems.get(i).getPrice();
+		for(i = 0; i < sLineItems.size(); i++) {
+			productPrice += sLineItems.get(i).getPrice();
 		}
 	}
 	
 	@Override
 	public String toString() {
 		return "OrderCommand [orderNum=" + orderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID="
-				+ userID + ", bank=" + bank + ", address=" + address + ", gLineItems=" + gLineItems + "]";
+				+ userID + ", bank=" + bank + ", address=" + address + ", gLineItems=" + sLineItems + "]";
 	}
 	
 }
