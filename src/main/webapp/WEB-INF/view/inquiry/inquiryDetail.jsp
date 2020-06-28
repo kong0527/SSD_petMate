@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="answer.jsp" %>
 <!-- <link href="resources/css/comment.css" rel="stylesheet"> -->
 <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
@@ -14,8 +15,9 @@
 				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${inquiry.userID}</a></span> 
-						<span class="date-read">${inquiry.boardDate} 
+						<span class="d-block"><a href="<c:url value="/userpage"><c:param name="userID" value="${inquiry.userID}"/></c:url>">${inquiry.userID}</a></span> 
+						<span class="date-read"><fmt:parseDate var="dateString" value="${inquiry.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/> 
 						<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} <span class="icon-star2"></span></span>
 					</div>
 				</div>
