@@ -55,6 +55,14 @@
 		<property name="order" value="2" />	
 	</bean>  
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/infoForm" />
+<!-- 			<mvc:mapping path="/members/delete" />
+ -->			<bean class="com.ssd.petMate.interceptor.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
