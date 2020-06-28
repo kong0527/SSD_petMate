@@ -134,8 +134,8 @@
 	          		<li>
 			            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">북마크</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu4">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="myInfoLike"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="myInquiryLike"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
 	          		</li>
 	          		<li>

@@ -185,4 +185,20 @@ public class MyPageImpl implements MyPageFacade {
 	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException{
 		return myPageDao.getOrderSLineItems(orderNum);
 	}
+	
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInfoLike(boardSearch);
+	}
+	
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInquiryLike(boardSearch);
+	}
+	
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivateInfoLikeCount(map);
+	}
+	
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException{
+		return myPageDao.getPrivateInfoLikeCount(map);
+	}
 }

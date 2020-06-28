@@ -185,4 +185,20 @@ public class MybatisMyPageDao implements MyPageDao{
 	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException{
 		return myPageMapper.getOrderSLineItems(orderNum);
 	}
+	
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateInfoLike(boardSearch);
+	}
+	
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateInquiryLike(boardSearch);
+	}
+	
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivateInfoLikeCount(map);
+	}
+	
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivateInquiryCount(map);
+	}
 }

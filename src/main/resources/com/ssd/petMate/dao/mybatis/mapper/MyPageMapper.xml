@@ -546,4 +546,96 @@
 			) l
 		WHERE o.orderNum = l.orderNum and o.orderNum = #{orderNum}
 	</select>
+	
+	<select id="getPrivateInfoLikeCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+          FROM info
+	      where boardNum in
+          (
+                SELECT boardNum
+                FROM 
+                infoLike
+                WHERE userID = #{userID}
+           )
+           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		       and boardTitle LIKE '%' ||  #{keyword} || '%'
+		   </if>
+		   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		        and boardContent LIKE '%' ||  #{keyword} || '%'
+		   </if>
+	</select>
+	
+	<select id="getPrivateInquiryLikeCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*)
+          FROM Inquiry
+	      where boardNum in
+          (
+                SELECT boardNum
+                FROM 
+                InquiryLike
+                WHERE userID = #{userID}
+           )
+           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+		       and boardTitle LIKE '%' ||  #{keyword} || '%'
+		   </if>
+		   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+		        and boardContent LIKE '%' ||  #{keyword} || '%'
+		   </if>
+	</select>
+	
+	<select id="getPrivateInfoLike" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Info">
+		SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+           	info.*
+            FROM
+            (
+               SELECT *
+          		FROM info
+	      		where boardNum in
+          		(
+	                SELECT boardNum
+	                FROM infoLike
+	                WHERE userID = #{userID}
+           		)
+	           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			       and boardTitle LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+			        and boardContent LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   ORDER BY boardNum ASC 
+            )info)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+	
+	 
+	<select id="getPrivateInquiryLike" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
+		SELECT *
+		FROM(
+            SELECT 
+            ROWNUM AS NUM,
+            Inquiry.*
+            FROM
+            (
+               SELECT *
+          		FROM Inquiry
+	      		where boardNum in
+          		(
+	                SELECT boardNum
+	                FROM InquiryLike
+	                WHERE userID = #{userID}
+           		)
+	           <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
+			       and boardTitle LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   <if test="searchType=='boardContent' and keyword != null and keyword != ''">
+			        and boardContent LIKE '%' ||  #{keyword} || '%'
+			   </if>
+			   ORDER BY boardNum ASC 
+            )Inquiry)
+            WHERE NUM BETWEEN #{startList} AND #{endList}
+	</select>
+	
 </mapper>

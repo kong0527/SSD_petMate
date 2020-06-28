@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
 <link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
@@ -30,9 +31,10 @@
 				<tbody>
 				<c:forEach var="order" items="${myOrderList}">
 					<tr>
-						<td>${order.orderDate}</td>
+						<fmt:parseDate var="orderDate" value="${order.orderDate}" pattern="yy-MM-dd" /> 
+						<td><fmt:formatDate value="${orderDate}" pattern="yy-MM-dd" /></td>
 						<td>${order.orderNum}</td>
-						<td>${order.price}</td>
+						<td>${order.price}₩</td>
 						<td><a href="<c:url value="/myOrderDetail">
 						<c:param name="orderNum" value="${order.orderNum}"/>
 						</c:url>">상세보기 ▷ </a></td>
@@ -96,8 +98,8 @@
 	          		<li>
 			            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">북마크</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu4">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="myInfoLike"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="myInquiryLike"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
 	          		</li>
 	          		<li>
@@ -148,23 +150,11 @@
 	</div>
 </div>  
 <script>
-	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
-	$(document).on('click', '#btnSearch', function(e) {
-		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/myCommentGpurchase";
-		url = url + "?searchType=" + $('#searchType').val();
-		url = url + "&keyword=" + $('#keyword').val();
-
-		location.href = url;
-	});
-
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/myCommentGpurchase";
+		var url = "${pageContext.request.contextPath}/myOrderList";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
-		url = url + "&searchType=" + searchType;
-		url = url + "&keyword=" + keyword;
 		location.href = url;
 	}
 	

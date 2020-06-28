@@ -71,7 +71,15 @@ public interface MyPageFacade {
 	
 	int getPrivateOrderListCount(String userID) throws DataAccessException;
 	
-	public OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
+	OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
 	
-	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
+	SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
+
+	List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException;
+
+	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException;
+	
+	int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException;
 }

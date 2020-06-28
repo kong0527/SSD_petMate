@@ -75,6 +75,5 @@ public class Inquiry {
 	public void setIsSelected(int isSelected) {
 		this.isSelected = isSelected;
 	}
-	
-	
+
 }

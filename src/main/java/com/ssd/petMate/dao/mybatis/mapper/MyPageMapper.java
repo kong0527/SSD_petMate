@@ -74,4 +74,12 @@ public interface MyPageMapper {
 	OrderCommand getOrderLineItems(int orderNum);
 	
 	SOrderCommand getOrderSLineItems(int orderNum);
+	
+	List<Info> getPrivateInfoLike(BoardSearch boardSearch);
+	
+	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch);
+	
+	int getPrivateInfoLikeCount(HashMap<String, Object> map);
+	
+	int getPrivateInquiryLikeCount(HashMap<String, Object> map);
 }
