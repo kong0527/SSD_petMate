@@ -72,5 +72,4 @@ public class PetsitterImpl implements PetsitterFacade {
 	public void selectPetsitter(HashMap<String, Object> map) {
 		petsitterDao.selectPetsitter(map);
 	}
-
 }

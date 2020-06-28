@@ -2,6 +2,8 @@ package com.ssd.petMate.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.Review;
@@ -17,4 +19,5 @@ public interface ReviewDao {
 	public void updateViews(int boardNum);
 	public void updateLike(Review review) throws DataAccessException;
 	public void updateReplyCnt(Review review) throws DataAccessException;
+	public List<HashMap<String, Object>> petsitterChoice(String userID) throws DataAccessException;
 }
