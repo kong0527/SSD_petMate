@@ -4,7 +4,6 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<span class="caption d-block small">Categories</span>
 			<h2>정보 게시판</h2>
 		</div>
 		<div class="table-wrapper">
