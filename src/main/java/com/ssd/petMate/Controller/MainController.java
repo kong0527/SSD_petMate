@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.domain.Review;
@@ -49,20 +50,19 @@ public class MainController {
         
         List<Review> weeklyBestReview = bestFacade.weeklyBestReview(mon);
         Review dailyBestReview = bestFacade.dailyBestReview();
+        
+        List<Gpurchase> weeklyBestGpurchase = bestFacade.weeklyBestGpurchase(mon);
+        Gpurchase dailyBestGpurchase = bestFacade.dailyBestGpurchase();
                 
 		mv.addObject("weeklyBestInfo", weeklyBestInfo);
 		mv.addObject("weeklyBestInquiry", weeklyBestInquiry);
 		mv.addObject("weeklyBestReview", weeklyBestReview);
+		mv.addObject("weeklyBestGpurchase", weeklyBestGpurchase);
 		mv.addObject("dailyBestInfo", dailyBestInfo);
 		mv.addObject("dailyBestInquiry", dailyBestInquiry);
 		mv.addObject("dailyBestReview", dailyBestReview);
+		mv.addObject("dailyBestGpurchase", dailyBestGpurchase);
 		mv.setViewName("index");
 		return mv;
 	}
-	
-//	@RequestMapping(value = "/paymentForm", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView paymentForm(ModelAndView mv) {
-//		mv.setViewName("paymentForm");
-//		return mv;
-//	}	
 }

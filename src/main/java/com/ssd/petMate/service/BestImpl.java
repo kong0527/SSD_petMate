@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssd.petMate.dao.BestDao;
+import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.domain.Review;
@@ -53,5 +54,17 @@ public class BestImpl implements BestFacade{
 	public Review dailyBestReview() {
 		// TODO Auto-generated method stub
 		return bestDao.dailyBestReview();
+	}
+
+	@Override
+	public List<Gpurchase> weeklyBestGpurchase(Date date) {
+		// TODO Auto-generated method stub
+		return bestDao.weeklyBestGpurchase(date);
+	}
+
+	@Override
+	public Gpurchase dailyBestGpurchase() {
+		// TODO Auto-generated method stub
+		return bestDao.dailyBestGpurchase();
 	}
 }
