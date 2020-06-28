@@ -22,7 +22,7 @@
 	<!-- 공동구매 장바구니 추가하기  -->
 	<insert id="insertGpurchaseCart" parameterType="com.ssd.petMate.domain.GpurchaseCart">
  		INSERT
- 		INTO GpurchaseCart(boardNum, userID) VALUES(#{boardNum}, #{userID})
+ 		INTO GpurchaseCart(boardNum, userID, likeDate) VALUES(#{boardNum}, #{userID}, SYSDATE)
  	</insert>
 	
 	<!-- 공동구매 장바구니 삭제하기  -->

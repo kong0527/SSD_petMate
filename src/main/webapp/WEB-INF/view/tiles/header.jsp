@@ -51,14 +51,6 @@
           	<li><a href="${pageContext.request.contextPath}/inquiry"><span style="color:black">질문게시판</span></a></li>
           	<li><a href="${pageContext.request.contextPath}/gpurchase"><span style="color:black">공구게시판</span></a></li>
           	<li><a href="${pageContext.request.contextPath}/secondhand"><span style="color:black">중고게시판</span></a></li>
-          	<li>
-          		<c:if test="${sessionScope.userID ne null}">
-					<span style="color:black"><a href="${pageContext.request.contextPath}/gpurchaseCart">관리자(임시)</a></span>
-				</c:if>
-				<c:if test="${sessionScope.userID eq null}" >
-					<span style="color:black"><a href="signIn" onclick="alert('로그인이 필요합니다.')">관리자(임시)</a></span>
-				</c:if>
-          	</li>
           	<li class="dropdown">
           		<a class="dropdown-toggle" data-toggle="dropdown"><span style="color:black">펫시터게시판</span><span class="caret"></span></a>
           		<ul class="dropdown-menu">
