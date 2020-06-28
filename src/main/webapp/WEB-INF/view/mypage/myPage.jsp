@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
@@ -146,9 +148,8 @@
 				<h4 class="modal-title">비밀번호 확인</h4>
 			</div>
 			<div class="modal-body">
-				<form method="post"
+				<form id="checkPW"
 				class="login100-form validate-form flex-sb flex-w">
-					<!-- <span class="login100-form-title p-b-32"> Account Login </span>  -->
 					<span class="txt1 p-b-11"> 
 						비밀번호 
 					</span>
@@ -171,7 +172,7 @@
 			</div>
 		</div>
 	</div>
-</div>  
+</div>   
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
@@ -224,30 +225,36 @@
 		location.href = url;
 	}
 	
-	$("#btnConfirm").on("click", function(){
+	$(document).on('click', '#btnConfirm', function(e){
 		var pass1 = $("#pwd").val();
 		var pass2 = $("#confirmPwd").val();
-		alert(pass1);
-		alert(pass2);
+		if (pass1 == "" || pass2 == "") {
+			alert("비밀번호를 입력하세요.");
+			$("#pwd").focus();
+			return false;
+		}
 		if(pass1 != pass2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#confirmPwd").focus();
 			return false;
 		}
-		var confirmPwd = $("#pwd").val();
 		$.ajax({
 	        url : '${pageContext.request.contextPath}/confirmPwd',
 	        type : 'post',
-	        data : {'confirmPwd' : confirmPwd},
+	        data : {'confirmPwd' : pass2},
 	        success : function(data){
 	        	if (data == 1) {
 	        		location.href="${pageContext.request.contextPath}/signUp";
 	        	}
 	        	else {
 	        		alert('비밀번호가 틀렸습니다.');
+	        		return false;
 		        }
 	        }
 	    });
 	});
-
+	
+	$("#checkPW").submit(function(e){
+	    e.preventDefault();
+	});
 </script>
