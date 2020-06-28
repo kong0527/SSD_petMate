@@ -24,7 +24,7 @@ public class MybatisPetsitterDao implements PetsitterDao{
 	}
 	
 	public int boardPageCount(HashMap<String, Object> map) throws DataAccessException {
-		return petsitterMapper.boardCount();
+		return petsitterMapper.boardPageCount(map);
 	}
 	
 	public Petsitter boardDetail(int boardNum) throws DataAccessException {
