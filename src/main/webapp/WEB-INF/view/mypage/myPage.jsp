@@ -217,9 +217,9 @@
 			url = url + "gpurchaseDetail?boardNum=" + boardNum;
 		if (name == '중고게시판')
 			url = url + "secondhandDetail?boardNum=" + boardNum;
-		if (name == '리뷰게시판')
+		if (name == '구인게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}

@@ -4,7 +4,7 @@
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
-		<h2>Politics</h2>
+		<h2>${boardName}</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
@@ -21,16 +21,28 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="infoList" items="${userInfoList}">
+				<c:forEach var="boardList" items="${userBoardList}">
 					<tr>
-						<td>${infoList.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
-						<c:param name="boardNum" value="${infoList.boardNum}"/>
-						</c:url>">${infoList.boardTitle}</a></td>
-						<td>${infoList.userID}</td>
-						<td>${infoList.replyCnt}</td>
-						<td>${infoList.boardLike}</td>
-						<td>${infoList.boardHit}</td>
+						<td>${boardList.boardNum}</td>
+						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td>${boardList.userID}</td>
+						<td>
+							<c:if test="${boardName eq '질문게시판'}">
+								${boardList.answerCnt}
+							</c:if>
+							<c:if test="${boardName ne '질문게시판'}">
+								${boardList.replyCnt}
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${boardName eq '공구게시판' || boardName eq '중고게시판'}">
+								${boardList.cartAdded}
+							</c:if>
+							<c:if test="${boardName ne '공구게시판' && boardName ne '중고게시판'}">
+								${boardList.boardLike}
+							</c:if>
+						</td>
+						<td>${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -81,8 +93,22 @@
           			<li>
 			            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">사용자가 쓴 글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu2">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="<c:url value="/userInfo"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="<c:url value="/userInquiry"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="<c:url value="/userGpurchase"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="<c:url value="/userSecondhand"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+							<c:if test="${petsitterChk == 0}">
+								<li><a href="<c:url value="/userPetsitter"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+							</c:if>
+							<c:if test="${petsitterChk == 1}">
+								<li><a href="<c:url value="/userReview"><c:param name="userID" value="${writerID}"/>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+							</c:if>
 			            </ul>
 	          		</li>
 	          		<li>
@@ -108,14 +134,46 @@
 		location.href = url;
 	});
 
+	function urlCheck(boardNum) {
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "infoDetail?boardNum=" + boardNum;
+		if (name == '질문게시판')
+			url = url + "inquiryDetail?boardNum=" + boardNum;
+		if (name == '공구게시판')
+			url = url + "gpurchaseDetail?boardNum=" + boardNum;
+		if (name == '중고게시판')
+			url = url + "secondhandDetail?boardNum=" + boardNum;
+		if (name == '구인게시판')
+			url = url + "petsitterDetail?boardNum=" + boardNum;
+		if (name == '리뷰게시판')
+			url = url + "reviewDetail?boardNum=" + boardNum;
+		location.href = url;
+	}
+
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword, userID) {
-		var url = "${pageContext.request.contextPath}/userpage";
+		var url = "${pageContext.request.contextPath}/";
+		var writerID = "${writerID}";
+		var name = '${boardName}';
+		if (name == '정보게시판')
+			url = url + "userInfo";
+		if (name == '질문게시판')
+			url = url + "userInquiry";
+		if (name == '중고게시판')
+			url = url + "userSecondhand";
+		if (name == '공구게시판')
+			url = url + "userGpurchase";
+		if (name == '구인게시판')
+			url = url + "userPetsitter";
+		if (name == '리뷰게시판')
+			url = url + "userReview";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
-		url = url + "&writerID=" + writerID;
+		url = url + "&userID=" + writerID;
 		location.href = url;
 	}
 </script>
