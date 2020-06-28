@@ -9,7 +9,7 @@
 			<div class="col-lg-8 single-content">
 				<h1 class="mb-4">SecondhandDetail</h1>
 				<c:if test="${secondhand.isSold eq 1}">
-					<img src="resources/img/lock.png" align="right">
+					<img src="resources/img/soldout.png" align="right">
 				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
@@ -111,6 +111,7 @@
 				</div>
 		</div>
 	</div>
+</div>
 </div>
 <script>
 	function checkCart() {
