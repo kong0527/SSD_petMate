@@ -1,10 +1,11 @@
 package com.ssd.petMate.domain;
 
-public class GpurchaseLineItem {
+public class SLineItemCommand {
 	private int orderNum;
 	private int price;
 	private int boardNum;
 	private int lineItemNum;
+	private String boardTitle;
 	
 	public int getOrderNum() {
 		return orderNum;
@@ -30,17 +31,15 @@ public class GpurchaseLineItem {
 	public void setLineItemNum(int lineItemNum) {
 		this.lineItemNum = lineItemNum;
 	}
-	
-	public void CartToLineItem(Gpurchase gpurchase, int orderNum) {
-		this.price = gpurchase.getPrice();
-		this.boardNum = gpurchase.getBoardNum();
-		this.orderNum = orderNum;
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
 	@Override
 	public String toString() {
-		return "GpurchaseLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum
-				+ ", lineItemNum=" + lineItemNum + "]";
+		return "GLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum + ", lineItemNum="
+				+ lineItemNum + ", boardTitle=" + boardTitle + "]";
 	}
-	
-	
 }

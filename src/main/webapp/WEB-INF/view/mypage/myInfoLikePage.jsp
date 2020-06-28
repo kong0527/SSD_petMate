@@ -13,62 +13,76 @@
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
-		<h2>SecondhandCart</h2>
+		<h2>Politics</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
 		<div id="content" class="p-4 p-md-5 pt-5">
-				<table class="table table-striped">
+			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th><input type="checkbox" id="checkAll" class="check" /></th>
-						<th>Product</th>
-						<th>Price</th>
-						<th>Quantity</th>
-						<th>Total</th>
-						<th>&nbsp;</th>
+						<th>#</th>
+						<th>글 제목</th>
+						<th>작성자</th>
+						<th>덧글수</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="secondhandCart" items="${secondhandCartList}">
-						<tr>
-							<td><input type="checkbox" id="box" name ="box" class="check" value="${secondhandCart.secondhand.boardNum}"/></td>
-							<td ><img src="resources/img/love.png" border="0"> &nbsp;
-							${secondhandCart.secondhand.boardTitle}</td>
-							<td>${secondhandCart.secondhand.price}</td>
-							<td>1</td>
-							<td>${secondhandCart.secondhand.boardNum} ${secondhandCart.secondhand.price}</td>
-							<td><input type="hidden" name="price" value="${secondhandCart.secondhand.price}" /></td>
-							<td><input type="submit" class = "btn" value="x" onclick="del(${secondhandCart.secondhand.boardNum})" /></td>
-						</tr>
-					</c:forEach>
+				<c:forEach var="info" items="${myInfoList}">
+					<tr>
+						<td>${info.boardNum}</td>
+						<td><a href="<c:url value="/infoDetail">
+						<c:param name="boardNum" value="${info.boardNum}"/>
+						</c:url>">${info.boardTitle}</a></td>
+						<td>${info.userID}</td>
+						<td>${info.replyCnt}</td>
+						<td>${info.boardLike}</td>
+						<td>${info.boardHit}</td>
+					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
-	
-			<table class="text-right" align="right">
-				<tr>
-					<td>총상품금액</td>
-					<td>&nbsp;</td>
-					<td id="totalPrice">0₩</td>
-				</tr>
-				<tr>
-					<td>배송비</td>
-					<td>&nbsp;</td>
-					<td>2500₩</td>
-				</tr>
-				<tr>
-					<td>결제예상금액</td>
-					<td>&nbsp;</td>
-					<td id="expectPrice">2500₩</td>
-				</tr>
-				<tr>
-					<td><input type="button" id="uncheck" value="cancle" class="btn" /></td>
-					<td>&nbsp;</td>
-					<td><button type="button" id="btnOrder" name ="btnOrder" class="btn">order</button></td>
-				</tr>
-			</table>
-		</div>
+			<div class="pagination-row" style="text-align: center;">
+			<ul class="custom-pagination list-unstyled">
+				<c:if test="${boardSearch.prev}">
+					<li>
+					<a onClick="fn_pagination('${boardSearch.getStartPage() - 1}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">
+							<i class="fa fa-long-arrow-left"></i> Previous
+					</a>
+					</li>
+				</c:if>
 
+				<c:if test="${boardSearch.totalCount ne 0}">
+					<c:forEach begin="${boardSearch.getStartPage()}"
+						end="${boardSearch.getEndPage()}" var="idx">
+						<li
+							${boardSearch.pageNum == idx - 1 ? 'class=active' : ''}>
+							<a id="page"
+							onClick="fn_pagination('${idx}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">${idx}</a>
+						</li>
+					</c:forEach>
+				</c:if>
+
+				<c:if test="${boardSearch.next}">
+					<li><a
+						onClick="fn_pagination('${boardSearch.getEndPage() + 1}', '${boardSearch.getContentNum()}', '${boardSearch.getSearchType()}', '${boardSearch.getKeyword()}');">
+							Next <i class="fa fa-long-arrow-right"></i>
+					</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<!-- 검색  -->
+		<div class="d-flex justify-content-center" >
+			<select class="form-control form-control-sm" name="searchType" id="searchType" style="width : 15%">
+				<option value="boardTitle">글 제목</option>
+				<option value="boardContent">글 내용</option>
+			</select>
+	        <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
+	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
+       </div>
+		</div>
 		<nav id="sidebar">
 			<div class="p-4 pt-5">
 				<!-- <span style="color:black"><h5>Categories</h5></span> -->
@@ -95,6 +109,13 @@
 	          		<li>
 			            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">북마크</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu4">
+			                <li><a href="myInfoLike"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="myInquiryLike"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			            </ul>
+	          		</li>
+	          		<li>
+			            <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장바구니</a>
+			            <ul class="collapse list-unstyled" id="pageSubmenu5">
 			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
 			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
@@ -140,6 +161,25 @@
 	</div>
 </div>  
 <script>
+	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
+	$(document).on('click', '#btnSearch', function(e) {
+		e.preventDefault();
+		var url = "${pageContext.request.contextPath}/myInfoLike";
+		url = url + "?searchType=" + $('#searchType').val();
+		url = url + "&keyword=" + $('#keyword').val();
+
+		location.href = url;
+	});
+
+	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
+	function fn_pagination(pageNum, contentNum, searchType, keyword) {
+		var url = "${pageContext.request.contextPath}/myInfoLike";
+		url = url + "?pageNum=" + pageNum;
+		url = url + "&contentNum=" + contentNum;
+		url = url + "&searchType=" + searchType;
+		url = url + "&keyword=" + keyword;
+		location.href = url;
+	}
 	
 	$("#btnConfirm").on("click", function(){
 		var pass1 = $("#pwd").val();
@@ -166,78 +206,5 @@
 	        }
 	    });
 	});
-
-	$(document).on("click","#btnOrder", function() {
-	  	var checkArr = new Array();     // 배열 초기화
-	  	var price = 0;
-	    $('#box:checked').each(function(i){
-	        checkArr.push($(this).val());  // 체크된 것만 값을 뽑아서 배열에 push
-	    });
-
-	    if(checkArr == "" || checkArr == null || checkArr == undefined || (checkArr != null && typeof checkArr == "object" && !Object.keys(checkArr).length)){
-		   alert("담은 상품이 없습니다.");
-		   return;
-		}
-		
-	    price = $("#expectPrice").val();
-	    
-	    $.ajax({
-	        url: '${pageContext.request.contextPath}/secondhandCartToOrder',
-	        type: 'post',
-	        data: { secondhandCartList : checkArr,
-		        	sprice : price },
-	    	success : function(result) {
-				alert(result);
-				location.href = "${pageContext.request.contextPath}/secondhandOrderForm";
-			}
-	    });
-	});
-	
-	   $(document).ready(function() {
-
-		  // 체크 박스 해제
-		$("#uncheck").on('click', function() {
-			$(".check").each(function() {
-				if($(this).is(":checked"))
-					$(".check").prop("checked", false);
-			});
-		});
-
-		 //체크 박스 모두 선택
-		$("#checkAll").change(function () {
-		    $('.check').prop("checked", $(this).prop("checked"));
-		});  
-		
-		 //체크 박스 선택 시 가격 변경
-		$(".check").change(function() {
-			var html = 0;
-			var html2 = 0;
-			for (var i = 1; i < $('table tr').size(); i++) {
-				var fabric_seq = 0;
-				// table 중 tr이 i번째 있는 자식중에 체크박스가 체크중이면
-				var chk = $('table tr').eq(i).children().find('input[type="checkbox"]').is(':checked');
-
-				if (chk == true) { // 그 i 번째 input text의 값을 가져온다.
-					fabric_seq = parseInt($('table tr').eq(i).find('input[name=price]').val());
-				}
-				html += fabric_seq;
-				html2 = html + 2500;
-				$("#expectPrice").val(html2);
-				$("#totalPrice").html(html + '₩');
-				$("#expectPrice").html(html2 + '₩');
-				}
-		  });
-
-		 
-	 });
-
-
-	function del(boardNum) {
-		var chk = confirm("해당 상품을 삭제하시겠습니까?");
-		if (chk) {
-			location.href='secondhandCartDelete?boardNum='+boardNum;
-		}
-	}
-	
 
 </script>
