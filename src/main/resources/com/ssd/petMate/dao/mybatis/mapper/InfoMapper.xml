@@ -51,7 +51,7 @@
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Info">
 		INSERT 
 		INTO Info(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, TO_DATE(SYSDATE,'yyyy.mm.dd hh24:mi'), #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR})
+		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->

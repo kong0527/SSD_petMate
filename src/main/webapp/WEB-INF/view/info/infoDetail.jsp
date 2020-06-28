@@ -9,7 +9,11 @@
 				<h1 class="mb-4">${info.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${info.userID}</a></span> 
+						<span class="d-block">
+							<a href="<c:url value="/userpage">
+							<c:param name="userID" value="${info.userID}"/>
+							</c:url>">${info.userID}</a>
+						</span> 
 						<span class="date-read">${info.boardDate} 
 						<span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
 					</div>
