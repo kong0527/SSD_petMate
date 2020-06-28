@@ -50,10 +50,10 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Petsitter">
 		INSERT 
-		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petDay, petSize, boardLike, boardImage, petAddress)
+		INTO Petsitter(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, petPrice, petLocal, petDay, petSize, boardLike, petAddress)
 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, 
 		#{petPrice, jdbcType=NUMERIC}, #{petLocal, jdbcType=VARCHAR}, #{petDay, jdbcType=VARCHAR}, #{petSize, jdbcType=VARCHAR}, 
-		#{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{petAddress, jdbcType=VARCHAR})
+		#{boardLike, jdbcType=NUMERIC}, #{petAddress, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -73,7 +73,6 @@
 		petLocal = #{petLocal, jdbcType=VARCHAR},
 		petDay = #{petDay, jdbcType=VARCHAR},
 		petSize = #{petSize, jdbcType=VARCHAR},
-		boardImage = #{boardImage, jdbcType=VARCHAR},
 		petAddress = #{petAddress, jdbcType=VARCHAR}
 		WHERE boardNum = #{boardNum}
 	</update>
