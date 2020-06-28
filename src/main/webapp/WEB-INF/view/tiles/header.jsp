@@ -47,8 +47,8 @@
           	</div>
           </div>
            <ul class="nav justify-content-between">
+           	<li><a href="${pageContext.request.contextPath}/info"><span style="color:black">정보게시판</span></a></li>
           	<li><a href="${pageContext.request.contextPath}/inquiry"><span style="color:black">질문게시판</span></a></li>
-          	<li><a href="${pageContext.request.contextPath}/info"><span style="color:black">정보게시판</span></a></li>
           	<li><a href="${pageContext.request.contextPath}/gpurchase"><span style="color:black">공구게시판</span></a></li>
           	<li><a href="${pageContext.request.contextPath}/secondhand"><span style="color:black">중고게시판</span></a></li>
           	<li>
