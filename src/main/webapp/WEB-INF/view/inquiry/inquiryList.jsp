@@ -23,9 +23,14 @@
 				<c:forEach var="inquiryList" items="${inquiryList}">
 					<tr>
 						<td>${inquiryList.boardNum}</td>
-						<td><a href="<c:url value="/inquiryDetail">
+						<td>
+						<a href="<c:url value="/inquiryDetail">
 						<c:param name="boardNum" value="${inquiryList.boardNum}"/>
-						</c:url>">${inquiryList.boardTitle}</a></td>
+						</c:url>">
+						<c:if test="${inquiryList.isSelected eq 1}">
+							[채택완료] &nbsp;
+						</c:if>
+						${inquiryList.boardTitle}</a></td>
 						<td>${inquiryList.userID}</td>
 						<td>${inquiryList.answerCnt}</td>
 						<td>${inquiryList.boardLike}</td>
