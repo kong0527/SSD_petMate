@@ -68,7 +68,8 @@
 		boardContent = #{boardContent}, 
 		boardDate = SYSDATE, 
 		boardImage = #{boardImage,jdbcType=VARCHAR}, 
-		rating = #{rating}
+		rating = #{rating},
+		petsitterName = #{petsitterName}
 		WHERE boardNum = #{boardNum}
 	</update>
 	
@@ -100,9 +101,12 @@
 	</update>
 	
 	<!-- 펫시터 선택 -->
-	<select id="petsitterChoice" resultType="map" parameterType="string">
-		SELECT DISTINCT userID 
-		FROM Petsitter
-		WHERE isSelected = #{isSelected} 		
-	</select>
+	<select id="petsitterChoice" resultType="String" parameterType="String">
+      SELECT DISTINCT userID
+      FROM Petsitter
+      WHERE boardNum IN (
+          SELECT boardNum
+          FROM petsitter
+          WHERE isSelected = #{userID})      
+   </select>
 </mapper>

@@ -25,5 +25,5 @@ public interface ReviewMapper {
 	
 	public void updateReplyCnt(Review review);
 	
-	public List<HashMap<String, Object> >petsitterChoice(String userID);
+	public List<String> petsitterChoice(String userID);
 }

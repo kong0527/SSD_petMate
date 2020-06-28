@@ -57,8 +57,8 @@
  		SELECT GBN_SEQ.nextval AS boardNum FROM DUAL
  	</selectKey>
  		INSERT
- 		INTO Gpurchase(boardNum, userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, sdate, edate, goalNum, productName, participant, status)
- 		VALUES(#{boardNum}, #{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{boardImage,jdbcType=VARCHAR}, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC}, #{productName,jdbcType=VARCHAR}, #{participant,jdbcType=NUMERIC}, #{status,jdbcType=VARCHAR})
+ 		INTO Gpurchase(boardNum, userID, boardTitle, boardContent, replyCnt, boardHit, boardDate,  price, cartAdded, sdate, edate, goalNum, lprice, participant, status, productName)
+ 		VALUES(#{boardNum}, #{userID}, #{boardTitle}, #{boardContent}, #{replyCnt,jdbcType=NUMERIC}, #{boardHit,jdbcType=NUMERIC}, SYSDATE, #{price,jdbcType=NUMERIC}, #{cartAdded,jdbcType=NUMERIC}, TO_DATE(#{sdate},'yyyy.mm.dd hh24:mi'), TO_DATE(#{edate},'yyyy.mm.dd hh24:mi'), #{goalNum,jdbcType=NUMERIC}, #{lprice,jdbcType=NUMERIC}, #{participant,jdbcType=NUMERIC}, #{status,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR})
  	</insert>
 	
 	<!-- 공동구매 게시글 수정하기  -->
@@ -66,9 +66,9 @@
 		UPDATE Gpurchase SET 
 		boardTitle = #{boardTitle}, 
 		boardContent = #{boardContent}, 
-		boardDate = SYSDATE,
-		boardImage = #{boardImage,jdbcType=VARCHAR}, 
+		boardDate = SYSDATE, 
 		price = #{price},
+		lprice = #{lprice},
 		productName = #{productName}
 		WHERE boardNum = #{boardNum}
 	</update>

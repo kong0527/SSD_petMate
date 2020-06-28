@@ -24,14 +24,13 @@ public class Gpurchase {
 	@Length(max=30)
 	private String boardTitle;
 	private int boardHit;
-	private String boardImage;
 	@Min(1)
 	private int goalNum;
-	@NotBlank
-	@Length(max=30)
-	private String productName;
+	private int lprice;
 	private int participant;
 	private String status;
+	@NotBlank
+	private String productName;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -93,12 +92,6 @@ public class Gpurchase {
 	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
-	}
 	public int getGoalNum() {
 		return goalNum;
 	}
@@ -111,11 +104,11 @@ public class Gpurchase {
 	public void setCartAdded(int cartAdded) {
 		this.cartAdded = cartAdded;
 	}
-	public String getProductName() {
-		return productName;
+	public int getLprice() {
+		return lprice;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setLprice(int lprice) {
+		this.lprice = lprice;
 	}
 	public int getParticipant() {
 		return participant;
@@ -129,7 +122,12 @@ public class Gpurchase {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public Gpurchase() {
 		super();
 	}
@@ -145,7 +143,7 @@ public class Gpurchase {
 		return "Gpurchase [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID + ", price="
 				+ price + ", sdate=" + sdate + ", edate=" + edate + ", boardContent=" + boardContent + ", cartAdded="
 				+ cartAdded + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle + ", boardHit=" + boardHit
-				+ ", boardImage=" + boardImage + ", goalNum=" + goalNum + ", productName=" + productName + "]";
+				+ ", goalNum=" + goalNum + ", lprice=" + lprice + ", participant=" + participant + ", status=" + status
+				+ ", productName=" + productName + "]";
 	}
-	
 }

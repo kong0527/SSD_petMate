@@ -18,5 +18,5 @@ public interface ReviewFacade {
 	public void updateViews(int boardNum);
 	void updateLike(Review review);
 	void updateReplyCnt(Review review);
-	List<HashMap<String, Object>> petsitterChoice(String userID);
+	List<String> petsitterChoice(String userID);
 }
