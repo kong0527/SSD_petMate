@@ -39,6 +39,7 @@
 		    and boardContent LIKE '%' ||  #{keyword} || '%'
 		</if>
 	</select>
+	
 	<select id="getPrivateInquiryList" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Inquiry">
       SELECT *
 		FROM(
@@ -249,7 +250,7 @@
 
 	<select id="getPrivateInquiryReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Inquiry
+		FROM Answer
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
@@ -291,7 +292,7 @@
 
 	<select id="getPrivateInfoReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Info
+		FROM InfoReply
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
@@ -333,7 +334,7 @@
 
 	<select id="getPrivateGpurchaseReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Gpurchase
+		FROM GpurchaseReply
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
@@ -375,7 +376,7 @@
 
 	<select id="getPrivateSecondhandReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Secondhand
+		FROM SecondhandReply
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
@@ -417,7 +418,7 @@
 
 	<select id="getPrivatePetsitterReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Petsitter
+		FROM PetsitterReply
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
@@ -459,7 +460,7 @@
 
 	<select id="getPrivateReviewReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Review
+		FROM ReviewReply
 		WHERE userID = #{userID}
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'

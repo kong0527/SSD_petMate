@@ -130,8 +130,8 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/myCommentInquiry", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageInquiryReply(ModelAndView mv, HttpServletRequest request,
+	@RequestMapping(value = {"/myReply", "/myReplyInfo", "/myReplyInquiry", "/myReplyGpurchase", "/myReplySecondhand", "/myReplyPetsitter", "/myReplyReview"})
+	public ModelAndView myReply(ModelAndView mv, HttpServletRequest request,
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
 			@RequestParam(required = false, defaultValue = "10") int contentNum,
 			@RequestParam(required = false) String searchType,
@@ -145,192 +145,74 @@ public class MyPageController {
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateInquiryReplyCount(map);
-		System.out.println(totalCount);
 		
 		BoardSearch boardSearch = new BoardSearch();
 		boardSearch.setSearchType(searchType);
 		boardSearch.setKeyword(keyword);
 		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Inquiry> myReviewList = myPageFacade.getPrivateInquiryReplyList(boardSearch);
-
-		mv.addObject("myInquiryList", myReviewList);
+		
+		if (request.getServletPath().equals("/myReply") || request.getServletPath().equals("/myReplyInfo")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateInfoReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Info> myboardList = myPageFacade.getPrivateInfoReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "정보게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReplyInquiry")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateInquiryReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Inquiry> myboardList = myPageFacade.getPrivateInquiryReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "질문게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReplyGpurchase")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateGpurchaseReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Gpurchase> myboardList = myPageFacade.getPrivateGpurchaseReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "공구게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReplySecondhand")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateSecondhandReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Secondhand> myboardList = myPageFacade.getPrivateSecondhandReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "중고게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReplyPetsitter")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivatePetsitterReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Petsitter> myboardList = myPageFacade.getPrivatePetsitterReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "구인게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReplyReview")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateReviewReplyCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Review> myboardList = myPageFacade.getPrivateReviewReplyList(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "리뷰게시판");
+		}
+		
 		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myInquiryReplyPage");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/myCommentInfo", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageInfoReply(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateInfoReplyCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Info> myInfoList = myPageFacade.getPrivateInfoReplyList(boardSearch);
-
-		mv.addObject("myInfoList", myInfoList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myInfoReplyPage");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/myCommentGpurchase", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageGpurchaseReply(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateGpurchaseReplyCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Gpurchase> myGpurchaseList = myPageFacade.getPrivateGpurchaseReplyList(boardSearch);
-
-		mv.addObject("myGpurchaseList", myGpurchaseList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myGpurchaseReplyPage");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/myCommentSecondhand", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageSecondhandReply(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateSecondhandReplyCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Secondhand> mySecondhandList = myPageFacade.getPrivateSecondhandReplyList(boardSearch);
-
-		mv.addObject("mySecondhandList", mySecondhandList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/mySecondhandReplyPage");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/myCommentPetsitter", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypagePetsitterReply(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivatePetsitterReplyCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Petsitter> myPetsitterList = myPageFacade.getPrivatePetsitterReplyList(boardSearch);
-
-		mv.addObject("myPetsitterList", myPetsitterList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myPetsitterReplyPage");
-		return mv;
-	}
-	
-	@RequestMapping(value = "/myCommentReview", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageReviewReply(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateReviewReplyCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Review> myReviewList = myPageFacade.getPrivateReviewReplyList(boardSearch);
-
-		mv.addObject("myReviewList", myReviewList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myReviewReplyPage");
+		mv.setViewName("mypage/myReply");
 		return mv;
 	}
 	
