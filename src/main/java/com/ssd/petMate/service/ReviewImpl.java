@@ -53,7 +53,7 @@ public class ReviewImpl implements ReviewFacade {
 		reviewDao.updateReplyCnt(review);
 	}
 	
-	public List<HashMap<String, Object>> petsitterChoice(String userID) {
+	public List<String> petsitterChoice(String userID) {
 		return reviewDao.petsitterChoice(userID);
 	}
 }
