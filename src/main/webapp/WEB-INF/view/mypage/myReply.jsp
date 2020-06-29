@@ -102,7 +102,7 @@
 			                <li><a href="mypageGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
 			                <li><a href="mypageSecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
 							<c:if test="${petsitterChk == 0}">
-								<li><a href="mypagePetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+								<li><a href="mypagePetsitter"><span class="fa fa-chevron-right mr-2"></span>매칭 게시판</a></li>
 							</c:if>
 							<c:if test="${petsitterChk == 1}">
 								<li><a href="mypageReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
@@ -116,7 +116,7 @@
 			                <li><a href="myReplyInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			                <li><a href="myReplyGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
 			                <li><a href="myReplySecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
-			                <li><a href="myReplyPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+			                <li><a href="myReplyPetsitter"><span class="fa fa-chevron-right mr-2"></span>매칭 게시판</a></li>
 			                <li><a href="myReplyReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 			            </ul>
 	          		</li>
@@ -185,7 +185,7 @@
 			url = url + "myReplySecondhand";
 		if (name == '공구게시판')
 			url = url + "myReplyGpurchase";
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "myReplyPetsitter";
 		if (name == '리뷰게시판')
 			url = url + "myReplyReview";
@@ -208,7 +208,7 @@
 			url = url + "myReplySecondhand";
 		if (name == '공구게시판')
 			url = url + "myReplyGpurchase";
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "myReplyPetsitter";
 		if (name == '리뷰게시판')
 			url = url + "myReplyReview";
@@ -230,7 +230,7 @@
 			url = url + "gpurchaseDetail?boardNum=" + boardNum;
 		if (name == '중고게시판')
 			url = url + "secondhandDetail?boardNum=" + boardNum;
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
 		if (name == '후기게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;

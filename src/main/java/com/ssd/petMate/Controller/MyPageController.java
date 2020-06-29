@@ -112,7 +112,7 @@ public class MyPageController {
 					boardSearch.pageInfo(pageNum, contentNum, totalCount);
 					List<Petsitter> myboardList = myPageFacade.getPrivatePetsitterList(boardSearch);
 					mv.addObject("myboardList", myboardList);
-					mv.addObject("boardName", "구인게시판");
+					mv.addObject("boardName", "매칭게시판");
 		}
 		
 		if (request.getServletPath().equals("/mypageReview")) {

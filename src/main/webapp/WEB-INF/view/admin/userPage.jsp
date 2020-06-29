@@ -103,7 +103,7 @@
 							</c:url>"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
 							<c:if test="${petsitterChk == 0}">
 								<li><a href="<c:url value="/userPetsitter"><c:param name="userID" value="${writerID}"/>
-							</c:url>"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+							</c:url>"><span class="fa fa-chevron-right mr-2"></span>매칭 게시판</a></li>
 							</c:if>
 							<c:if test="${petsitterChk == 1}">
 								<li><a href="<c:url value="/userReview"><c:param name="userID" value="${writerID}"/>
@@ -129,7 +129,7 @@
 			url = url + "userSecondhand";
 		if (name == '공구게시판')
 			url = url + "userGpurchase";
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "userPetsitter";
 		if (name == '리뷰게시판')
 			url = url + "userReview";
@@ -151,7 +151,7 @@
 			url = url + "gpurchaseDetail?boardNum=" + boardNum;
 		if (name == '중고게시판')
 			url = url + "secondhandDetail?boardNum=" + boardNum;
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
 		if (name == '리뷰게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
@@ -171,7 +171,7 @@
 			url = url + "userSecondhand";
 		if (name == '공구게시판')
 			url = url + "userGpurchase";
-		if (name == '구인게시판')
+		if (name == '매칭게시판')
 			url = url + "userPetsitter";
 		if (name == '리뷰게시판')
 			url = url + "userReview";
