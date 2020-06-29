@@ -170,12 +170,44 @@ public class MybatisMyPageDao implements MyPageDao{
 		return myPageMapper.getPrivateReviewList(boardSearch);
 	}
 	
-	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException{
-		return myPageMapper.getPrivateOrderList(boardSearch);
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivateInfoLikeCount(map);
+	}
+	
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateInfoLike(boardSearch);
+	}
+	
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivateInquiryLikeCount(map);
+	}
+	
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateInquiryLike(boardSearch);
+	}
+	
+	public int getPrivatePetsitterLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivatePetsitterLikeCount(map);
+	}
+	
+	public List<Petsitter> getPrivatePetsitterLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivatePetsitterLike(boardSearch);
+	}
+	
+	public int getPrivateReviewLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageMapper.getPrivateReviewLikeCount(map);
+	}
+	
+	public List<Review> getPrivateReviewLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateReviewLike(boardSearch);
 	}
 	
 	public int getPrivateOrderListCount(String userID) throws DataAccessException{
 		return myPageMapper.getPrivateOrderListCount(userID);
+	}
+	
+	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException{
+		return myPageMapper.getPrivateOrderList(boardSearch);
 	}
 	
 	public OrderCommand getOrderLineItems(int orderNum) throws DataAccessException{
@@ -185,20 +217,5 @@ public class MybatisMyPageDao implements MyPageDao{
 	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException{
 		return myPageMapper.getOrderSLineItems(orderNum);
 	}
-	
-	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
-		return myPageMapper.getPrivateInfoLike(boardSearch);
-	}
-	
-	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
-		return myPageMapper.getPrivateInquiryLike(boardSearch);
-	}
-	
-	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
-		return myPageMapper.getPrivateInfoLikeCount(map);
-	}
-	
-	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException{
-		return myPageMapper.getPrivateInquiryCount(map);
-	}
+
 }

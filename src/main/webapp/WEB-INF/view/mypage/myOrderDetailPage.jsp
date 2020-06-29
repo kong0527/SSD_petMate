@@ -12,8 +12,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
-		<h2>Politics</h2>
+		<h2>주문 상세 내역</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">

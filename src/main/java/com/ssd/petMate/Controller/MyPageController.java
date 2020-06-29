@@ -258,8 +258,8 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/myInfoLike", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageInfoLike(ModelAndView mv, HttpServletRequest request,
+	@RequestMapping(value = {"/myInfoLike", "/myInquiryLike", "/myReviewLike", "/myPetsitterLike"})
+	public ModelAndView myLike(ModelAndView mv, HttpServletRequest request,
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
 			@RequestParam(required = false, defaultValue = "10") int contentNum,
 			@RequestParam(required = false) String searchType,
@@ -273,56 +273,53 @@ public class MyPageController {
 		map.put("keyword", keyword);
 		map.put("searchType", searchType);
 		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateInfoLikeCount(map);
-		System.out.println(totalCount);
 		
 		BoardSearch boardSearch = new BoardSearch();
 		boardSearch.setSearchType(searchType);
 		boardSearch.setKeyword(keyword);
 		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Info> myInfoList = myPageFacade.getPrivateInfoLike(boardSearch);
-
-		mv.addObject("myInfoList", myInfoList);
+		
+		if (request.getServletPath().equals("/myInfoLike")) {
+			int totalCount = myPageFacade.getPrivateInfoLikeCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Info> myboardList = myPageFacade.getPrivateInfoLike(boardSearch);
+			mv.addObject("myboardList", myboardList);
+		}
+		
+		if (request.getServletPath().equals("/myInquiryLike")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateInquiryLikeCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Inquiry> myboardList = myPageFacade.getPrivateInquiryLike(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "질문게시판");
+		}
+		
+		if (request.getServletPath().equals("/myReviewLike")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivateReviewLikeCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Review> myboardList = myPageFacade.getPrivateReviewLike(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "후기게시판");
+		}
+		
+		if (request.getServletPath().equals("/myPetsitterLike")) {
+			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
+			int totalCount = myPageFacade.getPrivatePetsitterLikeCount(map);
+			System.out.println(totalCount);
+			boardSearch.pageInfo(pageNum, contentNum, totalCount);
+			List<Petsitter> myboardList = myPageFacade.getPrivatePetsitterLike(boardSearch);
+			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "구인게시판");
+		}
+		
 		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myInfoLikePage");
+		mv.setViewName("mypage/myLike");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/myInquiryLike", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView mypageInquiryLike(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int pageNum,
-			@RequestParam(required = false, defaultValue = "10") int contentNum,
-			@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword) {
-		
-		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-		
-//		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
-		map.put("searchType", searchType);
-		map.put("userID", userID);
-
-		int totalCount = myPageFacade.getPrivateInquiryLikeCount(map);
-		System.out.println(totalCount);
-		
-		BoardSearch boardSearch = new BoardSearch();
-		boardSearch.setSearchType(searchType);
-		boardSearch.setKeyword(keyword);
-		boardSearch.setUserID(userID);
-	
-//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-		boardSearch.pageInfo(pageNum, contentNum, totalCount);
-		List<Inquiry> myInquiryList = myPageFacade.getPrivateInquiryLike(boardSearch);
-
-		mv.addObject("myInquiryList", myInquiryList);
-		mv.addObject("boardSearch", boardSearch);
-		mv.setViewName("mypage/myInquiryLikePage");
-		return mv;
-	}
 }

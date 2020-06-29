@@ -3,17 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
 		<span class="caption d-block small">Categories</span>
-		<h2>Politics</h2>
+		<h2>${boardName}</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
@@ -30,16 +25,21 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="info" items="${myInfoList}">
+				<c:forEach var="boardList" items="${myboardList}">
 					<tr>
-						<td>${info.boardNum}</td>
-						<td><a href="<c:url value="/infoDetail">
-						<c:param name="boardNum" value="${info.boardNum}"/>
-						</c:url>">${info.boardTitle}</a></td>
-						<td>${info.userID}</td>
-						<td>${info.replyCnt}</td>
-						<td>${info.boardLike}</td>
-						<td>${info.boardHit}</td>
+						<td>${boardList.boardNum}</td>
+						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td>${boardList.userID}</td>
+						<td>
+							<c:if test="${boardName eq '질문게시판'}">
+								${boardList.answerCnt}
+							</c:if>
+							<c:if test="${boardName ne '질문게시판'}">
+								${boardList.replyCnt}
+							</c:if>
+						</td>
+						<td>${boardList.boardLike}</td>
+						<td>${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -88,22 +88,30 @@
 				<!-- <span style="color:black"><h5>Categories</h5></span> -->
 				<ul class="list-unstyled components mb-5">
 					<li><a href="#" data-toggle="modal" data-target="#myModal">회원 정보 수정</a></li>
-          			<li>
+ 					<li>
 			            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu2">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="mypageInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="mypageInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="mypageGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="mypageSecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+							<c:if test="${petsitterChk == 0}">
+								<li><a href="mypagePetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+							</c:if>
+							<c:if test="${petsitterChk == 1}">
+								<li><a href="mypageReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+							</c:if>
 			            </ul>
 	          		</li>
 	          		<li>
 			            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 댓글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu3">
-			                <li><a href="myCommentInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
-			                <li><a href="myCommentInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="myCommentGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
-			                <li><a href="myCommentSecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
-			                <li><a href="myCommentPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
-			                <li><a href="myCommentReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+			                <li><a href="myReplyInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="myReplyInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="myReplyGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="myReplySecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+			                <li><a href="myReplyPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
+			                <li><a href="myReplyReview"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 			            </ul>
 	          		</li>
 	          		<li>
@@ -111,8 +119,9 @@
 			            <ul class="collapse list-unstyled" id="pageSubmenu4">
 			                <li><a href="myInfoLike"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
 			                <li><a href="myInquiryLike"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="myReviewLike"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
+			                <li><a href="myPetsitterLike"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
 			            </ul>
-	          		</li>
 	          		<li>
 			            <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장바구니</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu5">
@@ -134,9 +143,8 @@
 				<h4 class="modal-title">비밀번호 확인</h4>
 			</div>
 			<div class="modal-body">
-				<form method="post"
+				<form id="checkPW"
 				class="login100-form validate-form flex-sb flex-w">
-					<!-- <span class="login100-form-title p-b-32"> Account Login </span>  -->
 					<span class="txt1 p-b-11"> 
 						비밀번호 
 					</span>
@@ -164,7 +172,16 @@
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/myInfoLike";
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "myInfoLike";
+		if (name == '질문게시판')
+			url = url + "myInquiryLike";
+		if (name == '구인게시판')
+			url = url + "myPetsitterLike";
+		if (name == '리뷰게시판')
+			url = url + "myReviewLike";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
@@ -173,29 +190,55 @@
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/myInfoLike";
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "myInfoLike";
+		if (name == '질문게시판')
+			url = url + "myInquiryLike";
+		if (name == '구인게시판')
+			url = url + "myPetsitterLike";
+		if (name == '리뷰게시판')
+			url = url + "myReviewLike";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
 	}
-	
-	$("#btnConfirm").on("click", function(){
+
+	function urlCheck(boardNum) {
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "infoDetail?boardNum=" + boardNum;
+		if (name == '질문게시판')
+			url = url + "inquiryDetail?boardNum=" + boardNum;
+		if (name == '구인게시판')
+			url = url + "petsitterDetail?boardNum=" + boardNum;
+		if (name == '후기게시판')
+			url = url + "reviewDetail?boardNum=" + boardNum;
+		location.href = url;
+	}
+	$(document).on('click', '#btnConfirm', function(e){
 		var pass1 = $("#pwd").val();
 		var pass2 = $("#confirmPwd").val();
-		alert(pass1);
-		alert(pass2);
+		if (pass1 == "" || pass2 == "") {
+			alert("비밀번호를 입력하세요.");
+			$("#pwd").focus();
+			return false;
+		}
 		if(pass1 != pass2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#confirmPwd").focus();
 			return false;
 		}
-		var confirmPwd = $("#pwd").val();
 		$.ajax({
 	        url : '${pageContext.request.contextPath}/confirmPwd',
 	        type : 'post',
-	        data : {'confirmPwd' : confirmPwd},
+	        cache: false,
+	        async: false,
+	        data : {'confirmPwd' : pass2},
 	        success : function(data){
 	        	if (data == 1) {
 	        		location.href="${pageContext.request.contextPath}/signUp";
@@ -207,4 +250,7 @@
 	    });
 	});
 
+	$("#checkPW").submit(function(e){
+	    e.preventDefault();
+	});
 </script>

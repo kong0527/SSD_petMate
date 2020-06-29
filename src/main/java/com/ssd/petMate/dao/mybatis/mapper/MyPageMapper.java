@@ -67,19 +67,28 @@ public interface MyPageMapper {
 
 	List<Review> getPrivateReviewReplyList(BoardSearch boardSearch); 
 	
-	List<Order> getPrivateOrderList(BoardSearch boardSearch);
+	int getPrivateInfoLikeCount(HashMap<String, Object> map);
+	
+	List<Info> getPrivateInfoLike(BoardSearch boardSearch);
+	
+	int getPrivateInquiryLikeCount(HashMap<String, Object> map);
+	
+	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch);
+	
+	int getPrivateReviewLikeCount(HashMap<String, Object> map);
+	
+	List<Review> getPrivateReviewLike(BoardSearch boardSearch);
+	
+	int getPrivatePetsitterLikeCount(HashMap<String, Object> map);
+	
+	List<Petsitter> getPrivatePetsitterLike(BoardSearch boardSearch);
 	
 	int getPrivateOrderListCount(String userID);
+	
+	List<Order> getPrivateOrderList(BoardSearch boardSearch);
 	
 	OrderCommand getOrderLineItems(int orderNum);
 	
 	SOrderCommand getOrderSLineItems(int orderNum);
 	
-	List<Info> getPrivateInfoLike(BoardSearch boardSearch);
-	
-	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch);
-	
-	int getPrivateInfoLikeCount(HashMap<String, Object> map);
-	
-	int getPrivateInquiryLikeCount(HashMap<String, Object> map);
 }

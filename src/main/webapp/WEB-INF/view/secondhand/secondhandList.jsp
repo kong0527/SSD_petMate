@@ -4,8 +4,7 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<span class="caption d-block small">Categories</span>
-			<h2>Politics</h2>
+			<h2>중고게시판</h2>
 		</div>
 		<div class="table-wrapper">
 			<table class="table table-striped">
@@ -22,21 +21,16 @@
 				<tbody>
 				<c:forEach var="secondhandList" items="${secondhandList}">
 					<tr>
-						<td>${secondhandList.boardNum}</td>
-						<td><a href="<c:url value="/secondhandDetail">
+						<td width=100 style="word-break:break-all">${secondhandList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/secondhandDetail">
 						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
 						</c:url>">${secondhandList.boardTitle}&emsp; <span style="color:red">&nbsp;&nbsp; [${secondhandList.replyCnt}]</span><span class="caret"></a></td>
-						<td>${secondhandList.userID}</td>
+						<td width=150 style="word-break:break-all">${secondhandList.userID}</td>
 						<td>${secondhandList.replyCnt}</td>
 						<td>${secondhandList.cartAdded}</td>
-						<td>${secondhandList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${secondhandList.boardHit}</td>
 					</tr>
 				</c:forEach>
-				<!-- 	<tr>
-						<td>2</td>
-						<td><a href="#">골골송 한번만 불러주세요</a></td>
-						<td>양갱</td>
-					</tr> -->
 				</tbody>
 			</table>
 			<table class="text-right" align="right">

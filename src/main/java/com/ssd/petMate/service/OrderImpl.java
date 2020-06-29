@@ -30,14 +30,6 @@ public class OrderImpl implements OrderFacade {
 //	@Autowired
 //	private GpurchaseCartDao gpurchaseCartDao;
 	
-	public List<Order> getOrderList(int userID) throws DataAccessException{ //주문 목록 가져오기 
-		return orderDao.getOrderList(userID);
-	}
-	
-	public Order getOrder(Order order) throws DataAccessException{ // 주문 상세정보 가져오기
-		return orderDao.getOrder(order);
-	}
-	
 	public void insertOrder(Order order) throws DataAccessException{ // 주문 생성
 		orderDao.insertOrder(order);
 	}

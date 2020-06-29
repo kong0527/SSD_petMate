@@ -2,28 +2,34 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="secondhandReply.jsp" %>
 <div class="site-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">SecondhandDetail</h1>
-				<c:if test="${secondhand.isSold eq 1}">
-					<img src="resources/img/soldout.png" align="right">
-				</c:if>
+				<h1 class="mb-4">${secondhand.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${secondhand.userID}</a></span> 
-						<span class="date-read">${secondhand.boardDate} 
-						<span class="mx-1">&bullet;</span> 조회 ${secondhand.boardHit}<span class="icon-star2"></span></span>
+						<span class="d-block">
+							<a href="<c:url value="/userpage">
+							<c:param name="userID" value="${secondhand.userID}"/>
+							</c:url>">${secondhand.userID}</a>
+						</span> 
+						<span class="date-read">
+						<fmt:parseDate var="dateString" value="${secondhand.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+						조회 ${secondhand.boardHit}</span>
 					</div>
 				</div>
-				${secondhand.boardContent} &nbsp;
-				${secondhand.boardNum}  &nbsp;
-				${secondhand.price}  &nbsp;
-				${secondhand.boardDate}  &nbsp;
-				${secondhand.userID}  &nbsp;
 				
+				<div style="font-weight: bold; font-size: 15px;">
+					상품 가격: ${secondhand.price}  <br>
+				</div>
+			
+				<hr class="dashed">
+				<br />
+				${secondhand.boardContent} &nbsp;
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
 				<form>
@@ -141,3 +147,8 @@
 		}
 	}
 </script>
+<style>
+hr.dashed {
+  border-top: 3px dashed #bbb;
+}
+</style>

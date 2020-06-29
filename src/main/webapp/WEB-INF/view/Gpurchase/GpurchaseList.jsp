@@ -4,8 +4,7 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<span class="caption d-block small">Categories</span>
-			<h2>Politics</h2>
+			<h2>공구게시판</h2>
 		</div>
 		<div class="table-wrapper">
 			<table class="table table-striped">
@@ -22,21 +21,16 @@
 				<tbody>
 				<c:forEach var="gpurchaseList" items="${gpurchaseList}">
 					<tr>
-						<td>${gpurchaseList.boardNum}</td>
-						<td><a href="<c:url value="/gpurchaseDetail">
+						<td width=100 style="word-break:break-all">${gpurchaseList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/gpurchaseDetail">
 						<c:param name="boardNum" value="${gpurchaseList.boardNum}"/>
 						</c:url>">${gpurchaseList.boardTitle}</a></td>
-						<td>${gpurchaseList.userID}</td>
+						<td width=150 style="word-break:break-all">${gpurchaseList.userID}</td>
 						<td>${gpurchaseList.replyCnt}</td>
 						<td>${gpurchaseList.cartAdded}</td>
-						<td>${gpurchaseList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${gpurchaseList.boardHit}</td>
 					</tr>
 				</c:forEach>
-				<!-- 	<tr>
-						<td>2</td>
-						<td><a href="#">골골송 한번만 불러주세요</a></td>
-						<td>양갱</td>
-					</tr> -->
 				</tbody>
 			</table>
 			<table class="text-right" align="right">
