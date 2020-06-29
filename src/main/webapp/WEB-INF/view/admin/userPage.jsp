@@ -119,7 +119,20 @@
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	function fn_search(writerID) {
-		var url = "${pageContext.request.contextPath}/userpage";
+		var url = "${pageContext.request.contextPath}/";
+		var name = '${boardName}';
+		if (name == '정보게시판')
+			url = url + "userInfo";
+		if (name == '질문게시판')
+			url = url + "userInquiry";
+		if (name == '중고게시판')
+			url = url + "userSecondhand";
+		if (name == '공구게시판')
+			url = url + "userGpurchase";
+		if (name == '구인게시판')
+			url = url + "userPetsitter";
+		if (name == '리뷰게시판')
+			url = url + "userReview";
 		url = url + "?userID=" + writerID;
 		url = url + "&searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
