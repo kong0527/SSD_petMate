@@ -27,11 +27,13 @@
 				<div class="pt-5" align="right">
 					<form>
 						<input type="hidden" id="boardNum" name="boardNum" value="${inquiry.boardNum}"/>
+						<c:if test="${inquiry.isSelected ne 1}">
 						<c:if test="${sessionScope.userID ne null}">
 							<c:if test="${sessionScope.userID eq inquiry.userID}">
 								<button type="submit" formaction="inquiryForm" class="btn">수정</button>
 								<input type="button" class="btn" value="삭제" onclick="del(${inquiry.boardNum})" />
 							</c:if>
+						</c:if>	
 							<c:if test="${sessionScope.userID eq 'admin'}">
 								<input type="button" class="btn" value="삭제" onclick="del(${inquiry.boardNum})" />
 							</c:if>
@@ -78,7 +80,7 @@
 				               <textarea class="form-control" cols="10" rows="5" id="answerContent" name="answerContent" placeholder="내용을 입력하세요."></textarea>
 				               <c:if test="${sessionScope.userID ne null}">
 					               <div class="form-group">	
-					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3 float-right">등록</button>
+					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3">등록</button>
 					               </div>
 				               </c:if>
 				               <c:if test="${sessionScope.userID eq null}">
@@ -155,5 +157,12 @@
 				$("#boardLike").html(html);
 			}
 		});
+	}
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='inquiryDelete?boardNum='+boardNum;
+		}
 	}
 </script>
