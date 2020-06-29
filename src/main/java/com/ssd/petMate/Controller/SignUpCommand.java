@@ -76,11 +76,6 @@ public class SignUpCommand {
 		this.newAccount = true;
 	}
 	
-//	public RegisterCommand(UserList user) {
-//		super();
-//		this.user = new UserList();
-//		this.newAccount = true;
-//	}
 //	암호와 암호 확인이 일치하는지 검사
 	public boolean isSamePwdConfirmPwd() {
 		if (pwd == null || confirmPwd == null) {

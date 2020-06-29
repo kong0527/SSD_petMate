@@ -56,7 +56,6 @@ public class ApiController {
             } else {  // 에러 발생
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
             }
-            System.out.println(responseCode);
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
                 response.append(inputLine);
