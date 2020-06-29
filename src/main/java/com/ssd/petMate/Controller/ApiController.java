@@ -39,8 +39,6 @@ public class ApiController {
 			@RequestParam(required = false) String keyword, RedirectAttributes rttr) {
                 StringBuffer response = new StringBuffer();
         List<ShopParser> shopList = new ArrayList<>();
-        System.out.println(keyword);
-
         try {
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/shop.json?query="+ text; // json 결과
