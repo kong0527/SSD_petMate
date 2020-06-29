@@ -285,6 +285,7 @@ public class MyPageController {
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Info> myboardList = myPageFacade.getPrivateInfoLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
+			mv.addObject("boardName", "정보게시판");
 		}
 		
 		if (request.getServletPath().equals("/myInquiryLike")) {
