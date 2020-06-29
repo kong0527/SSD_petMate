@@ -59,11 +59,10 @@ public class GpurchaseFormController {
 		if (request.getParameter("boardNum") == null) {
 			gpurchase.setUserID(request.getSession().getAttribute("userID").toString());
 			gpurchaseFacade.insertGpurchase(gpurchase);
-			DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+			DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm");
 			try {
-				System.out.println("스케줄러 시작");
-				System.out.println(gpurchase.getEdate());
-				Date edate = dateFormat.parse(gpurchase.getEdate()); // 이제 곧 수정해야 함
+				String date = gpurchase.getEdate() + " 00:00";
+				Date edate = dateFormat.parse(date);
 				int boardNum = gpurchase.getBoardNum();
 				schedulerFacade.testScheduler(edate, boardNum);
 			} catch (ParseException e) {

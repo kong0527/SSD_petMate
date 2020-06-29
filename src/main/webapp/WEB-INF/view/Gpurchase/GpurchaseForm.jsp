@@ -122,44 +122,38 @@ nhn.husky.EZCreator.createInIFrame({
         oEditors.getById["boardContent"].exec("FOCUS");
         return false;
      } 
-     var goalNum = $("#goalNum").val()
+     var goalNum = $("#goalNum").val();
      if (goalNum == '') {
          alert('목표 인원 수를 입력하세요.');
      }
-     var price = $("#price").val()
+     var price = $("#price").val();
      if (price == '') {
          alert('가격을 입력하세요.');
      }
-     var productName= $("#productName").val()
-     if (prductName.length > 100) {
+     var lprice = $("#lprice").val();
+     if (lprice == '') {
+         alert('최저가를 입력하세요.');
+     }
+     var productName= $("#productName").val();
+     var length = byte_length(productName);
+     if (length > 100) {
          alert('상품명은 100자 내로 입력해 주세요.');
+         return false;
      }
      $("#form").submit();
 });
-	/* $(function() {	
-		$('#sdate').datepicker({
-		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-		    endDate: '+10d',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
-		    autoclose : true,	//사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
-		    immediateUpdates: false,	//사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
-		    title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
-		    todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
-		    toggleActive : true,	//이미 선택된 날짜 선택하면 기본값 : false인경우 그대로 유지 true인 경우 날짜 삭제
-		    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
-		    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-		    
-		});//datepicker end
-	});//ready end */
 
 	$("#sdate").datepicker({
 		format: 'yyyy-mm-dd',
 		startDate: '0d',
 		autoclose: true,
 		language : "ko"	,
+		toggleActive : true,
 		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false   
 	}).on('changeDate', function (selected) {
-		var startDate = new Date(selected.date.valueOf());
+		var date = new Date(selected.date.valueOf());
+		var startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 		$('#edate').datepicker('setStartDate', startDate);
 	}).on('clearDate', function (selected) {
 		$('#edate').datepicker('setStartDate', null);
@@ -169,6 +163,7 @@ nhn.husky.EZCreator.createInIFrame({
 		format: 'yyyy-mm-dd',
 		autoclose: true,
 		language : "ko"	,
+		toggleActive : true,
 		title: "종료 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
 	})
@@ -229,8 +224,20 @@ nhn.husky.EZCreator.createInIFrame({
 	               $("#shopResult").hide();
 	          } 
 	     }
-	});
-	
+	});	
+
+	function byte_length(str) {
+        var count = 0;
+        var ch = '';
+        for(var i = 0; i < str.length; i++) {
+            ch = str.charAt(i);
+            if(escape(ch).length == 6) {
+                count ++;
+            } 
+            count ++;           
+        }        
+        return count;
+    }
 </script>
 <style>
 	ul{

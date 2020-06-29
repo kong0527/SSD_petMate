@@ -12,7 +12,7 @@
 					<div class="img-bg"
 						style="background-image: url('resources/img/kong.jpg')"></div>
 					<div class="contents">
-						<span class="caption">Today's Best</span>
+						<span class="caption">Today's Best 정보 게시판</span>
 						<h2>
 							<a href="<c:url value="/infoDetail">
 							<c:param name="boardNum" value="${dailyBestInfo.boardNum}"/>
@@ -32,7 +32,7 @@
 						<div class="post-meta">
 							<span class="d-block">${dailyBestInfo.userID}</span> 
 							<span class="date-read">
-								<fmt:parseDate var="dateString" value="${dailyBestInfo.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+								<fmt:parseDate var="dateString" value="${dailyBestInfo.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 								<span class="mx-1">&bullet;</span> 
 								${dailyBestInfo.boardLike} <span class="icon-star2"></span></span>
@@ -48,7 +48,7 @@
 					<div class="img-bg"
 						style="background-image: url('resources/img/yang.jpg')"></div>
 					<div class="contents">
-						<span class="caption">Today's Best</span>
+						<span class="caption">Today's Best 질문 게시판</span>
 						<h2>
 							<a href="<c:url value="/inquiryDetail">
 							<c:param name="boardNum" value="${dailyBestInquiry.boardNum}"/>
@@ -67,7 +67,7 @@
 						<div class="post-meta">
 							<span class="d-block">${dailyBestInquiry.userID}</span> 
 							<span class="date-read">
-								<fmt:parseDate var="dateString" value="${dailyBestInquiry.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+								<fmt:parseDate var="dateString" value="${dailyBestInquiry.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/> 
 							<span class="mx-1">&bullet;</span> 
 								${dailyBestInquiry.boardLike} <span class="icon-star2"></span></span>
@@ -83,7 +83,7 @@
 					<div class="img-bg"
 						style="background-image: url('resources/img/kong2.jpg')"></div>
 					<div class="contents">
-						<span class="caption">Today's Best</span>
+						<span class="caption">Today's Best 리뷰 게시판</span>
 						<h2>
 							<a href="<c:url value="/reviewDetail">
 							<c:param name="boardNum" value="${dailyBestReview.boardNum}"/>
@@ -102,7 +102,7 @@
 						<div class="post-meta">
 							<span class="d-block">${dailyBestReview.userID}</span> 
 							<span class="date-read">
-								<fmt:parseDate var="dateString" value="${dailyBestReview.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+								<fmt:parseDate var="dateString" value="${dailyBestReview.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 							<span class="mx-1">&bullet;</span> 
 								${dailyBestReview.boardLike} <span class="icon-star2"></span></span>
@@ -118,22 +118,29 @@
 					<div class="img-bg"
 						style="background-image: url('resources/img/yang2.jpg')"></div>
 					<div class="contents">
-						<span class="caption">Editor's Pick</span>
+						<span class="caption">Today's Best 공구 게시판</span>
 						<h2>
-							<a href="blog-single.html">News Needs to Meet Its Audiences
-								Where They Are</a>
+							<a href="<c:url value="/gpurchaseDetail">
+							<c:param name="boardNum" value="${dailyBestGpurchase.boardNum}"/>
+							</c:url>">${dailyBestGpurchase.boardTitle}</a>
 						</h2>
-						<p class="mb-3">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Voluptate vero obcaecati natus adipisci
-							necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium
-							magni delectus cum, tempore deserunt aliquid quaerat culpa nemo
-							veritatis, iste adipisci excepturi consectetur doloribus aliquam
-							accusantium beatae?</p>
-
+						<p class="mb-3">
+							<c:choose>
+								<c:when test="${fn:length(dailyBestGpurchase.boardContent) > 200}">
+									${fn:substring(dailyBestGpurchase.boardContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""),0, 200)}...
+								</c:when>
+								<c:otherwise>
+									${dailyBestGpurchase.boardContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "")}
+								 </c:otherwise> 
+							 </c:choose>
+						</p>
 						<div class="post-meta">
-							<span class="d-block"><a href="#">Dave Rogers</a> in <a
-								href="#">Food</a></span> <span class="date-read">Jun 14 <span
-								class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+							<span class="d-block">${dailyBestGpurchase.userID}</span> 
+							<span class="date-read">
+								<fmt:parseDate var="dateString" value="${dailyBestGpurchase.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+							<span class="mx-1">&bullet;</span> 
+								${dailyBestGpurchase.cartAdded} <span class="icon-star2"></span></span>
 						</div>
 					</div>
 				</div>
@@ -148,7 +155,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>정보 게시판</h2>
+					<h2>Weekly Best 정보 게시판</h2>
 				</div>
 				<c:forEach var="infoList" items="${weeklyBestInfo}">
 				<div class="post-entry-2 d-flex">
@@ -173,7 +180,7 @@
 						<div class="post-meta">
 							<span class="d-block">${infoList.userID}</span> 
 							<span class="date-read">
-								<fmt:parseDate var="dateString" value="${infoList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+								<fmt:parseDate var="dateString" value="${infoList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 							<span class="mx-1">&bullet;</span> ${infoList.boardLike} <span class="icon-star2"></span></span>
 						</div>
@@ -183,7 +190,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>질문 게시판</h2>
+					<h2>Weekly Best 질문 게시판</h2>
 				</div>
 				<c:forEach var="inquiryList" items="${weeklyBestInquiry}">
 					<div class="post-entry-2 d-flex">
@@ -208,7 +215,7 @@
 							<div class="post-meta">
 								<span class="d-block">${inquiryList.userID}</span> 
 								<span class="date-read">
-									<fmt:parseDate var="dateString" value="${inquiryList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+									<fmt:parseDate var="dateString" value="${inquiryList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 									<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 								<span class="mx-1">&bullet;</span> ${inquiryList.boardLike} <span class="icon-star2"></span></span>
 							</div>
@@ -218,7 +225,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>펫시터 리뷰 게시판</h2>
+					<h2>Weekly Best 펫시터 리뷰 게시판</h2>
 				</div>
 				<c:forEach var="reviewList" items="${weeklyBestReview}">
 					<div class="post-entry-2 d-flex">
@@ -243,9 +250,44 @@
 							<div class="post-meta">
 								<span class="d-block">${reviewList.userID}</span> 
 								<span class="date-read">
-									<fmt:parseDate var="dateString" value="${reviewList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />
+									<fmt:parseDate var="dateString" value="${reviewList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
 									<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
 								<span class="mx-1">&bullet;</span> ${reviewList.boardLike} <span class="icon-star2"></span></span>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="col-lg-6">
+				<div class="section-title">
+					<h2>Weekly Best 공구 게시판</h2>
+				</div>
+				<c:forEach var="gpurchaseList" items="${weeklyBestGpurchase}">
+					<div class="post-entry-2 d-flex">
+			 		<!-- <div class="thumbnail"
+							style="background-image: url('resources/img/second.png')"></div> -->
+						<div class="contents">
+							<h2>
+								<a href="<c:url value="/gpurchaseDetail">
+							<c:param name="boardNum" value="${gpurchaseList.boardNum}"/>
+							</c:url>">${gpurchaseList.boardTitle}</a>
+							</h2>
+							<p class="mb-3">
+								<c:choose>
+									<c:when test="${fn:length(gpurchaseList.boardContent) > 100}">
+										${fn:substring(gpurchaseList.boardContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""),0, 100)}...
+									</c:when>
+									<c:otherwise>
+										${gpurchaseList.boardContent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "")}
+									 </c:otherwise> 
+							 	</c:choose>
+							</p>
+							<div class="post-meta">
+								<span class="d-block">${gpurchaseList.userID}</span> 
+								<span class="date-read">
+									<fmt:parseDate var="dateString" value="${gpurchaseList.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+								<span class="mx-1">&bullet;</span> ${gpurchaseList.cartAdded} <span class="icon-star2"></span></span>
 							</div>
 						</div>
 					</div>

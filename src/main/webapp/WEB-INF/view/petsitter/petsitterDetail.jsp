@@ -7,7 +7,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">${petsitter.boardTitle}</h1>
+				<h1 class="mb-4">
+					<c:if test="${not empty petsitter.isSelected}">
+						[매칭완료]&nbsp;
+					</c:if>
+					${petsitter.boardTitle}
+				</h1>
 				<c:if test="${not empty petsitter.isSelected}">
 					<img src="resources/img/lock.png" align="right">
 				</c:if>

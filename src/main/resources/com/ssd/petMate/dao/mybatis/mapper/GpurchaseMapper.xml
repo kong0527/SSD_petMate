@@ -68,8 +68,8 @@
 		boardContent = #{boardContent}, 
 		boardDate = SYSDATE, 
 		price = #{price},
-		lprice = #{lprice},
-		productName = #{productName}
+		lprice = #{lprice,jdbcType=NUMERIC},
+		productName = #{productName,jdbcType=VARCHAR}
 		WHERE boardNum = #{boardNum}
 	</update>
 
