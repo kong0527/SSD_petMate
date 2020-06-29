@@ -83,7 +83,7 @@
 				<option value="boardContent">글 내용</option>
 			</select>
 	        <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
-	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
+	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch" onClick="fn_search('${writerID}');"><span class="icon-search"></span></button>
        </div>
 		</div>
 		<nav id="sidebar">
@@ -118,14 +118,14 @@
 	
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
-	$(document).on('click', '#btnSearch', function(e) {
-		e.preventDefault();
+	function fn_search(writerID) {
 		var url = "${pageContext.request.contextPath}/userpage";
-		url = url + "?searchType=" + $('#searchType').val();
+		url = url + "?userID=" + writerID;
+		url = url + "&searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
 		location.href = url;
-	});
+	}
 
 	function urlCheck(boardNum) {
 		var name = '${boardName}';
@@ -146,7 +146,7 @@
 	}
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
-	function fn_pagination(pageNum, contentNum, searchType, keyword, userID) {
+	function fn_pagination(pageNum, contentNum, searchType, keyword, writerID) {
 		var url = "${pageContext.request.contextPath}/";
 		var writerID = "${writerID}";
 		var name = '${boardName}';
@@ -162,11 +162,11 @@
 			url = url + "userPetsitter";
 		if (name == '리뷰게시판')
 			url = url + "userReview";
-		url = url + "?pageNum=" + pageNum;
+		url = url + "?userID=" + writerID;
+		url = url + "&pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
 		url = url + "&keyword=" + keyword;
-		url = url + "&userID=" + writerID;
 		location.href = url;
 	}
 </script>
