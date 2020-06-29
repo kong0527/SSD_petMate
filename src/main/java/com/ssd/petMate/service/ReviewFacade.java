@@ -19,4 +19,5 @@ public interface ReviewFacade {
 	void updateLike(Review review);
 	void updateReplyCnt(Review review);
 	List<String> petsitterChoice(String userID);
+	public int petsitterCount(String userID);
 }

@@ -108,4 +108,14 @@
           FROM petsitter
           WHERE isSelected = #{userID})      
    </select>
+   
+   <!-- 펫시터 카운트 -->
+	<select id="petsitterCount" resultType="int" parameterType="String">
+      SELECT DISTINCT COUNT(userID)
+      FROM Petsitter
+      WHERE boardNum IN (
+          SELECT boardNum
+          FROM petsitter
+          WHERE isSelected = #{userID})      
+   </select> 
 </mapper>
