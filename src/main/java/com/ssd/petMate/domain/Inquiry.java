@@ -12,7 +12,6 @@ public class Inquiry {
 	private int answerCnt;
 	@NotEmpty
 	private String boardTitle;
-	private String boardImage;
 	private int isSelected;
 	
 	public int getBoardNum() {
@@ -63,17 +62,10 @@ public class Inquiry {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
-	}
 	public int getIsSelected() {
 		return isSelected;
 	}
 	public void setIsSelected(int isSelected) {
 		this.isSelected = isSelected;
 	}
-
 }

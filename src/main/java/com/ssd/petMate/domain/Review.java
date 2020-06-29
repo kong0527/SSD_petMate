@@ -13,7 +13,6 @@ public class Review {
 	private int replyCnt;
 	@NotBlank
 	private String boardTitle;
-	private String boardImage;
 	private double rating;
 	private String petsitterName;
 	
@@ -64,12 +63,6 @@ public class Review {
 	}
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
-	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
 	}
 	public double getRating() {
 		return rating;
