@@ -18,7 +18,7 @@
             <div class="row align-items-center">
                <div class="col-12 col-lg-6 d-flex">
                	 <img src="resources/img/dog.png" width="64px" height="64px"/>
-                  <a href="${pageContext.request.contextPath}/index" class="site-logo"> petMate </a> <a href="#"
+                  <a href="${pageContext.request.contextPath}/index" class="site-logo"> PETMATE </a> <a href="#"
                      class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
                      class="icon-menu h3"></span></a> 
                      <img src="resources/img/cat.png" width="64px" height="64px"/>

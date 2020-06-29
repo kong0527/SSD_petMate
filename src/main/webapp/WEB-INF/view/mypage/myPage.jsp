@@ -27,9 +27,9 @@
 				<tbody>
 			<c:forEach var="boardList" items="${myboardList}">
 					<tr>
-						<td>${boardList.boardNum}</td>
-						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
-						<td>${boardList.userID}</td>
+						<td width=80 style="word-break:break-all">${boardList.boardNum}</td>
+						<td width=400 style="word-break:break-all"><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td width=120 style="word-break:break-all">${boardList.userID}</td>
 						<td>
 							<c:if test="${boardName eq '질문게시판'}">
 								${boardList.answerCnt}
@@ -46,7 +46,7 @@
 								${boardList.boardLike}
 							</c:if>
 						</td>
-						<td>${boardList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
