@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="resources/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
