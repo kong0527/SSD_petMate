@@ -639,7 +639,7 @@
 	</select>
 	
 	<select id="getPrivateReviewLikeCount" resultType="int" parameterType="HashMap">
-		SELECT COUNT(*)
+		SELECT DISTINCT COUNT(*)
           FROM Review
 	      where boardNum in
           (

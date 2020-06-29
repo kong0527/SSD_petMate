@@ -11,8 +11,15 @@
 				<h1 class="mb-4">${gpurchase.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${gpurchase.userID}</a></span> 
-						<span class="date-read">${gpurchase.boardDate}</span>
+						<span class="d-block">
+							<a href="<c:url value="/userpage">
+							<c:param name="userID" value="${gpurchase.userID}"/>
+							</c:url>">${gpurchase.userID}</a>
+						</span> 
+						<span class="date-read">
+						<fmt:parseDate var="dateString" value="${gpurchase.boardDate}" pattern="yyyy-MM-dd HH:mm:ss" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/>
+						조회 ${gpurchase.boardHit}</span>
 					</div>
 				</div>
 				

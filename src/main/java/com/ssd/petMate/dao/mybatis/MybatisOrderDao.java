@@ -30,14 +30,6 @@ public class MybatisOrderDao implements OrderDao {
 	@Autowired
 	private OrderMapper orderMapper;
 	
-	public List<Order> getOrderList(int userID) throws DataAccessException{ //주문 목록 가져오기
-		return orderMapper.getOrderList(userID);
-	}
-
-	public Order getOrder(Order order) throws DataAccessException{ //주문 상세정보 가져오기 
-		return orderMapper.getOrder(order);
-	}
-
 	public void insertOrder(Order order) throws DataAccessException{
 		orderMapper.insertOrder(order);
 	}

@@ -280,13 +280,11 @@ public class MyPageController {
 		boardSearch.setUserID(userID);
 		
 		if (request.getServletPath().equals("/myInfoLike")) {
-			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
-			int totalCount = myPageFacade.getPrivateInfoReplyCount(map);
+			int totalCount = myPageFacade.getPrivateInfoLikeCount(map);
 			System.out.println(totalCount);
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
-			List<Info> myboardList = myPageFacade.getPrivateInfoReplyList(boardSearch);
+			List<Info> myboardList = myPageFacade.getPrivateInfoLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
-			mv.addObject("boardName", "정보게시판");
 		}
 		
 		if (request.getServletPath().equals("/myInquiryLike")) {

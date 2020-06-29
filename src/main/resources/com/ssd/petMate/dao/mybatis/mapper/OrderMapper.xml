@@ -5,21 +5,6 @@
 
   <cache />
 
-<!-- 주문 목록 가져오기 -->
-  <select id="getOrderList" resultType="com.ssd.petMate.domain.Order" parameterType="int">
-    SELECT (orderNum, orderDate, price)
-    FROM ORDERLIST
-    WHERE userID = #{userID}
-    ORDER BY orderNum DESC
-  </select>
- 
-<!-- 주문 내용 가져오기 lineitem 조인(?)--> 
- <select id="getOrder" resultType="com.ssd.petMate.domain.Order"  parameterType="com.ssd.petMate.domain.Order">
-    SELECT *
-    FROM ORDERLIST
-    WHERE userID = #{userID} and orderNum = #{orderNum}
-  </select>
-
 <!-- 주문 추가하기 -->
   <insert id="insertOrder" parameterType="com.ssd.petMate.domain.Order">
   <selectKey keyProperty="orderNum" resultType="int" order="BEFORE">

@@ -25,7 +25,7 @@
 					</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="boardList" items="${myboardList}">
+				<c:forEach var="boardList" items="${myboardList}">
 					<tr>
 						<td>${boardList.boardNum}</td>
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
@@ -129,6 +129,7 @@
 			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
 	          		</li>
+	          		<li><a href="myOrderList">내 주문 내역</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -171,7 +172,16 @@
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/myLike";
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "myInfoLike";
+		if (name == '질문게시판')
+			url = url + "myInquiryLike";
+		if (name == '구인게시판')
+			url = url + "myPetsitterLike";
+		if (name == '리뷰게시판')
+			url = url + "myReviewLike";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 

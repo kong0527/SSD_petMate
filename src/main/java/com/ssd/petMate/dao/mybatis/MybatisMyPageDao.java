@@ -179,7 +179,7 @@ public class MybatisMyPageDao implements MyPageDao{
 	}
 	
 	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException{
-		return myPageMapper.getPrivateInquiryCount(map);
+		return myPageMapper.getPrivateInquiryLikeCount(map);
 	}
 	
 	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
@@ -195,7 +195,7 @@ public class MybatisMyPageDao implements MyPageDao{
 	}
 	
 	public int getPrivateReviewLikeCount(HashMap<String, Object> map) throws DataAccessException{
-		return myPageMapper.getPrivateReviewCount(map);
+		return myPageMapper.getPrivateReviewLikeCount(map);
 	}
 	
 	public List<Review> getPrivateReviewLike(BoardSearch boardSearch) throws DataAccessException{
