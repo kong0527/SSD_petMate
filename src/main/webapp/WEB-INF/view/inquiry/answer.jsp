@@ -41,7 +41,6 @@ function answerList(){
 		                if (inId == userID) {
 			                if (value.isSelected != 1) {
 		                        html += '<a onclick="answerSelect('+value.answerNum+',\''+ value.boardNum+'\');" class="btn btn-info btn-circle text-uppercase float-right"> 채택 </a>';
-								console.log("왜 안되니..");
 			                }
 		                }
 		                if (value.isSelected == 1)
@@ -53,6 +52,7 @@ function answerList(){
 	                    html += '<p>' + value.answerContent + '</p>';
 	                    /* 로그인한 사용자에게만 적용 */
 	                    if (userID != 'null') {
+	                    	if (value.isSelected != 1)
 	                    	html += '<p><a onclick="insertAnswerReply('+value.answerNum+',\''+ value.boardNum+'\');" class="btn btn-info btn-circle text-uppercase">Reply</a></p>';
 	                   		/* 현재 사용자가 댓글 작성자일 때  */
 		                   	if (userID == value.userID) {
@@ -80,8 +80,10 @@ function answerList(){
 		                    if (userID != 'null') {
 		                   		/* 현재 사용자가 댓글 작성자일 때  */
 			                   	if (userID == value.userID) {
-			                       	html += '<a style="padding-right:5px" onclick="answerUpdate(' + this.answerNum + ', \'' + this.answerContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
-			                        html += '<a onclick="answerDelete('+value.answerNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
+			                   		if (value.isSelected != 0) {
+			                       		html += '<a style="padding-right:5px" onclick="answerUpdate(' + this.answerNum + ', \'' + this.answerContent + '\', \'' + this.userID + '\' );"> 수정 </a>';
+			                        	html += '<a onclick="answerDelete('+value.answerNum+',\''+ value.boardNum+'\');"> 삭제 </a>';
+			                   		}
 			                    }
 		                    }
 		  	              	html += '</div>';

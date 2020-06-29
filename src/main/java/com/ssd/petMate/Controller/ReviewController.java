@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import com.ssd.petMate.domain.Review;
 import com.ssd.petMate.domain.ReviewLike;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.ReviewLikeFacade;
+import com.ssd.petMate.service.UserImpl;
 import com.ssd.petMate.service.ReviewFacade;
 
 @Controller
@@ -26,6 +28,17 @@ public class ReviewController {
 	
 	@Autowired
 	private ReviewLikeFacade reviewLikeFacade;
+	
+	@Autowired
+	private UserImpl userService;
+	
+	@ModelAttribute("petsitterChk")
+	public int petsitterChk(HttpServletRequest request) {
+		if (request.getSession().getAttribute("userID") != null) {
+			return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+		}
+		return -1;
+	}
 	
 	@RequestMapping(value = "/reviewDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviewDelete(@RequestParam("boardNum") int boardNum) {

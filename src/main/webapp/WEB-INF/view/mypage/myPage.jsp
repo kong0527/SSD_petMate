@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
 		<h2>${boardName}</h2>
 	</div>
 </div>
@@ -27,9 +26,9 @@
 				<tbody>
 			<c:forEach var="boardList" items="${myboardList}">
 					<tr>
-						<td>${boardList.boardNum}</td>
-						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
-						<td>${boardList.userID}</td>
+						<td width=80 style="word-break:break-all">${boardList.boardNum}</td>
+						<td width=400 style="word-break:break-all"><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td width=120 style="word-break:break-all">${boardList.userID}</td>
 						<td>
 							<c:if test="${boardName eq '질문게시판'}">
 								${boardList.answerCnt}
@@ -46,7 +45,7 @@
 								${boardList.boardLike}
 							</c:if>
 						</td>
-						<td>${boardList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -113,8 +112,8 @@
 	          		<li>
 			            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">내가 쓴 댓글</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu3">
+			           		<li><a href="myReplyInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
 			                <li><a href="myReplyInquiry"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
-			                <li><a href="myReplyInfo"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
 			                <li><a href="myReplyGpurchase"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
 			                <li><a href="myReplySecondhand"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
 			                <li><a href="myReplyPetsitter"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="answer.jsp" %>
 <!-- <link href="resources/css/comment.css" rel="stylesheet"> -->
 <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
@@ -8,14 +9,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 single-content">
-				<h1 class="mb-4">${inquiry.boardTitle}</h1>
+				<h1 class="mb-4">
+				<c:if test="${inquiry.isSelected eq 1}">[채택완료] &nbsp;</c:if>${inquiry.boardTitle}</h1>
 				<c:if test="${inquiry.isSelected eq 1}">
 					<img src="resources/img/lock.png" align="right">
 				</c:if>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${inquiry.userID}</a></span> 
-						<span class="date-read">${inquiry.boardDate} 
+						<span class="d-block"><a href="<c:url value="/userpage"><c:param name="userID" value="${inquiry.userID}"/></c:url>">${inquiry.userID}</a></span> 
+						<span class="date-read"><fmt:parseDate var="dateString" value="${inquiry.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/> 
 						<span class="mx-1">&bullet;</span> 조회 ${inquiry.boardHit} <span class="icon-star2"></span></span>
 					</div>
 				</div>
@@ -24,11 +27,13 @@
 				<div class="pt-5" align="right">
 					<form>
 						<input type="hidden" id="boardNum" name="boardNum" value="${inquiry.boardNum}"/>
+						<c:if test="${inquiry.isSelected ne 1}">
 						<c:if test="${sessionScope.userID ne null}">
 							<c:if test="${sessionScope.userID eq inquiry.userID}">
 								<button type="submit" formaction="inquiryForm" class="btn">수정</button>
 								<input type="button" class="btn" value="삭제" onclick="del(${inquiry.boardNum})" />
 							</c:if>
+						</c:if>	
 							<c:if test="${sessionScope.userID eq 'admin'}">
 								<input type="button" class="btn" value="삭제" onclick="del(${inquiry.boardNum})" />
 							</c:if>
@@ -75,7 +80,7 @@
 				               <textarea class="form-control" cols="10" rows="5" id="answerContent" name="answerContent" placeholder="내용을 입력하세요."></textarea>
 				               <c:if test="${sessionScope.userID ne null}">
 					               <div class="form-group">	
-					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3 float-right">등록</button>
+					               		<button type="button" name="btnAnswer" id="btnAnswer" class="btn btn-primary py-3">등록</button>
 					               </div>
 				               </c:if>
 				               <c:if test="${sessionScope.userID eq null}">
@@ -152,5 +157,12 @@
 				$("#boardLike").html(html);
 			}
 		});
+	}
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='inquiryDelete?boardNum='+boardNum;
+		}
 	}
 </script>

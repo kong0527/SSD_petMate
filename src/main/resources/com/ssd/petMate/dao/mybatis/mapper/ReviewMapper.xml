@@ -50,8 +50,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertBoard" parameterType="com.ssd.petMate.domain.Review">
 		INSERT
-		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, boardImage, rating, petsitterName)
-		VALUES(#{userID}, #{boardTitle}, #{boardContent, jdbcType=VARCHAR}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{boardImage, jdbcType=VARCHAR}, #{rating}, #{petsitterName, jdbcType=VARCHAR})
+		INTO Review(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardLike, rating, petsitterName)
+		VALUES(#{userID}, #{boardTitle}, #{boardContent, jdbcType=VARCHAR}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardLike, jdbcType=NUMERIC}, #{rating}, #{petsitterName, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 게시글 상세보기 -->
@@ -67,7 +67,6 @@
 		boardTitle = #{boardTitle}, 
 		boardContent = #{boardContent}, 
 		boardDate = SYSDATE, 
-		boardImage = #{boardImage,jdbcType=VARCHAR}, 
 		rating = #{rating},
 		petsitterName = #{petsitterName}
 		WHERE boardNum = #{boardNum}

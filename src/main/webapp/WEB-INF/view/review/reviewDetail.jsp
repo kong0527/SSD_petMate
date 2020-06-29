@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ include file="reviewReply.jsp" %>
 <div class="site-section">
 	<div class="container">
@@ -9,8 +10,9 @@
 				<h1 class="mb-4">${review.boardTitle}</h1>
 				<div class="post-meta d-flex mb-5">
 					<div class="vcard">
-						<span class="d-block"><a href="#">${review.userID}</a></span> 
-						<span class="date-read">${review.boardDate} 
+						<span class="d-block"><a href="<c:url value="/userpage"><c:param name="userID" value="${review.userID}"/></c:url>">${review.userID}</a></span>  
+						<span class="date-read"><fmt:parseDate var="dateString" value="${review.boardDate}" pattern="yyyy-MM-dd HH:mm:ss.S" />               
+						<fmt:formatDate value="${dateString}" pattern="yyyy-MM-dd HH:mm"/> 
 						<span class="mx-1">&bullet;</span>조회 ${review.boardHit} <span class="icon-star2"></span></span>
 						<!-- 별점표시하기 -->
 					</div>
