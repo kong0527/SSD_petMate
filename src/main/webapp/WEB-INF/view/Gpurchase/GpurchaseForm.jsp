@@ -156,10 +156,12 @@ nhn.husky.EZCreator.createInIFrame({
 		startDate: '0d',
 		autoclose: true,
 		language : "ko"	,
+		toggleActive : true,
 		title: "시작 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false   
 	}).on('changeDate', function (selected) {
-		var startDate = new Date(selected.date.valueOf());
+		var date = new Date(selected.date.valueOf());
+		var startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 		$('#edate').datepicker('setStartDate', startDate);
 	}).on('clearDate', function (selected) {
 		$('#edate').datepicker('setStartDate', null);
@@ -169,6 +171,7 @@ nhn.husky.EZCreator.createInIFrame({
 		format: 'yyyy-mm-dd',
 		autoclose: true,
 		language : "ko"	,
+		toggleActive : true,
 		title: "종료 날짜",	//캘린더 상단에 보여주는 타이틀
 		todayHighlight : true ,	//오늘 날짜에 하이라이팅 기능 기본값 :false 
 	})
@@ -229,8 +232,7 @@ nhn.husky.EZCreator.createInIFrame({
 	               $("#shopResult").hide();
 	          } 
 	     }
-	});
-	
+	});	
 </script>
 <style>
 	ul{
