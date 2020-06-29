@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
 		<h2>${boardName}</h2>
 	</div>
 </div>
