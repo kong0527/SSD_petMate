@@ -4,7 +4,6 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<span class="caption d-block small">Categories</span>
 			<h2>질문 게시판</h2>
 		</div>
 		<div class="table-wrapper">
@@ -22,19 +21,18 @@
 				<tbody>
 				<c:forEach var="inquiryList" items="${inquiryList}">
 					<tr>
-						<td>${inquiryList.boardNum}</td>
-						<td>
-						<a href="<c:url value="/inquiryDetail">
+						<td width=100 style="word-break:break-all">${inquiryList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/inquiryDetail">
 						<c:param name="boardNum" value="${inquiryList.boardNum}"/>
 						</c:url>">
 						<c:if test="${inquiryList.isSelected eq 1}">
 							[채택완료] &nbsp;
 						</c:if>
 						${inquiryList.boardTitle}</a></td>
-						<td>${inquiryList.userID}</td>
+						<td width=150 style="word-break:break-all">${inquiryList.userID}</td>
 						<td>${inquiryList.answerCnt}</td>
 						<td>${inquiryList.boardLike}</td>
-						<td>${inquiryList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${inquiryList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

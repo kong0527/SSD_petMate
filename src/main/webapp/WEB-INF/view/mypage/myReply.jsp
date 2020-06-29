@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
 		<h2>${boardName}</h2>
 	</div>
 </div>
@@ -186,7 +185,20 @@
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
-		var url = "${pageContext.request.contextPath}/myReply";
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "myReplyInfo";
+		if (name == '질문게시판')
+			url = url + "myReplyInquiry";
+		if (name == '중고게시판')
+			url = url + "myReplySecondhand";
+		if (name == '공구게시판')
+			url = url + "myReplyGpurchase";
+		if (name == '구인게시판')
+			url = url + "myReplyPetsitter";
+		if (name == '리뷰게시판')
+			url = url + "mypageReview";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
