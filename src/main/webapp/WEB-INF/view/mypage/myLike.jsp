@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
 		<h2>${boardName}</h2>
 	</div>
 </div>
@@ -125,8 +124,8 @@
 	          		<li>
 			            <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장바구니</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu5">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
+			                <li><a href="gpurchaseCart"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
+			                <li><a href="secondhandCart"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
 			            </ul>
 	          		</li>
 	          		<li><a href="myOrderList">내 주문 내역</a></li>

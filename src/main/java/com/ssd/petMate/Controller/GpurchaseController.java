@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GpurchaseFacade;
+import com.ssd.petMate.service.UserImpl;
 
 
 @Controller
@@ -26,6 +28,17 @@ public class GpurchaseController {
 	
 	@Autowired
 	private GpurchaseFacade gpurchaseImpl;
+	
+	@Autowired
+	private UserImpl userService;
+	
+	@ModelAttribute("petsitterChk")
+	public int petsitterChk(HttpServletRequest request) {
+		if (request.getSession().getAttribute("userID") != null) {
+			return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+		}
+		return -1;
+	}
 	
 	//공구 게시판 목록
 	@RequestMapping(value = "/gpurchase", method = { RequestMethod.GET, RequestMethod.POST })
