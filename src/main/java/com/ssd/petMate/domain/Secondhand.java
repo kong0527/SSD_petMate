@@ -19,7 +19,6 @@ public class Secondhand {
 	@NotNull
 	@Min(1)
 	private int price;
-	private String boardImage;
 	private int boardHit;
 	private int replyCnt;
 	@NotBlank
@@ -62,12 +61,6 @@ public class Secondhand {
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
 	}
 	public int getBoardHit() {
 		return boardHit;

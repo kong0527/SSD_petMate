@@ -66,7 +66,7 @@
 									<table class="table table-striped">
 										<c:forEach var="sLineItem" items="${sOrder.sLineItems}">
 										<tr>
-											<td ><a href="<c:url value="/gpurchaseDetail">
+											<td ><a href="<c:url value="/secondhandDetail">
 												<c:param name="boardNum" value="${sLineItem.boardNum}"/></c:url>">
 												<img src="resources/img/dog-food.png" border="0"> &nbsp;
 												${sLineItem.boardTitle}</a>
