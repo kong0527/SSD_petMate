@@ -23,9 +23,9 @@
 				<tbody>
 				<c:forEach var="boardList" items="${userBoardList}">
 					<tr>
-						<td>${boardList.boardNum}</td>
-						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
-						<td>${boardList.userID}</td>
+						<td width=80 style="word-break:break-all">${boardList.boardNum}</td>
+						<td width=400 style="word-break:break-all"><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
+						<td width=120 style="word-break:break-all">${boardList.userID}</td>
 						<td>
 							<c:if test="${boardName eq '질문게시판'}">
 								${boardList.answerCnt}
@@ -42,7 +42,7 @@
 								${boardList.boardLike}
 							</c:if>
 						</td>
-						<td>${boardList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -109,13 +109,6 @@
 								<li><a href="<c:url value="/userReview"><c:param name="userID" value="${writerID}"/>
 							</c:url>"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 							</c:if>
-			            </ul>
-	          		</li>
-	          		<li>
-			            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">사용자가 쓴 댓글</a>
-			            <ul class="collapse list-unstyled" id="pageSubmenu3">
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
-			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
 	          		</li>
 				</ul>

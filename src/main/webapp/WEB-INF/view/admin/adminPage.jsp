@@ -24,10 +24,10 @@
 					<c:forEach var="userList" items="${userList}">
 					<c:if test="${userList.authority eq 'ROLE_USER'}">
 						<tr>
-							<td><a href="<c:url value="/userpage">
+							<td width=150 style="word-break:break-all"><a href="<c:url value="/userpage">
 							<c:param name="userID" value="${userList.userID}"/>
 							</c:url>">${userList.userID}</a></td>
-							<td>${userList.email}</td>
+							<td width=300 style="word-break:break-all">${userList.email}</td>
 							<td>
 								<c:if test="${userList.userType}">
 									일반 회원
