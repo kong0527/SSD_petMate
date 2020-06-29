@@ -26,4 +26,6 @@ public interface ReviewMapper {
 	public void updateReplyCnt(Review review);
 	
 	public List<String> petsitterChoice(String userID);
+	
+	public int petsitterCount(String userID);
 }

@@ -86,7 +86,7 @@
 				<option value="boardContent">글 내용</option>
 			</select>
 	        <input type="text" class="form-control" placeholder="Search..." id="keyword" name="keyword" style="width : 25%">
-	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch"><span class="icon-search"></span></button>
+	        <button type="submit" class="btn btn-secondary" id="btnSearch" name="btnSearch" onClick="fn_search('${writerID}');"><span class="icon-search"></span></button>
        </div>
 		</div>
 		<nav id="sidebar">
@@ -174,14 +174,27 @@
 </div>  
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
-	$(document).on('click', '#btnSearch', function(e) {
-		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/myReply";
-		url = url + "?searchType=" + $('#searchType').val();
+	function fn_search(writerID) {
+		var name = '${boardName}';
+		var url = "${pageContext.request.contextPath}/";
+		if (name == '정보게시판')
+			url = url + "myReplyInfo";
+		if (name == '질문게시판')
+			url = url + "myReplyInquiry";
+		if (name == '중고게시판')
+			url = url + "myReplySecondhand";
+		if (name == '공구게시판')
+			url = url + "myReplyGpurchase";
+		if (name == '구인게시판')
+			url = url + "myReplyPetsitter";
+		if (name == '리뷰게시판')
+			url = url + "myReplyReview";
+		url = url + "?userID=" + writerID;
+		url = url + "&searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
 		location.href = url;
-	});
+	}
 
 	/* 페이지 인덱스를 누를 때마다 해당 인덱스로 페이지가 전환 */
 	function fn_pagination(pageNum, contentNum, searchType, keyword) {
@@ -198,7 +211,7 @@
 		if (name == '구인게시판')
 			url = url + "myReplyPetsitter";
 		if (name == '리뷰게시판')
-			url = url + "mypageReview";
+			url = url + "myReplyReview";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
@@ -239,8 +252,6 @@
 		$.ajax({
 	        url : '${pageContext.request.contextPath}/confirmPwd',
 	        type : 'post',
-	        cache: false,
-	        async: false,
 	        data : {'confirmPwd' : pass2},
 	        success : function(data){
 	        	if (data == 1) {
@@ -248,6 +259,7 @@
 	        	}
 	        	else {
 	        		alert('비밀번호가 틀렸습니다.');
+	        		return false;
 		        }
 	        }
 	    });

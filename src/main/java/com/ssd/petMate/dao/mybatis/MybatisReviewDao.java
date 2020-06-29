@@ -56,4 +56,8 @@ public class MybatisReviewDao implements ReviewDao {
 	public List<String> petsitterChoice(String userID) throws DataAccessException {
 		return reviewMapper.petsitterChoice(userID);
 	}
+	
+	public int petsitterCount(String userID) throws DataAccessException {
+		return reviewMapper.petsitterCount(userID);
+	}
 }

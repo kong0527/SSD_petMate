@@ -56,4 +56,8 @@ public class ReviewImpl implements ReviewFacade {
 	public List<String> petsitterChoice(String userID) {
 		return reviewDao.petsitterChoice(userID);
 	}
+	
+	public int petsitterCount(String userID) {
+		return reviewDao.petsitterCount(userID);
+	}
 }
