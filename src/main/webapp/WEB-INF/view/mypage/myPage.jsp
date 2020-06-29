@@ -181,7 +181,6 @@
 		e.preventDefault();
 		var url = "${pageContext.request.contextPath}/";
 		var name = '${boardName}';
-
 		if (name == '정보게시판')
 			url = url + "mypageInfo";
 		if (name == '질문게시판')
