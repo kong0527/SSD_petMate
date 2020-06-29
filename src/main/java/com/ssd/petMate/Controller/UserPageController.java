@@ -99,7 +99,7 @@ public class UserPageController {
 			List<Petsitter> userBoardList = myPageFacade.getPrivatePetsitterList(boardSearch);
 				
 			mv.addObject("userBoardList", userBoardList);
-			mv.addObject("boardName", "구인게시판");
+			mv.addObject("boardName", "매칭게시판");
 		}
 	
 		if (request.getServletPath().equals("/userReview")) {

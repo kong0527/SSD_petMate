@@ -250,8 +250,14 @@
 
 	<select id="getPrivateInquiryReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM Answer
-		WHERE userID = #{userID}
+        FROM Inquiry
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	Answer
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>
@@ -292,8 +298,14 @@
 
 	<select id="getPrivateInfoReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM InfoReply
-		WHERE userID = #{userID}
+        FROM Info
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	InfoReply
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>
@@ -334,8 +346,14 @@
 
 	<select id="getPrivateGpurchaseReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM GpurchaseReply
-		WHERE userID = #{userID}
+        FROM Gpurchase
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	GpurchaseReply
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>
@@ -376,8 +394,14 @@
 
 	<select id="getPrivateSecondhandReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM SecondhandReply
-		WHERE userID = #{userID}
+        FROM Secondhand
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	SecondhandReply
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>
@@ -418,8 +442,14 @@
 
 	<select id="getPrivatePetsitterReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM PetsitterReply
-		WHERE userID = #{userID}
+        FROM Petsitter
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	PetsitterReply
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>
@@ -460,8 +490,14 @@
 
 	<select id="getPrivateReviewReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*)
-		FROM ReviewReply
-		WHERE userID = #{userID}
+        FROM Review
+	    WHERE boardNum IN
+        (
+        	SELECT boardNum
+         	FROM 
+        	ReviewReply
+        	WHERE userID = #{userID}
+        )
         <if test="searchType=='boardTitle' and keyword != null and keyword != ''">
 			and boardTitle LIKE '%' ||  #{keyword} || '%'
 		</if>

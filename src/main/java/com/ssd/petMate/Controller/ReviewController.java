@@ -56,7 +56,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView reviewBoard(ModelAndView mv, 
+	public ModelAndView reviewBoard(ModelAndView mv, HttpServletRequest request,
 			@RequestParam(required = false, defaultValue = "1") int pageNum,
 			@RequestParam(required = false, defaultValue = "10") int contentNum,
 			@RequestParam(required = false) String searchType,
@@ -76,9 +76,13 @@ public class ReviewController {
 //		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		boardSearch.pageInfo(pageNum, contentNum, totalCount);
 		List<Review> reviewList = reviewFacade.getAllBoard(boardSearch);
+		
+		String userID = (String) request.getSession().getAttribute("userID");
+		int count = reviewFacade.petsitterCount(userID);
 
 		mv.addObject("reviewList", reviewList);
 		mv.addObject("boardSearch", boardSearch);
+		mv.addObject("count", count);
 		mv.setViewName("review/reviewList");
 		return mv;
 	}

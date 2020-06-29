@@ -43,7 +43,12 @@
 							<a href="#" onclick="alert('일반 회원만 작성할 수 있습니다.')"><input type="submit" class="btn" value="글 작성" /></a>
 						</c:if>
 						<c:if test="${petsitterChk == 1}">
-							<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
+							<c:if test="${count <= 0}">
+								<a href="#" onclick="alert('채택된 회원만 작성할 수 있습니다.')"><input type="submit" class="btn" value="글 작성" /></a>
+							</c:if>
+							<c:if test="${count > 0}">
+								<a href="reviewForm"><input type="submit" class="btn" value="글 작성" /></a>
+							</c:if>
 						</c:if>
 					</td>
 				</tr>

@@ -19,4 +19,5 @@ public interface ReviewDao {
 	public void updateLike(Review review) throws DataAccessException;
 	public void updateReplyCnt(Review review) throws DataAccessException;
 	public List<String> petsitterChoice(String userID) throws DataAccessException;
+	public int petsitterCount(String userID) throws DataAccessException;
 }

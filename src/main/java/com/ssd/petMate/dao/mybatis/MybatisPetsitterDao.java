@@ -63,12 +63,17 @@ public class MybatisPetsitterDao implements PetsitterDao{
 
 	@Override
 	public List<Petsitter> filtering(FilteringCommand filter) {
-		System.out.println(filter);
 		return petsitterMapper.filtering(filter);
 	}
 
 	@Override
 	public void selectPetsitter(HashMap<String, Object> map) {
 		petsitterMapper.selectPetsitter(map);
+	}
+
+	@Override
+	public int filteringCount(FilteringCommand filter) throws DataAccessException {
+		System.out.println(filter);
+		return petsitterMapper.filteringCount(filter);
 	}
 }

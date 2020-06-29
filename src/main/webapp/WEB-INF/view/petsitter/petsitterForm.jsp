@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title mb-5">
-					<h2>펫시터 구인 폼</h2>
+					<h2>펫시터 매칭 폼</h2>
 				</div>
 				<form:form name="form" modelAttribute="petsitter" action="petsitterForm" method="post">
 					<input type="hidden" name="size" id="size" value="${petsitter.petSize}" />
