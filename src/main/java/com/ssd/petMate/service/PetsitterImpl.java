@@ -72,4 +72,9 @@ public class PetsitterImpl implements PetsitterFacade {
 	public void selectPetsitter(HashMap<String, Object> map) {
 		petsitterDao.selectPetsitter(map);
 	}
+
+	@Override
+	public int filteringCount(FilteringCommand filter) {
+		return petsitterDao.filteringCount(filter);
+	}
 }

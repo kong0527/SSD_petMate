@@ -39,6 +39,7 @@ function replyList(){
 		                html += '<h3>' + value.userID + '</h3>';
 		                html += '<div class="meta">' + value.replyDate + '</div>';
 	                    html += '<p>' + value.replyContent + '</p>';
+	                    	                    
 	                    /* 로그인한 사용자에게만 적용 */
 	                    if (userID != 'null') {
 	                    	html += '<p><a onclick="insertReReply('+value.replyNum+',\''+ value.boardNum+'\');" class="reply">Reply</a></p>';
