@@ -4,7 +4,6 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<span class="caption d-block small">Categories</span>
 			<h2>리뷰 게시판</h2>
 		</div>
 		<div class="table-wrapper">
@@ -22,14 +21,14 @@
 				<tbody>
 				<c:forEach var="reviewList" items="${reviewList}">
 					<tr>
-						<td>${reviewList.boardNum}</td>
-						<td><a href="<c:url value="/reviewDetail">
+						<td width=100 style="word-break:break-all">${reviewList.boardNum}</td>
+						<td width=500 style="word-break:break-all"><a href="<c:url value="/reviewDetail">
 						<c:param name="boardNum" value="${reviewList.boardNum}"/>
 						</c:url>">${reviewList.boardTitle}</a></td>
-						<td>${reviewList.userID}</td>
+						<td width=150 style="word-break:break-all">${reviewList.userID}</td>
 						<td>${reviewList.replyCnt}</td>
 						<td>${reviewList.boardLike}</td>
-						<td>${reviewList.boardHit}</td>
+						<td width=60 style="word-break:break-all">${reviewList.boardHit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
