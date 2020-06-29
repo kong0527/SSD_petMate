@@ -21,7 +21,7 @@
 								<tr>
 									<td ><a href="<c:url value="/secondhandDetail">
 										<c:param name="boardNum" value="${cart.boardNum}"/></c:url>">
-										<img src="resources/img/love.png" border="0"> &nbsp;
+										<img src="resources/img/dog-food.png" border="0"> &nbsp;
 										${cart.boardTitle}</a>
 									</td>
 									<td>수량 : 1</td>

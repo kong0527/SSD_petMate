@@ -24,7 +24,7 @@
 						<td width=100 style="word-break:break-all">${secondhandList.boardNum}</td>
 						<td width=500 style="word-break:break-all"><a href="<c:url value="/secondhandDetail">
 						<c:param name="boardNum" value="${secondhandList.boardNum}"/>
-						</c:url>">${secondhandList.boardTitle}&emsp; <span style="color:red">&nbsp;&nbsp; [${secondhandList.replyCnt}]</span><span class="caret"></a></td>
+						</c:url>">${secondhandList.boardTitle}</a></td>
 						<td width=150 style="word-break:break-all">${secondhandList.userID}</td>
 						<td>${secondhandList.replyCnt}</td>
 						<td>${secondhandList.cartAdded}</td>

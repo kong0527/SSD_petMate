@@ -21,7 +21,7 @@
 								<tr>
 									<td ><a href="<c:url value="/gpurchaseDetail">
 										<c:param name="boardNum" value="${cart.boardNum}"/></c:url>">
-										<img src="resources/img/love.png" border="0"> &nbsp;
+										<img src="resources/img/dog-food.png" border="0"> &nbsp;
 										${cart.boardTitle}</a>
 									</td>
 									<td>수량 : 1</td>
@@ -49,23 +49,23 @@
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label for="cardNum">카드번호</label>
-								<form:input path="cardNum" class="form-control form-control-lg"/>
+								<form:input path="cardNum" class="form-control form-control-lg" style="width : 70%"/>
 								<form:errors path="cardNum" />
 							</div>
 						</div>
 						
 						<div class="row">
-							<div class="col-md-12 form-group">
+							<div class="col-md-6 form-group">
 								<label for="cvc">CVC 번호</label>
-								<form:input path="cvc" class="form-control form-control-lg"/>
+								<form:input path="cvc" class="form-control form-control-lg" style="width : 70%"/>
 								<form:errors path="cvc" />
 							</div>
 						</div>
 								<!-- yyyy/mm/dd 같은 제약조건 추가 -->
 						<div class="row">
-							<div class="col-md-12 form-group">
+							<div class="col-md-6 form-group">
 								<label for="expireDate">유효기간</label>
-								<form:input path="expireDate" class="form-control form-control-lg"/>
+								<form:input path="expireDate" class="form-control form-control-lg" style="width : 70%"/>
 								<form:errors path="expireDate" />
 							</div>
 						</div>
@@ -73,7 +73,7 @@
 						<div class="row">
 							<div class="col-md-12 form-group">
 								<label for="address">주소</label>
-								<form:input path="address" class="form-control form-control-lg"/>
+								<form:input path="address" class="form-control form-control-lg" style="width : 70%"/>
 							</div>
 						</div>
 						
@@ -100,12 +100,3 @@
 
 	</div>
 </div>
-<style>
-	.auto_tx_area {
-	    clear: both;
-	    position: absolute;
-	    z-index: 10002;
-	    width: 500px;
-	    background: #fff;
-	}s
-</style>

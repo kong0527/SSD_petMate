@@ -100,7 +100,7 @@ public class OrderController {
 	
 	@GetMapping("/gpurchaseOrderForm")
 	public String gpurchaseOrderForm() {
-		return "order/paymentForm";
+		return "order/GpaymentForm";
 	}
 	
 	//공구게시판 주문
@@ -115,6 +115,7 @@ public class OrderController {
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
 			GpurchaseCart gpurchaseCart;
+			Gpurchase gpurchase;
 			//order 생
 			orderImpl.insertOrder(order);
 			System.out.println(order.toString());
@@ -132,6 +133,12 @@ public class OrderController {
 			for(int i = 0; i < cartList.size(); i++) {
 				gpurchaseCart = new GpurchaseCart(userID, cartList.get(i).getBoardNum());
 				gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+				gpurchase = gpurchaseImpl.getGpurchaseDetail(cartList.get(i).getBoardNum());
+				System.out.println("gpurchase cartAdded before : " + gpurchase.getCartAdded());
+				int cartAdded = gpurchaseImpl.countCartByboardNum(cartList.get(i).getBoardNum());
+				System.out.print("after : " + cartAdded);
+				gpurchase.setCartAdded(cartAdded);
+				gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
 			}
 			status.setComplete();
 		return "order/commit";
