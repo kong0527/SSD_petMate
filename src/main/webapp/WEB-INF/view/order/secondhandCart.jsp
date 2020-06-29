@@ -12,8 +12,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <div class="section-title">
 	<div class="container">
-		<span class="caption d-block small">Categories</span>
-		<h2>SecondhandCart</h2>
+		<h2>장바구니</h2>
 	</div>
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">

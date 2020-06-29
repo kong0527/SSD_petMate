@@ -36,11 +36,5 @@ public class GpurchaseLineItem {
 		this.boardNum = gpurchase.getBoardNum();
 		this.orderNum = orderNum;
 	}
-	@Override
-	public String toString() {
-		return "GpurchaseLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum
-				+ ", lineItemNum=" + lineItemNum + "]";
-	}
-	
 	
 }

@@ -44,7 +44,7 @@
 				<div class="pt-5" align="right">
 				<form>
 					<input type="hidden" id="boardNum" name="boardNum" value="${gpurchase.boardNum}"/>
-					<c:if test="${sessionScope.userID ne null}">
+					<c:if test="${sessionScope.userID ne null and gpurchase.status eq null}">
 						<c:if test="${sessionScope.userID eq gpurchase.userID}">
 							<button type="submit" formaction="gpurchaseForm" class="btn">수정</button>
 							<input type="button" class="btn" value="삭제" onclick="del(${gpurchase.boardNum})" />

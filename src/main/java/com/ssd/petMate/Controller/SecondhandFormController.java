@@ -50,14 +50,7 @@ public class SecondhandFormController {
 	
 	@PostMapping("/secondhandForm")
 	public String secondhandInsert(@Valid @ModelAttribute("secondhand") Secondhand secondhand, BindingResult result, HttpServletRequest request) {		
-		//게시글 제목 길이
-//		if (info.getBoardTitle().length() > 25) {
-//			result.rejectValue("boardTitle", "long");
-//		}
-//		
-//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardTitle", "blank");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(result, "boardContent", "blank");
-		
+
 		if (result.hasErrors()) {
 			return "secondhand/secondhandForm";
 		}

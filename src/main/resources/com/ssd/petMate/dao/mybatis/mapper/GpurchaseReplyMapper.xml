@@ -59,20 +59,4 @@
 		WHERE replyGID = #{replyGID} and replyOrder > #{replyOrder}
 	</update>
 
-
-<!-- 페이징 처리 시 필요 -> 추후 삭제 가능 O -->
-	<!-- 마지막 댓글 ID 찾아오기  -->
-	<!-- 페이징을 위해서 필요  -->
-<!-- 	<select id="findLastReplyID" resultType="Integer">
-		SELECT replyNum
-		FROM GpurchaseReply
-		ORDER BY replyNum DESC LIMIT 1;
-	</select>
-	
-	같은 GID를 가진 댓글 수 찾아오기
-	<select id="countSameGID" resultType="Integer" parameterType="Integer">
-		SELECT COUNT(*)
-		FROM GpurchaseReply
-		WHERE replyGID = #{replyNum}
-	</select> -->
 </mapper>

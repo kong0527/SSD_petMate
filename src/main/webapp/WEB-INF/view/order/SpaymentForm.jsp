@@ -83,7 +83,7 @@
 				
 				<a data-toggle="collapse" data-target="#pr"><span style="color:black">최종 결제 금액 ▼</span><span class="caret"></span></a><br />
 	          		<br />
-	          		<div class="collapse" id="pr">
+	          		<div class="collapse show" id="pr">
 	          			<span style="color:red">&nbsp;&nbsp; ${secondhandOrder.price}원</span><span class="caret">
 					</div>
 				<br />

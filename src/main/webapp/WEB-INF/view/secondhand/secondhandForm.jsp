@@ -87,7 +87,11 @@
 	        alert("글 내용은 1500자 내로 입력해 주세요.");
 	        oEditors.getById["boardContent"].exec("FOCUS");
 	        return false;
-	     } 
+	     }
+	     var price = $("#price").val();
+	     if (price == '') {
+	         alert('가격을 입력하세요.');
+	     }
 	     $("#form").submit();
 	});
 </script>

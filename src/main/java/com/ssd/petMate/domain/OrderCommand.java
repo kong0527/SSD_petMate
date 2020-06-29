@@ -70,10 +70,4 @@ public class OrderCommand {
 		}
 	}
 	
-	@Override
-	public String toString() {
-		return "OrderCommand [orderNum=" + orderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID="
-				+ userID + ", bank=" + bank + ", address=" + address + ", gLineItems=" + gLineItems + "]";
-	}
-	
 }

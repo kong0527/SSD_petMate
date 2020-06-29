@@ -27,7 +27,7 @@
 									<tr>
 										<td ><a href="<c:url value="/gpurchaseDetail">
 											<c:param name="boardNum" value="${gLineItem.boardNum}"/></c:url>">
-											<img src="resources/img/love.png" border="0"> &nbsp;
+											<img src="resources/img/dog-food.png" border="0"> &nbsp;
 											${gLineItem.boardTitle}</a>
 										</td>
 										<td>수량 : 1</td>
@@ -68,7 +68,7 @@
 										<tr>
 											<td ><a href="<c:url value="/gpurchaseDetail">
 												<c:param name="boardNum" value="${sLineItem.boardNum}"/></c:url>">
-												<img src="resources/img/love.png" border="0"> &nbsp;
+												<img src="resources/img/dog-food.png" border="0"> &nbsp;
 												${sLineItem.boardTitle}</a>
 											</td>
 											<td>수량 : 1</td>

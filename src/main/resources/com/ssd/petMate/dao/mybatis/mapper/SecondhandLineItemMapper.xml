@@ -11,13 +11,6 @@
 		 WHERE orderNum = #{orderNum}
 	</select>
 	
-	<!-- 중고물품 lineItem 수 -->
-<!-- 	<select id="getSecondhandLineItemCount" resultType="int">
-		SELECT COUNT(*)
-		FROM SLineItem
-		WHERE orderNum = #{orderNum}
-	</select> -->
-	
 	<!-- 중고물품 lineItem 삽입하기 -->
 	<insert id="insertSecondhandLineItem" parameterType="com.ssd.petMate.domain.SecondhandLineItem">
  		INSERT

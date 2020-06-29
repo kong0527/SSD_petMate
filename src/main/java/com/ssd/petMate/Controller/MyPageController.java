@@ -223,11 +223,7 @@ public class MyPageController {
 			@RequestParam(required = false, defaultValue = "10") int contentNum) {
 		
 		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
-
 		int totalCount = myPageFacade.getPrivateOrderListCount(userID);
-		System.out.println(totalCount);
-		
 		BoardSearch boardSearch = new BoardSearch();
 		boardSearch.setUserID(userID);
 	
@@ -246,7 +242,6 @@ public class MyPageController {
 			@RequestParam("orderNum") int orderNum) {
 		
 		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
 		OrderCommand gOrder = myPageFacade.getOrderLineItems(orderNum);
 		SOrderCommand sOrder = myPageFacade.getOrderSLineItems(orderNum);
 		if(gOrder != null)
@@ -267,7 +262,6 @@ public class MyPageController {
 			@RequestParam(required = false) String keyword) {
 		
 		String userID = request.getSession().getAttribute("userID").toString();
-		System.out.println(userID);
 		
 //		검색한 결과값을 가져오기 위해 map에 키워드와 검색 타입 저장 후 sql 쿼리에 삽입
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -280,9 +274,9 @@ public class MyPageController {
 		boardSearch.setKeyword(keyword);
 		boardSearch.setUserID(userID);
 		
+//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 		if (request.getServletPath().equals("/myInfoLike")) {
 			int totalCount = myPageFacade.getPrivateInfoLikeCount(map);
-			System.out.println(totalCount);
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Info> myboardList = myPageFacade.getPrivateInfoLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
@@ -290,9 +284,7 @@ public class MyPageController {
 		}
 		
 		if (request.getServletPath().equals("/myInquiryLike")) {
-			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 			int totalCount = myPageFacade.getPrivateInquiryLikeCount(map);
-			System.out.println(totalCount);
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Inquiry> myboardList = myPageFacade.getPrivateInquiryLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
@@ -300,9 +292,7 @@ public class MyPageController {
 		}
 		
 		if (request.getServletPath().equals("/myReviewLike")) {
-			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 			int totalCount = myPageFacade.getPrivateReviewLikeCount(map);
-			System.out.println(totalCount);
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Review> myboardList = myPageFacade.getPrivateReviewLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
@@ -310,9 +300,7 @@ public class MyPageController {
 		}
 		
 		if (request.getServletPath().equals("/myPetsitterLike")) {
-			//		페이징과 검색 기능이 적용된 후의 리스트를 가지고 옴
 			int totalCount = myPageFacade.getPrivatePetsitterLikeCount(map);
-			System.out.println(totalCount);
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Petsitter> myboardList = myPageFacade.getPrivatePetsitterLike(boardSearch);
 			mv.addObject("myboardList", myboardList);

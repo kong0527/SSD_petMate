@@ -93,12 +93,5 @@ public class Secondhand {
 	public void setIsSold(int isSold) {
 		this.isSold = isSold;
 	}
-	@Override
-	public String toString() {
-		return "Secondhand [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID
-				+ ", boardContent=" + boardContent + ", cartAdded=" + cartAdded + ", price=" + price + ", boardImage="
-				+ boardImage + ", boardHit=" + boardHit + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle
-				+ ", isSold=" + isSold + "]";
-	}
 	
 }

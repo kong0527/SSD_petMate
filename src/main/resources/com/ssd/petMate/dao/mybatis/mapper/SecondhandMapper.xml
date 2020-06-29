@@ -110,6 +110,4 @@
 		WHERE boardNum = #{boardNum}
 	</update>
 	
-	
-	
 </mapper>

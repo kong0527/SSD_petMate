@@ -37,9 +37,5 @@ public class SLineItemCommand {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
-	@Override
-	public String toString() {
-		return "GLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum + ", lineItemNum="
-				+ lineItemNum + ", boardTitle=" + boardTitle + "]";
-	}
+	
 }
