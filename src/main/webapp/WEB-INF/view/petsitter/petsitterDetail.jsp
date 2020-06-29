@@ -59,6 +59,7 @@
 				
 				<!-- 추가 -->
 				<div class="pt-5" align="right">
+					<c:if test="${empty petsitter.isSelected}">
 					<form>
 						<input type="hidden" id="boardNum" name="boardNum" value="${petsitter.boardNum}"/>
 						<c:if test="${sessionScope.userID ne null}">
@@ -71,6 +72,7 @@
 							</c:if>
 						</c:if>
 					</form>
+					</c:if>
 				</div>
 
 				<div class="pt-5" align="center">

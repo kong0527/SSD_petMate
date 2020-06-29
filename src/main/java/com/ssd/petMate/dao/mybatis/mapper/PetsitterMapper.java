@@ -29,4 +29,6 @@ public interface PetsitterMapper {
 	List<Petsitter> filtering(FilteringCommand filter);
 	
 	void selectPetsitter(HashMap<String, Object> map);
+	
+	int filteringCount(FilteringCommand filter);
 }
