@@ -27,12 +27,24 @@ import com.ssd.petMate.domain.SecondhandCartCommand;
 import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.InfoFacade;
 import com.ssd.petMate.service.SecondhandImpl;
+import com.ssd.petMate.service.UserImpl;
 
 @Controller
 public class SecondhandController {	
 	
 	@Autowired
 	private SecondhandImpl secondhandImpl;
+	
+	@Autowired
+	private UserImpl userService;
+	
+	@ModelAttribute("petsitterChk")
+	public int petsitterChk(HttpServletRequest request) {
+		if (request.getSession().getAttribute("userID") != null) {
+			return userService.isPetsitter(request.getSession().getAttribute("userID").toString());
+		}
+		return -1;
+	}
 	
 	//공구 게시판 목록
 	@RequestMapping(value = "/secondhand", method = { RequestMethod.GET, RequestMethod.POST })
