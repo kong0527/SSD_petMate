@@ -38,14 +38,7 @@
 								${boardList.replyCnt}
 							</c:if>
 						</td>
-						<td>
-							<c:if test="${boardName eq '공구게시판' || boardName eq '중고게시판'}">
-								${boardList.cartAdded}
-							</c:if>
-							<c:if test="${boardName ne '공구게시판' && boardName ne '중고게시판'}">
-								${boardList.boardLike}
-							</c:if>
-						</td>
+						<td>${boardList.boardLike}</td>
 						<td>${boardList.boardHit}</td>
 					</tr>
 				</c:forEach>
@@ -129,15 +122,13 @@
 			                <li><a href="myReviewLike"><span class="fa fa-chevron-right mr-2"></span>리뷰 게시판</a></li>
 			                <li><a href="myPetsitterLike"><span class="fa fa-chevron-right mr-2"></span>구인 게시판</a></li>
 			            </ul>
-	          		</li>
 	          		<li>
 			            <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">장바구니</a>
 			            <ul class="collapse list-unstyled" id="pageSubmenu5">
-			                <li><a href="gpurchaseCart"><span class="fa fa-chevron-right mr-2"></span>공구 게시판</a></li>
-			                <li><a href="secondhandCart"><span class="fa fa-chevron-right mr-2"></span>중고 게시판</a></li>
+			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>정보 게시판</a></li>
+			                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>질문 게시판</a></li>
 			            </ul>
 	          		</li>
-	          		<li><a href="myOrderList">내 주문 내역</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -175,12 +166,12 @@
 			</div>
 		</div>
 	</div>
-</div>   
+</div>  
 <script>
 	/* 검색을 수행하기 위하여 키워드와 타입을 정한 후 검색 버튼을 클릭하면 링크로 이동 -> 컨트롤러에서 이후의 일을 처리하도록 함 */
 	$(document).on('click', '#btnSearch', function(e) {
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/mypage";
+		var url = "${pageContext.request.contextPath}/myLike";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
 
@@ -192,17 +183,13 @@
 		var name = '${boardName}';
 		var url = "${pageContext.request.contextPath}/";
 		if (name == '정보게시판')
-			url = url + "mypageInfo";
+			url = url + "myInfoLike";
 		if (name == '질문게시판')
-			url = url + "mypageInquiry";
-		if (name == '중고게시판')
-			url = url + "mypageSecondhand";
-		if (name == '공구게시판')
-			url = url + "mypageGpurchase";
+			url = url + "myInquiryLike";
 		if (name == '구인게시판')
-			url = url + "mypagePetsitter";
+			url = url + "myPetsitterLike";
 		if (name == '리뷰게시판')
-			url = url + "mypageReview";
+			url = url + "myReviewLike";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
 		url = url + "&searchType=" + searchType;
@@ -217,17 +204,12 @@
 			url = url + "infoDetail?boardNum=" + boardNum;
 		if (name == '질문게시판')
 			url = url + "inquiryDetail?boardNum=" + boardNum;
-		if (name == '공구게시판')
-			url = url + "gpurchaseDetail?boardNum=" + boardNum;
-		if (name == '중고게시판')
-			url = url + "secondhandDetail?boardNum=" + boardNum;
 		if (name == '구인게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
-		if (name == '리뷰게시판')
+		if (name == '후기게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}
-	
 	$(document).on('click', '#btnConfirm', function(e){
 		var pass1 = $("#pwd").val();
 		var pass2 = $("#confirmPwd").val();
@@ -244,6 +226,8 @@
 		$.ajax({
 	        url : '${pageContext.request.contextPath}/confirmPwd',
 	        type : 'post',
+	        cache: false,
+	        async: false,
 	        data : {'confirmPwd' : pass2},
 	        success : function(data){
 	        	if (data == 1) {
@@ -251,12 +235,11 @@
 	        	}
 	        	else {
 	        		alert('비밀번호가 틀렸습니다.');
-	        		return false;
 		        }
 	        }
 	    });
 	});
-	
+
 	$("#checkPW").submit(function(e){
 	    e.preventDefault();
 	});

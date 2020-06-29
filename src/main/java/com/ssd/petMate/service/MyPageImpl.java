@@ -170,12 +170,44 @@ public class MyPageImpl implements MyPageFacade {
 		return myPageDao.getPrivateReviewList(boardSearch);
 	}
 	
-	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException{
-		return myPageDao.getPrivateOrderList(boardSearch);
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivateInfoLikeCount(map);
+	}
+	
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInfoLike(boardSearch);
+	}
+	
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivateInquiryCount(map);
+	}
+	
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateInquiryLike(boardSearch);
+	}
+	
+	public int getPrivatePetsitterLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivatePetsitterLikeCount(map);
+	}
+	
+	public List<Petsitter> getPrivatePetsitterLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivatePetsitterLike(boardSearch);
+	}
+	
+	public int getPrivateReviewLikeCount(HashMap<String, Object> map) throws DataAccessException{
+		return myPageDao.getPrivateReviewCount(map);
+	}
+	
+	public List<Review> getPrivateReviewLike(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateReviewLike(boardSearch);
 	}
 	
 	public int getPrivateOrderListCount(String userID) throws DataAccessException{
 		return myPageDao.getPrivateOrderListCount(userID);
+	}
+	
+	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException{
+		return myPageDao.getPrivateOrderList(boardSearch);
 	}
 	
 	public OrderCommand getOrderLineItems(int orderNum) throws DataAccessException{
@@ -185,20 +217,5 @@ public class MyPageImpl implements MyPageFacade {
 	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException{
 		return myPageDao.getOrderSLineItems(orderNum);
 	}
-	
-	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException{
-		return myPageDao.getPrivateInfoLike(boardSearch);
-	}
-	
-	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException{
-		return myPageDao.getPrivateInquiryLike(boardSearch);
-	}
-	
-	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException{
-		return myPageDao.getPrivateInfoLikeCount(map);
-	}
-	
-	public int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException{
-		return myPageDao.getPrivateInfoLikeCount(map);
-	}
+
 }

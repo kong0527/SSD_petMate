@@ -67,19 +67,27 @@ public interface MyPageDao {
 
 	List<Review> getPrivateReviewReplyList(BoardSearch boardSearch) throws DataAccessException; 
 	
-	List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException;
-	
-	int getPrivateOrderListCount(String userID) throws DataAccessException;
-	
-	OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
-	
-	SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
-	
-	List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException;
+	int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException;
 	
 	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException;
 	
 	int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException;
 	
-	int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException;
+	List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	int getPrivateReviewLikeCount(HashMap<String, Object> map) throws DataAccessException;
+	
+	List<Review> getPrivateReviewLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	int getPrivatePetsitterLikeCount(HashMap<String, Object> map) throws DataAccessException;
+	
+	List<Petsitter> getPrivatePetsitterLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	int getPrivateOrderListCount(String userID) throws DataAccessException;
+	
+	List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException;
+	
+	OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
+	
+	SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
 }

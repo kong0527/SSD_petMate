@@ -67,19 +67,28 @@ public interface MyPageFacade {
 
 	List<Review> getPrivateReviewReplyList(BoardSearch boardSearch);
 	
-	List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException;
+	public int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException;
 	
-	int getPrivateOrderListCount(String userID) throws DataAccessException;
+	public List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException;
 	
-	OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
+	public int getPrivateInquiryLikeCount(HashMap<String, Object> map) throws DataAccessException;
 	
-	SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
+	public List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	public int getPrivatePetsitterLikeCount(HashMap<String, Object> map) throws DataAccessException;
+	
+	public List<Petsitter> getPrivatePetsitterLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	public int getPrivateReviewLikeCount(HashMap<String, Object> map) throws DataAccessException;
+	
+	public List<Review> getPrivateReviewLike(BoardSearch boardSearch) throws DataAccessException;
+	
+	public int getPrivateOrderListCount(String userID) throws DataAccessException;
+	
+	public List<Order> getPrivateOrderList(BoardSearch boardSearch) throws DataAccessException;
+	
+	public OrderCommand getOrderLineItems(int orderNum) throws DataAccessException;
+	
+	public SOrderCommand getOrderSLineItems(int orderNum) throws DataAccessException;
 
-	List<Info> getPrivateInfoLike(BoardSearch boardSearch) throws DataAccessException;
-
-	List<Inquiry> getPrivateInquiryLike(BoardSearch boardSearch) throws DataAccessException;
-	
-	int getPrivateInfoLikeCount(HashMap<String, Object> map) throws DataAccessException;
-	
-	int getPrivateInquiryLikeCount(HashMap<String, Object> map)throws DataAccessException;
 }
