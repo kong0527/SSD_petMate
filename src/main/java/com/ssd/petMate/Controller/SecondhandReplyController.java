@@ -13,17 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.ssd.petMate.domain.Gpurchase;
-import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.InfoReply;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.domain.SecondhandReply;
-import com.ssd.petMate.service.GpurchaseFacade;
-import com.ssd.petMate.service.GpurchaseReplyFacade;
-import com.ssd.petMate.service.InfoFacade;
-import com.ssd.petMate.service.InfoReplyFacade;
 import com.ssd.petMate.service.SecondhandFacade;
 import com.ssd.petMate.service.SecondhandReplyFacade;
 

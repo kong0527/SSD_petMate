@@ -13,6 +13,7 @@ public class Order {
 	private String cardNum;
 	@Pattern(regexp="\\d{3}$")
 	private String cvc;
+	@NotBlank
 	private String address;
 	@Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$")
 	private String expireDate;
@@ -70,12 +71,6 @@ public class Order {
 	}
 	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
-	}
-	@Override
-	public String toString() {
-		return "Order [orderNum=" + orderNum + ", orderDate=" + orderDate + ", price=" + price + ", userID=" + userID
-				+ ", bank=" + bank + ", cardNum=" + cardNum + ", cvc=" + cvc + ", address=" + address + ", expireDate="
-				+ expireDate + "]";
 	}
 	
 }

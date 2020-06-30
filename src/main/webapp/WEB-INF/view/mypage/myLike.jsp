@@ -12,7 +12,7 @@
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
 		<div id="content" class="p-4 p-md-5 pt-5">
-			<table class="table table-striped">
+			<table class="table table-striped" style="width:100%">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -30,11 +30,11 @@
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
 						<td>${boardList.userID}</td>
 						<td>
-							<c:if test="${boardName eq '질문게시판'}">
-								${boardList.answerCnt}
+							<c:if test="${boardName eq '중고게시판' || '공구게시판'}">
+								담은수
 							</c:if>
 							<c:if test="${boardName ne '질문게시판'}">
-								${boardList.replyCnt}
+								추천수
 							</c:if>
 						</td>
 						<td>${boardList.boardLike}</td>
@@ -179,7 +179,7 @@
 			url = url + "myInquiryLike";
 		if (name == '구인게시판')
 			url = url + "myPetsitterLike";
-		if (name == '리뷰게시판')
+		if (name == '후기게시판')
 			url = url + "myReviewLike";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
@@ -197,7 +197,7 @@
 			url = url + "myInquiryLike";
 		if (name == '구인게시판')
 			url = url + "myPetsitterLike";
-		if (name == '리뷰게시판')
+		if (name == '후기게시판')
 			url = url + "myReviewLike";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;

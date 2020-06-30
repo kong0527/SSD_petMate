@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.InfoReply;
 import com.ssd.petMate.domain.SecondhandReply;
 
 public interface SecondhandReplyDao {

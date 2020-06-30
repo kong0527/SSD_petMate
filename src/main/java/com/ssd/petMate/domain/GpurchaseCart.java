@@ -17,16 +17,17 @@ public class GpurchaseCart {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public GpurchaseCart(String userID, int boardNum, String likeDate) {
-		super();
-		this.userID = userID;
-		this.boardNum = boardNum;
-		this.likeDate = likeDate;
-	}
 	public String getLikeDate() {
 		return likeDate;
 	}
 	public void setLikeDate(String likeDate) {
+		this.likeDate = likeDate;
+	}
+	
+	public GpurchaseCart(String userID, int boardNum, String likeDate) {
+		super();
+		this.userID = userID;
+		this.boardNum = boardNum;
 		this.likeDate = likeDate;
 	}
 	public GpurchaseCart(String userID, int boardNum) {

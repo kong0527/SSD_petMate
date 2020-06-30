@@ -202,7 +202,7 @@
 		            and boardContent LIKE '%' ||  #{keyword} || '%'
 		        </if>
                 ORDER BY boardNum ASC 
-            )reivew)
+            )review)
             WHERE NUM BETWEEN #{startList} AND #{endList}
 	</select>
 
@@ -623,7 +623,7 @@
 	<select id="getPrivateInfoLike" parameterType="com.ssd.petMate.page.BoardSearch" resultType="com.ssd.petMate.domain.Info">
 		SELECT *
 		FROM(
-            SELECT 
+            SELECT
             ROWNUM AS NUM,
            	info.*
             FROM

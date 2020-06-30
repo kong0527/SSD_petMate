@@ -8,12 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssd.petMate.dao.GpurchaseReplyDao;
 import com.ssd.petMate.dao.SecondhandReplyDao;
-import com.ssd.petMate.dao.mybatis.mapper.GpurchaseReplyMapper;
-import com.ssd.petMate.dao.mybatis.mapper.SecondhandReplyMapper;
-import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.InfoReply;
 import com.ssd.petMate.domain.SecondhandReply;
 
 @Service
