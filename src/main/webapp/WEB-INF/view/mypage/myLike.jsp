@@ -18,7 +18,7 @@
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
-						<th>덧글수</th>
+						<th>댓글수</th>
 						<th>추천수</th>
 						<th>조회수</th>
 					</tr>
@@ -30,12 +30,14 @@
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
 						<td>${boardList.userID}</td>
 						<td>
-							<c:if test="${boardName eq '중고게시판' || '공구게시판'}">
-								담은수
-							</c:if>
-							<c:if test="${boardName ne '질문게시판'}">
-								추천수
-							</c:if>
+							<c:choose>
+								<c:when test="${boardName eq '질문게시판'}">
+									${boardList.answerCnt}
+								</c:when>
+								<c:when test="${boardName ne '질문게시판'}">
+									${boardList.replyCnt}
+								</c:when>
+							</c:choose>
 						</td>
 						<td>${boardList.boardLike}</td>
 						<td>${boardList.boardHit}</td>

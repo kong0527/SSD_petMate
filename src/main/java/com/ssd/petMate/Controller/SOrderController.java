@@ -78,7 +78,7 @@ public class SOrderController {
 	}
 	
 	//장바구니 -> 오더
-	@RequestMapping(value = "/secondhandCartToOrder", method = RequestMethod.POST)
+	@RequestMapping(value = "/secondhandCartToOrder", produces="application/text; charset=utf8" ,method = RequestMethod.POST)
 	@ResponseBody
 	public String secondhandCartToOrder(@RequestParam(value = "secondhandCartList[]") List<String> secondhandCartList, @RequestParam(value = "sprice") Integer sprice, Model model) {
 		System.out.println("orderForm enter;");
@@ -95,7 +95,7 @@ public class SOrderController {
 		System.out.println("sprice : " + sprice);
 		model.addAttribute("sCartList", sCartList);
 		model.addAttribute("sprice", sprice);
-		String result = "May I take your order?";
+		String result = "주문하시겠습니까?";
 		return result;
 	}
 	

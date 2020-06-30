@@ -9,7 +9,7 @@
   <insert id="insertOrder" parameterType="com.ssd.petMate.domain.Order">
   <selectKey keyProperty="orderNum" resultType="int" order="BEFORE">
  		SELECT ON_SEQ.nextval AS orderNum FROM DUAL
- </selectKey>
+  </selectKey>
     INSERT INTO OrderLIST (orderNum, orderDate, price, userID, bank, cardNum, cvc, expireDate, address)
     VALUES (#{orderNum}, SYSDATE, #{price,jdbcType=NUMERIC}, #{userID}, #{bank,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR}, #{cvc,jdbcType=VARCHAR}, TO_DATE(#{expireDate},'mm/yy'), #{address,jdbcType=VARCHAR})
   </insert>
