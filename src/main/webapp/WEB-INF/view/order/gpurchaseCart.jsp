@@ -21,6 +21,7 @@
 						<th>Quantity</th>
 						<th>Total</th>
 						<th>&nbsp;</th>
+						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
