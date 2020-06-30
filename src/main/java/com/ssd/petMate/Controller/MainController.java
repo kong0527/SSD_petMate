@@ -24,48 +24,48 @@ public class MainController {
 	@Autowired
 	private BestFacade bestFacade;
 	
-//	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView main(ModelAndView mv, HttpServletRequest request) {
-//		
-//		Date mon = new Date();
-//        try {
-//           Calendar cal = Calendar.getInstance();
-//           cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-//           mon = cal.getTime();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        List<Info> weeklyBestInfo = bestFacade.weeklyBestInfo(mon);	
-//        Info dailyBestInfo = bestFacade.dailyBestInfo();
-//        
-//        List<Inquiry> weeklyBestInquiry = bestFacade.weeklyBestInquiry(mon);
-//        Inquiry dailyBestInquiry = bestFacade.dailyBestInquiry();
-//        
-//        List<Review> weeklyBestReview = bestFacade.weeklyBestReview(mon);
-//        Review dailyBestReview = bestFacade.dailyBestReview();
-//        
-//        List<Gpurchase> weeklyBestGpurchase = bestFacade.weeklyBestGpurchase(mon);
-//        Gpurchase dailyBestGpurchase = bestFacade.dailyBestGpurchase();
-//                
-//		mv.addObject("weeklyBestInfo", weeklyBestInfo);
-//		mv.addObject("weeklyBestInquiry", weeklyBestInquiry);
-//		mv.addObject("weeklyBestReview", weeklyBestReview);
-//		mv.addObject("weeklyBestGpurchase", weeklyBestGpurchase);
-//		mv.addObject("dailyBestInfo", dailyBestInfo);
-//		mv.addObject("dailyBestInquiry", dailyBestInquiry);
-//		mv.addObject("dailyBestReview", dailyBestReview);
-//		mv.addObject("dailyBestGpurchase", dailyBestGpurchase);
-//		mv.setViewName("index");
-//		return mv;
-//	}
-
-
 	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView index(ModelAndView mv) {
+	public ModelAndView main(ModelAndView mv, HttpServletRequest request) {
+		
+		Date mon = new Date();
+        try {
+           Calendar cal = Calendar.getInstance();
+           cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+           mon = cal.getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Info> weeklyBestInfo = bestFacade.weeklyBestInfo(mon);	
+        Info dailyBestInfo = bestFacade.dailyBestInfo();
+        
+        List<Inquiry> weeklyBestInquiry = bestFacade.weeklyBestInquiry(mon);
+        Inquiry dailyBestInquiry = bestFacade.dailyBestInquiry();
+        
+        List<Review> weeklyBestReview = bestFacade.weeklyBestReview(mon);
+        Review dailyBestReview = bestFacade.dailyBestReview();
+        
+        List<Gpurchase> weeklyBestGpurchase = bestFacade.weeklyBestGpurchase(mon);
+        Gpurchase dailyBestGpurchase = bestFacade.dailyBestGpurchase();
+                
+		mv.addObject("weeklyBestInfo", weeklyBestInfo);
+		mv.addObject("weeklyBestInquiry", weeklyBestInquiry);
+		mv.addObject("weeklyBestReview", weeklyBestReview);
+		mv.addObject("weeklyBestGpurchase", weeklyBestGpurchase);
+		mv.addObject("dailyBestInfo", dailyBestInfo);
+		mv.addObject("dailyBestInquiry", dailyBestInquiry);
+		mv.addObject("dailyBestReview", dailyBestReview);
+		mv.addObject("dailyBestGpurchase", dailyBestGpurchase);
 		mv.setViewName("index");
 		return mv;
 	}
+
+
+//	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
+//	public ModelAndView index(ModelAndView mv) {
+//		mv.setViewName("index");
+//		return mv;
+//	}
 
 
 }
