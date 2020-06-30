@@ -30,11 +30,11 @@
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
 						<td>${boardList.userID}</td>
 						<td>
-							<c:if test="${boardName eq '질문게시판'}">
-								${boardList.answerCnt}
+							<c:if test="${boardName eq '중고게시판' || '공구게시판'}">
+								담은수
 							</c:if>
 							<c:if test="${boardName ne '질문게시판'}">
-								${boardList.replyCnt}
+								추천수
 							</c:if>
 						</td>
 						<td>${boardList.boardLike}</td>

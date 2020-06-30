@@ -8,8 +8,6 @@ import org.springframework.dao.DataAccessException;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
-import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
 public interface GpurchaseFacade {
@@ -17,8 +15,6 @@ public interface GpurchaseFacade {
 	public List<Gpurchase> getGpurchaseList(BoardSearch boardSearch) throws DataAccessException; //게시글 목록
 	
 	public int getGpurchaseBoardCount(HashMap<String, Object> map) throws DataAccessException; //게시글 수 가져오기
-	
-//	public int boardCount(); //게시글 개수 가져오기
 	
 	public void insertGpurchase(Gpurchase gpurchase) throws DataAccessException; //게시글 작성
 	

@@ -7,17 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.support.SessionStatus;
 
-import com.ssd.petMate.domain.Gpurchase;
-import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
-import com.ssd.petMate.service.GpurchaseFacade;
-import com.ssd.petMate.service.InfoFacade;
 import com.ssd.petMate.service.SecondhandImpl;
 
 @Controller

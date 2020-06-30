@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.InfoReply;
 
 public interface GpurchaseReplyFacade {
 
@@ -24,7 +23,5 @@ public interface GpurchaseReplyFacade {
 	
 	void setReplyOrder(HashMap<String, Object> map) throws DataAccessException;
 	
-//	int findLastReplyID(int replyNum) throws DataAccessException;
-//	
 	int countSameGID(int replyNum)throws DataAccessException;
 }

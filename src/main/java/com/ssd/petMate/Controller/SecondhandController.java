@@ -9,23 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Gpurchase;
-import com.ssd.petMate.domain.GpurchaseCart;
-import com.ssd.petMate.domain.GpurchaseCartCommand;
-import com.ssd.petMate.domain.Info;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.domain.SecondhandCart;
 import com.ssd.petMate.domain.SecondhandCartCommand;
 import com.ssd.petMate.page.BoardSearch;
-import com.ssd.petMate.service.InfoFacade;
 import com.ssd.petMate.service.SecondhandImpl;
 import com.ssd.petMate.service.UserImpl;
 

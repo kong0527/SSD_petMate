@@ -63,7 +63,6 @@
 		SET boardTitle = #{boardTitle},
 		boardContent = #{boardContent},
 		boardDate = SYSDATE,
-		boardImage = #{boardImage,jdbcType=VARCHAR},
 		price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>

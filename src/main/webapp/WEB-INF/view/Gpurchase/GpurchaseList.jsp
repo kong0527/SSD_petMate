@@ -14,7 +14,7 @@
 						<th>글 제목</th>
 						<th>작성자</th>
 						<th>덧글수</th>
-						<th>추천수</th>
+						<th>담은수</th>
 						<th>조회수</th>
 					</tr>
 				</thead>

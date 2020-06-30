@@ -1,7 +1,5 @@
 package com.ssd.petMate.domain;
 
-import java.util.Date;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

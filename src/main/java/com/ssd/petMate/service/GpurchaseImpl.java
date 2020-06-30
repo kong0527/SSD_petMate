@@ -9,13 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssd.petMate.dao.GpurchaseCartDao;
 import com.ssd.petMate.dao.GpurchaseDao;
-import com.ssd.petMate.dao.InfoDao;
-import com.ssd.petMate.dao.SecondhandDao;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
-import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.page.BoardSearch;
 
 @Service
