@@ -38,4 +38,12 @@
 		WHERE boardNum=#{boardNum} and userID=#{userID}
 	</select> 
 	
+	<!-- 기간 만료된 공구 카트 삭제 -->
+	<delete id="deleteFinished">
+		DELETE FROM
+		GpurchaseCart
+		WHERE boardNum IN (SELECT boardNum
+                    FROM Gpurchase
+                    WHERE status IS NOT NULL)
+	</delete>
 </mapper>

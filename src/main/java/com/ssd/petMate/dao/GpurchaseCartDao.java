@@ -6,7 +6,6 @@ import org.springframework.dao.DataAccessException;
 import com.ssd.petMate.domain.GpurchaseCart;
 import com.ssd.petMate.domain.GpurchaseCartCommand;
 
-
 public interface GpurchaseCartDao {
 
 //	public List<GpurchaseCart> getGpurchaseCartList(BoardSearch boardSearch) throws DataAccessException; //장바구니 목록
@@ -19,7 +18,9 @@ public interface GpurchaseCartDao {
 	
 	public List<GpurchaseCartCommand> getGpurchaseCartListByGpurchase(String userID) throws DataAccessException; //cart+gpuchase
 	
-	public int countCartByboardNum(int boardNum); // 게시글에 대한 담은 장바구니 총 개수
+	public int countCartByboardNum(int boardNum) throws DataAccessException; // 게시글에 대한 담은 장바구니 총 개수
 	
-	public int isCart(GpurchaseCart gpurchaseCart); //이 게시글을 사용자가 담았는지 확인
+	public int isCart(GpurchaseCart gpurchaseCart) throws DataAccessException; //이 게시글을 사용자가 담았는지 확인
+	
+	public void deleteFinished() throws DataAccessException;
 }

@@ -92,4 +92,10 @@ public class GpurchaseImpl implements GpurchaseFacade {
 		// TODO Auto-generated method stub
 		gpurchaseDao.updateResult(gpurchase);
 	}
+
+	@Override
+	public void deleteFinished() {
+		// TODO Auto-generated method stub
+		gpurchaseCartDao.deleteFinished();
+	}
 }
