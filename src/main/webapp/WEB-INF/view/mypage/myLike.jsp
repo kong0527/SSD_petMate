@@ -215,7 +215,7 @@
 			url = url + "inquiryDetail?boardNum=" + boardNum;
 		if (name == '구인게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}
