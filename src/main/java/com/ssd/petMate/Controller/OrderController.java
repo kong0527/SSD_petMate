@@ -1,7 +1,6 @@
 package com.ssd.petMate.Controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Code;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseCart;
-import com.ssd.petMate.domain.GpurchaseCartCommand;
 import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Order;
-import com.ssd.petMate.domain.SecondhandCart;
-import com.ssd.petMate.page.BoardSearch;
 import com.ssd.petMate.service.GLineItemFacade;
 import com.ssd.petMate.service.GpurchaseFacade;
 import com.ssd.petMate.service.OrderFacade;
@@ -77,7 +71,7 @@ public class OrderController {
 	}
 	
 	//장바구니 -> 오더
-	@RequestMapping(value = "/gpurchaseCartToOrder", method = RequestMethod.POST)
+	@RequestMapping(value = "/gpurchaseCartToOrder", produces="application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String gpurchaseCartToOrder(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList, @RequestParam(value = "price") Integer price, Model model) {
 		int i;
