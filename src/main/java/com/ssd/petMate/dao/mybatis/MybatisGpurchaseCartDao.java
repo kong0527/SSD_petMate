@@ -50,4 +50,10 @@ public class MybatisGpurchaseCartDao implements GpurchaseCartDao {
 	public int isCart(GpurchaseCart gpurchaseCart) throws DataAccessException {//이 게시글을 사용자가 담았는지 확인
 		return gpurchaseCartMapper.isCart(gpurchaseCart);
 	}
+
+	@Override
+	public void deleteFinished() throws DataAccessException {
+		// TODO Auto-generated method stub
+		gpurchaseCartMapper.deleteFinished();
+	}	
 }

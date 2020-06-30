@@ -60,12 +60,9 @@ public class MainController {
 		return mv;
 	}
 
-
 //	@RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
 //	public ModelAndView index(ModelAndView mv) {
 //		mv.setViewName("index");
 //		return mv;
 //	}
-
-
 }
