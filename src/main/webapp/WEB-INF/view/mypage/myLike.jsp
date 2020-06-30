@@ -179,7 +179,7 @@
 			url = url + "myInquiryLike";
 		if (name == '구인게시판')
 			url = url + "myPetsitterLike";
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "myReviewLike";
 		url = url + "?searchType=" + $('#searchType').val();
 		url = url + "&keyword=" + $('#keyword').val();
@@ -197,7 +197,7 @@
 			url = url + "myInquiryLike";
 		if (name == '구인게시판')
 			url = url + "myPetsitterLike";
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "myReviewLike";
 		url = url + "?pageNum=" + pageNum;
 		url = url + "&contentNum=" + contentNum;
@@ -215,7 +215,7 @@
 			url = url + "inquiryDetail?boardNum=" + boardNum;
 		if (name == '구인게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}

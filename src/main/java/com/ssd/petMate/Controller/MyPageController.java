@@ -296,7 +296,7 @@ public class MyPageController {
 			boardSearch.pageInfo(pageNum, contentNum, totalCount);
 			List<Review> myboardList = myPageFacade.getPrivateReviewLike(boardSearch);
 			mv.addObject("myboardList", myboardList);
-			mv.addObject("boardName", "후기게시판");
+			mv.addObject("boardName", "리뷰게시판");
 		}
 		
 		if (request.getServletPath().equals("/myPetsitterLike")) {
