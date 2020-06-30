@@ -1,2 +1,2 @@
-# SSD_petMate
-System Software Development 0202
+# SSD_petMate 🐶🐱
+Software System Development 0202

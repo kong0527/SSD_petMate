@@ -3,22 +3,29 @@
   <display-name>petMate</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:application-config.xml</param-value>
+    <param-value>
+	    classpath:application-config.xml
+	    classpath:dataAccessContext-mybatis.xml 
+    </param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>
-  
-  <!-- 내가 추가한 부분  -->
-<!--    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-   </filter>
-   <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-   </filter-mapping> -->
+
+   <!-- 인코딩  -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
    
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
@@ -27,7 +34,6 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>
       /WEB-INF/mvc-config.xml
-<!--       /WEB-INF/security-config.xml -->
 	  </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
