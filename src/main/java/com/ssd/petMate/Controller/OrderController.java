@@ -80,27 +80,22 @@ public class OrderController {
 	@RequestMapping(value = "/gpurchaseCartToOrder", method = RequestMethod.POST)
 	@ResponseBody
 	public String gpurchaseCartToOrder(@RequestParam(value = "gpurchaseCartList[]") List<String> gpurchaseCartList, @RequestParam(value = "price") Integer price, Model model) {
-		System.out.println("orderForm enter;");
 		int i;
 		Gpurchase gpurchase;
-		System.out.println(gpurchaseCartList.toString());
 		List<Gpurchase> cartList = new ArrayList<Gpurchase>();
 		for(i = 0; i < gpurchaseCartList.size(); i++) {
 			gpurchase = gpurchaseImpl.getGpurchaseDetail(Integer.parseInt(gpurchaseCartList.get(i)));
-			System.out.println(gpurchase.toString());
 			cartList.add(gpurchase);
 		}
-		System.out.println(cartList.toString());
-		System.out.println("price : " + price);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("price", price);
-		String result = "May I take your order?";
+		String result = "주문하시겠습니까?";
 		return result;
 	}
 	
 	@GetMapping("/gpurchaseOrderForm")
 	public String gpurchaseOrderForm() {
-		return "order/paymentForm";
+		return "order/GpaymentForm";
 	}
 	
 	//공구게시판 주문
@@ -109,22 +104,20 @@ public class OrderController {
 	public String gpurchaseOrder(@Valid @ModelAttribute("gpurchaseOrder") Order order, BindingResult result,@ModelAttribute("cartList") List<Gpurchase> cartList, HttpServletRequest request, SessionStatus status) {
 			
 			if (result.hasErrors()) {
-				return "order/paymentForm";
+				return "order/GpaymentForm";
 			}
 			
 			String userID = (String) request.getSession().getAttribute("userID");
 			order.setUserID(userID);
 			GpurchaseCart gpurchaseCart;
-			//order 생
+			Gpurchase gpurchase;
+			//order 생성
 			orderImpl.insertOrder(order);
-			System.out.println(order.toString());
-			System.out.println("orderNum : " + order.getOrderNum());
 			int orderNum = order.getOrderNum();
 			//orderNum에 대한 lineItem 매칭
 			GpurchaseLineItem gLineItem = new GpurchaseLineItem();
 			for(int i = 0; i < cartList.size(); i++) {
 				gLineItem.CartToLineItem(cartList.get(i), orderNum);
-				System.out.println(gLineItem.toString());
 				gLineItemImpl.insertGpurchaseLineItem(gLineItem);
 				gpurchaseImpl.updateParticipant(cartList.get(i).getBoardNum());
 			}
@@ -132,15 +125,14 @@ public class OrderController {
 			for(int i = 0; i < cartList.size(); i++) {
 				gpurchaseCart = new GpurchaseCart(userID, cartList.get(i).getBoardNum());
 				gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
+				gpurchase = gpurchaseImpl.getGpurchaseDetail(cartList.get(i).getBoardNum());
+				int cartAdded = gpurchaseImpl.countCartByboardNum(cartList.get(i).getBoardNum());
+				gpurchase.setCartAdded(cartAdded);
+				gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
 			}
+			
 			status.setComplete();
 		return "order/commit";
 	}	
 
-//	//중고물품 삭제
-//	@RequestMapping(value = "/gurchaseDelete", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {
-//		info.deleteSecondhand(boardNum);
-//		return "redirect:/secondhand";
-//	}
 }

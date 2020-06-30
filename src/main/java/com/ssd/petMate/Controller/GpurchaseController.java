@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,12 +70,6 @@ public class GpurchaseController {
 		return mv;
 	}
 	
-//	@RequestMapping(value = "/secondhandForm", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ModelAndView secondhandForm(ModelAndView mv) {
-//		mv.setViewName("secondhand/secondhandForm");
-//		return mv;
-//	}
-	
 	//공구게시판 글 상세보기
 	@RequestMapping(value = "/gpurchaseDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView gpurchaseDetail(ModelAndView mv,
@@ -90,14 +85,13 @@ public class GpurchaseController {
 	@GetMapping("/gpurchaseCart")
 	public ModelAndView gpurchaseCartList(ModelAndView mv, HttpServletRequest request) {
 		String userID = (String) request.getSession().getAttribute("userID");
-		System.out.println("userID : " + userID);
 		List<GpurchaseCartCommand> gpurchaseCartList = gpurchaseImpl.getGpurchaseCartListByGpurchase(userID);	
 		mv.addObject("gpurchaseCartList", gpurchaseCartList);
 		mv.setViewName("order/gpurchaseCart");
 		return mv;
 	}
 	
-//	게시글 추천 기능
+//	장바구니 담기 기능
 	@RequestMapping(value="/gpurchaseCartAdded", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public HashMap<String, Integer> gpurchaseCartAdded(ModelAndView mv, HttpServletRequest request,
@@ -107,30 +101,21 @@ public class GpurchaseController {
 		Gpurchase gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
 		GpurchaseCart gpurchaseCart = new GpurchaseCart(userID, boardNum);
 
-//		이미 사용자가 게시글에 좋아요를 눌렀는지 누르지 않았는지 판별하기 위해 호출
+//		이미 사용자가 게시글을 담았는지 판별하기 위해 호출
 		int count = gpurchaseImpl.isCart(gpurchaseCart);
 		
-		System.out.println("before : count = " + count);
-		System.out.println("before : cartAdded = " + gpurchase.getCartAdded() );
-		
-//		만약 이전에 좋아요를 누르지 않았을 때
-//		게시글의 좋아요 개수가 증가하고, like 테이블에 좋아요를 누른 userID와 게시글의 ID가 삽입됨
+//		만약 담지 않았을 때
+//		징바구니 개수가 증가하고, cart 테이블에 제품을 담은 userID와 게시글의 ID가 삽입됨
 		if (count == 0) {
 			gpurchaseImpl.insertGpurchaseCart(gpurchaseCart);
 		}
-//		else {
-//			gpurchaseImpl.deleteGpurchaseCart(gpurchaseCart);
-//		}
 		
-//		좋아요 개수 가지고 오기
+//		장바구니 수 가지고 오기
 		int cartAdded = gpurchaseImpl.countCartByboardNum(boardNum);
-//		좋아요 개수 update
+//		장바구니 개수 update
 		gpurchase.setCartAdded(cartAdded);
 		gpurchaseImpl.gpurchaseCartUpdate(gpurchase);
 		gpurchase = gpurchaseImpl.getGpurchaseDetail(boardNum);
-		
-		System.out.println("after cartAdded : " + cartAdded);
-		System.out.println("after gcartAdded : " + gpurchase.getCartAdded());
 		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("count", count);
@@ -142,6 +127,7 @@ public class GpurchaseController {
 	}
 	
 	//공구게시판 장바구니 삭제
+	@Transactional
 	@GetMapping("/gpurchaseCartDelete")
 	public String gpurchaseCartDelete(@RequestParam(required = false) int boardNum, HttpServletRequest request) {
 		String userID = (String) request.getSession().getAttribute("userID");
@@ -163,7 +149,6 @@ public class GpurchaseController {
 	@RequestMapping(value = "gpurchaseDetail/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String secondhandDelete(@RequestParam("boardNum") int boardNum) {
 		gpurchaseImpl.deleteGpurchase(boardNum);
-		System.out.println("deleted");
 		return "redirect:/gpurchase";
 	}
 }

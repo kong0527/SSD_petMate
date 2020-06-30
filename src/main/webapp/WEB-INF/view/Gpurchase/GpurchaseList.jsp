@@ -4,17 +4,17 @@
 <div class="site-section">
 	<div class="container">
 		<div class="section-title">
-			<h2>공구게시판</h2>
+			<h2>공구 게시판</h2>
 		</div>
 		<div class="table-wrapper">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>##</th>
+						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
 						<th>덧글수</th>
-						<th>추천수</th>
+						<th>담은수</th>
 						<th>조회수</th>
 					</tr>
 				</thead>

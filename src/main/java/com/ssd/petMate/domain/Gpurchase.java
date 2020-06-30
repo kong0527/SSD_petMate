@@ -138,12 +138,5 @@ public class Gpurchase {
 		this.price = price;
 		this.boardTitle = boardTitle;
 	}
-	@Override
-	public String toString() {
-		return "Gpurchase [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID + ", price="
-				+ price + ", sdate=" + sdate + ", edate=" + edate + ", boardContent=" + boardContent + ", cartAdded="
-				+ cartAdded + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle + ", boardHit=" + boardHit
-				+ ", goalNum=" + goalNum + ", lprice=" + lprice + ", participant=" + participant + ", status=" + status
-				+ ", productName=" + productName + "]";
-	}
+
 }
