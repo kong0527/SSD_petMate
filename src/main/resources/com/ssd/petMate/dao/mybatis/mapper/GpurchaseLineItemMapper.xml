@@ -11,13 +11,6 @@
 		 WHERE orderNum = #{orderNum}
 	</select>
 	
-	<!-- 공동구매 lineItem 수 -->
-	<!-- <select id="getGpurchaseLineItemCount" resultType="int">
-		SELECT COUNT(*)
-		FROM GLineItem
-		WHERE orderNum = #{orderNum}
-	</select> -->
-	
 	<!-- 공동구매 lineItem 삽입하기 -->
 	<insert id="insertGpurchaseLineItem" parameterType="com.ssd.petMate.domain.GpurchaseLineItem">
  		INSERT

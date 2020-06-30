@@ -53,8 +53,8 @@
 	<!-- 중고물품 게시글 삽입하기  -->
 	<insert id="insertSecondhand" parameterType="com.ssd.petMate.domain.Secondhand">
  		INSERT
- 		INTO Secondhand(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, boardImage, price, cartAdded, isSold)
- 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{boardImage, jdbcType=VARCHAR}, #{price, jdbcType=NUMERIC}, #{cartAdded, jdbcType=NUMERIC}, #{isSold, jdbcType=NUMERIC})
+ 		INTO Secondhand(userID, boardTitle, boardContent, replyCnt, boardHit, boardDate, price, cartAdded, isSold)
+ 		VALUES(#{userID}, #{boardTitle}, #{boardContent}, #{replyCnt, jdbcType=NUMERIC}, #{boardHit, jdbcType=NUMERIC}, SYSDATE, #{price, jdbcType=NUMERIC}, #{cartAdded, jdbcType=NUMERIC}, #{isSold, jdbcType=NUMERIC})
  	</insert>
 	
 	<!-- 중고물품 게시글 수정하기  -->
@@ -63,7 +63,6 @@
 		SET boardTitle = #{boardTitle},
 		boardContent = #{boardContent},
 		boardDate = SYSDATE,
-		boardImage = #{boardImage,jdbcType=VARCHAR},
 		price = #{price}
 		WHERE boardNum = #{boardNum}
 	</update>
@@ -109,7 +108,5 @@
 		boardTitle = #{boardTitle}
 		WHERE boardNum = #{boardNum}
 	</update>
-	
-	
 	
 </mapper>

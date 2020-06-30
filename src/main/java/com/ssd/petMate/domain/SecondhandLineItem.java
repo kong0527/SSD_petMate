@@ -37,12 +37,4 @@ public class SecondhandLineItem {
 		this.orderNum = orderNum;
 	}
 	
-	@Override
-	public String toString() {
-		return "SecondhandLineItem [orderNum=" + orderNum + ", price=" + price + ", boardNum=" + boardNum
-				+ ", lineItemNum=" + lineItemNum + "]";
-	}
-	
-	
-	
 }

@@ -1,7 +1,5 @@
 package com.ssd.petMate.service;
 
-import java.util.List;
-
 import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.Order;

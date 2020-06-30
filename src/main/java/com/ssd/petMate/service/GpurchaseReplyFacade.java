@@ -22,6 +22,6 @@ public interface GpurchaseReplyFacade {
 	int replyCnt(int boardNum) throws DataAccessException;
 	
 	void setReplyOrder(HashMap<String, Object> map) throws DataAccessException;
-		
+
 	int countSameGID(int replyNum)throws DataAccessException;
 }

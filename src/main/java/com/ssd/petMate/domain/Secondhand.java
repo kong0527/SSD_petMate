@@ -1,7 +1,5 @@
 package com.ssd.petMate.domain;
 
-import java.util.Date;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,7 +17,6 @@ public class Secondhand {
 	@NotNull
 	@Min(1)
 	private int price;
-	private String boardImage;
 	private int boardHit;
 	private int replyCnt;
 	@NotBlank
@@ -63,12 +60,6 @@ public class Secondhand {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getBoardImage() {
-		return boardImage;
-	}
-	public void setBoardImage(String boardImage) {
-		this.boardImage = boardImage;
-	}
 	public int getBoardHit() {
 		return boardHit;
 	}
@@ -92,13 +83,6 @@ public class Secondhand {
 	}
 	public void setIsSold(int isSold) {
 		this.isSold = isSold;
-	}
-	@Override
-	public String toString() {
-		return "Secondhand [boardNum=" + boardNum + ", boardDate=" + boardDate + ", userID=" + userID
-				+ ", boardContent=" + boardContent + ", cartAdded=" + cartAdded + ", price=" + price + ", boardImage="
-				+ boardImage + ", boardHit=" + boardHit + ", replyCnt=" + replyCnt + ", boardTitle=" + boardTitle
-				+ ", isSold=" + isSold + "]";
 	}
 	
 }

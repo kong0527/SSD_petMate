@@ -11,7 +11,7 @@ import com.ssd.petMate.page.BoardSearch;
 public interface GpurchaseFacade {
 
 	List<Gpurchase> getGpurchaseList(BoardSearch boardSearch); //게시글 목록
-	
+
 	int getGpurchaseBoardCount(HashMap<String, Object> map); //게시글 수 가져오기
 		
 	void insertGpurchase(Gpurchase gpurchase); //게시글 작성
