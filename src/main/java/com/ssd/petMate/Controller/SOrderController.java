@@ -1,7 +1,6 @@
 package com.ssd.petMate.Controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,23 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.ssd.petMate.domain.Gpurchase;
-import com.ssd.petMate.domain.GpurchaseCart;
-import com.ssd.petMate.domain.GpurchaseCartCommand;
-import com.ssd.petMate.domain.GpurchaseLineItem;
 import com.ssd.petMate.domain.Order;
 import com.ssd.petMate.domain.Secondhand;
 import com.ssd.petMate.domain.SecondhandCart;
 import com.ssd.petMate.domain.SecondhandLineItem;
-import com.ssd.petMate.page.BoardSearch;
-import com.ssd.petMate.service.GLineItemFacade;
-import com.ssd.petMate.service.GpurchaseFacade;
 import com.ssd.petMate.service.OrderFacade;
 import com.ssd.petMate.service.SLineItemFacade;
 import com.ssd.petMate.service.SecondhandFacade;
-
 
 @Controller
 @SessionAttributes({"sCartList","sprice"})
@@ -78,7 +67,7 @@ public class SOrderController {
 	}
 	
 	//장바구니 -> 오더
-	@RequestMapping(value = "/secondhandCartToOrder", produces="application/text; charset=utf8" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/secondhandCartToOrder", produces="application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String secondhandCartToOrder(@RequestParam(value = "secondhandCartList[]") List<String> secondhandCartList, @RequestParam(value = "sprice") Integer sprice, Model model) {
 		System.out.println("orderForm enter;");

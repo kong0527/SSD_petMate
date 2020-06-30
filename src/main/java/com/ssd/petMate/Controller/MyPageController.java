@@ -241,7 +241,6 @@ public class MyPageController {
 	public ModelAndView mypageOrderDetail(ModelAndView mv, HttpServletRequest request,
 			@RequestParam("orderNum") int orderNum) {
 		
-		String userID = request.getSession().getAttribute("userID").toString();
 		OrderCommand gOrder = myPageFacade.getOrderLineItems(orderNum);
 		SOrderCommand sOrder = myPageFacade.getOrderSLineItems(orderNum);
 		if(gOrder != null)
