@@ -12,13 +12,13 @@
 </div>
 	<div class="sideContainer d-md-flex align-items-stretch">
 		<div id="content" class="p-4 p-md-5 pt-5">
-			<table class="table table-striped">
+			<table class="table table-striped" style="width:100%">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>글 제목</th>
 						<th>작성자</th>
-						<th>덧글수</th>
+						<th>댓글수</th>
 						<th>추천수</th>
 						<th>조회수</th>
 					</tr>
@@ -30,12 +30,14 @@
 						<td><a href="javascript:urlCheck(${boardList.boardNum})">${boardList.boardTitle}</a></td>
 						<td>${boardList.userID}</td>
 						<td>
-							<c:if test="${boardName eq '질문게시판'}">
-								${boardList.answerCnt}
-							</c:if>
-							<c:if test="${boardName ne '질문게시판'}">
-								${boardList.replyCnt}
-							</c:if>
+							<c:choose>
+								<c:when test="${boardName eq '질문게시판'}">
+									${boardList.answerCnt}
+								</c:when>
+								<c:when test="${boardName ne '질문게시판'}">
+									${boardList.replyCnt}
+								</c:when>
+							</c:choose>
 						</td>
 						<td>${boardList.boardLike}</td>
 						<td>${boardList.boardHit}</td>
@@ -215,7 +217,7 @@
 			url = url + "inquiryDetail?boardNum=" + boardNum;
 		if (name == '구인게시판')
 			url = url + "petsitterDetail?boardNum=" + boardNum;
-		if (name == '후기게시판')
+		if (name == '리뷰게시판')
 			url = url + "reviewDetail?boardNum=" + boardNum;
 		location.href = url;
 	}

@@ -14,16 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssd.petMate.domain.Answer;
 import com.ssd.petMate.domain.Gpurchase;
 import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.Info;
-import com.ssd.petMate.domain.InfoReply;
-import com.ssd.petMate.domain.Inquiry;
 import com.ssd.petMate.service.GpurchaseFacade;
 import com.ssd.petMate.service.GpurchaseReplyFacade;
-import com.ssd.petMate.service.InfoFacade;
-import com.ssd.petMate.service.InfoReplyFacade;
 
 @Controller
 public class GpurchaseReplyController {
@@ -55,7 +49,6 @@ public class GpurchaseReplyController {
 //		게시글 목록에서 댓글 수 확인이 가능하도록 하기 위해 지정
 		
 		int replyCnt = gpurchaseReplyFacade.replyCnt(gpurchaseReply.getBoardNum());
-		System.out.println("replyCnt : " + replyCnt);
 		Gpurchase gpurchase = gpurchaseFacade.getGpurchaseDetail(gpurchaseReply.getBoardNum());
 		gpurchase.setReplyCnt(replyCnt);
 		

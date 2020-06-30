@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.ssd.petMate.domain.GpurchaseReply;
-import com.ssd.petMate.domain.InfoReply;
 
 public interface GpurchaseReplyDao {
 	List<GpurchaseReply> getReplyList(int boardNum) throws DataAccessException;

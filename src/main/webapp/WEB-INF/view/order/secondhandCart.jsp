@@ -21,24 +21,29 @@
 						<th>Quantity</th>
 						<th>Total</th>
 						<th>&nbsp;</th>
+						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="secondhandCart" items="${secondhandCartList}">
 						<tr>
 							<td><input type="checkbox" id="box" name ="box" class="check" value="${secondhandCart.secondhand.boardNum}"/></td>
-							<td ><img src="resources/img/love.png" border="0"> &nbsp;
-							${secondhandCart.secondhand.boardTitle}</td>
+							<td><a href="<c:url value="/secondhandDetail">
+										<c:param name="boardNum" value="${secondhandCart.boardNum}"/></c:url>">
+										<img src="resources/img/dog-food.png" border="0"> &nbsp;
+										${secondhandCart.secondhand.boardTitle}</a></td>
 							<td>${secondhandCart.secondhand.price}</td>
 							<td>1</td>
-							<td>${secondhandCart.secondhand.boardNum} ${secondhandCart.secondhand.price}</td>
+							<td>${secondhandCart.secondhand.price}</td>
 							<td><input type="hidden" name="price" value="${secondhandCart.secondhand.price}" /></td>
 							<td><input type="submit" class = "btn" value="x" onclick="del(${secondhandCart.secondhand.boardNum})" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-	
+			
+			<hr class="dashed">
+			
 			<table class="text-right" align="right">
 				<tr>
 					<td>총상품금액</td>
@@ -56,12 +61,13 @@
 					<td id="expectPrice">2500₩</td>
 				</tr>
 				<tr>
-					<td><input type="button" id="uncheck" value="cancle" class="btn" /></td>
+					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td><button type="button" id="btnOrder" name ="btnOrder" class="btn">order</button></td>
 				</tr>
 			</table>
 		</div>
+		<hr class="dashed">
 
 		<nav id="sidebar">
 			<div class="p-4 pt-5">

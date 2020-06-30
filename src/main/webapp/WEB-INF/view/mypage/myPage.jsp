@@ -19,7 +19,14 @@
 						<th>글 제목</th>
 						<th>작성자</th>
 						<th>덧글수</th>
-						<th>추천수</th>
+						<th>
+							<c:if test="${boardName eq '공구게시판' || boardName eq '중고게시판'}">
+								담은수
+							</c:if>
+							<c:if test="${boardName ne '공구게시판' && boardName ne '중고게시판'}">
+								추천수
+							</c:if>
+						</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
