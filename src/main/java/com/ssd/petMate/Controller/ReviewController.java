@@ -78,11 +78,14 @@ public class ReviewController {
 		List<Review> reviewList = reviewFacade.getAllBoard(boardSearch);
 		
 		String userID = (String) request.getSession().getAttribute("userID");
-		int count = reviewFacade.petsitterCount(userID);
+		if (userID != null) {
+			int count = reviewFacade.petsitterCount(userID);
+			mv.addObject("count", count);
+		}
 
 		mv.addObject("reviewList", reviewList);
 		mv.addObject("boardSearch", boardSearch);
-		mv.addObject("count", count);
+		
 		mv.setViewName("review/reviewList");
 		return mv;
 	}
