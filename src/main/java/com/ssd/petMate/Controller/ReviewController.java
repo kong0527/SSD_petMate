@@ -47,7 +47,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/reviewDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView reviewDetail(ModelAndView mv,
+	public ModelAndView reviewDetail(ModelAndView mv, 
 			@RequestParam("boardNum") int boardNum) {
 		reviewFacade.updateViews(boardNum);
 		mv.addObject("review", reviewFacade.boardDetail(boardNum));
