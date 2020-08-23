@@ -138,7 +138,7 @@ Java와 Js, Oracle DBMS, Ajax, Bootstrap, REST 서비스 등 다양한 기능을
 
 1. 회원가입 Validation 
 
-   ![image-20200824004711340](C:\Users\20gyr\AppData\Roaming\Typora\typora-user-images\image-20200824004711340.png)
+   ![image](https://user-images.githubusercontent.com/64277114/90982832-f40b4d00-e5a4-11ea-872e-a76b71e53d89.png)
 
    <br/>
 
