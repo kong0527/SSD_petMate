@@ -177,3 +177,4 @@ Java와 Js, Oracle DBMS, Ajax, Bootstrap, REST 서비스 등 다양한 기능을
 test는 [여기](http://202.20.119.117/petMate/index)에서 할 수 있습니다. 😎
 
 이 외에 더 많은 기능과 구현방법에 대한 설명은 [여기](https://drive.google.com/file/d/1V5UwLsKu-HChuZjV5EWdxkE_7K0QmQs7/view?usp=sharing)에서 참고 부탁드립니다.
+데모영상은 [여기](https://drive.google.com/file/d/18IkXl3_8dYMrnKyEPUfh9_IPQdB9gI5n/view?usp=sharing)에서 시청 가능합니다. 
